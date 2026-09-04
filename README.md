@@ -1,34 +1,51 @@
-# SIGNAL // 47 v3.0 — Living Station
+# SIGNAL // 47 - FINAL EDITION
 
-Một mini-game sci-fi / mystery chạy hoàn toàn trong trình duyệt. Không npm, không server, không PWA: mở `index.html` là chơi được và có thể đưa thẳng lên GitHub Pages.
+Single-file browser game. No npm, build step, framework, server, PWA, or external asset is required.
 
-## Hệ thống chính
+## Start
+Open `index.html` directly in Chrome, Edge, Firefox, or deploy it to GitHub Pages.
 
-- Song ngữ Tiếng Việt / English, lưu lựa chọn tự động.
-- 12 transmission có chuỗi mở khóa, decoder, archive, spectrum analyzer và secret hydrogen band 1420.405 MHz.
-- Web Audio: radio static, carrier tone, beep và lệnh `play` / `listen` để phát fingerprint tín hiệu.
-- Star Map, Transmission Database, upgrades, achievements, AP progression.
-- Station Exploration với 5 khu vực, hotspot, inventory, puzzle và 5 Memory Tapes.
-- Power Grid: bật/tắt Receiver, Archive Core, Observatory, CCTV, Life Support.
-- Station Integrity + Signal Contamination; PING/giải mã một số nguồn nguy hiểm có hậu quả.
-- CCTV Matrix với camera anomaly và frame điều tra.
-- Procedural Exoplanet Survey: 6 mục tiêu thay đổi theo ngày thật và tiến độ game.
-- Side Missions + Daily Log để tạo vòng lặp chơi dài hơn.
-- Daily Anomaly + sự kiện hệ thống ngẫu nhiên theo phiên.
-- Settings: bật/tắt CRT scanlines, animation, Export/Import save.
-- 4 ending: SILENCE, REPLY, LOOP và ending bí mật WITNESS.
-- Save tự động bằng `localStorage`, migrate từ save v2.x.
+## Core loop
+1. Tune or Auto Scan the receiver.
+2. Decode and archive transmissions.
+3. Follow CAMPAIGN for the intended story progression.
+4. Spend AP in RESEARCH.
+5. WALK K-47 with WASD / arrow keys and press E to interact.
+6. Use WATERFALL + TRIANGULATE + SPECTROGRAM analysis.
+7. Launch PROBES and read telemetry.
+8. Recover memory tapes, meet ECHO, craft the PHASE COMPASS, and open the SIGNAL RELAY.
+9. Use `final` in the terminal after S-012 to choose an ending.
 
-## Terminal
+## Radio controls
+- Direct frequency entry + GO / Enter
+- Rotary knob follows pointer angle around its center
+- Mouse wheel on the knob: 0.1 MHz
+- Shift + mouse wheel: 0.01 MHz
+- Quick steps: +/-0.01, +/-0.1, +/-1, +/-5 MHz
+- Left / Right arrows outside text fields: +/-0.1 MHz
 
-`help`, `scan`, `tune 94.7`, `decode`, `archive`, `analyze`, `play`, `map`, `database`, `explore`, `memories`, `inventory`, `systems`, `cctv`, `planets`, `quests`, `decon`, `settings`, `upgrades`, `achievements`, `status`, `final`, `clear`, `reset`.
+## Major systems
+- VI / EN language toggle
+- 12 transmissions including the 1420.405 MHz secret band
+- Signal strength, live oscilloscope and waterfall spectrum
+- Star map and transmission database
+- Campaign with 7 chapters
+- Research tree
+- K-47 station exploration with 7 rooms
+- ECHO encounters and memory tapes
+- Inventory, station repair and Phase Compass crafting
+- Power grid, stability, integrity and contamination
+- CCTV anomalies
+- Crypto desk: Morse, binary and Caesar samples
+- Real-timestamp probes and telemetry
+- Exobiology / ecosystem state
+- Multiple endings: SILENCE, REPLY, LOOP, WITNESS, FRACTURE
+- Observer Journal and achievements
+- Export / import save
+- CRT and reduced-motion settings
+- Automatic migration from earlier `signal47` localStorage saves
 
-## Chạy
+## Recommended first play
+AUTO SCAN -> DECODE -> CAMPAIGN.
 
-1. Mở `index.html` bằng Chrome/Edge/Firefox hiện đại.
-2. Bấm `AUDIO` một lần nếu muốn bật Web Audio; trình duyệt yêu cầu tương tác người dùng trước khi phát âm thanh.
-3. Có thể upload đúng file `index.html` lên GitHub Pages.
-
-## Ghi chú QA
-
-JavaScript được kiểm tra syntax bằng Node.js. Browser headless trong container hiện không khởi động hoàn chỉnh do DBus của môi trường, nên kiểm thử giao diện cuối cùng nên được mở trực tiếp trong trình duyệt máy người dùng.
+The intended final route requires the main campaign, Phase Lock research, station exploration, ECHO contacts, three hidden spectrograms, a probe, a biosphere study, and the Phase Compass.
