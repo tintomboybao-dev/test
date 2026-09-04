@@ -3,80 +3,82 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <meta name="theme-color" content="#091721" />
-  <title>AquaPixel Sanctuary</title>
+  <meta name="theme-color" content="#07161d" />
+  <title>AquaPixel Sanctuary V2</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="shell">
-    <header class="topbar panel">
-      <div>
-        <div class="eyebrow">PIXEL ECOSYSTEM LAB</div>
-        <h1>AquaPixel Sanctuary</h1>
-        <p>Nuôi một hệ sinh thái thủy sinh nhỏ — đẹp, chậm, và có hậu quả.</p>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="eyebrow">A LIVING PIXEL ECOSYSTEM</div>
+        <div class="brand-row">
+          <h1>AquaPixel Sanctuary <span>V2</span></h1>
+          <div class="world-status"><span id="healthDot" class="status-dot"></span><span id="healthText">Ổn định</span></div>
+        </div>
+        <p id="storyHint">Mỗi sinh vật có một cuộc đời nhỏ của riêng nó.</p>
       </div>
-      <div class="header-actions">
-        <button id="pauseBtn" class="pixel-btn">⏸ Tạm dừng</button>
-        <button id="speedBtn" class="pixel-btn">▶ x1</button>
-        <button id="saveBtn" class="pixel-btn">💾 Lưu</button>
-        <button id="resetBtn" class="pixel-btn danger">↻ Làm lại</button>
+      <div class="top-actions">
+        <button class="pixel-btn" id="pauseBtn">⏸</button>
+        <button class="pixel-btn" id="speedBtn">▶ x1</button>
+        <button class="pixel-btn" id="waterTestBtn">🔬 Test nước</button>
+        <button class="pixel-btn" id="aquadexBtn">📖 Aquadex</button>
+        <button class="pixel-btn" id="journalBtn">✦ Nhật ký</button>
+        <button class="pixel-btn" id="saveBtn">💾</button>
+        <button class="pixel-btn danger" id="resetBtn">↻</button>
       </div>
     </header>
 
-    <main class="layout">
-      <section class="left-col">
-        <div class="panel tank-panel">
-          <div class="tank-titlebar">
-            <div>
-              <strong id="tankName">Hồ Mầm Xanh</strong>
-              <span id="dayLabel">Ngày 1 · 08:00</span>
-            </div>
-            <div class="mini-status"><span class="dot" id="healthDot"></span><span id="healthText">Đang cân bằng</span></div>
-          </div>
-          <div id="viewportWrap" class="viewport-wrap">
-            <canvas id="game" width="320" height="200" aria-label="Bể thủy sinh pixel"></canvas>
-            <div class="scanlines"></div>
-            <div id="toast" class="toast"></div>
-          </div>
-          <div class="hintbar">
-            <span>Chuột trái: đặt</span><span>·</span><span>Giữ chuột: rải</span><span>·</span><span>Chuột phải: xóa</span>
-          </div>
+    <main>
+      <section class="tank-card">
+        <div class="tank-meta">
+          <div><strong id="tankName">Hồ Mầm Xanh</strong><span id="dayLabel">Ngày 1 · 08:00</span></div>
+          <div class="weather-line"><span id="weatherIcon">☀</span><span id="weatherText">Trời dịu</span><span id="tempMini">25°C</span></div>
         </div>
 
-        <div class="panel toolbar-panel">
-          <div class="section-heading"><span>Kho sinh thái</span><small>Chọn rồi đặt trực tiếp vào hồ</small></div>
-          <div id="toolbar" class="toolbar"></div>
+        <div id="viewportWrap" class="viewport-wrap">
+          <canvas id="game" width="384" height="240" aria-label="Hệ sinh thái thủy sinh pixel"></canvas>
+          <div class="scanlines"></div>
+          <div id="eventBanner" class="event-banner"></div>
+          <div id="toast" class="toast"></div>
+          <div id="cursorTip" class="cursor-tip">Click cá để xem hồ sơ</div>
+        </div>
+
+        <div class="bottom-dock">
+          <div class="dock-main">
+            <div id="toolbar" class="toolbar"></div>
+          </div>
+          <div class="dock-help">
+            <span>Click: đặt / chọn cá</span><span>·</span><span>Giữ: rải</span><span>·</span><span>Chuột phải: xóa</span>
+          </div>
         </div>
       </section>
-
-      <aside class="right-col">
-        <section class="panel meters-panel">
-          <div class="section-heading"><span>Chỉ số môi trường</span><small>Cập nhật theo mô phỏng</small></div>
-          <div id="meters" class="meters"></div>
-        </section>
-
-        <section class="panel inspector-panel">
-          <div class="section-heading"><span>Phân tích hệ sinh thái</span><small id="scoreLabel">Điểm ổn định 0%</small></div>
-          <div id="analysisText" class="analysis-text"></div>
-          <div class="balance-track"><div id="balanceFill"></div></div>
-        </section>
-
-        <section class="panel population-panel">
-          <div class="section-heading"><span>Quần thể</span><small>Đếm theo thời gian thực</small></div>
-          <div id="population" class="population-grid"></div>
-        </section>
-
-        <section class="panel log-panel">
-          <div class="section-heading"><span>Nhật ký người chăm</span><small>Hệ sẽ tự kể chuyện</small></div>
-          <div id="log" class="log"></div>
-        </section>
-      </aside>
     </main>
-
-    <footer>
-      Mô phỏng có chủ ý “gần thật” chứ không phải công cụ nuôi cá chuyên môn. Hãy thử tạo một vòng tuần hoàn thay vì chỉ thả thật nhiều sinh vật.
-    </footer>
   </div>
+
+  <aside id="sidePanel" class="side-panel" aria-hidden="true">
+    <button id="closeSideBtn" class="panel-close">×</button>
+    <div id="sideContent"></div>
+  </aside>
+  <div id="panelShade" class="panel-shade"></div>
+
+  <dialog id="aquadexDialog" class="pixel-dialog">
+    <div class="dialog-head">
+      <div><div class="eyebrow">COLLECTION</div><h2>Aquadex</h2></div>
+      <button class="pixel-btn" data-close="aquadexDialog">×</button>
+    </div>
+    <div id="aquadexStats" class="dex-stats"></div>
+    <div id="aquadexGrid" class="dex-grid"></div>
+  </dialog>
+
+  <dialog id="journalDialog" class="pixel-dialog journal-dialog">
+    <div class="dialog-head">
+      <div><div class="eyebrow">THE TANK REMEMBERS</div><h2>Nhật ký hồ</h2></div>
+      <button class="pixel-btn" data-close="journalDialog">×</button>
+    </div>
+    <div id="journal" class="journal"></div>
+  </dialog>
+
   <script src="game.js"></script>
 </body>
 </html>
