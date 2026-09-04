@@ -40,7 +40,7 @@ header{grid-column:1/4;border:1px solid var(--line);display:flex;align-items:cen
 .freq{font-size:34px;text-align:center;margin-top:15px;text-shadow:0 0 10px #74ff9c}.freq small{font-size:12px}.status{text-align:center;font-size:10px;color:#4f9875;letter-spacing:1px;min-height:16px}
 .signal-meter{height:4px;background:#10241d;margin:8px auto 0;max-width:360px}.signal-meter i{display:block;height:100%;width:0;background:var(--green);transition:width .15s}
 .controls{display:grid;grid-template-columns:1fr 180px 1fr;gap:14px;background:#101917;border:3px solid #1e302c;padding:16px}.btns{display:grid;grid-template-columns:1fr 1fr;gap:7px}.btns button{font-size:11px}
-.knob-wrap{text-align:center}.knob{width:94px;height:94px;border-radius:50%;margin:auto;background:repeating-conic-gradient(#384640 0 8deg,#101614 8deg 16deg);border:8px solid #202d29;box-shadow:inset 0 0 0 15px #080d0c;position:relative;transition:transform .12s}.knob:after{content:"";position:absolute;width:4px;height:24px;background:#bfffd2;left:calc(50% - 2px);top:8px;box-shadow:0 0 6px #88ffb1}.knob-label{font-size:9px;color:var(--dim);margin-top:6px}
+.knob-wrap{text-align:center}.knob{width:94px;height:94px;border-radius:50%;margin:auto;background:repeating-conic-gradient(#384640 0 8deg,#101614 8deg 16deg);border:8px solid #202d29;box-shadow:inset 0 0 0 15px #080d0c;position:relative;transition:transform .08s;touch-action:none;cursor:grab;user-select:none}.knob.dragging{cursor:grabbing;filter:brightness(1.25)}.knob:after{content:"";position:absolute;width:4px;height:24px;background:#bfffd2;left:calc(50% - 2px);top:8px;box-shadow:0 0 6px #88ffb1}.knob-label{font-size:9px;color:var(--dim);margin-top:6px}.tuning-box{margin-top:10px;border:1px solid #214a3d;background:#06100d;padding:8px}.tuning-row{display:grid;grid-template-columns:1fr auto;gap:6px}.tuning-row input{min-width:0;background:#020806;border:1px solid #31584d;color:var(--green);font:inherit;padding:8px;text-align:center;outline:none}.tuning-row input:focus{border-color:var(--green);box-shadow:0 0 12px #65ff9a22}.step-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:6px}.step-grid button{padding:6px 2px;font-size:9px}.tuning-hint{font-size:8px;color:var(--dim);margin-top:5px;line-height:1.35}
 .terminal{height:142px;margin-top:11px;border:1px solid #245243;background:#020806;padding:10px;font-size:11px;overflow:auto;line-height:1.55}.cmd{display:flex;margin-top:5px}.cmd span{padding:9px 0;color:#5da27d}.cmd input{flex:1;background:#030b08;border:1px solid #1f4b3d;color:var(--green);padding:9px;font-family:inherit;outline:none;min-width:0}.log{font-size:11px;color:#7cc99b;line-height:1.5}
 .mission{border-left:2px solid var(--amber);padding:8px;margin:8px 0;background:#ffc66d0b;font-size:10px;line-height:1.45}.progress{height:6px;background:#15231f;margin-top:5px}.progress i{display:block;height:100%;background:var(--green);transition:width .3s}.mini-progress{height:4px;background:#15231f;margin-top:4px}.mini-progress i{display:block;height:100%;background:var(--cyan)}
 .planet{height:128px;display:grid;place-items:center;position:relative;overflow:hidden}.planet:after{content:"";position:absolute;width:180px;height:30px;border:1px solid #88ffb133;border-radius:50%;transform:rotate(-12deg)}.orb{width:86px;height:86px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#739f82,#27483c 38%,#091511 70%);box-shadow:0 0 25px #5dff9a20;transition:.4s}.orb.scan{animation:orbPulse 1.4s ease-in-out infinite}@keyframes orbPulse{50%{filter:brightness(1.35);transform:scale(1.03)}}
@@ -112,7 +112,7 @@ body.no-crt:before,body.no-crt:after{display:none}body.no-motion *{animation:non
         <button id="tuneDown">◀ -0.1</button><button id="tuneUp">+0.1 ▶</button>
         <button id="scanBtn">AUTO SCAN</button><button id="decodeBtn">DECODE</button>
       </div>
-      <div class="knob-wrap"><div class="knob" id="knob"></div><div class="knob-label">WIDEBAND RECEIVER</div></div>
+      <div class="knob-wrap"><div class="knob" id="knob" title="Rotate around the knob with your pointer · scroll to fine tune"></div><div class="knob-label">WIDEBAND RECEIVER</div><div class="tuning-box"><div class="tuning-row"><input id="freqInput" type="number" min="80" max="110" step="0.01" value="88.20" aria-label="Frequency MHz"><button id="freqGo">GO</button></div><div class="step-grid"><button data-tune="-5">-5</button><button data-tune="-1">-1</button><button data-tune="-0.1">-.1</button><button data-tune="0.1">+.1</button><button data-tune="1">+1</button><button data-tune="5">+5</button></div><div class="tuning-hint" id="tuningHint">ROTATE AROUND KNOB · MOUSE WHEEL · ENTER MHz</div></div></div>
       <div class="btns">
         <button id="pingBtn">PING</button><button id="archiveBtn">ARCHIVE</button>
         <button id="mapBtn">STAR MAP</button><button id="archiveViewBtn">DATABASE</button><button id="analyzerBtn">SPECTRUM ANALYZER</button><button id="exploreBtn">EXPLORE STATION</button><button id="memoryBtn" style="grid-column:1/-1">MEMORY TAPES</button>
@@ -192,8 +192,14 @@ function receiver(t,c=''){const time=new Date().toLocaleTimeString('vi-VN',{hour
 function toast(title,text){$('toastTitle').textContent=title;$('toastText').textContent=text;$('toast').classList.add('on');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('on'),3200)}
 function setTarget(s){currentSignal=s;state.target=s?s.id:null;if(!s){els.designation.textContent='—';els.distance.textContent='—';els.temp.textContent='—';els.atmo.textContent='—';els.life.textContent='—';els.orb.style.background='radial-gradient(circle at 35% 30%,#739f82,#27483c 38%,#091511 70%)';return}els.designation.textContent=s.planet;els.distance.textContent=s.dist;els.temp.textContent=s.temp;els.atmo.textContent=s.atmo;els.life.textContent=s.life;els.orb.style.background=planetGradient(s.id);els.orb.classList.add('scan');setTimeout(()=>els.orb.classList.remove('scan'),1200)}
 function planetGradient(id){const n=Number(id.slice(-3));const hue=(n*47)%360;return `radial-gradient(circle at 35% 30%,hsl(${hue} 45% 63%),hsl(${hue} 45% 30%) 38%,#07110f 72%)`}
-function tune(v){stopScan();state.freq=Math.max(80,Math.min(110,Math.round((state.freq+v)*10)/10));receiver('manual tuning '+state.freq.toFixed(1)+' MHz');draw();audioUpdate()}
-function tuneTo(n){stopScan();state.freq=n;draw();audioUpdate();const s=near();if(s)showSignal(s)}
+function setFrequency(n,announce=true){
+  n=Number(n);if(!Number.isFinite(n))return false;
+  stopScan();state.freq=Math.max(80,Math.min(110,Math.round(n*100)/100));
+  if(announce)receiver('manual tuning '+state.freq.toFixed(2)+' MHz');
+  draw();audioUpdate();return true
+}
+function tune(v){setFrequency(state.freq+Number(v||0))}
+function tuneTo(n){if(!setFrequency(n))return;const s=near();if(s)showSignal(s)}
 function scan(){if(scanning){stopScan();return}const candidates=SIGNALS.filter(s=>!s.secret&&unlocked(s)&&!state.found.includes(s.id));if(!candidates.length){log('AUTO SCAN: no unresolved carrier in current capability.','signal');toast('SCAN COMPLETE','Không còn tín hiệu mới trong phạm vi hiện tại. Kiểm tra objective/upgrade.');return}scanning=true;$('scanBtn').textContent='STOP SCAN';let target=candidates[Math.floor(Math.random()*candidates.length)];let dir=target.f>state.freq?1:-1;receiver('auto scan engaged');scanTimer=setInterval(()=>{const diff=target.f-state.freq;if(Math.abs(diff)<=.11){state.freq=target.f;stopScan();draw();beep(880,.12,.04);setTimeout(()=>showSignal(target),180);return}state.freq=Math.round((state.freq+dir*.2)*10)/10;draw();audioUpdate()},55)}
 function stopScan(){if(scanTimer)clearInterval(scanTimer);scanTimer=null;scanning=false;$('scanBtn').textContent='AUTO SCAN'}
 function discover(s){if(!state.found.includes(s.id)){state.found.push(s.id);state.ap+=s.ap;receiver('new carrier catalogued '+s.id,'signal');toast('NEW SIGNAL // '+s.id,'+'+s.ap+' AP · '+s.title);checkAchievements();storyEvent(s.id);save()}}
@@ -298,7 +304,7 @@ finalChoice=function(){if(!state.found.includes('S-012'))return log(tr('finalDen
 ending=function(name){state.ending=name;state.notes.push('ENDING: '+name);checkAchievements();save();closeModal();glitch();const texts=state.lang==='en'?{SILENCE:'You cut power to the antenna. For the first time, the station is completely silent.',REPLY:'You transmit a single carrier: “WE ARE HERE.” A reply arrives immediately.',LOOP:'You synchronize with the duplicate station. The database renames you OBSERVER 047.'}:{SILENCE:'Bạn cắt nguồn anten. Lần đầu tiên, trạm hoàn toàn im lặng.',REPLY:'Bạn gửi một carrier duy nhất: “WE ARE HERE.” Một tín hiệu trả lời ngay lập tức.',LOOP:'Bạn đồng bộ trạm với bản sao. Database đổi tên bạn thành OBSERVER 047.'};setTimeout(()=>{els.modalTitle.textContent='ENDING // '+name;els.modalBody.innerHTML='<p class="signal">'+texts[name]+'</p><p class="dim">'+(state.lang==='en'?'You can RESET in the terminal to replay, or continue exploring the archive.':'Bạn có thể RESET trong terminal để chơi lại, hoặc tiếp tục khám phá archive.')+'</p>';els.choices.innerHTML='';openModal();draw()},900)};
 resetGame=function(){if(!confirm(tr('resetAsk')))return;localStorage.removeItem('signal47');location.reload()};
 const executeBase=execute;execute=function(input){const raw=input.trim(),v=raw.toLowerCase();if(!v)return;if(v==='lang'||v==='language'||v==='ngon ngu'){log(raw);toggleLanguage();return}if(v==='analyze'||v==='analyse'||v==='phan tich'){log(raw);openAnalyzer();return}if(v==='explore'||v==='station'||v==='tram'){log(raw);openStation();return}if(v==='memories'||v==='memory'||v==='bang ky uc'){log(raw);openMemories();return}if(v==='inventory'||v==='inv'||v==='tui do'){log(raw);log(state.inventory.length?state.inventory.join(' · '):tr('emptyInventory'));return}if(v==='help'){log(raw);richLog((state.lang==='en'?'COMMANDS: ':'LỆNH: ')+'<span class="signal">help, scan, tune 94.7, decode, archive, analyze, map, database, explore, memories, inventory, upgrades, achievements, status, target, lang, final, clear, reset</span>');return}if(v==='status'){log(raw);log((state.lang==='en'?'POWER ':'NGUỒN ')+'87% // '+state.found.length+'/12 '+tr('signals')+' // '+state.ap+' AP // '+tr('day')+' '+dayNumber());return}executeBase(input)};
-const drawBase=draw;draw=function(){state.day=dayNumber();const s=near();els.freq.textContent=state.freq.toFixed(state.freq>110?3:2);const strength=signalStrength();els.meter.style.width=Math.min(100,strength)+'%';els.status.textContent=s?tr('lockedSignal')+' // '+s.id+' // '+s.title:(scanning?tr('scanning'):tr('noSignal'));els.status.className='status '+(s?'signal':'');els.sigCount.textContent=state.found.length+' / 12';els.arcCount.textContent=state.archives.length+' / 12';els.anom.textContent=Math.max(0,state.found.filter(id=>!['S-001','S-004','S-006'].includes(id)).length);els.points.textContent=state.ap+' AP';els.knob.style.transform='rotate('+((Math.min(110,state.freq)-80)*12)+'deg)';els.cycle.textContent=isNight()?tr('night'):tr('day');$('powerStat').textContent=(87+Math.min(9,state.up.antenna+state.up.decoder+state.up.filter-3))+'%';$('antennaStat').textContent='LV.'+state.up.antenna;$('decoderStat').textContent='LV.'+state.up.decoder;$('filterStat').textContent='LV.'+state.up.filter;const [obj,p]=objective();els.mission.textContent=obj;els.prog.style.width=p+'%';els.dailyAnomaly.textContent=dailyText();els.notes.innerHTML=tr('day')+' '+state.day+'<br>'+tr('stationActive')+'<br>'+state.notes.slice(-4).map(n=>'<span class="'+(n.includes('ENDING')?'signal':'')+'">'+escapeHtml(n)+'</span>').join('<br>');els.badgeRow.innerHTML=ACHIEVEMENTS.slice(0,6).map(a=>`<span class="badge ${state.ach.includes(a.id)?'on':''}" title="${escapeHtml(achDesc(a))}">${state.ach.includes(a.id)?'◆':'◇'} ${a.name}</span>`).join('');els.locks.innerHTML=lockText();renderUpgrades();applyLanguage();save()};
+const drawBase=draw;draw=function(){state.day=dayNumber();const s=near();els.freq.textContent=state.freq.toFixed(state.freq>110?3:2);if($('freqInput')&&document.activeElement!==$('freqInput'))$('freqInput').value=state.freq.toFixed(2);const strength=signalStrength();els.meter.style.width=Math.min(100,strength)+'%';els.status.textContent=s?tr('lockedSignal')+' // '+s.id+' // '+s.title:(scanning?tr('scanning'):tr('noSignal'));els.status.className='status '+(s?'signal':'');els.sigCount.textContent=state.found.length+' / 12';els.arcCount.textContent=state.archives.length+' / 12';els.anom.textContent=Math.max(0,state.found.filter(id=>!['S-001','S-004','S-006'].includes(id)).length);els.points.textContent=state.ap+' AP';els.knob.style.transform='rotate('+((Math.min(110,state.freq)-80)*12)+'deg)';els.cycle.textContent=isNight()?tr('night'):tr('day');$('powerStat').textContent=(87+Math.min(9,state.up.antenna+state.up.decoder+state.up.filter-3))+'%';$('antennaStat').textContent='LV.'+state.up.antenna;$('decoderStat').textContent='LV.'+state.up.decoder;$('filterStat').textContent='LV.'+state.up.filter;const [obj,p]=objective();els.mission.textContent=obj;els.prog.style.width=p+'%';els.dailyAnomaly.textContent=dailyText();els.notes.innerHTML=tr('day')+' '+state.day+'<br>'+tr('stationActive')+'<br>'+state.notes.slice(-4).map(n=>'<span class="'+(n.includes('ENDING')?'signal':'')+'">'+escapeHtml(n)+'</span>').join('<br>');els.badgeRow.innerHTML=ACHIEVEMENTS.slice(0,6).map(a=>`<span class="badge ${state.ach.includes(a.id)?'on':''}" title="${escapeHtml(achDesc(a))}">${state.ach.includes(a.id)?'◆':'◇'} ${a.name}</span>`).join('');els.locks.innerHTML=lockText();renderUpgrades();applyLanguage();save()};
 tick=function(){els.clock.textContent=new Date().toLocaleTimeString(state.lang==='en'?'en-GB':'vi-VN');drawScope()};
 
 
@@ -453,6 +459,42 @@ v3State();
 
 $('systemsBtn').onclick=openSystems;$('cctvBtn').onclick=openCCTV;$('planetsBtn').onclick=openPlanets;$('questsBtn').onclick=openQuests;$('settingsBtn').onclick=openSettings;
 $('tuneDown').onclick=()=>tune(-.1);$('tuneUp').onclick=()=>tune(.1);$('scanBtn').onclick=scan;$('decodeBtn').onclick=decode;$('pingBtn').onclick=ping;$('archiveBtn').onclick=archive;$('mapBtn').onclick=openMap;$('archiveViewBtn').onclick=openArchive;$('analyzerBtn').onclick=openAnalyzer;$('exploreBtn').onclick=openStation;$('memoryBtn').onclick=openMemories;$('modalClose').onclick=closeModal;els.audioBtn.onclick=toggleAudio;els.langBtn.onclick=toggleLanguage;
+document.querySelectorAll('[data-tune]').forEach(b=>b.onclick=()=>tune(parseFloat(b.dataset.tune)));
+$('freqGo').onclick=()=>tuneTo($('freqInput').value);
+$('freqInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();tuneTo(e.currentTarget.value);e.currentTarget.blur()}});
+$('freqInput').addEventListener('change',e=>setFrequency(e.currentTarget.value));
+let knobDrag=null;
+function pointerAngleOnKnob(e){
+  const r=els.knob.getBoundingClientRect();
+  const cx=r.left+r.width/2, cy=r.top+r.height/2;
+  return Math.atan2(e.clientY-cy,e.clientX-cx)*180/Math.PI;
+}
+function shortestAngleDelta(now,prev){
+  let d=now-prev;
+  if(d>180)d-=360;
+  if(d<-180)d+=360;
+  return d;
+}
+els.knob.addEventListener('pointerdown',e=>{
+  e.preventDefault();
+  knobDrag={lastAngle:pointerAngleOnKnob(e),accumulated:0,startFreq:state.freq};
+  els.knob.setPointerCapture(e.pointerId);
+  els.knob.classList.add('dragging');
+});
+els.knob.addEventListener('pointermove',e=>{
+  if(!knobDrag)return;
+  const a=pointerAngleOnKnob(e);
+  const delta=shortestAngleDelta(a,knobDrag.lastAngle);
+  knobDrag.lastAngle=a;
+  knobDrag.accumulated+=delta;
+  // 360 degrees = the full 80-110 MHz receiver range. Hold Shift for fine control.
+  const degreesPerMHz=e.shiftKey?60:12;
+  setFrequency(knobDrag.startFreq+knobDrag.accumulated/degreesPerMHz,false);
+});
+function endKnob(e){if(!knobDrag)return;knobDrag=null;els.knob.classList.remove('dragging');receiver('knob tuning '+state.freq.toFixed(2)+' MHz')}
+els.knob.addEventListener('pointerup',endKnob);els.knob.addEventListener('pointercancel',endKnob);
+els.knob.addEventListener('wheel',e=>{e.preventDefault();const step=e.shiftKey?.01:.1;tune(e.deltaY<0?step:-step)},{passive:false});
+
 els.cmd.addEventListener('keydown',e=>{if(e.key==='Enter'){const v=els.cmd.value;els.cmd.value='';execute(v)}});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if(e.target===els.cmd)return;if(e.key==='ArrowLeft')tune(-.1);if(e.key==='ArrowRight')tune(.1)});
 els.modal.addEventListener('click',e=>{if(e.target===els.modal)closeModal()});
 els.receiver.innerHTML='<div>[BOOT] calibration complete</div><div>[BOOT] background noise nominal</div><div>[BOOT] awaiting observer...</div>';
