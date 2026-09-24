@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07131f" />
+  <title>ChemLab Studio — Virtual Chemistry Sandbox</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app" class="app-shell">
+  <header class="topbar glass-panel">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><span></span></div>
+      <div>
+        <div class="brand-title">ChemLab Studio</div>
+        <div class="brand-sub">Virtual chemistry sandbox · realistic interaction</div>
+      </div>
+    </div>
+    <div class="top-status">
+      <div class="status-chip"><i class="live-dot"></i><span>SIMULATION LIVE</span></div>
+      <div class="status-chip muted"><span id="fpsLabel">60 FPS</span></div>
+      <button id="soundToggle" class="icon-btn" title="Bật/tắt âm thanh">🔊</button>
+      <button id="resetLab" class="soft-btn danger">Reset lab</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="left-panel glass-panel">
+      <div class="panel-title-row">
+        <div>
+          <div class="eyebrow">KHO LAB</div>
+          <h2>Hóa chất & dụng cụ</h2>
+        </div>
+      </div>
+
+      <div class="segmented" role="tablist">
+        <button class="seg active" data-tab="chemicals">Hóa chất</button>
+        <button class="seg" data-tab="apparatus">Dụng cụ</button>
+        <button class="seg" data-tab="experiments">Gợi ý</button>
+      </div>
+
+      <section id="tab-chemicals" class="tab-pane active">
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="chemicalSearch" placeholder="Tìm HCl, đồng, axit..." autocomplete="off" />
+        </label>
+        <div class="filter-row" id="chemicalFilters">
+          <button class="filter active" data-kind="all">Tất cả</button>
+          <button class="filter" data-kind="acid">Axit</button>
+          <button class="filter" data-kind="base">Bazơ</button>
+          <button class="filter" data-kind="salt">Muối</button>
+          <button class="filter" data-kind="metal">Kim loại</button>
+        </div>
+        <div id="chemicalList" class="chemical-list"></div>
+        <button id="openPeriodic" class="wide-btn">Mở bảng tuần hoàn 118 nguyên tố</button>
+      </section>
+
+      <section id="tab-apparatus" class="tab-pane">
+        <div class="apparatus-grid">
+          <button class="apparatus-card" data-tool="testtube"><span class="apparatus-icon">🧪</span><b>Ống nghiệm</b><small>Rót · đun · lắc</small></button>
+          <button class="apparatus-card" data-tool="beaker"><span class="apparatus-icon">🥛</span><b>Cốc thủy tinh</b><small>Dung tích lớn</small></button>
+          <button class="apparatus-card" data-tool="flask"><span class="apparatus-icon">⚗️</span><b>Bình tam giác</b><small>Gia nhiệt ổn định</small></button>
+          <button class="apparatus-card" data-tool="burner"><span class="apparatus-icon">🔥</span><b>Đèn Bunsen</b><small>Nguồn nhiệt kéo-thả</small></button>
+        </div>
+        <div class="tool-help">
+          <b>Điều khiển trực tiếp</b>
+          <p>Kéo vật thể bằng chuột. Chọn bình rồi dùng <kbd>Q</kbd>/<kbd>E</kbd> để nghiêng. Khi miệng bình nằm trên một bình khác, dung dịch sẽ chảy thật theo thời gian.</p>
+        </div>
+      </section>
+
+      <section id="tab-experiments" class="tab-pane">
+        <div id="demoList" class="demo-list"></div>
+        <div class="tool-help emphasis">
+          <b>Mục tiêu thiết kế</b>
+          <p>Không “ấn nút để phản ứng”. Sủi phải tự đặt dụng cụ, đưa hóa chất, rót, gia nhiệt và quan sát hiện tượng như trong phòng lab.</p>
+        </div>
+      </section>
+    </aside>
+
+    <section class="lab-area glass-panel">
+      <div class="lab-toolbar">
+        <div class="toolbar-group">
+          <button id="addTube" class="tool-btn">＋ Ống nghiệm</button>
+          <button id="addBeaker" class="tool-btn">＋ Cốc</button>
+          <button id="addFlask" class="tool-btn">＋ Bình</button>
+          <button id="addBurner" class="tool-btn">＋ Đèn</button>
+        </div>
+        <div class="toolbar-hint">Kéo · nghiêng · rót · đun · quan sát</div>
+        <div class="toolbar-group right">
+          <button id="rotateLeft" class="tool-btn mini">↶ Q</button>
+          <button id="shakeBtn" class="tool-btn mini">Lắc</button>
+          <button id="rotateRight" class="tool-btn mini">E ↷</button>
+          <button id="deleteBtn" class="tool-btn mini danger">Xóa</button>
+        </div>
+      </div>
+      <div id="canvasWrap" class="canvas-wrap">
+        <canvas id="labCanvas"></canvas>
+        <div class="lab-readout top-left">
+          <span>CHEMISTRY SANDBOX</span>
+          <strong id="sceneHint">Kéo chai hóa chất vào bình để bắt đầu</strong>
+        </div>
+        <div class="lab-readout bottom-left">
+          <span>POINTER</span>
+          <strong>Drag object · Q/E tilt · Space shake · Delete remove</strong>
+        </div>
+        <div id="reactionToast" class="reaction-toast" aria-live="polite"></div>
+        <div id="dangerOverlay" class="danger-overlay"></div>
+      </div>
+    </section>
+
+    <aside class="right-panel glass-panel">
+      <section class="inspector">
+        <div class="panel-title-row compact">
+          <div>
+            <div class="eyebrow">INSPECTOR</div>
+            <h2 id="selectedTitle">Chưa chọn vật thể</h2>
+          </div>
+          <span id="selectedBadge" class="mini-badge">—</span>
+        </div>
+        <div id="selectedVisual" class="selected-visual empty">
+          <div class="visual-glow"></div>
+          <span>Chọn một dụng cụ trên bàn</span>
+        </div>
+        <div id="propertyGrid" class="property-grid"></div>
+        <div class="meter-card">
+          <div class="meter-head"><span>Nhiệt độ</span><strong id="tempLabel">—</strong></div>
+          <div class="meter-track"><div id="tempFill" class="meter-fill"></div></div>
+        </div>
+        <div class="meter-card">
+          <div class="meter-head"><span>pH ước tính</span><strong id="phLabel">—</strong></div>
+          <div class="ph-scale"><span></span><span></span><span></span></div>
+          <div id="phCursor" class="ph-cursor"></div>
+        </div>
+        <div id="contentList" class="content-list"></div>
+      </section>
+
+      <section class="reaction-panel">
+        <div class="eyebrow">REACTION MONITOR</div>
+        <div id="latestReaction" class="reaction-card idle">
+          <b>Chưa có phản ứng</b>
+          <span>Hãy trộn hai chất có khả năng phản ứng.</span>
+        </div>
+        <div id="reactionLog" class="reaction-log"></div>
+      </section>
+
+      <section class="safety-card">
+        <div class="safety-icon">◈</div>
+        <div><b>Mô phỏng giáo dục</b><p>Các hiệu ứng mạnh chỉ là mô phỏng trực quan, không phải hướng dẫn thực hành ngoài đời.</p></div>
+      </section>
+    </aside>
+  </main>
+</div>
+
+<div id="periodicModal" class="modal" aria-hidden="true">
+  <div class="modal-card glass-panel">
+    <div class="modal-head">
+      <div>
+        <div class="eyebrow">118 ELEMENTS</div>
+        <h2>Bảng tuần hoàn tương tác</h2>
+        <p>Chọn nguyên tố để xem thông tin và đưa mẫu vào bàn thí nghiệm.</p>
+      </div>
+      <button id="closePeriodic" class="icon-btn">✕</button>
+    </div>
+    <label class="search-box periodic-search"><span>⌕</span><input id="elementSearch" placeholder="Tìm Fe, Oxygen, 26..." /></label>
+    <div id="periodicTable" class="periodic-table"></div>
+    <div id="elementDetail" class="element-detail">
+      <div class="element-big">H</div>
+      <div><b>Hydrogen</b><span>Nguyên tử số 1 · Phi kim</span></div>
+      <button id="spawnElement" class="wide-btn small">Đưa mẫu vào lab</button>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="chemistry.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

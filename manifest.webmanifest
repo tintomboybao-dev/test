@@ -1,0 +1,9 @@
+{
+  "name": "ChemLab Studio",
+  "short_name": "ChemLab",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050b12",
+  "theme_color": "#07131f",
+  "icons": [{"src":"assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]
+}
