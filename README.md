@@ -1,40 +1,31 @@
-# ChemLab Studio
+# C Lab — chấm 16 bài tập C
 
-Bản thiết kế lại phòng thí nghiệm hóa học ảo theo hướng sandbox tương tác trực tiếp.
+Trang web chấm trực tiếp 16 bài trong tài liệu “BÀI TẬP NGÔN NGỮ LẬP TRÌNH C”. Có đề bài, trình soạn thảo, chạy với input tự nhập, nộp để chấm nhiều test và lịch sử lưu trong trình duyệt.
 
-## Chạy nhanh
+## Cài đặt và chạy trên Windows với Visual Studio Code
 
-- Cách đơn giản nhất trên Windows: mở `index.html` bằng Chrome hoặc Edge.
-- Không cần cài package, Node.js hay server.
-- Nếu trình duyệt chặn một số tính năng PWA khi mở bằng `file://`, phần mô phỏng chính vẫn hoạt động bình thường.
+1. Cài **Node.js 20 trở lên** và **Docker Desktop**. Mở Docker Desktop và chờ thông báo engine đang chạy (Linux containers).
+2. Mở thư mục `c-judge` bằng Visual Studio Code. Mở Terminal trong VS Code (`Ctrl` + `` ` ``).
+3. Chạy `docker pull gcc:14` (lần đầu cần tải image). Chạy `npm start`.
+4. Mở `http://localhost:3000` trong trình duyệt. Nếu muốn cổng khác: PowerShell dùng `$env:PORT=3001; npm start`.
 
-## Tương tác
+Không cần cài extension hoặc `npm install`: backend chỉ dùng thư viện chuẩn Node. Có thể cài extension **C/C++** của Microsoft để sửa file C ngoài web, nhưng không cần cho việc nộp trên web. Trên Windows, Docker Desktop cần WSL 2 và bật chế độ Linux containers.
 
-- Kéo trực tiếp chai, cốc, ống nghiệm, bình tam giác và đèn Bunsen trên bàn.
-- Kéo chai hóa chất tới miệng dụng cụ để thêm một liều.
-- Chọn dụng cụ rồi nhấn `Q` / `E` hoặc lăn chuột trên dụng cụ để nghiêng.
-- Khi miệng dụng cụ đang nghiêng nằm gần miệng một dụng cụ khác, chất lỏng được rót liên tục.
-- Kéo đèn Bunsen xuống dưới dụng cụ để gia nhiệt theo thời gian.
-- Click đèn Bunsen để bật/tắt.
-- `Space` để lắc dụng cụ; `Delete` để xóa vật thể đang chọn.
+## Cách dùng
 
-## Nội dung hóa học
+Chọn bài ở thanh trái; đọc phần “Định dạng chấm”; viết một chương trình C đọc **stdin** bằng `scanf` và in kết quả ra **stdout** bằng `printf`. Bấm **Chạy thử** để dùng input tự nhập; bấm **Nộp bài** để chấm các test lưu trên server. Không in lời mời nhập dữ liệu. Kết quả và code được lưu bằng localStorage trên chính trình duyệt này; máy khác không thấy lịch sử.
 
-- Bảng tuần hoàn đủ 118 nguyên tố.
-- Kho hóa chất gồm axit, bazơ, muối, kim loại, chất rắn, chất oxi hóa và xúc tác thường dùng.
-- Engine mẫu hiện có 22 phản ứng thật để minh họa: trung hòa, tạo kết tủa, thế kim loại, giải phóng khí, phân hủy có điều kiện, phản ứng tỏa nhiệt và mô phỏng phản ứng mạnh.
-- Hiệu ứng trực quan gồm: chất lỏng, dòng rót, bọt khí, hơi nước, kết tủa, kim loại bám, tia lửa, khói, flash và rung camera.
-- Web Audio tạo âm thanh phản ứng bằng tổng hợp âm, không cần file âm thanh ngoài.
+## Quy tắc chấm
 
-## Cấu trúc
+- GCC 14 biên dịch `-std=c11 -O2 -Wall -Wextra`. Lỗi biên dịch, lỗi chạy, quá thời gian và sai kết quả được báo riêng.
+- Giới hạn mỗi lần chạy: 2 giây, 128 MiB RAM, tối đa 64 tiến trình, không có mạng. Output tối đa khoảng 64 KiB; code tối đa 32 KiB; input chạy thử tối đa 8 KiB.
+- Với bài có đầu ra dạng số, so sánh các số theo thứ tự với sai số `1e-4` (sai số tương đối tối thiểu `1e-5`). Các bài chữ so sánh các token, không phân biệt khoảng trắng. Bài 13 so sánh byte ASCII mở rộng (33–255), chấp nhận khoảng trắng cuối dòng.
+- “Chạy thử” chỉ hiển thị stdout/stderr và không chấm; “Nộp bài” chấm các test cố định ở `problems.js`. Các test chấm để ở backend; không được gửi về API đề bài.
+- Đề gốc không quy định format cho nhiều bài. Mỗi bài có một định dạng chấm được nêu rõ trong giao diện. Bài 11 quy ước tháng 2 có 28 ngày vì đề không nhập năm. Bài 16 xuất bốn tổng a, b, c, d theo đúng thứ tự.
+- Bài 6–8 yêu cầu toán tử điều kiện; bài 12 yêu cầu switch-case; hệ thống chấm **kết quả**, không kiểm tra cấu trúc mã nguồn. Giảng viên cần kiểm tra thủ công nếu chấm cả phương pháp.
 
-- `index.html`: giao diện chính.
-- `styles.css`: hệ thống giao diện glass/dark laboratory.
-- `data.js`: 118 nguyên tố, hóa chất và database phản ứng.
-- `chemistry.js`: reaction engine, pH ước tính, truyền dung dịch, màu hỗn hợp.
-- `app.js`: canvas renderer, drag/drop, pouring, heating, particles, audio, UI.
-- `manifest.webmanifest`: metadata cho trình duyệt/PWA.
+## An toàn khi sử dụng
 
-## Lưu ý
+Mã C chỉ được biên dịch và chạy trong Docker container tách biệt, không có mạng, không có đặc quyền, với thư mục tạm riêng từng lần chấm. Không sửa server để chạy trực tiếp `gcc` hoặc file thực thi từ bản nộp trên máy chủ. Đây là bản dành cho học tập cục bộ; trước khi cho nhiều người truy cập qua Internet cần thêm xác thực, hàng đợi, giới hạn lưu lượng và giám sát Docker.
 
-Đây là mô phỏng giáo dục. Hình ảnh phản ứng mạnh, ngọn lửa và nhiệt độ chỉ phục vụ trực quan; không được xem là hướng dẫn tiến hành thí nghiệm thật.
+Chạy `npm test` để kiểm tra dữ liệu bài và quy tắc so sánh. Docker Desktop phải chạy khi dùng nút Chạy thử / Nộp bài.

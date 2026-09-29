@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "statement": "Bài 1. Viết chương trình nhập vào một ký tự bất kỳ, sau đó in ra màn hình mã ASCII tương ứng của ký tự. Ví dụ: Nhập vào ký tự ‘A’, mã ASCII của ‘A’ là 65."
+  },
+  {
+    "id": 2,
+    "statement": "Bài 2. Viết chương trình nhập vào một ký tự chữ cái in hoa, sau đó in ra màn hình chữ cái thường tương ứng. Ví dụ: Nhập vào ký tự ‘A’, chữ cái thường tương ứng là ‘a’."
+  },
+  {
+    "id": 3,
+    "statement": "Bài 3: Viết chương trình nhập vào chiều dài và chiều rộng của một hình chữ nhật, tính chu vi và diện tích của hình chữ nhật đó."
+  },
+  {
+    "id": 4,
+    "statement": "Bài 4: Viết chương trình nhập vào bán kính của một hình tròn, tính chu vi và diện tích của hình tròn đó. Ghi chú: Phải khai báo 1 hằng số PI có giá trị là 3.14."
+  },
+  {
+    "id": 5,
+    "statement": "*Bài 5: Viết chương trình nhập vào hai số thực a và b, in ra giá trị của a và b sau khi hoán đổi giá trị. Ví dụ: Nhập a = 35.5, b = 50. Kết quả sau khi hoán đổi giá trị: a = 50, b = 35.5."
+  },
+  {
+    "id": 6,
+    "statement": "Bài 6: Viết chương trình nhập vào ba số nguyên a, b, và c, sau đó tìm và in ra giá trị nhỏ nhất, giá trị lớn nhất trong ba số này."
+  },
+  {
+    "id": 7,
+    "statement": "Bài 7: Nhập vào một năm bất kỳ. Kiểm tra xem năm đó có phải năm nhuận hay không (năm nhuận là năm chia hết cho 400, hoặc chia hết cho 4 nhưng không chia hết cho 100)."
+  },
+  {
+    "id": 8,
+    "statement": "*Bài 8: Nhập vào một tháng trong năm. Sử dụng toán tử điều kiện để in ra tháng đó thuộc quý mấy (Quý 1: tháng 1-3, Quý 2: tháng 4-6, Quý 3: tháng 7-9, Quý 4: tháng 10-12). Kiểm tra luôn trường hợp tháng không hợp lệ."
+  },
+  {
+    "id": 9,
+    "statement": "Bài 9: Viết chương trình nhập vào một ký tự từ bàn phím, sau đó thực hiện:\n- Hiển thị thông báo \"La so\" nếu nhập vào là số.\n- Hiển thị thông báo \"La chu hoa\" nếu nhập vào là chữ hoa.\n- Hiển thị thông báo \"La chu thuong\" nếu nhập vào là chữ thường.\n- Hiển thị thông báo \"Khong la chu cai hay chu so\" nếu nhập vào không thuộc ba trường hợp trên."
+  },
+  {
+    "id": 10,
+    "statement": "Bài 10: Viết chương trình nhập vào một ký tự chữ cái bất kỳ, sau đó thực hiện:\n- Nếu ký tự nhập vào là chữ thường thì đổi sang chữ in hoa.\n- Nếu ký tự nhập vào là chữ in hoa thì đổi sang chữ thường.\n- Hiển thị kết quả trên màn hình ký tự chữ cái trước và sau khi chuyển đổi."
+  },
+  {
+    "id": 11,
+    "statement": "*Bài 11: Viết chương trình nhập vào tháng của năm bất kì, cho biết tháng đó có bao nhiêu ngày?"
+  },
+  {
+    "id": 12,
+    "statement": "Bài 12: Dùng cấu trúc Switch-Case để thực hiện lại câu 8 theo hướng đơn giản nhất."
+  },
+  {
+    "id": 13,
+    "statement": "Bài 13: Viết chương trình hiển thị lên màn hình các ký tự có mã ASCII từ 33 đến 255."
+  },
+  {
+    "id": 14,
+    "statement": "Bài 14: Viết chương trình in ra bảng cửu chương (từ 1 đến 9)."
+  },
+  {
+    "id": 15,
+    "statement": "Bài 15: Nhập một số nguyên dương n (Điều kiện: n > 0). Kiểm tra n có là số nguyên tố không?"
+  },
+  {
+    "id": 16,
+    "statement": "Bài 16: Viết chương trình nhập vào một số nguyên (Điều kiện: n > 0). Thực hiện phép tính tổng sau:\na) Sₙ = 1/2 + 3/4 + 5/6 + … + (2n+1)/(2n+2).\nb) Sₙ = 2/3 + 4/5 + 6/7 + … + 2n/(2n+1).\nc) Sₙ = 1/(1·2) + 1/(2·3) + … + 1/(n(n+1)).\nd) Sₙ = 1 + 1/(1+2) + 1/(1+2+3) + … + 1/(1+2+…+n)."
+  }
+]
