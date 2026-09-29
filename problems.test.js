@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { problems, publicProblems, compare } from '../problems.js';
+import { problems, publicProblems, compare } from './problems.js';
 
 test('16 đề gốc có test; API không lộ test chấm',()=>{
  assert.equal(problems.length,16);

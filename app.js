@@ -57,10 +57,10 @@ function renderHistory(){const pane=$('pane-history');pane.replaceChildren();con
  if(!submissions.length){pane.append(item('div','empty-result','Chưa có lượt nộp bài nào trên trình duyệt này.'));return;}
  for(const h of submissions){const row=item('div','history-row');row.append(item('span','',new Date(h.date).toLocaleString('vi-VN')),item('span','',`${h.passed}/${h.total} test`),item('strong',h.verdict==='Accepted'?'':'bad',pretty[h.verdict]||h.verdict));pane.append(row);}
 }
-async function judge(trial){if(busy)return;const code=$('code').value;
+async function judge(trial){if(busy)return;if(location.protocol==='file:'){renderResult({verdict:'Judge Unavailable',message:'Để chấm code, chạy npm start cùng Docker Desktop và mở http://localhost:3000. Mở file HTML trực tiếp chỉ xem đề và soạn code.'},trial);return;}const code=$('code').value;
  if(!code.trim()){alert('Hãy nhập code C trước khi chạy.');return;}
  busy=true;$('run').disabled=true;$('submit').disabled=true;$('action-status').textContent=trial?'Đang chạy thử...':'Đang chấm bài...';
- try{const response=await fetch(trial?'/api/run':'/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({problemId:current,code,input:$('custom-input').value})});const result=await response.json();if(!response.ok)throw new Error(result.error||'Không gửi được bài.');
+ try{const response=await fetch(trial?'./api/run':'./api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({problemId:current,code,input:$('custom-input').value})});if(!response.headers.get('content-type')?.includes('application/json')) throw new Error('Trang này chưa kết nối máy chấm. GitHub Pages chỉ hiển thị giao diện. Hãy chạy npm start cùng Docker Desktop và mở http://localhost:3000 để chấm bài.');const result=await response.json();if(!response.ok)throw new Error(result.error||'Không gửi được bài.');
  renderResult(result,trial);$('action-status').textContent=trial&&result.verdict==='Accepted'?'Chạy xong':pretty[result.verdict]||result.verdict;
  if(!trial && result.verdict!=='Judge Unavailable'){
    history.unshift({problemId:current,date:Date.now(),verdict:result.verdict,passed:result.passed??0,total:result.total??0});history.splice(100);save('clab-history',history);
@@ -78,4 +78,8 @@ document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Ente
 for(const name of ['test','result','history'])$('tab-'+name).addEventListener('click',()=>showTab(name));
 $('search').addEventListener('input',list);$('run').addEventListener('click',()=>judge(true));$('submit').addEventListener('click',()=>judge(false));
 $('fill-example').addEventListener('click',()=>{$('custom-input').value=problems[current-1].example[0];$('custom-input').focus();});
-fetch('/api/problems').then(r=>{if(!r.ok)throw Error('Không tải được danh sách bài.');return r.json();}).then(data=>{problems=data;choose(problems.some(p=>p.id===load('clab-current',1))?load('clab-current',1):1);updateProgress();}).catch(e=>{$('problem-title').textContent=e.message;});
+function initialize(data){problems=data;choose(problems.some(p=>p.id===load('clab-current',1))?load('clab-current',1):1);updateProgress();}
+initialize(window.CLAB_PROBLEMS || []);
+function staticNotice(){const notice=$('hosting-notice');notice.hidden=false;notice.textContent='Chế độ xem đề và soạn code. Để chạy và chấm C: bật Docker Desktop, chạy npm start, rồi mở http://localhost:3000 (xem README.md).';}
+if(location.protocol==='file:')staticNotice();
+else fetch('./api/problems').then(r=>{if(!r.ok || !r.headers.get('content-type')?.includes('application/json'))throw Error('static');return r.json();}).then(data=>{if(!Array.isArray(data))throw Error('static');}).catch(staticNotice);

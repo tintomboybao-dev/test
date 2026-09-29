@@ -1,31 +1,37 @@
-# C Lab — chấm 16 bài tập C
+# C Lab — bộ file tải lên GitHub
 
-Trang web chấm trực tiếp 16 bài trong tài liệu “BÀI TẬP NGÔN NGỮ LẬP TRÌNH C”. Có đề bài, trình soạn thảo, chạy với input tự nhập, nộp để chấm nhiều test và lịch sử lưu trong trình duyệt.
+Tất cả file đặt cùng một cấp, không cần tạo các thư mục con. Giữ nguyên tên file.
 
-## Cài đặt và chạy trên Windows với Visual Studio Code
+## Upload lên GitHub
 
-1. Cài **Node.js 20 trở lên** và **Docker Desktop**. Mở Docker Desktop và chờ thông báo engine đang chạy (Linux containers).
-2. Mở thư mục `c-judge` bằng Visual Studio Code. Mở Terminal trong VS Code (`Ctrl` + `` ` ``).
-3. Chạy `docker pull gcc:14` (lần đầu cần tải image). Chạy `npm start`.
-4. Mở `http://localhost:3000` trong trình duyệt. Nếu muốn cổng khác: PowerShell dùng `$env:PORT=3001; npm start`.
+1. Giải nén C-Lab-GitHub-Files.zip.
+2. Mở repository trên GitHub, chọn Add file → Upload files.
+3. Kéo tất cả FILE vừa giải nén vào khung upload; không upload file ZIP.
+4. Commit changes. File index.html phải nằm ngay ở thư mục gốc repository.
+5. Muốn hiển thị bằng GitHub Pages: Settings → Pages → Deploy from a branch → main → /(root) → Save.
 
-Không cần cài extension hoặc `npm install`: backend chỉ dùng thư viện chuẩn Node. Có thể cài extension **C/C++** của Microsoft để sửa file C ngoài web, nhưng không cần cho việc nộp trên web. Trên Windows, Docker Desktop cần WSL 2 và bật chế độ Linux containers.
+## Phân biệt hiển thị và chấm bài
 
-## Cách dùng
+Mở index.html trực tiếp hoặc GitHub Pages: giao diện, 16 đề bài, trình soạn thảo và lưu code hoạt động. Trang thông báo rõ chưa kết nối máy chấm. GitHub Pages không chạy backend Node.js hay Docker, nên không thể tự chấm C chỉ bằng upload file.
 
-Chọn bài ở thanh trái; đọc phần “Định dạng chấm”; viết một chương trình C đọc **stdin** bằng `scanf` và in kết quả ra **stdout** bằng `printf`. Bấm **Chạy thử** để dùng input tự nhập; bấm **Nộp bài** để chấm các test lưu trên server. Không in lời mời nhập dữ liệu. Kết quả và code được lưu bằng localStorage trên chính trình duyệt này; máy khác không thấy lịch sử.
+Để chạy thử và chấm thật trên máy: cài Node.js 20.10 trở lên và Docker Desktop, bật Docker Desktop ở chế độ Linux containers, mở Terminal tại thư mục chứa package.json rồi chạy:
 
-## Quy tắc chấm
+```bash
+docker pull gcc:14
+npm start
+```
 
-- GCC 14 biên dịch `-std=c11 -O2 -Wall -Wextra`. Lỗi biên dịch, lỗi chạy, quá thời gian và sai kết quả được báo riêng.
-- Giới hạn mỗi lần chạy: 2 giây, 128 MiB RAM, tối đa 64 tiến trình, không có mạng. Output tối đa khoảng 64 KiB; code tối đa 32 KiB; input chạy thử tối đa 8 KiB.
-- Với bài có đầu ra dạng số, so sánh các số theo thứ tự với sai số `1e-4` (sai số tương đối tối thiểu `1e-5`). Các bài chữ so sánh các token, không phân biệt khoảng trắng. Bài 13 so sánh byte ASCII mở rộng (33–255), chấp nhận khoảng trắng cuối dòng.
-- “Chạy thử” chỉ hiển thị stdout/stderr và không chấm; “Nộp bài” chấm các test cố định ở `problems.js`. Các test chấm để ở backend; không được gửi về API đề bài.
-- Đề gốc không quy định format cho nhiều bài. Mỗi bài có một định dạng chấm được nêu rõ trong giao diện. Bài 11 quy ước tháng 2 có 28 ngày vì đề không nhập năm. Bài 16 xuất bốn tổng a, b, c, d theo đúng thứ tự.
-- Bài 6–8 yêu cầu toán tử điều kiện; bài 12 yêu cầu switch-case; hệ thống chấm **kết quả**, không kiểm tra cấu trúc mã nguồn. Giảng viên cần kiểm tra thủ công nếu chấm cả phương pháp.
+Mở http://localhost:3000. Không cần npm install. Backend vẫn chạy C trong container riêng, không mạng, giới hạn RAM 128 MiB, 64 tiến trình; mỗi lần chạy tối đa 4 giây tường (bao gồm khởi động Docker) với giới hạn 0.5 CPU. Biên dịch tối đa 15 giây. Đây là bản dùng cục bộ; không tự bật truy cập Internet cho máy chấm.
 
-## An toàn khi sử dụng
+## Nội dung
 
-Mã C chỉ được biên dịch và chạy trong Docker container tách biệt, không có mạng, không có đặc quyền, với thư mục tạm riêng từng lần chấm. Không sửa server để chạy trực tiếp `gcc` hoặc file thực thi từ bản nộp trên máy chủ. Đây là bản dành cho học tập cục bộ; trước khi cho nhiều người truy cập qua Internet cần thêm xác thực, hàng đợi, giới hạn lưu lượng và giám sát Docker.
+- index.html, style.css, app.js: giao diện.
+- problems-data.js: dữ liệu đề dành cho trình duyệt, không có test chấm.
+- server.js, judge.js: máy chủ và bộ chạy code Docker.
+- problems.js, statements.json: đề và test chấm phía máy chủ.
+- package.json: lệnh khởi động.
+- problems.test.js: kiểm tra bộ đề; chạy npm test.
 
-Chạy `npm test` để kiểm tra dữ liệu bài và quy tắc so sánh. Docker Desktop phải chạy khi dùng nút Chạy thử / Nộp bài.
+Khi đưa toàn bộ mã nguồn lên repository công khai, người đọc repository có thể xem test trong problems.js.
+
+Bài 11 quy ước tháng 2 có 28 ngày vì đề không nhập năm. Bài 16 in bốn tổng a, b, c, d. Đọc định dạng chấm từng bài; không in lời nhắc nhập dữ liệu. Chấm kết quả, không tự xác nhận yêu cầu dùng toán tử ?: hoặc switch-case. Lịch sử và bản nháp lưu trên trình duyệt.

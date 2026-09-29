@@ -6,7 +6,7 @@ import { problems, publicProblems } from './problems.js';
 import { evaluate } from './judge.js';
 
 const root=path.dirname(fileURLToPath(import.meta.url));
-const files={'/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js'};
+const files={'/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js','/problems-data.js':'problems-data.js'};
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8'};
 const port=Number(process.env.PORT || 3000);
 const host=process.env.HOST || '127.0.0.1';
@@ -47,7 +47,7 @@ const server=http.createServer(async(req,res)=>{
     }
     if(req.method==='GET' && files[url.pathname]) {
       const filename=files[url.pathname];
-      const data=await readFile(path.join(root,'public',filename));
+      const data=await readFile(path.join(root,filename));
       res.writeHead(200,{'Content-Type':mime[path.extname(filename)],'Cache-Control':'no-cache','X-Content-Type-Options':'nosniff',
         'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'"});
       return res.end(data);
