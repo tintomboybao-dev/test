@@ -1,75 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f7fb">
-  <meta name="description" content="Sủi Study Lab: sổ tay Toán rời rạc với 19 lời giải từng bước, công thức dễ nhớ và luyện tập.">
-  <title>Sủi Study Lab — học từng bước, hiểu đến cùng</title>
-  <style>/*CSS_INLINE*/</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f7fa">
+<meta name="description" content="Sủi Study Lab — sổ tay công thức Toán rời rạc, 19 đề mẫu giải chi tiết và 50 bài ôn tập có gợi ý.">
+<title>Sủi Study Lab | Toán rời rạc</title>
+<style>/* INLINE_STYLE */</style>
 </head>
 <body>
-<svg xmlns="http://www.w3.org/2000/svg" class="svg-defs" aria-hidden="true">
-<symbol id="ic-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5V4.5A2.5 2.5 0 0 1 6.5 2Z"/></symbol>
-<symbol id="ic-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
-<symbol id="ic-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
-<symbol id="ic-function" viewBox="0 0 24 24"><path d="M4 18c6-13 10-13 16 0M3 8h18"/></symbol>
-<symbol id="ic-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
-<symbol id="ic-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></symbol>
-<symbol id="ic-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
-<symbol id="ic-back" viewBox="0 0 24 24"><path d="M19 12H5m6 6-6-6 6-6"/></symbol>
-<symbol id="ic-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
-<symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
-<symbol id="ic-moon" viewBox="0 0 24 24"><path d="M20.5 14.4A9 9 0 0 1 9.6 3.5 9 9 0 1 0 20.5 14.4Z"/></symbol>
-<symbol id="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
-<symbol id="ic-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
-<symbol id="ic-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
-<symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
-<symbol id="ic-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
-<symbol id="ic-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 17v4h16v-4"/></symbol>
-<symbol id="ic-spark" viewBox="0 0 24 24"><path d="m12 3 1.8 6.2L20 11l-6.2 1.8L12 19l-1.8-6.2L4 11l6.2-1.8L12 3Z"/></symbol>
-<symbol id="ic-layer" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Zm-9 10 9 5 9-5M3 17l9 5 9-5"/></symbol>
-<symbol id="ic-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></symbol>
-<symbol id="ic-shuffle" viewBox="0 0 24 24"><path d="m16 3 5 5-5 5M3 17h4c6 0 6-9 12-9h2M16 21l5-5-5-5M3 7h4c2.5 0 4.3 1.2 5.2 3M13 17c1.6 0 3.4-1 5-1h3"/></symbol>
-<symbol id="ic-hash" viewBox="0 0 24 24"><path d="M5 9h14M4 15h14M11 3 7 21m10-18-4 18"/></symbol>
-<symbol id="ic-branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="9" r="2"/><circle cx="6" cy="19" r="2"/><path d="M6 7v10m2-8h6a4 4 0 0 0 4-4"/></symbol>
-<symbol id="ic-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="13" height="15" rx="2"/><path d="M8 2h11a2 2 0 0 1 2 2v12"/></symbol>
-<symbol id="ic-flag" viewBox="0 0 24 24"><path d="M5 22V4m0 1c6-4 9 4 15 0v11c-6 4-9-4-15 0"/></symbol>
-<symbol id="ic-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
-<symbol id="ic-pencil" viewBox="0 0 24 24"><path d="m3 21 4-1 13-13-3-3L4 17l-1 4Zm12-15 3 3"/></symbol>
-<symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
-<symbol id="ic-alert" viewBox="0 0 24 24"><path d="m12 3 10 18H2L12 3Zm0 7v4m0 3h.01"/></symbol>
-<symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 11v6m0-10h.01"/></symbol>
-<symbol id="ic-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 15h12v7H6v-7Z"/></symbol>
-<symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-<symbol id="ic-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.5 7.1 1-5.1 5 1.3 7-6.4-3.5-6.4 3.5 1.3-7-5.1-5 7.1-1L12 2Z"/></symbol>
-<symbol id="ic-note" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
-</svg>
-<a class="skip" href="#main">Bỏ qua menu, đến nội dung</a>
-<div class="shell" id="shell">
-  <div class="scrim" id="scrim" hidden></div>
-  <aside class="sidebar" id="sidebar" aria-label="Điều hướng môn học">
-    <div class="brand"><div class="brand-icon" aria-hidden="true"><svg class="icon"><use href="#ic-book"/></svg></div><div><strong>Sủi<span class="brand-second">Study Lab</span></strong><small>HỌC CÓ HỆ THỐNG</small></div><button class="icon-button sidebar-close" data-action="close-menu" aria-label="Đóng menu"><svg class="icon"><use href="#ic-x"/></svg></button></div>
-    <div class="sidebar-scroll"><div class="sidebar-label">THƯ VIỆN MÔN HỌC</div><nav id="subjectNav" aria-label="Chọn môn học"></nav><button class="sidebar-add" data-action="add-subject"><svg class="icon"><use href="#ic-plus"/></svg> Thêm môn học</button>
-      <div class="sidebar-divider"></div><div class="sidebar-label">GÓC HỌC TẬP</div><div class="sidebar-help"><svg class="icon"><use href="#ic-spark"/></svg><p>Mỗi ngày hiểu thêm một chút. Học chậm mà chắc, giải thích được vì sao.</p></div>
-    </div>
-    <div class="sidebar-footer"><button data-action="export" class="side-tool"><svg class="icon"><use href="#ic-download"/></svg> Xuất bản sao dữ liệu</button><button data-action="import" class="side-tool"><svg class="icon"><use href="#ic-upload"/></svg> Nhập bản sao dữ liệu</button><input type="file" id="importInput" accept=".json,application/json" hidden><div class="sidebar-footnote">Dữ liệu tự thêm và tiến độ được lưu trên trình duyệt hiện tại.</div></div>
-  </aside>
-  <div class="workspace">
-    <header class="topbar">
-      <div class="topbar-left"><button class="icon-button mobile-menu" data-action="open-menu" aria-label="Mở danh sách môn học" aria-expanded="false" aria-controls="sidebar"><svg class="icon"><use href="#ic-menu"/></svg></button><span class="topbar-location">STUDY WORKSPACE <span class="topbar-slash">/</span> <span id="topbarSubject">TOÁN RỜI RẠC</span></span></div>
-      <div class="topbar-actions"><button class="icon-button" id="fontBtn" data-action="font" aria-label="Tăng giảm cỡ chữ" title="Tăng giảm cỡ chữ">A<span class="a-plus">+</span></button><button class="icon-button" id="themeBtn" data-action="theme" aria-label="Đổi chế độ sáng tối" title="Đổi chế độ sáng tối"><svg class="icon"><use href="#ic-moon"/></svg></button><button class="button button-primary top-add" data-action="add-problem"><svg class="icon"><use href="#ic-plus"/></svg><span>Thêm bài</span></button></div>
-    </header>
-    <main id="main" tabindex="-1">
-      <div class="content-wrap"><div id="pageIntro"></div><nav class="view-tabs" id="viewTabs" aria-label="Điều hướng nội dung môn học"></nav><div id="filterBar"></div><div id="pageContent"></div>
-      <footer class="site-footer"><span>Sủi Study Lab <span class="footer-dot">·</span> Học một lần, hiểu thật lâu.</span><span>Offline-ready · HTML/CSS/JS thuần</span></footer></div>
-    </main>
+<a class="skip-link" href="#main-content">Bỏ qua điều hướng, đến nội dung chính</a>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><span class="brand-figure">S</span><span><strong>Sủi Study Lab</strong><small>Không gian học tập</small></span></div>
+  <div class="side-label">MÔN HỌC</div>
+  <div class="active-course"><strong>Toán rời rạc</strong><span>Học phần 01 · Đang học</span></div>
+  <div class="side-label side-label-nav">DANH MỤC</div>
+  <nav id="sidebar-nav" class="side-nav" aria-label="Điều hướng chính">
+    <a data-route="home" href="#/home"><span>01</span> Tổng quan</a>
+    <a data-route="formulas" href="#/formulas"><span>02</span> Tổng hợp công thức <em>20</em></a>
+    <a data-route="samples" href="#/samples"><span>03</span> Đề mẫu và lời giải <em>19</em></a>
+    <a data-route="practice" href="#/practice"><span>04</span> Ôn tập vận dụng <em>50</em></a>
+  </nav>
+  <div class="sidebar-bottom">
+   <div class="side-progress"><div class="progress-title">Tiến độ học</div><div class="progress-number" id="side-progress-label">0 / 69 bài</div><div class="progress-track"><div id="side-progress-bar"></div></div><p>Tiến độ được lưu trên trình duyệt này.</p></div>
+   <div class="side-support">Nền tảng đã sẵn sàng để bổ sung các môn học khác trong những phiên bản tiếp theo.</div>
   </div>
-</div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<dialog class="modal" id="subjectModal" aria-labelledby="subjectModalTitle"><form id="subjectForm"><div class="modal-title"><h2 id="subjectModalTitle">Tạo môn học mới</h2><button type="button" class="icon-button" data-action="close-dialog" data-dialog="subjectModal" aria-label="Đóng"><svg class="icon"><use href="#ic-x"/></svg></button></div><p class="modal-desc">Bắt đầu kho kiến thức riêng của Sủi. Môn học mới có thể bổ sung chủ đề, bài tập và công thức.</p><label class="field">Tên môn học <input name="name" maxlength="80" required placeholder="Ví dụ: Cấu trúc dữ liệu và giải thuật"></label><label class="field">Giới thiệu <textarea name="description" rows="2" maxlength="240" placeholder="Mô tả môn học..."></textarea></label><div class="modal-actions"><button class="button button-quiet" type="button" data-action="close-dialog" data-dialog="subjectModal">Hủy</button><button class="button button-primary" type="submit">Tạo môn học</button></div></form></dialog>
-<dialog class="modal" id="problemModal" aria-labelledby="problemModalTitle"><form id="problemForm"><div class="modal-title"><h2 id="problemModalTitle">Thêm bài tập mới</h2><button type="button" class="icon-button" data-action="close-dialog" data-dialog="problemModal" aria-label="Đóng"><svg class="icon"><use href="#ic-x"/></svg></button></div><p class="modal-desc">Mỗi dòng lời giải sẽ được hiển thị thành một bước. Có thể thêm chủ đề mới ngay tại đây.</p><label class="field">Tên chủ đề <input name="topic" list="topicOptions" required maxlength="60" placeholder="Ví dụ: Thuật toán sắp xếp"><datalist id="topicOptions"></datalist></label><label class="field">Tiêu đề bài tập <input name="title" required maxlength="150" placeholder="Tên bài ngắn gọn"></label><label class="field">Đề bài <textarea name="statement" required rows="4" placeholder="Nhập đề bài nguyên văn..."></textarea></label><label class="field">Nhận dạng & ý tưởng <textarea name="recognize" rows="2" placeholder="Nên nhận ra điều gì?"></textarea></label><label class="field">Lời giải theo từng bước <textarea name="steps" rows="5" placeholder="Một dòng ứng với một bước giải..."></textarea></label><label class="field">Đáp án <input name="answer" maxlength="200" placeholder="Kết luận cuối cùng"></label><div class="modal-actions"><button type="button" class="button button-quiet" data-action="close-dialog" data-dialog="problemModal">Hủy</button><button class="button button-primary" type="submit">Lưu bài tập</button></div></form></dialog>
-<dialog class="modal" id="formulaModal" aria-labelledby="formulaModalTitle"><form id="formulaForm"><div class="modal-title"><h2 id="formulaModalTitle">Thêm công thức</h2><button type="button" class="icon-button" data-action="close-dialog" data-dialog="formulaModal" aria-label="Đóng"><svg class="icon"><use href="#ic-x"/></svg></button></div><label class="field">Chủ đề <input name="topic" list="formulaTopicOptions" required placeholder="Chủ đề hiện có hoặc chủ đề mới"><datalist id="formulaTopicOptions"></datalist></label><label class="field">Tên công thức <input name="title" required maxlength="130"></label><label class="field">Công thức dạng văn bản <textarea name="formula" required rows="4"></textarea></label><label class="field">Áp dụng khi nào? <textarea name="when" rows="2"></textarea></label><label class="field">Ví dụ <textarea name="example" rows="2"></textarea></label><div class="modal-actions"><button class="button button-quiet" type="button" data-action="close-dialog" data-dialog="formulaModal">Hủy</button><button class="button button-primary" type="submit">Lưu công thức</button></div></form></dialog>
-<script id="seed-data" type="application/json">/*DATA_INLINE*/</script>
-<script>/*JS_INLINE*/</script>
+</aside>
+<div class="right-panel">
+<header class="topbar"><div class="topbar-left"><span class="mobile-logo">Sủi Study Lab</span><span class="top-context">TOÁN RỜI RẠC / <span id="top-section">TỔNG QUAN</span></span></div><div class="topbar-controls"><button id="font-down" class="tiny-button" type="button" aria-label="Giảm cỡ chữ">A−</button><button id="font-up" class="tiny-button" type="button" aria-label="Tăng cỡ chữ">A+</button><button id="theme-toggle" class="tiny-button theme-button" type="button" aria-label="Đổi giao diện sáng tối">Chế độ tối</button></div></header>
+<nav class="mobile-nav" aria-label="Danh mục trên điện thoại"><a href="#/home" data-route="home">Tổng quan</a><a href="#/formulas" data-route="formulas">Công thức</a><a href="#/samples" data-route="samples">Đề mẫu</a><a href="#/practice" data-route="practice">Ôn tập 50</a></nav>
+<main id="main-content" tabindex="-1"><div class="container" id="view"></div></main>
+<footer class="site-footer"><span>Sủi Study Lab · Toán rời rạc</span><span>Nội dung học tập · Hoạt động offline · Không cần đăng nhập</span></footer>
+</div></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script id="study-data" type="application/json">/* INLINE_DATA */</script>
+<script>/* INLINE_JS */</script>
 </body></html>

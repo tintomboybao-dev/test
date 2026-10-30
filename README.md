@@ -1,78 +1,87 @@
-# Sủi Study Lab — phiên bản 2
+# Sủi Study Lab v3 — Toán rời rạc
 
-Trang học tập cá nhân viết bằng HTML, CSS và JavaScript thuần. Mở `index.html` để học trực tiếp, không cần server, tài khoản hay kết nối Internet.
+Website học tập bằng **HTML, CSS, JavaScript thuần**, dành cho máy tính và điện thoại. Không cần đăng nhập, backend, npm, thư viện icon hay đường truyền mạng để hiển thị công thức.
 
-## Nội dung hiện có
+## Nội dung
 
-- Môn đầu tiên: **Toán rời rạc**, gồm **19 bài giải đầy đủ** thuộc **8 chủ đề**.
-- Mỗi bài: **Nhận dạng → Ý tưởng → Lý do chọn cách giải → Các bước → Đáp án → Tự kiểm tra → Lỗi dễ mắc**.
-- Sơ đồ Venn ở câu 8, sơ đồ đường đi ở câu 14, bảng truy hồi Fibonacci ở câu 15.
-- Tìm kiếm bài/công thức, lọc theo chủ đề, xem công thức liên quan, trắc nghiệm 19 câu.
-- Ghi chú theo từng bài, đánh dấu đã nắm, tiến độ, giao diện sáng/tối, tùy chọn cỡ chữ.
-- Có thể tạo môn học mới, chủ đề, công thức và bài tập ngay trên giao diện.
-- Xuất/nhập bản sao dữ liệu JSON. Giao diện hỗ trợ điện thoại và bàn phím.
+| Mục | Số lượng | Cấu trúc |
+|---|---:|---|
+| Tổng hợp công thức | 20 công thức | Công thức toán học (MathML) → Điều kiện dùng → Cách áp dụng → Ví dụ → Lỗi cần tránh |
+| Đề mẫu | 19 câu | Đề → Nhận dạng → Công thức tổng quát → Phương pháp → Lời giải từng bước → Đáp án |
+| Ôn tập vận dụng | 50 câu mới | Đề đầy đủ → **Xem gợi ý/ví dụ** → **Xem lời giải** → Đánh dấu đã nắm |
+| Chủ đề | 8 nhóm | Ánh xạ; Stars and Bars; Venn; khai triển; quy tắc đếm; Fibonacci; tổ hợp; chia nhóm |
 
-> Lưu ý: Số liệu câu 8 là **minh họa** chứ không phải đề thi gốc. Câu 14 trình bày cả hai giả định (được / không được sử dụng lại tuyến).
+- Tìm kiếm, lọc chủ đề, chuyển bài trước/sau.
+- Đánh dấu tiến độ riêng cho 19 đề mẫu và 50 bài mới; lưu trong localStorage trên trình duyệt.
+- Có chế độ sáng/tối, điều chỉnh cỡ chữ và điều hướng bằng bàn phím.
+- Công thức dùng **MathML gốc của trình duyệt**; không cần kết nối tới KaTeX/MathJax CDN, không xuất hiện mã LaTeX thô khi offline.
+- Không có icon tự vẽ, emoji trang trí hay thư viện icon ngoài.
 
-## Sử dụng ngay
+## Cách sử dụng nhanh
 
-Mở `index.html` bằng Chrome, Edge, Firefox hoặc Safari. Trang này hoạt động offline vì toàn bộ mã nguồn, CSS và bộ câu hỏi được đóng gói trong **một file HTML**.
+**Chỉ tải 1 file**: mở `index.html` bằng Chrome/Edge/Firefox/Safari phiên bản hiện đại. Chuyển tới "Tổng hợp công thức", "Đề mẫu" hoặc "Ôn tập 50 bài" qua thanh điều hướng.
 
-## Triển khai GitHub Pages
+### Đưa lên GitHub Pages
 
-1. Tạo repository mới trên GitHub, ví dụ `sui-study-lab`.
-2. Đưa `index.html` (và các tệp mã nguồn nếu muốn quản lý lịch sử) vào thư mục gốc của nhánh `main`.
-3. Vào **Settings → Pages → Build and deployment** và chọn **Deploy from a branch**, nhánh **main**, thư mục **/(root)**.
-4. Chờ GitHub Pages hoàn tất. Đường dẫn thường có dạng `https://TEN_USER.github.io/sui-study-lab/`.
+1. Tạo repository, ví dụ `sui-study-lab`.
+2. Upload **file `index.html` vào thư mục gốc** của nhánh `main`. Có thể upload toàn bộ source để dễ chỉnh sửa.
+3. GitHub repository → **Settings → Pages → Build and deployment**.
+4. Chọn **Deploy from a branch**, branch **main**, folder **/(root)** và Save.
+5. Đường dẫn thường là `https://TÊN_TÀI_KHOẢN.github.io/sui-study-lab/` khi GitHub Pages triển khai xong.
 
-Không cần npm, hosting có backend, tài khoản cloud hay API key.
+Không cần chạy build để **xem trang web** hoặc để up file `index.html` đã đóng gói.
 
-## Thêm môn học / nội dung
+## Chỉnh mã nguồn, thêm câu hỏi
 
-**Cách 1 — Ngay trên giao diện:** Bấm **Thêm môn học**, sau đó **Thêm bài** hoặc **Thêm công thức**. Môn/chủ đề sẽ được lưu trên trình duyệt đang sử dụng. Bấm **Xuất bản sao dữ liệu** để tải JSON, sau đó **Nhập bản sao dữ liệu** trên thiết bị khác.
+```text
+sui-study-lab-v3/
+  index.html             # Bản độc lập, hoàn chỉnh, đưa lên GitHub Pages
+  template.html          # HTML khung
+  styles.css             # Tất cả CSS
+  app.js                 # Điều hướng, hiển thị, luyện tập và tiến độ
+  data.json              # Công thức, 19 đề mẫu và 50 đề ôn tập
+  build.py               # Đóng gói source thành index.html
+  generate_data.py       # Script dùng để dựng dữ liệu phiên bản này
+  old-data.json          # Dữ liệu tham khảo của 19 đề gốc
+  tests/
+    verify_content.py    # Đối chiếu các đáp án toán học
+    verify_interactions.py # Test chức năng bằng Playwright (tùy chọn)
+  README.md
+```
 
-**Cách 2 — Sửa nội dung mặc định trong repository:** Mở `data.json` để chỉnh `TOPICS` (chủ đề), `F` (công thức), `P` (bài tập), `QA` (trắc nghiệm). Sau khi sửa, chạy:
+Muốn sửa công thức, cách giải hoặc thêm bài ôn tập: chỉnh `data.json`, sau đó chạy:
 
 ```bash
 python build.py
 ```
 
-Lệnh này tái tạo `index.html` từ `template.html`, `styles.css`, `app.js` và `data.json`. Đưa `index.html` mới lên GitHub để tất cả người truy cập thấy nội dung mới.
+Sau đó commit `index.html` mới. **Không cần chạy `generate_data.py` sau khi sửa `data.json`**; script đó là nguồn tạo dữ liệu ban đầu và sẽ ghi đè nội dung mặc định nếu chạy lại.
 
-Hiện tại nội dung mặc định chỉ đóng gói sẵn **Toán rời rạc**. Nếu muốn tạo nhiều môn mặc định ở cấp mã nguồn, có thể mở rộng mảng `courses` khởi tạo trong `app.js`.
+### Trường dữ liệu
 
-**Quan trọng:** Nội dung Sủi thêm **trên giao diện** chỉ nằm trong localStorage của thiết bị, **không tự cập nhật repository** hay đồng bộ giữa các trình duyệt. Xuất JSON giúp sao lưu/trao đổi, nhưng muốn mọi người truy cập thấy môn mới thì cần đưa nội dung vào mã nguồn trước khi build & commit.
+- `topics[]`: danh sách 8 chủ đề (`id`, `name`, `short`, `description`).
+- `formulas[]`: `id`, `topic`, `title`, `mathml`, `general`, `when`, `apply`, `example`, `mistake`.
+- `samples[]`: 19 bài đã giải. Bài liên kết công thức qua `formulaId`.
+- `reviews[]`: 50 bài ôn tập. Bài liên kết công thức qua `formulaId`, có `steps[]` gồm `title` và `detail`.
 
-## Cấu trúc project
-
-```text
-sui-study-lab-v2/
-├── index.html           # File duy nhất cần đưa lên GitHub Pages
-├── template.html        # Bộ khung HTML (source)
-├── styles.css           # Giao diện responsive, sáng/tối (source)
-├── app.js               # Logic giao diện, tìm kiếm, lưu tiến độ (source)
-├── data.json            # 19 bài và toàn bộ công thức (source)
-├── build.py             # Tạo bản index.html độc lập, không phụ thuộc thư viện
-├── DESIGN_SYSTEM.md     # Quy tắc thiết kế
-└── tests/
-    ├── verify_math.py  # Đối chiếu kết quả toán học
-    └── smoke.py         # Kiểm thử giao diện bằng Playwright (tùy chọn)
-```
+Khi thêm bài, đặt `id` tuần tự mới và cập nhật nhãn số lượng ở HTML/JS nếu bộ bài vượt 19/50. Cấu trúc sidebar đã chừa chỗ cho các môn khác, nhưng **phiên bản này chỉ có nội dung Toán rời rạc**; để thêm nhiều môn mặc định với điều hướng riêng, cần mở rộng cấu trúc dữ liệu và giao diện lựa chọn môn ở lần cập nhật tiếp theo.
 
 ## Kiểm thử
 
 ```bash
-python tests/verify_math.py
-# cần cài Playwright + Chromium để kiểm thử trình duyệt:
-python tests/smoke.py
+python tests/verify_content.py
+python tests/verify_interactions.py  # cần playwright và chromium
 ```
 
-Script smoke dùng `set_content()` trong môi trường kiểm thử hạn chế. Trong trình duyệt thật, các chức năng lưu nội dung hoạt động với `localStorage` bình thường.
+Kiểm thử giao diện đã chạy ở độ rộng 320px, 390px, 820px và 1440px. Lưu ý môi trường kiểm thử đã dùng `page.set_content` vì trình duyệt trong môi trường tạo file không cho điều hướng tới file URL/localhost, nên chưa có kiểm thử tự động lưu tiến độ qua một lần reload thực tế. Đã kiểm thử thao tác đánh dấu trong một phiên.
 
-## Thiết kế và nguồn tham khảo
+## Lưu ý toán học
 
-Thiết kế tham khảo nguyên tắc accessibility, cấu trúc thông tin, khả năng đọc, responsive, xử lý trạng thái tương tác từ dự án mở [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). Mã HTML/CSS/JS của Sủi Study Lab được viết riêng, không phải sao chép code giao diện từ repository đó.
+- Câu 8/19 đề mẫu sử dụng **số liệu Venn minh họa**, vì số liệu đề gốc không được ghi lại đầy đủ.
+- Câu 14/19 giải cả hai giả định: cho phép và không cho phép dùng lại tuyến ở lượt về.
+- Bộ 50 câu ôn tập được biên soạn riêng dựa trên các dạng của 19 câu gốc; không phải đề thi chính thức.
+- Tiến độ chỉ lưu trên **trình duyệt hiện tại**; xóa dữ liệu trang có thể làm mất trạng thái đã nắm.
 
-## Quyền riêng tư
+## Nguyên tắc giao diện
 
-Trang không tải dữ liệu của Sủi lên máy chủ. Dữ liệu tự thêm, ghi chú, tiến độ được lưu trong bộ nhớ cục bộ của trình duyệt. Xóa dữ liệu trình duyệt có thể làm mất thông tin chưa xuất JSON.
+Ưu tiên nội dung theo thứ tự **đề bài → công thức → cách áp dụng → lời giải**, kiểu chữ dễ đọc, nút thao tác rõ, vùng chạm đủ lớn, không dùng icon tự tạo. Thiết kế có tham khảo các nguyên tắc khả dụng từ repository `nextlevelbuilder/ui-ux-pro-max-skill`, nhưng mã nguồn và nội dung được biên soạn riêng.
