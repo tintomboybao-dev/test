@@ -1,37 +1,45 @@
-# C Lab — bộ file tải lên GitHub
+# Sủi Study Lab 📚
 
-Tất cả file đặt cùng một cấp, không cần tạo các thư mục con. Giữ nguyên tên file.
+Trang web tự học thuần **HTML + CSS + JavaScript**, có thể mở offline và triển khai lên GitHub Pages. Môn mặc định là **Toán rời rạc**, gồm 19 bài giải từng bước, 8 chủ đề, 11 thẻ công thức và 19 câu tự luyện.
 
-## Upload lên GitHub
+## Chạy nhanh
 
-1. Giải nén C-Lab-GitHub-Files.zip.
-2. Mở repository trên GitHub, chọn Add file → Upload files.
-3. Kéo tất cả FILE vừa giải nén vào khung upload; không upload file ZIP.
-4. Commit changes. File index.html phải nằm ngay ở thư mục gốc repository.
-5. Muốn hiển thị bằng GitHub Pages: Settings → Pages → Deploy from a branch → main → /(root) → Save.
+1. Tải `index.html`.
+2. Nhấp đúp để mở bằng Chrome, Edge, Safari hoặc Firefox.
+3. Không cần cài Node.js, npm hay thư viện ngoài.
 
-## Phân biệt hiển thị và chấm bài
+## Đăng lên GitHub Pages
 
-Mở index.html trực tiếp hoặc GitHub Pages: giao diện, 16 đề bài, trình soạn thảo và lưu code hoạt động. Trang thông báo rõ chưa kết nối máy chấm. GitHub Pages không chạy backend Node.js hay Docker, nên không thể tự chấm C chỉ bằng upload file.
+1. Tạo repository mới (ví dụ `sui-study-lab`).
+2. Tải `index.html` lên thư mục gốc của nhánh `main`. Có thể tải kèm README.
+3. Vào **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main / (root) → Save**.
+4. Mở địa chỉ GitHub Pages hiển thị trong phần Pages sau khi triển khai hoàn tất.
 
-Để chạy thử và chấm thật trên máy: cài Node.js 20.10 trở lên và Docker Desktop, bật Docker Desktop ở chế độ Linux containers, mở Terminal tại thư mục chứa package.json rồi chạy:
+## Thêm môn học và bài tập
 
-```bash
-docker pull gcc:14
-npm start
-```
+- Trong giao diện: chọn **Thêm môn học**, rồi **Thêm bài tập**. Khi thêm bài đầu tiên, tạo chủ đề mới.
+- Môn học tự tạo và tiến độ được lưu bằng `localStorage` trên trình duyệt, **không tự đồng bộ lên GitHub hoặc sang thiết bị khác**.
+- Chọn **Xuất dữ liệu JSON** để lưu bản sao; chọn **Nhập dữ liệu JSON** để chuyển sang trình duyệt khác.
+- Để mọi người truy cập thấy cùng nội dung môn học mới: cần tích hợp dữ liệu vào mã nguồn `index.html`, hoặc xây thêm cơ sở dữ liệu/backend (phiên bản này chưa có).
 
-Mở http://localhost:3000. Không cần npm install. Backend vẫn chạy C trong container riêng, không mạng, giới hạn RAM 128 MiB, 64 tiến trình; mỗi lần chạy tối đa 4 giây tường (bao gồm khởi động Docker) với giới hạn 0.5 CPU. Biên dịch tối đa 15 giây. Đây là bản dùng cục bộ; không tự bật truy cập Internet cho máy chấm.
+## Sửa bộ dữ liệu mặc định
 
-## Nội dung
+Trong thẻ `<script>` của `index.html`:
 
-- index.html, style.css, app.js: giao diện.
-- problems-data.js: dữ liệu đề dành cho trình duyệt, không có test chấm.
-- server.js, judge.js: máy chủ và bộ chạy code Docker.
-- problems.js, statements.json: đề và test chấm phía máy chủ.
-- package.json: lệnh khởi động.
-- problems.test.js: kiểm tra bộ đề; chạy npm test.
+- `TOPICS`: danh sách các chủ đề.
+- `F`: thẻ công thức và điều kiện áp dụng.
+- `P`: 19 bài tập (mỗi bài gồm `statement`, `steps`, `answer`, `tip`).
+- `QA`: 19 câu hỏi trắc nghiệm.
+- `DEFAULT`: định nghĩa môn Toán rời rạc đầu tiên.
 
-Khi đưa toàn bộ mã nguồn lên repository công khai, người đọc repository có thể xem test trong problems.js.
+Nếu muốn mặc định thêm môn mới trong source, tạo một đối tượng môn học theo cấu trúc `DEFAULT` rồi thêm vào mảng `subjects` khởi tạo.
 
-Bài 11 quy ước tháng 2 có 28 ngày vì đề không nhập năm. Bài 16 in bốn tổng a, b, c, d. Đọc định dạng chấm từng bài; không in lời nhắc nhập dữ liệu. Chấm kết quả, không tự xác nhận yêu cầu dùng toán tử ?: hoặc switch-case. Lịch sử và bản nháp lưu trên trình duyệt.
+## Lưu ý về nội dung
+
+- Câu 8 (Venn) dùng **số liệu minh họa được tự đặt**, không phải đề gốc.
+- Câu 14 giải cả hai trường hợp **được** và **không được** dùng lại tuyến xe.
+- Các bài yêu cầu tính tổ hợp giả định các đối tượng và/hoặc người nhận phân biệt như trong đề.
+
+## Công nghệ
+
+HTML/CSS/JS thuần, không có dependency, không gọi API, không cần Internet, responsive cho desktop và mobile.
