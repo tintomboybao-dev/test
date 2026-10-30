@@ -1,0 +1,1025 @@
+{
+  "TOPICS": [
+    {
+      "id": "anh-xa",
+      "icon": "🔁",
+      "name": "Ánh xạ & toàn ánh"
+    },
+    {
+      "id": "stars",
+      "icon": "🧮",
+      "name": "Stars and Bars"
+    },
+    {
+      "id": "venn",
+      "icon": "◉",
+      "name": "Tập hợp & Venn"
+    },
+    {
+      "id": "khai-trien",
+      "icon": "✳️",
+      "name": "Khai triển đa thức"
+    },
+    {
+      "id": "quy-tac",
+      "icon": "🔀",
+      "name": "Quy tắc đếm"
+    },
+    {
+      "id": "de-quy",
+      "icon": "🌱",
+      "name": "Đệ quy Fibonacci"
+    },
+    {
+      "id": "to-hop",
+      "icon": "🎲",
+      "name": "Tổ hợp & chọn"
+    },
+    {
+      "id": "phan-chia",
+      "icon": "🃏",
+      "name": "Phân chia đối tượng"
+    }
+  ],
+  "F": [
+    {
+      "topic": "anh-xa",
+      "title": "Điều kiện toàn ánh",
+      "formula": "f: A → B toàn ánh ⇔ với mọi y ∈ B, tồn tại x ∈ A: f(x) = y.",
+      "when": "Giải f(x)=y hoặc xét tập giá trị của hàm.",
+      "example": "f(x)=x+1 → x=y−1 luôn tồn tại. f(x)=x² không tạo được y âm.",
+      "warn": "Miền đích B rất quan trọng: x² từ R vào R không toàn ánh, nhưng từ R vào [0,+∞) là toàn ánh."
+    },
+    {
+      "topic": "stars",
+      "title": "Stars and Bars – tổng bằng n",
+      "formula": "x1 + ... + xk = n; xi ≥ 0\nSố nghiệm = C(n+k−1, k−1)",
+      "when": "Đếm số nghiệm nguyên không âm hoặc chia vật giống nhau vào hộp phân biệt.",
+      "example": "a+b+c=7 → C(9,2)=36.",
+      "warn": "Nếu xi ≥ ai, đặt yi=xi−ai trước khi áp dụng."
+    },
+    {
+      "topic": "stars",
+      "title": "Stars and Bars – tổng ≤ n",
+      "formula": "x1 + ... + xk ≤ n; xi ≥ 0\nSố nghiệm = C(n+k, k)",
+      "when": "Bất phương trình với tổng không vượt quá giới hạn.",
+      "example": "a+b+c≤5 → C(8,3)=56.",
+      "warn": "Có thể thêm biến phụ d≥0 để biến dấu ≤ thành dấu =."
+    },
+    {
+      "topic": "stars",
+      "title": "Đổi biến khi có cận dưới",
+      "formula": "xi ≥ ai  ⇒  yi = xi − ai ≥ 0\n∑yi = n − ∑ai",
+      "when": "Đề bài yêu cầu mỗi biến lớn hơn hoặc bằng một giá trị, kể cả âm.",
+      "example": "x4 ≥ −1 ⇒ y4 = x4 + 1. Cận dưới âm vẫn đổi biến bình thường.",
+      "warn": "Kiểm tra n − ∑ai phải ≥ 0. Nếu âm thì không có nghiệm."
+    },
+    {
+      "topic": "venn",
+      "title": "Nguyên lý bù trừ",
+      "formula": "|A ∪ B| = |A| + |B| − |A ∩ B|\n|A ∪ B ∪ C| = |A|+|B|+|C|−|A∩B|−|A∩C|−|B∩C|+|A∩B∩C|",
+      "when": "Đề có \"hoặc\", \"ít nhất một\", hoặc biểu đồ Venn.",
+      "example": "Biết A hoặc B nhưng không C: |(A∪B)\\C|.",
+      "warn": "Giao của hai tập gồm cả những người thuộc cả ba tập, nếu đề không nói \"chỉ\"."
+    },
+    {
+      "topic": "khai-trien",
+      "title": "Nhị thức Newton",
+      "formula": "(a+b)^n = ∑ C(n,k)·a^(n−k)·b^k\n(k chạy từ 0 đến n)",
+      "when": "Tìm hệ số của một hạng tử trong (a+b)^n.",
+      "example": "Hệ số x⁵y⁴ trong (3x−2y)⁹: C(9,4)·3⁵·(−2)⁴.",
+      "warn": "Để ý dấu âm và tổng số mũ đúng bằng n."
+    },
+    {
+      "topic": "khai-trien",
+      "title": "Hệ số đa thức",
+      "formula": "(a+b+c+d)^n: hệ số ứng với số lần chọn p,q,r,s là n!/(p!q!r!s!), với p+q+r+s=n.",
+      "when": "Khai triển có từ ba hạng tử trở lên.",
+      "example": "x⁵y⁴t trong (−x+y−2z+t)¹⁰ → 10!/(5!4!0!1!) × (−1)⁵.",
+      "warn": "Đừng bỏ qua hệ số đứng trước các biến."
+    },
+    {
+      "topic": "quy-tac",
+      "title": "Quy tắc cộng và nhân",
+      "formula": "HOẶC (chọn đúng một phương án loại trừ nhau): cộng.\nVÀ (các bước liên tiếp): nhân.",
+      "when": "Chọn một đề từ nhiều loại; đi qua nhiều chặng; thực hiện nhiều việc.",
+      "example": "2 thang bộ hoặc 3 thang máy → 2+3=5. 4 tuyến A–B và 3 tuyến B–C → 4×3=12.",
+      "warn": "Nếu các trường hợp chồng lấn, dùng bù trừ thay vì cộng trực tiếp."
+    },
+    {
+      "topic": "de-quy",
+      "title": "Đếm lời gọi Fibonacci",
+      "formula": "T(0)=0; T(1)=1\nT(n)=T(n−1)+T(n−2) khi n≥2",
+      "when": "T(n) là số lần gọi fibo(1) khi tính fibo(n) bằng đệ quy thuần.",
+      "example": "T(8)=21. Tổng số lời gọi (mọi đối số) của fibo(8) là 67.",
+      "warn": "Phân biệt kết quả Fibonacci, số lần gọi fibo(1) và tổng số lời gọi hàm."
+    },
+    {
+      "topic": "to-hop",
+      "title": "Tổ hợp chập k",
+      "formula": "C(n,k) = n! / (k!·(n−k)!)",
+      "when": "Chọn k từ n đối tượng phân biệt và không xét thứ tự.",
+      "example": "Chọn 4 trong 11 viên bi đánh số → C(11,4)=330.",
+      "warn": "Nếu chọn nhiều nhóm độc lập và đều cần đủ, nhân số cách chọn."
+    },
+    {
+      "topic": "phan-chia",
+      "title": "Chia vật phân biệt cho người",
+      "formula": "Chia mỗi người lần lượt r1,r2,... quân:\nC(n,r1)·C(n−r1,r2)·...\n= n!/(r1!r2!...r_dư!)",
+      "when": "Các người nhận là phân biệt; các vật phân biệt; thứ tự trong nhóm không quan trọng.",
+      "example": "9 lá chia 2 lá/người cho 3 người: C(9,2)C(7,2)C(5,2)=7560.",
+      "warn": "Không chia thêm cho số hoán vị của người nhận nếu người nhận đã được phân biệt."
+    }
+  ],
+  "P": [
+    {
+      "id": 1,
+      "topic": "anh-xa",
+      "title": "Chọn hàm toàn ánh (bậc hai / bậc nhất)",
+      "statement": "Cho f: R → R. Hàm nào toàn ánh?\na) x² + x\nb) 2x²\nc) x² + 3\nd) x + 1",
+      "steps": [
+        [
+          "Nhắc lại điều kiện",
+          "Hàm f: R→R toàn ánh nếu ∀y∈R, ∃x∈R để f(x)=y. Hãy xét tập giá trị từng hàm."
+        ],
+        [
+          "Phương án a",
+          "x²+x=(x+1/2)²−1/4. Vì bình phương ≥0 nên f(x)≥−1/4. Ví dụ y=−1 không đạt được ⇒ không toàn ánh."
+        ],
+        [
+          "Phương án b",
+          "2x²≥0 với mọi x. Ví dụ y=−1 không có x nào phù hợp ⇒ không toàn ánh."
+        ],
+        [
+          "Phương án c",
+          "x²+3≥3 với mọi x. Ví dụ y=0 không đạt được ⇒ không toàn ánh."
+        ],
+        [
+          "Phương án d",
+          "Với y bất kỳ, giải y=x+1 ⇒ x=y−1. Đây luôn là số thực, do đó đạt được mọi y∈R."
+        ]
+      ],
+      "answer": "d) f(x) = x + 1",
+      "tip": "Hàm bậc hai (hệ số x² khác 0) từ R sang R không toàn ánh.",
+      "level": "Dễ",
+      "time": 4,
+      "recognize": "Đề cho f: R → R và hỏi hàm nào toàn ánh. Ta cần biết tập giá trị có phủ hết R hay không.",
+      "approach": "Kiểm tra lần lượt từng phương án. Với hàm bậc hai, hoàn thành bình phương để tìm cận của f(x). Với hàm bậc nhất, giải f(x)=y.",
+      "why": "Toàn ánh là yêu cầu mọi y thực đều có ít nhất một x thực tạo ra y. Chỉ cần chỉ ra một giá trị y không đạt được là đủ bác bỏ.",
+      "check": "Thử y = −1 với 2x²: vô nghiệm thực. Với x+1, mọi y đều có nghiệm duy nhất x=y−1.",
+      "mistake": "Không nhầm “có nghiệm với một vài y” với “có nghiệm với tất cả y”. Tập đích ở đây là R, không phải khoảng không âm.",
+      "formula": "f: A → B toàn ánh ⇔ với mọi y ∈ B, tồn tại x ∈ A: f(x) = y.",
+      "isSample": false
+    },
+    {
+      "id": 2,
+      "topic": "anh-xa",
+      "title": "Chọn hàm toàn ánh (bậc ba)",
+      "statement": "Cho f: R → R. Hàm nào toàn ánh?\na) x² − 2x + 1\nb) x² + 5\nc) x³ − 2\nd) 4x² − 3",
+      "steps": [
+        [
+          "Xét a",
+          "x²−2x+1=(x−1)²≥0, nên không tạo y<0."
+        ],
+        [
+          "Xét b",
+          "x²+5≥5, nên không tạo y<5."
+        ],
+        [
+          "Xét d",
+          "4x²−3≥−3, nên không tạo y<−3."
+        ],
+        [
+          "Xét c",
+          "Với y∈R bất kỳ, đặt y=x³−2 ⇒ x³=y+2 ⇒ x=∛(y+2)."
+        ],
+        [
+          "Kết luận",
+          "x=∛(y+2) luôn là số thực nên f(x)=x³−2 đạt mọi y∈R. Chọn c."
+        ]
+      ],
+      "answer": "c) f(x) = x³ − 2",
+      "tip": "Căn bậc ba của số âm vẫn là số thực; căn bậc hai thì không.",
+      "level": "Dễ",
+      "time": 4,
+      "recognize": "Nhiều phương án là hàm bậc hai, một phương án là hàm bậc ba.",
+      "approach": "Loại các hàm bậc hai vì bị chặn một phía; chứng minh hàm x³−2 đạt mọi giá trị thực bằng phép giải ngược.",
+      "why": "Căn bậc ba của mọi số thực luôn tồn tại trong R. Ngược lại hàm bình phương không tạo ra giá trị nhỏ hơn ngưỡng của nó.",
+      "check": "Ví dụ y=−10: x=∛(−8)=−2 và f(−2)=−8−2=−10.",
+      "mistake": "Không suy ra mọi hàm bậc ba đều toàn ánh nếu hệ số/cấu trúc khác: với đa thức bậc lẻ hệ số cao nhất khác 0 thì đúng, còn biểu thức tổng quát khác cần kiểm tra.",
+      "formula": "f: A → B toàn ánh ⇔ với mọi y ∈ B, tồn tại x ∈ A: f(x) = y.",
+      "isSample": false
+    },
+    {
+      "id": 3,
+      "topic": "stars",
+      "title": "Bộ ba nguyên có tổng ≤ 23",
+      "statement": "Có bao nhiêu bộ số nguyên (x1,x2,x3) thỏa x1+x2+x3 ≤ 23; x1≥2, x2≥1, x3≥4?",
+      "steps": [
+        [
+          "Khử cận dưới",
+          "Đặt a=x1−2, b=x2−1, c=x3−4. Do điều kiện đề bài, a,b,c đều là số nguyên không âm."
+        ],
+        [
+          "Tính lại giới hạn",
+          "x1+x2+x3=(a+2)+(b+1)+(c+4)=a+b+c+7. Do đó a+b+c≤23−7=16."
+        ],
+        [
+          "Đổi bất phương trình thành phương trình",
+          "Đặt d=16−a−b−c ≥0. Suy ra a+b+c+d=16."
+        ],
+        [
+          "Áp dụng công thức",
+          "Có 4 biến không âm với tổng 16. Số nghiệm C(16+4−1,4−1)=C(19,3)."
+        ],
+        [
+          "Tính giá trị",
+          "C(19,3)=19×18×17/(3×2×1)=969."
+        ]
+      ],
+      "answer": "969 bộ",
+      "tip": "Tổng ≤ n của k biến không âm tương đương tổng = n của k+1 biến.",
+      "level": "Trung bình",
+      "time": 6,
+      "recognize": "Ba biến nguyên, mỗi biến có cận dưới và tổng mang dấu ≤.",
+      "approach": "Trừ cận dưới để biến mới không âm; thêm một biến phần dư để đổi ≤ thành =; dùng Stars and Bars.",
+      "why": "Mỗi bộ (a,b,c) có tổng ≤16 ứng với duy nhất một d=16−(a+b+c) không âm; vì vậy thêm biến không làm thay đổi số bộ.",
+      "check": "Bộ nhỏ nhất x=(2,1,4) có tổng 7≤23. Sau đổi biến thành (0,0,0), phần dư d=16.",
+      "mistake": "Nếu quên biến phụ, dùng C(18,2) sẽ chỉ đếm các bộ có tổng đúng 16, không đếm mọi tổng nhỏ hơn.",
+      "formula": "x1 + ... + xk = n; xi ≥ 0\nSố nghiệm = C(n+k−1, k−1)",
+      "isSample": false
+    },
+    {
+      "id": 4,
+      "topic": "stars",
+      "title": "Bốn biến, có cận dưới −1",
+      "statement": "Có bao nhiêu bộ nguyên (x1,x2,x3,x4) thỏa tổng =24; x1≥3, x2≥2, x3≥4, x4≥−1?",
+      "steps": [
+        [
+          "Đổi biến",
+          "a=x1−3≥0; b=x2−2≥0; c=x3−4≥0; d=x4+1≥0."
+        ],
+        [
+          "Biểu diễn biến gốc",
+          "x1=a+3, x2=b+2, x3=c+4, x4=d−1."
+        ],
+        [
+          "Thế vào tổng",
+          "(a+3)+(b+2)+(c+4)+(d−1)=24 ⇒ a+b+c+d+8=24 ⇒ tổng mới =16."
+        ],
+        [
+          "Áp dụng Stars and Bars",
+          "C(16+4−1,4−1)=C(19,3)."
+        ],
+        [
+          "Tính",
+          "19×18×17/6=969."
+        ]
+      ],
+      "answer": "969 bộ",
+      "tip": "x4≥−1 ⇒ d=x4+1, không phải x4−1.",
+      "level": "Trung bình",
+      "time": 6,
+      "recognize": "Có 4 biến nguyên, phương trình tổng =24 và một cận dưới âm (x4≥−1).",
+      "approach": "Thay mỗi biến xi bằng biến không âm cộng cận dưới tương ứng; chú ý xi≥−1 cần đặt biến mới xi+1.",
+      "why": "Khi đặt d=x4+1≥0 thì x4=d−1; dấu trừ 1 trong tổng làm tổng biến mới bằng 16.",
+      "check": "Tổng các cận dưới là 3+2+4−1=8. Vì 24−8=16 nên kết quả phù hợp.",
+      "mistake": "Dễ đặt nhầm d=x4−1 làm d có thể âm và tính sai tổng.",
+      "formula": "x1 + ... + xk = n; xi ≥ 0\nSố nghiệm = C(n+k−1, k−1)",
+      "isSample": false
+    },
+    {
+      "id": 5,
+      "topic": "stars",
+      "title": "Điều kiện x1 ≥ 2 HOẶC x2 ≥ 3",
+      "statement": "Có bao nhiêu bộ nguyên không âm x1+x2+x3+x4=10, thỏa x1≥2 hoặc x2≥3 (hoặc cả hai)?",
+      "steps": [
+        [
+          "Đặt các tập hợp",
+          "A={nghiệm có x1≥2}; B={nghiệm có x2≥3}. Cần |A∪B|=|A|+|B|−|A∩B|."
+        ],
+        [
+          "Đếm |A|",
+          "Đặt a=x1−2≥0. Khi đó a+x2+x3+x4=8 ⇒ |A|=C(8+4−1,3)=C(11,3)=165."
+        ],
+        [
+          "Đếm |B|",
+          "Đặt b=x2−3≥0. Khi đó x1+b+x3+x4=7 ⇒ |B|=C(10,3)=120."
+        ],
+        [
+          "Đếm giao |A∩B|",
+          "Đặt cả a=x1−2, b=x2−3. Lúc này a+b+x3+x4=5 ⇒ |A∩B|=C(8,3)=56."
+        ],
+        [
+          "Áp dụng bù trừ",
+          "|A∪B|=165+120−56=229."
+        ]
+      ],
+      "answer": "229 bộ",
+      "tip": "Từ “hoặc” bao gồm trường hợp cả hai cùng đúng, nên dùng hợp tập hợp.",
+      "level": "Khó",
+      "time": 9,
+      "recognize": "Đề yêu cầu x1≥2 HOẶC x2≥3, bao gồm cả trường hợp hai điều kiện cùng đúng.",
+      "approach": "Đặt A là nhóm thỏa x1≥2, B thỏa x2≥3. Dùng công thức hợp hai tập và đếm mỗi tập bằng Stars and Bars.",
+      "why": "Những nghiệm thỏa cả A và B bị cộng hai lần trong |A|+|B|, nên phải trừ |A∩B| một lần.",
+      "check": "Cách kiểm tra độc lập: tổng số nghiệm không âm là C(13,3)=286. Phần không thỏa cả A lẫn B có x1∈{0,1}, x2∈{0,1,2}; cộng số nghiệm tương ứng được 57. Suy ra 286−57=229.",
+      "mistake": "Không cộng 165+120=285 vì đã đếm trùng 56 nghiệm. “Hoặc” trong toán học thường là hoặc bao hàm.",
+      "formula": "x1 + ... + xk = n; xi ≥ 0\nSố nghiệm = C(n+k−1, k−1)",
+      "isSample": false
+    },
+    {
+      "id": 6,
+      "topic": "stars",
+      "title": "Nghiệm không âm tổng bằng 25",
+      "statement": "Tìm số nghiệm nguyên không âm của x1+x2+x3+x4=25; x1≥1, x2≥2, x3≥3, x4≥4.",
+      "steps": [
+        [
+          "Trừ cận dưới",
+          "Đặt a=x1−1, b=x2−2, c=x3−3, d=x4−4. Tất cả ≥0."
+        ],
+        [
+          "Rút gọn phương trình",
+          "a+b+c+d=25−(1+2+3+4)=15."
+        ],
+        [
+          "Nhận dạng Stars and Bars",
+          "Số nghiệm không âm của tổng =15 với 4 biến là C(15+4−1,3)."
+        ],
+        [
+          "Tính tổ hợp",
+          "C(18,3)=18×17×16/(3×2×1)=816."
+        ]
+      ],
+      "answer": "816 nghiệm",
+      "tip": "Luôn trừ tổng cận dưới trước khi đưa vào công thức.",
+      "level": "Dễ",
+      "time": 5,
+      "recognize": "Phương trình 4 biến với các cận dưới khác 0, không có dấu ≤ và không có điều kiện hoặc.",
+      "approach": "Trừ tất cả các cận dưới để chuyển thành phương trình tổng =15 với 4 biến không âm.",
+      "why": "Mỗi bộ x thỏa điều kiện tương ứng một-một với một bộ biến mới không âm.",
+      "check": "Các giá trị nhỏ nhất cộng lại là 10; còn 25−10=15 đơn vị để phân phối.",
+      "mistake": "Đừng sử dụng C(25+4−1,3) trước khi trừ 1+2+3+4.",
+      "formula": "x1 + ... + xk = n; xi ≥ 0\nSố nghiệm = C(n+k−1, k−1)",
+      "isSample": false
+    },
+    {
+      "id": 7,
+      "topic": "stars",
+      "title": "Phân phối 14 quả bóng vào 5 thùng",
+      "statement": "Phân phối hết 14 quả bóng giống nhau vào 5 thùng phân biệt, mỗi thùng ít nhất 1 quả. Có bao nhiêu cách?",
+      "steps": [
+        [
+          "Mô hình hóa",
+          "Gọi xi là số bóng ở thùng i. Ta có x1+x2+x3+x4+x5=14, mỗi xi≥1."
+        ],
+        [
+          "Phát bóng tối thiểu",
+          "Dành sẵn 1 quả cho mỗi thùng. Còn 14−5=9 quả giống nhau cần phân phối."
+        ],
+        [
+          "Đổi biến",
+          "yi=xi−1≥0, suy ra y1+y2+y3+y4+y5=9."
+        ],
+        [
+          "Tính số cách",
+          "Có 5 biến không âm tổng 9 ⇒ C(9+5−1,4)=C(13,4)=715."
+        ]
+      ],
+      "answer": "715 cách",
+      "tip": "Vật giống nhau + thùng phân biệt là dấu hiệu điển hình của Stars and Bars.",
+      "level": "Trung bình",
+      "time": 5,
+      "recognize": "Phân phối các quả bóng giống hệt nhau vào các thùng có nhãn, mỗi thùng ít nhất một quả.",
+      "approach": "Gọi xi là số bóng của thùng i. Phát trước mỗi thùng một quả rồi phân phối 9 quả còn lại tự do.",
+      "why": "Vật giống nhau nên cách phân phối chỉ phụ thuộc số lượng trong từng thùng; thùng phân biệt nên x1,...,x5 là các vị trí khác nhau.",
+      "check": "Thực tế có 14−5=9 quả sau khi dành một quả cho mỗi thùng; số cách C(13,4)=715.",
+      "mistake": "Không dùng 5^14, vì công thức này dành cho 14 quả bóng phân biệt và mỗi quả có 5 lựa chọn.",
+      "formula": "x1 + ... + xk = n; xi ≥ 0\nSố nghiệm = C(n+k−1, k−1)",
+      "isSample": false
+    },
+    {
+      "id": 8,
+      "topic": "venn",
+      "title": "Biết C++ hoặc Python nhưng không Pascal",
+      "statement": "SỐ LIỆU MINH HỌA (không phải dữ liệu đề gốc):\n50 sinh viên; C++:28; Python:25; Pascal:20; C++∩Python:12; C++∩Pascal:9; Python∩Pascal:8; cả ba:5.\nHỏi số sinh viên biết C++ hoặc Python nhưng không biết Pascal?",
+      "steps": [
+        [
+          "Gọi tên tập",
+          "A: biết C++; B: biết Python; C: biết Pascal. Phần cần đếm là (A∪B)\\C. Các số liệu là minh họa, không phải đề gốc."
+        ],
+        [
+          "Điền vùng trung tâm",
+          "|A∩B∩C|=5. Các vùng chỉ giao đôi: A∩B mà không C=12−5=7; A∩C mà không B=9−5=4; B∩C mà không A=8−5=3."
+        ],
+        [
+          "Tính vùng chỉ biết C++",
+          "Chỉ A=28−7−4−5=12 (tương đương 28−12−9+5=12)."
+        ],
+        [
+          "Tính vùng chỉ biết Python",
+          "Chỉ B=25−7−3−5=10."
+        ],
+        [
+          "Cộng đúng ba vùng cần thiết",
+          "Chỉ A (12) + chỉ B (10) + chỉ A∩B (7) =29 sinh viên."
+        ]
+      ],
+      "answer": "29 sinh viên",
+      "tip": "Giao đôi đã bao gồm giao ba. Để tính “chỉ A” phải cộng lại giao ba.",
+      "level": "Trung bình",
+      "time": 8,
+      "recognize": "Tập hợp C++/Python/Pascal với các số liệu giao đôi và giao ba; hỏi biết A hoặc B nhưng không C.",
+      "approach": "Vẽ sơ đồ Venn, điền vùng giữa ba tập trước, sau đó vùng giao đôi, rồi từng vùng chỉ thuộc một tập.",
+      "why": "Các số liệu “biết cả hai” thông thường đã bao gồm người biết cả ba; nếu không trừ giao ba thì các vùng giao đôi bị phóng đại.",
+      "check": "Các vùng Venn: chỉ C++=12, chỉ Python=10, chỉ Pascal=8; chỉ C++∩Python=7, chỉ C++∩Pascal=4, chỉ Python∩Pascal=3, cả ba=5. Tổng thuộc ít nhất một tập=49, ngoài cả ba=1.",
+      "mistake": "Không lấy 28+25−12=41 rồi bỏ luôn 20 người Pascal: nhiều người Pascal không thuộc A∪B. Cần trừ phần giao với Pascal, không trừ cả tập Pascal.",
+      "formula": "|A ∪ B| = |A| + |B| − |A ∩ B|\n|A ∪ B ∪ C| = |A|+|B|+|C|−|A∩B|−|A∩C|−|B∩C|+|A∩B∩C|",
+      "isSample": true
+    },
+    {
+      "id": 9,
+      "topic": "khai-trien",
+      "title": "Hệ số x⁵y⁴ trong (3x−2y)⁹",
+      "statement": "Tìm hệ số của x^5·y^4 trong khai triển (3x−2y)^9.",
+      "steps": [
+        [
+          "Xác định nhị thức",
+          "Đặt a=3x, b=−2y, n=9. Số hạng tổng quát: C(9,k)(3x)^(9−k)(−2y)^k."
+        ],
+        [
+          "Ghép số mũ",
+          "Muốn y^4 thì chọn k=4. Khi đó x^(9−4)=x^5, khớp cả hai số mũ."
+        ],
+        [
+          "Lấy phần hệ số",
+          "Hệ số bằng C(9,4)×3^5×(−2)^4."
+        ],
+        [
+          "Tính cụ thể",
+          "C(9,4)=126; 3^5=243; (−2)^4=16."
+        ],
+        [
+          "Nhân",
+          "126×243×16=489888."
+        ]
+      ],
+      "answer": "489888",
+      "tip": "Số mũ chẵn của hệ số âm tạo kết quả dương.",
+      "level": "Trung bình",
+      "time": 6,
+      "recognize": "Tìm một hệ số trong khai triển của tổng hai hạng tử lũy thừa 9.",
+      "approach": "Dùng số hạng tổng quát của nhị thức Newton, xác định k từ số mũ của y và thay vào.",
+      "why": "Khi chọn (−2y) đúng k lần trong 9 thừa số, x xuất hiện 9−k lần và y xuất hiện k lần.",
+      "check": "Số mũ x và y cần tìm là 5+4=9 đúng bậc khai triển. Vì k=4 chẵn, dấu của hệ số dương.",
+      "mistake": "C(9,4) không phải là hệ số cuối; phải nhân thêm 3^5×(−2)^4.",
+      "formula": "(a+b)^n = ∑ C(n,k)·a^(n−k)·b^k\n(k chạy từ 0 đến n)",
+      "isSample": false
+    },
+    {
+      "id": 10,
+      "topic": "khai-trien",
+      "title": "Hệ số x⁵y⁴t trong đa thức bốn hạng tử",
+      "statement": "Tìm hệ số của x^5·y^4·t trong khai triển (−x+y−2z+t)^10.",
+      "steps": [
+        [
+          "Tìm các số mũ",
+          "x có mũ 5, y có mũ 4, z có mũ 0, t có mũ 1. Tổng 5+4+0+1=10."
+        ],
+        [
+          "Đếm vị trí chọn",
+          "Hệ số đa thức là 10!/(5!×4!×0!×1!)=1260."
+        ],
+        [
+          "Xét hệ số mỗi hạng tử",
+          "(−x)^5 sinh hệ số (−1)^5=−1; y^4 là 1; (−2z)^0 là 1; t là 1."
+        ],
+        [
+          "Nhân và kết luận",
+          "1260×(−1)×1×1×1 = −1260."
+        ]
+      ],
+      "answer": "−1260",
+      "tip": "Không có z trong hạng tử tức là z có số mũ 0.",
+      "level": "Khó",
+      "time": 7,
+      "recognize": "Khai triển có 4 hạng tử. Cần tìm hệ số của x^5·y^4·t, không chứa z.",
+      "approach": "Dùng hệ số đa thức: trong 10 thừa số chọn −x năm lần, y bốn lần, t một lần và z không lần nào.",
+      "why": "Mỗi cách chọn vị trí cho các hạng tử trong 10 ngoặc đều tạo cùng một đơn thức; số cách được tính bằng hệ số đa thức.",
+      "check": "Tổng số mũ 5+4+0+1=10 nên hợp lệ. Có 5 lần chọn −x, nên dấu âm.",
+      "mistake": "Dễ bỏ qua 0! =1 cho z hoặc bỏ dấu âm của (−x)^5.",
+      "formula": "(a+b)^n = ∑ C(n,k)·a^(n−k)·b^k\n(k chạy từ 0 đến n)",
+      "isSample": false
+    },
+    {
+      "id": 11,
+      "topic": "quy-tac",
+      "title": "Chọn một đề thi từ bốn loại",
+      "statement": "Bốn danh sách có lần lượt 23, 19, 15 và 20 đề. Một sinh viên chọn đúng 1 đề bất kỳ. Có bao nhiêu cách?",
+      "steps": [
+        [
+          "Phân tích chữ khóa",
+          "Chỉ chọn một đề: thuộc loại 1 HOẶC loại 2 HOẶC loại 3 HOẶC loại 4."
+        ],
+        [
+          "Áp dụng quy tắc cộng",
+          "Giả sử các đề ở bốn danh sách là phân biệt, số cách =23+19+15+20."
+        ],
+        [
+          "Tính kết quả",
+          "23+19+15+20=77."
+        ]
+      ],
+      "answer": "77 cách",
+      "tip": "Chỉ dùng phép cộng trực tiếp khi các danh sách chứa những lựa chọn phân biệt, không trùng nhau.",
+      "level": "Dễ",
+      "time": 3,
+      "recognize": "Sinh viên chỉ chọn 1 đề từ một trong 4 loại đề khác nhau.",
+      "approach": "Sử dụng quy tắc cộng vì các lựa chọn là các phương án loại trừ nhau.",
+      "why": "Mỗi cách chọn tương ứng đúng một đề. Khi các danh sách không có đề trùng, tổng lựa chọn bằng tổng số đề.",
+      "check": "23+19=42; 15+20=35; 42+35=77.",
+      "mistake": "Không nhân 23×19×15×20: phép nhân phù hợp nếu phải chọn 1 đề từ mỗi loại.",
+      "formula": "HOẶC (chọn đúng một phương án loại trừ nhau): cộng.\nVÀ (các bước liên tiếp): nhân.",
+      "isSample": false
+    },
+    {
+      "id": 12,
+      "topic": "quy-tac",
+      "title": "Đi từ tầng 1 lên tầng 3",
+      "statement": "Một tòa nhà có 2 thang bộ và 3 thang máy để đi từ tầng 1 lên tầng 3. Có bao nhiêu cách lựa chọn?",
+      "steps": [
+        [
+          "Phân chia lựa chọn",
+          "Có 2 cách chọn thang bộ và 3 cách chọn thang máy."
+        ],
+        [
+          "Lựa chọn loại trừ nhau",
+          "Đi thang bộ HOẶC đi thang máy; dùng quy tắc cộng."
+        ],
+        [
+          "Kết quả",
+          "2+3=5 cách."
+        ]
+      ],
+      "answer": "5 cách",
+      "tip": "Từ “hoặc” trong quy tắc cộng đòi hỏi các lựa chọn là những trường hợp khác nhau.",
+      "level": "Dễ",
+      "time": 2,
+      "recognize": "Một người chọn đúng một trong các phương tiện thay thế.",
+      "approach": "Cộng số lựa chọn thang bộ và thang máy.",
+      "why": "Một lần đi chỉ chọn một phương tiện, không phải đồng thời dùng thang bộ và thang máy.",
+      "check": "Liệt kê S1,S2 và M1,M2,M3 có đúng 5 lựa chọn.",
+      "mistake": "Không tính 2×3 vì người đó không cần chọn một thang bộ rồi một thang máy.",
+      "formula": "HOẶC (chọn đúng một phương án loại trừ nhau): cộng.\nVÀ (các bước liên tiếp): nhân.",
+      "isSample": false
+    },
+    {
+      "id": 13,
+      "topic": "quy-tac",
+      "title": "Chọn một quyển sách",
+      "statement": "Thư viện có 2500 quyển sách khoa học và 1500 quyển sách văn học. Chọn 1 quyển bất kỳ. Có bao nhiêu cách?",
+      "steps": [
+        [
+          "Nhận diện",
+          "Đề yêu cầu chọn 1 quyển khoa học HOẶC 1 quyển văn học."
+        ],
+        [
+          "Cộng các nhóm",
+          "Số lựa chọn=2500+1500."
+        ],
+        [
+          "Kết luận",
+          "=4000 cách."
+        ]
+      ],
+      "answer": "4000 cách",
+      "tip": "Sách được hiểu là các quyển phân biệt và hai loại không chồng lấn.",
+      "level": "Dễ",
+      "time": 2,
+      "recognize": "Chọn đúng một quyển sách từ hai nhóm sách phân biệt.",
+      "approach": "Cộng số sách ở hai nhóm.",
+      "why": "Mỗi quyển sách là một lựa chọn riêng và chỉ nằm trong một nhóm theo giả thiết.",
+      "check": "2500+1500=4000.",
+      "mistake": "Không nhân 2500×1500, vì không chọn đồng thời hai quyển.",
+      "formula": "HOẶC (chọn đúng một phương án loại trừ nhau): cộng.\nVÀ (các bước liên tiếp): nhân.",
+      "isSample": false
+    },
+    {
+      "id": 14,
+      "topic": "quy-tac",
+      "title": "Đi A → B → C rồi quay về",
+      "statement": "Có 4 tuyến A–B, 3 tuyến B–C, đi được cả hai chiều. Đi từ A đến C qua B rồi từ C về A qua B. Tính số cách nếu (a) được dùng lại tuyến cũ; (b) không được dùng lại.",
+      "steps": [
+        [
+          "Phân tách hành trình",
+          "A→B có 4 lựa chọn, B→C có 3. Mỗi hành trình lượt đi có 4×3=12 cách."
+        ],
+        [
+          "Trường hợp a: cho dùng lại",
+          "Ở lượt về, C→B có 3 lựa chọn và B→A có 4 lựa chọn. Tổng=4×3×3×4=144."
+        ],
+        [
+          "Trường hợp b: không dùng lại",
+          "C→B không được chọn tuyến B→C đã đi nên còn 3−1=2 cách. B→A không được chọn tuyến A→B đã đi nên còn 4−1=3 cách."
+        ],
+        [
+          "Nhân toàn hành trình",
+          "Tổng=4×3×2×3=72 cách."
+        ],
+        [
+          "So sánh",
+          "Khi cho phép lặp, số cách nhiều gấp 2 lần trường hợp cấm lặp (144 so với 72)."
+        ]
+      ],
+      "answer": "a) 144 cách · b) 72 cách",
+      "tip": "Đề gốc chưa xác định có cho lặp tuyến xe không, nên giữ cả hai trường hợp.",
+      "level": "Trung bình",
+      "time": 7,
+      "recognize": "Một hành trình có bốn chặng theo thứ tự A→B→C→B→A và điều kiện có hoặc không tái sử dụng tuyến.",
+      "approach": "Dùng quy tắc nhân cho từng chặng; ở lượt về điều chỉnh số tuyến còn lại tùy điều kiện.",
+      "why": "Sau khi chọn một tuyến A–B và một tuyến B–C, nếu không được dùng lại thì lượt về chỉ bị cấm đúng tuyến tương ứng ở mỗi đoạn.",
+      "check": "Được lặp: 4×3×3×4=144. Không lặp: 4×3×2×3=72. Trường hợp cấm lặp có ít lựa chọn hơn, phù hợp.",
+      "mistake": "Không suy ra lượt về chỉ có 12−1=11 cách: tuyến xe bị cấm theo từng chặng, phải xử lý riêng A–B và B–C.",
+      "formula": "HOẶC (chọn đúng một phương án loại trừ nhau): cộng.\nVÀ (các bước liên tiếp): nhân.",
+      "isSample": false
+    },
+    {
+      "id": 15,
+      "topic": "de-quy",
+      "title": "Số lần gọi fibo(1) khi chạy fibo(8)",
+      "statement": "Cho fibo(0)=0, fibo(1)=1, fibo(n)=fibo(n−1)+fibo(n−2) (n≥2). Khi gọi fibo(8), có bao nhiêu lời gọi với đối số bằng 1?",
+      "steps": [
+        [
+          "Xác định sự kiện đếm",
+          "T(n)=số lần hàm fibo được gọi với n=1 trong quá trình thực thi fibo(n) kiểu đệ quy thuần."
+        ],
+        [
+          "Trường hợp cơ sở",
+          "T(0)=0 vì fibo(0) không gọi fibo(1). T(1)=1 vì lời gọi fibo(1) chính là một lần cần đếm."
+        ],
+        [
+          "Lập truy hồi",
+          "Với n≥2, fibo(n) gọi fibo(n−1) và fibo(n−2). Do đó T(n)=T(n−1)+T(n−2)."
+        ],
+        [
+          "Tính lần lượt",
+          "T(2)=1; T(3)=2; T(4)=3; T(5)=5; T(6)=8; T(7)=13; T(8)=21."
+        ],
+        [
+          "Phân biệt hai bài toán",
+          "Nếu hỏi tất cả các lời gọi, dùng G(0)=G(1)=1, G(n)=1+G(n−1)+G(n−2), từ đó G(8)=67."
+        ]
+      ],
+      "answer": "21 lần gọi fibo(1)",
+      "tip": "Nếu đề hỏi tổng số lời gọi hàm fibo(8) (mọi đối số) thì là 67, không phải 21.",
+      "level": "Trung bình",
+      "time": 8,
+      "recognize": "Bài hỏi số lần gọi fibo(1) khi thực thi đệ quy fibo(8), không hỏi giá trị fibo(8).",
+      "approach": "Đặt T(n) là số nút có đối số 1 trong cây lời gọi fibo(n); lập truy hồi rồi tính dần.",
+      "why": "Mỗi lời gọi fibo(n) với n≥2 tạo hai nhánh độc lập fibo(n−1) và fibo(n−2), nên số nút fibo(1) trong hai nhánh được cộng lại.",
+      "check": "fibo(8) theo định nghĩa có giá trị 21 và số lời gọi fibo(1) cũng là 21; đây là sự trùng hợp từ truy hồi, không phải quy tắc chung cho mọi kiểu đếm. Tổng mọi lời gọi là 67.",
+      "mistake": "Không nhầm số fibo(1) là 67; 67 là tổng số nút trong cây gọi hàm. Nếu code có memoization thì số lời gọi sẽ khác.",
+      "formula": "T(0)=0; T(1)=1\nT(n)=T(n−1)+T(n−2) khi n≥2",
+      "isSample": false
+    },
+    {
+      "id": 16,
+      "topic": "to-hop",
+      "title": "Chọn mua bò, heo và gà",
+      "statement": "Người bán có 6 bò, 5 heo, 8 gà (các con phân biệt). Mua đúng 3 bò, 2 heo, 4 gà. Hỏi số cách chọn?",
+      "steps": [
+        [
+          "Chọn bò",
+          "Có 6 con bò phân biệt, lấy 3 và không xét thứ tự ⇒ C(6,3)=20."
+        ],
+        [
+          "Chọn heo",
+          "Có 5 con heo phân biệt, lấy 2 ⇒ C(5,2)=10."
+        ],
+        [
+          "Chọn gà",
+          "Có 8 con gà phân biệt, lấy 4 ⇒ C(8,4)=70."
+        ],
+        [
+          "Ghép thành một lựa chọn mua",
+          "Mỗi giỏ hàng cần đủ cả ba nhóm, nên dùng quy tắc nhân."
+        ],
+        [
+          "Kết quả",
+          "20×10×70=14000 cách."
+        ]
+      ],
+      "answer": "14000 cách",
+      "tip": "Chọn không quan tâm thứ tự → tổ hợp; nhiều nhóm đều phải chọn → nhân.",
+      "level": "Trung bình",
+      "time": 6,
+      "recognize": "Chọn nhiều nhóm vật khác loại với số lượng cố định; các cá thể phân biệt, không xét thứ tự.",
+      "approach": "Tính một tổ hợp cho mỗi loại rồi nhân vì phải mua đủ cả ba loại.",
+      "why": "Một cách mua gồm một lựa chọn bò, một lựa chọn heo và một lựa chọn gà; ba lựa chọn xác định độc lập thành một giỏ hàng duy nhất.",
+      "check": "C(6,3)=20, C(5,2)=10, C(8,4)=70. Tổng=20×10×70=14000.",
+      "mistake": "Không dùng chỉnh hợp vì chọn trước/sau không tạo giỏ hàng mới. Không cộng 20+10+70 vì đề yêu cầu cả ba loại.",
+      "formula": "C(n,k) = n! / (k!·(n−k)!)",
+      "isSample": false
+    },
+    {
+      "id": 17,
+      "topic": "to-hop",
+      "title": "Lấy 4 trong 11 viên bi đánh số",
+      "statement": "Hộp có 5 bi đỏ, 6 bi trắng. Tất cả 11 viên đều được đánh số riêng, kể cả các viên cùng màu. Lấy 4 viên, không xét thứ tự. Có bao nhiêu cách?",
+      "steps": [
+        [
+          "Đếm số vật",
+          "5 bi đỏ + 6 bi trắng =11 viên, mỗi viên có số riêng."
+        ],
+        [
+          "Xác định có xét thứ tự không",
+          "Đề hỏi “chọn 4 viên” và không xét thứ tự, nên nhóm {1,2,3,4} giống {4,3,2,1}."
+        ],
+        [
+          "Dùng tổ hợp",
+          "Số cách C(11,4)=11!/(4!×7!)."
+        ],
+        [
+          "Tính",
+          "11×10×9×8/(4×3×2×1)=330."
+        ]
+      ],
+      "answer": "330 cách",
+      "tip": "Nếu bi không đánh số và chỉ xét màu thì bài toán hoàn toàn khác.",
+      "level": "Dễ",
+      "time": 4,
+      "recognize": "Các viên bi đều được đánh số, chọn đúng 4 viên, không xét thứ tự và không hạn chế số viên mỗi màu.",
+      "approach": "Xem tất cả 11 viên là khác nhau; áp dụng một tổ hợp C(11,4).",
+      "why": "Vì số được gắn riêng trên từng viên, cùng màu vẫn là các vật phân biệt. Chọn một tập 4 viên không quan tâm thứ tự lấy.",
+      "check": "C(11,4)=330. Có thể kiểm tra bằng tổng theo số viên đỏ: ∑(r=0..4) C(5,r)C(6,4−r)=330.",
+      "mistake": "Không chỉ đếm 5 kiểu màu (0–4 bi đỏ) vì từng viên trong cùng màu được phân biệt.",
+      "formula": "C(n,k) = n! / (k!·(n−k)!)",
+      "isSample": false
+    },
+    {
+      "id": 18,
+      "topic": "phan-chia",
+      "title": "Chia 9 quân bài cho 3 người",
+      "statement": "Có 9 quân bài phân biệt, 3 người phân biệt. Chia mỗi người 2 quân, 3 quân dư. Không xét thứ tự quân trong tay. Có bao nhiêu cách?",
+      "steps": [
+        [
+          "Phân biệt người và quân",
+          "Các quân đều khác nhau, ba người A/B/C cũng khác nhau, thứ tự 2 quân trên tay không quan trọng."
+        ],
+        [
+          "Chọn cho người A",
+          "Chọn 2 trong 9 ⇒ C(9,2)=36. Còn 7 quân."
+        ],
+        [
+          "Chọn cho người B",
+          "Chọn 2 trong 7 ⇒ C(7,2)=21. Còn 5 quân."
+        ],
+        [
+          "Chọn cho người C",
+          "Chọn 2 trong 5 ⇒ C(5,2)=10. Còn đúng 3 quân dư."
+        ],
+        [
+          "Nhân",
+          "36×21×10=7560. Cách viết khác: 9!/(2!2!2!3!)."
+        ]
+      ],
+      "answer": "7560 cách",
+      "tip": "Người nhận khác nhau nên không chia thêm 3!.",
+      "level": "Trung bình",
+      "time": 7,
+      "recognize": "9 quân phân biệt chia cho 3 người phân biệt, mỗi người đúng 2 quân và còn dư 3 quân.",
+      "approach": "Chọn lần lượt 2 quân cho người thứ nhất, thứ hai, thứ ba, rồi nhân. Nhóm dư được xác định tự động.",
+      "why": "Mỗi cách chia xác định duy nhất một bộ 3 tập hai lá gắn với ba người; lựa chọn về sau diễn ra trên số quân chưa chia.",
+      "check": "C(9,2)C(7,2)C(5,2)=36×21×10=7560. Kiểm tra bằng 9!/(2!2!2!3!) cũng bằng 7560.",
+      "mistake": "Không chia thêm cho 3! vì người A, B, C là những người khác nhau. Không nhân 3! để xếp thứ tự bài trong tay vì thứ tự không xét.",
+      "formula": "Chia mỗi người lần lượt r1,r2,... quân:\nC(n,r1)·C(n−r1,r2)·...\n= n!/(r1!r2!...r_dư!)",
+      "isSample": false
+    },
+    {
+      "id": 19,
+      "topic": "phan-chia",
+      "title": "Chia 6 quân bài cho 2 người",
+      "statement": "Có 6 quân bài phân biệt, 2 người phân biệt. Mỗi người nhận đúng 2 quân, còn dư 2 quân. Không xét thứ tự trong tay. Có bao nhiêu cách?",
+      "steps": [
+        [
+          "Chọn cho người A",
+          "Có C(6,2)=6×5/2=15 cách."
+        ],
+        [
+          "Chọn cho người B",
+          "Còn 4 quân chưa chia, chọn 2 ⇒ C(4,2)=4×3/2=6 cách."
+        ],
+        [
+          "Xác định phần dư",
+          "Hai quân còn lại tự động là phần dư, không có sự lựa chọn bổ sung."
+        ],
+        [
+          "Nhân và kiểm tra",
+          "15×6=90; cũng bằng 6!/(2!×2!×2!)."
+        ]
+      ],
+      "answer": "90 cách",
+      "tip": "Hai quân dư không cần chọn riêng vì đã được xác định sau khi chia.",
+      "level": "Trung bình",
+      "time": 5,
+      "recognize": "6 quân phân biệt cho 2 người khác nhau, mỗi người 2 quân, còn 2 quân dư.",
+      "approach": "Chọn 2 quân cho người A rồi 2 trong 4 quân còn lại cho người B; không đếm lại nhóm dư.",
+      "why": "Mỗi cách chia xác định duy nhất tay A, tay B và phần dư. Thứ tự các quân trong cùng tay không quan trọng.",
+      "check": "C(6,2)=15, C(4,2)=6, tích=90. Kiểm tra 6!/(2!2!2!)=90.",
+      "mistake": "Không nhân 2! để hoán đổi người vì người A/B đã được gắn nhãn và việc đổi tay chính là một cấu hình khác đã được phép nhân đếm đủ.",
+      "formula": "Chia mỗi người lần lượt r1,r2,... quân:\nC(n,r1)·C(n−r1,r2)·...\n= n!/(r1!r2!...r_dư!)",
+      "isSample": false
+    }
+  ],
+  "QA": [
+    [
+      "Hàm nào toàn ánh từ R vào R?",
+      [
+        "x²+x",
+        "2x²",
+        "x²+3",
+        "x+1"
+      ],
+      3
+    ],
+    [
+      "Hàm nào toàn ánh từ R vào R?",
+      [
+        "(x−1)²",
+        "x²+5",
+        "x³−2",
+        "4x²−3"
+      ],
+      2
+    ],
+    [
+      "Số bộ nguyên ở câu 3 là bao nhiêu?",
+      [
+        "816",
+        "969",
+        "715",
+        "229"
+      ],
+      1
+    ],
+    [
+      "Số bộ nguyên ở câu 4 là bao nhiêu?",
+      [
+        "969",
+        "816",
+        "1260",
+        "715"
+      ],
+      0
+    ],
+    [
+      "Số bộ thỏa điều kiện HOẶC ở câu 5?",
+      [
+        "165",
+        "285",
+        "229",
+        "56"
+      ],
+      2
+    ],
+    [
+      "Số nghiệm phương trình ở câu 6?",
+      [
+        "715",
+        "969",
+        "816",
+        "330"
+      ],
+      2
+    ],
+    [
+      "14 bóng giống nhau vào 5 thùng, ≥1/thùng?",
+      [
+        "126",
+        "715",
+        "816",
+        "969"
+      ],
+      1
+    ],
+    [
+      "Biết C++ hoặc Python nhưng không Pascal?",
+      [
+        "29",
+        "12",
+        "22",
+        "34"
+      ],
+      0
+    ],
+    [
+      "Hệ số x⁵y⁴ trong (3x−2y)⁹?",
+      [
+        "−489888",
+        "126",
+        "489888",
+        "30618"
+      ],
+      2
+    ],
+    [
+      "Hệ số x⁵y⁴t trong (−x+y−2z+t)¹⁰?",
+      [
+        "1260",
+        "−1260",
+        "−2520",
+        "−5040"
+      ],
+      1
+    ],
+    [
+      "Chọn 1 đề từ 4 loại (23, 19, 15, 20)?",
+      [
+        "77",
+        "81",
+        "23",
+        "160"
+      ],
+      0
+    ],
+    [
+      "2 thang bộ hoặc 3 thang máy?",
+      [
+        "6",
+        "2",
+        "3",
+        "5"
+      ],
+      3
+    ],
+    [
+      "Chọn 1 sách trong 2500 + 1500 quyển?",
+      [
+        "3750000",
+        "4000",
+        "1000",
+        "5000"
+      ],
+      1
+    ],
+    [
+      "Số cách đi-về nếu được lặp tuyến và không được lặp?",
+      [
+        "144 và 72",
+        "72 và 144",
+        "12 và 6",
+        "144 và 144"
+      ],
+      0
+    ],
+    [
+      "Số lời gọi fibo(1) khi chạy fibo(8)?",
+      [
+        "13",
+        "21",
+        "34",
+        "67"
+      ],
+      1
+    ],
+    [
+      "Chọn 3 bò, 2 heo, 4 gà?",
+      [
+        "1400",
+        "2800",
+        "14000",
+        "7000"
+      ],
+      2
+    ],
+    [
+      "Lấy 4 từ 11 viên bi đánh số?",
+      [
+        "330",
+        "44",
+        "7920",
+        "715"
+      ],
+      0
+    ],
+    [
+      "Chia 9 lá cho 3 người, 2 lá/người?",
+      [
+        "1260",
+        "7560",
+        "5040",
+        "362880"
+      ],
+      1
+    ],
+    [
+      "Chia 6 lá cho 2 người, 2 lá/người?",
+      [
+        "15",
+        "30",
+        "60",
+        "90"
+      ],
+      3
+    ]
+  ]
+}

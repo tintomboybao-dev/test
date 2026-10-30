@@ -1,45 +1,78 @@
-# Sủi Study Lab 📚
+# Sủi Study Lab — phiên bản 2
 
-Trang web tự học thuần **HTML + CSS + JavaScript**, có thể mở offline và triển khai lên GitHub Pages. Môn mặc định là **Toán rời rạc**, gồm 19 bài giải từng bước, 8 chủ đề, 11 thẻ công thức và 19 câu tự luyện.
+Trang học tập cá nhân viết bằng HTML, CSS và JavaScript thuần. Mở `index.html` để học trực tiếp, không cần server, tài khoản hay kết nối Internet.
 
-## Chạy nhanh
+## Nội dung hiện có
 
-1. Tải `index.html`.
-2. Nhấp đúp để mở bằng Chrome, Edge, Safari hoặc Firefox.
-3. Không cần cài Node.js, npm hay thư viện ngoài.
+- Môn đầu tiên: **Toán rời rạc**, gồm **19 bài giải đầy đủ** thuộc **8 chủ đề**.
+- Mỗi bài: **Nhận dạng → Ý tưởng → Lý do chọn cách giải → Các bước → Đáp án → Tự kiểm tra → Lỗi dễ mắc**.
+- Sơ đồ Venn ở câu 8, sơ đồ đường đi ở câu 14, bảng truy hồi Fibonacci ở câu 15.
+- Tìm kiếm bài/công thức, lọc theo chủ đề, xem công thức liên quan, trắc nghiệm 19 câu.
+- Ghi chú theo từng bài, đánh dấu đã nắm, tiến độ, giao diện sáng/tối, tùy chọn cỡ chữ.
+- Có thể tạo môn học mới, chủ đề, công thức và bài tập ngay trên giao diện.
+- Xuất/nhập bản sao dữ liệu JSON. Giao diện hỗ trợ điện thoại và bàn phím.
 
-## Đăng lên GitHub Pages
+> Lưu ý: Số liệu câu 8 là **minh họa** chứ không phải đề thi gốc. Câu 14 trình bày cả hai giả định (được / không được sử dụng lại tuyến).
 
-1. Tạo repository mới (ví dụ `sui-study-lab`).
-2. Tải `index.html` lên thư mục gốc của nhánh `main`. Có thể tải kèm README.
-3. Vào **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main / (root) → Save**.
-4. Mở địa chỉ GitHub Pages hiển thị trong phần Pages sau khi triển khai hoàn tất.
+## Sử dụng ngay
 
-## Thêm môn học và bài tập
+Mở `index.html` bằng Chrome, Edge, Firefox hoặc Safari. Trang này hoạt động offline vì toàn bộ mã nguồn, CSS và bộ câu hỏi được đóng gói trong **một file HTML**.
 
-- Trong giao diện: chọn **Thêm môn học**, rồi **Thêm bài tập**. Khi thêm bài đầu tiên, tạo chủ đề mới.
-- Môn học tự tạo và tiến độ được lưu bằng `localStorage` trên trình duyệt, **không tự đồng bộ lên GitHub hoặc sang thiết bị khác**.
-- Chọn **Xuất dữ liệu JSON** để lưu bản sao; chọn **Nhập dữ liệu JSON** để chuyển sang trình duyệt khác.
-- Để mọi người truy cập thấy cùng nội dung môn học mới: cần tích hợp dữ liệu vào mã nguồn `index.html`, hoặc xây thêm cơ sở dữ liệu/backend (phiên bản này chưa có).
+## Triển khai GitHub Pages
 
-## Sửa bộ dữ liệu mặc định
+1. Tạo repository mới trên GitHub, ví dụ `sui-study-lab`.
+2. Đưa `index.html` (và các tệp mã nguồn nếu muốn quản lý lịch sử) vào thư mục gốc của nhánh `main`.
+3. Vào **Settings → Pages → Build and deployment** và chọn **Deploy from a branch**, nhánh **main**, thư mục **/(root)**.
+4. Chờ GitHub Pages hoàn tất. Đường dẫn thường có dạng `https://TEN_USER.github.io/sui-study-lab/`.
 
-Trong thẻ `<script>` của `index.html`:
+Không cần npm, hosting có backend, tài khoản cloud hay API key.
 
-- `TOPICS`: danh sách các chủ đề.
-- `F`: thẻ công thức và điều kiện áp dụng.
-- `P`: 19 bài tập (mỗi bài gồm `statement`, `steps`, `answer`, `tip`).
-- `QA`: 19 câu hỏi trắc nghiệm.
-- `DEFAULT`: định nghĩa môn Toán rời rạc đầu tiên.
+## Thêm môn học / nội dung
 
-Nếu muốn mặc định thêm môn mới trong source, tạo một đối tượng môn học theo cấu trúc `DEFAULT` rồi thêm vào mảng `subjects` khởi tạo.
+**Cách 1 — Ngay trên giao diện:** Bấm **Thêm môn học**, sau đó **Thêm bài** hoặc **Thêm công thức**. Môn/chủ đề sẽ được lưu trên trình duyệt đang sử dụng. Bấm **Xuất bản sao dữ liệu** để tải JSON, sau đó **Nhập bản sao dữ liệu** trên thiết bị khác.
 
-## Lưu ý về nội dung
+**Cách 2 — Sửa nội dung mặc định trong repository:** Mở `data.json` để chỉnh `TOPICS` (chủ đề), `F` (công thức), `P` (bài tập), `QA` (trắc nghiệm). Sau khi sửa, chạy:
 
-- Câu 8 (Venn) dùng **số liệu minh họa được tự đặt**, không phải đề gốc.
-- Câu 14 giải cả hai trường hợp **được** và **không được** dùng lại tuyến xe.
-- Các bài yêu cầu tính tổ hợp giả định các đối tượng và/hoặc người nhận phân biệt như trong đề.
+```bash
+python build.py
+```
 
-## Công nghệ
+Lệnh này tái tạo `index.html` từ `template.html`, `styles.css`, `app.js` và `data.json`. Đưa `index.html` mới lên GitHub để tất cả người truy cập thấy nội dung mới.
 
-HTML/CSS/JS thuần, không có dependency, không gọi API, không cần Internet, responsive cho desktop và mobile.
+Hiện tại nội dung mặc định chỉ đóng gói sẵn **Toán rời rạc**. Nếu muốn tạo nhiều môn mặc định ở cấp mã nguồn, có thể mở rộng mảng `courses` khởi tạo trong `app.js`.
+
+**Quan trọng:** Nội dung Sủi thêm **trên giao diện** chỉ nằm trong localStorage của thiết bị, **không tự cập nhật repository** hay đồng bộ giữa các trình duyệt. Xuất JSON giúp sao lưu/trao đổi, nhưng muốn mọi người truy cập thấy môn mới thì cần đưa nội dung vào mã nguồn trước khi build & commit.
+
+## Cấu trúc project
+
+```text
+sui-study-lab-v2/
+├── index.html           # File duy nhất cần đưa lên GitHub Pages
+├── template.html        # Bộ khung HTML (source)
+├── styles.css           # Giao diện responsive, sáng/tối (source)
+├── app.js               # Logic giao diện, tìm kiếm, lưu tiến độ (source)
+├── data.json            # 19 bài và toàn bộ công thức (source)
+├── build.py             # Tạo bản index.html độc lập, không phụ thuộc thư viện
+├── DESIGN_SYSTEM.md     # Quy tắc thiết kế
+└── tests/
+    ├── verify_math.py  # Đối chiếu kết quả toán học
+    └── smoke.py         # Kiểm thử giao diện bằng Playwright (tùy chọn)
+```
+
+## Kiểm thử
+
+```bash
+python tests/verify_math.py
+# cần cài Playwright + Chromium để kiểm thử trình duyệt:
+python tests/smoke.py
+```
+
+Script smoke dùng `set_content()` trong môi trường kiểm thử hạn chế. Trong trình duyệt thật, các chức năng lưu nội dung hoạt động với `localStorage` bình thường.
+
+## Thiết kế và nguồn tham khảo
+
+Thiết kế tham khảo nguyên tắc accessibility, cấu trúc thông tin, khả năng đọc, responsive, xử lý trạng thái tương tác từ dự án mở [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). Mã HTML/CSS/JS của Sủi Study Lab được viết riêng, không phải sao chép code giao diện từ repository đó.
+
+## Quyền riêng tư
+
+Trang không tải dữ liệu của Sủi lên máy chủ. Dữ liệu tự thêm, ghi chú, tiến độ được lưu trong bộ nhớ cục bộ của trình duyệt. Xóa dữ liệu trình duyệt có thể làm mất thông tin chưa xuất JSON.
