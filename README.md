@@ -1,19 +1,55 @@
-# Sủi Study Lab v5
+# Sủi Study Lab — bản cập nhật v6
 
-Website ôn tập Toán rời rạc và Cơ sở dữ liệu. Giao diện thống nhất cho hai môn, có chế độ sáng/tối, tìm kiếm, lọc chủ đề và lưu tiến độ trên trình duyệt.
+Website ôn tập hai môn độc lập: Toán rời rạc và Cơ sở dữ liệu. Dùng chung giao diện sáng/tối, cỡ chữ, danh mục và cách hiển thị tiến độ. Hoạt động offline, không cần npm hay dịch vụ bên ngoài.
 
-## Upload GitHub Pages
+## Cập nhật GitHub Pages
 
-Giải nén file ZIP. Tải các file bên trong lên thư mục gốc của repository test, ghi đè file cùng tên. Không tải nguyên file ZIP lên repo. index.html phải nằm ngay thư mục gốc. GitHub Pages đang dùng nhánh main sẽ triển khai từ bản cập nhật đó.
+1. Giải nén bộ mã.
+2. Upload **các file bên trong** vào thư mục gốc repo `test`, ghi đè file cùng tên và thêm các file mới, nhất là `db-practice.json`.
+3. Giữ `index.html` ngay thư mục gốc. Không upload nguyên ZIP thay cho bộ mã.
+4. Commit thay đổi vào nhánh GitHub Pages đang sử dụng; chờ lượt triển khai hoàn tất rồi tải lại trang.
 
-## Chỉnh sửa và xây dựng
+`index.html` đã được build sẵn, tự chứa CSS, JavaScript và dữ liệu. Khi cập nhật mã nguồn sau này, chạy lại `python build.py` để đồng bộ nội dung triển khai.
 
-Chạy python build.py để tạo lại index.html. styles.css là cấu trúc giao diện, theme.css chứa hệ màu và các thành phần v5. app.js điều khiển Toán rời rạc; db.js điều khiển Cơ sở dữ liệu. Dữ liệu nằm trong các file JSON. Không cần npm hay máy chủ để dùng trang web.
+## Cơ sở dữ liệu
 
-## Nội dung
+- 4 chủ đề, 22 mục kiến thức được mở rộng: giải thích bằng lời, cách làm, ví dụ, lỗi dễ nhầm, câu tự kiểm tra và liên kết đến bài luyện.
+- 39 bài và bộ bài từ các mục bài tập của 4 tài liệu bài học: 7 thiết kế CSDL/ER, 5 bộ truy vấn đại số quan hệ, 15 bài phụ thuộc hàm/khóa và 12 bài chuẩn hóa/phân rã. Một bộ bài có thể gồm nhiều câu nhỏ.
+- Bài 3–7 của đề ôn tập giữa kỳ: đề đầy đủ, đọc đề, lời giải từng ý, bảng suy diễn/bao đóng/khóa và giải thích từng kết luận.
+- Tìm kiếm không phân biệt dấu; lọc chủ đề và trạng thái đã nắm; gợi ý/lời giải đóng mở; mục lục trong bài dài.
+- Tiến độ gồm 22 kiến thức + 5 bài giữa kỳ + 39 bài ôn tập = 66 nội dung.
 
-Toán rời rạc: 20 công thức, 19 đề mẫu, 50 bài ôn tập. CSDL: 4 chủ đề, 22 mục kiến thức, lời giải bài 3–7. Mọi tiến độ được lưu riêng theo môn trên trình duyệt. Tiến độ của các phiên bản trước được giữ khi dùng cùng địa chỉ website.
+Lời giải được biên soạn từ các đề trong tài liệu người dùng cung cấp; không gắn nhãn là đáp án chính thức của giảng viên. Bài mở nêu rõ giả thiết và dữ liệu minh họa tự tạo. Xem `CONTENT_SOURCES.md` để đối chiếu.
 
-## Thiết kế
+## Giữ tiến độ cũ
 
-Tham khảo UI/UX Pro Max và xem DESIGN_SYSTEM.md. Hai môn dùng chung phân cấp chữ, bố cục, thẻ chủ đề, nút và bảng tiến độ. Không tải font hoặc thư viện ngoài khi mở trang.
+Tiếp tục dùng khóa lưu `sui-db-progress` và `sui-study-lab-v3-progress`. Danh sách 22 kiến thức và ID bài 3–7 không bị đổi; thêm trường `practice` riêng. Dữ liệu CSDL cũ từ `sui-db-done` cũng được đọc khi chưa có tiến độ mới. Tiến độ Toán rời rạc không đổi.
+
+Tiến độ được giữ khi mở cùng địa chỉ website trên cùng trình duyệt, không xóa dữ liệu trang. Tỷ lệ CSDL có thể giảm vì tổng số nội dung tăng từ 27 lên 66; các dấu đã học cũ vẫn còn. Tiến độ không tự đồng bộ giữa thiết bị hoặc tên miền khác nhau.
+
+## Cấu trúc mã
+
+- `template.html`, `styles.css`, `theme.css`: khung và giao diện chung.
+- `app.js`, `data.json`: Toán rời rạc.
+- `db.js`: điều hướng, tìm kiếm, bài ôn tập và tiến độ CSDL.
+- `db-knowledge.json`: kiến thức; giữ thứ tự để tương thích tiến độ.
+- `db-data.json`: đề mẫu và lời giải giữa kỳ, ID 3–7.
+- `db-practice.json`: 39 bài/bộ bài, ID ổn định theo chủ đề và số bài.
+- `db-chapters.json`: bản trích chữ tài liệu gốc; giữ số trang/slide.
+- `build.py`: đóng gói các nguồn trên thành `index.html` bằng Python chuẩn.
+
+Không sửa riêng `index.html` rồi chạy build, vì bản build sẽ lấy lại từ các file nguồn.
+
+## Kiểm tra
+
+```sh
+python build.py
+python tests/verify_database.py
+node tests/verify_ui.cjs
+node --check db.js
+node --check app.js
+```
+
+Các kiểm tra mới dùng Python/Node chuẩn, không cần cài thư viện. Kiểm tra CSDL dùng định nghĩa bao đóng, liệt kê khóa, tương đương phủ, tập PTH chiếu, chase kiểm tra lossless và dữ liệu phản ví dụ. Kiểm tra UI dùng DOM mô phỏng để kiểm tra tuyến trang, lọc, tiến độ và chuyển môn; không thay thế kiểm tra bố cục trên trình duyệt thật. Hai file kiểm tra Toán rời rạc cũ được giữ nguyên và có thể cần thư viện riêng.
+
+Bản v6 đã kiểm tra chức năng và tính toán; chưa xác minh trực quan bằng trình duyệt thật trong môi trường biên soạn.

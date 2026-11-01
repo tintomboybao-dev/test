@@ -4,153 +4,378 @@
     "title": "Dữ liệu, thông tin, siêu dữ liệu và DBMS",
     "formula": "Hệ CSDL = CSDL + DBMS + ứng dụng + người dùng + quy tắc",
     "explain": "Dữ liệu là sự kiện được ghi nhận; thông tin là dữ liệu đã xử lý có ý nghĩa. Metadata mô tả cấu trúc, kiểu và ràng buộc. CSDL là tập dữ liệu có liên quan; DBMS quản lý định nghĩa, lưu trữ, truy vấn, cập nhật, phân quyền, sao lưu và đồng thời.",
-    "example": "Điểm từng lượt thi là dữ liệu; điểm trung bình lớp là thông tin; kiểu DECIMAL và CHECK 0≤Diem≤10 là metadata."
+    "example": "Điểm từng lượt thi là dữ liệu; điểm trung bình lớp là thông tin; kiểu DECIMAL và CHECK 0≤Diem≤10 là metadata.",
+    "intuition": "Hãy hình dung CSDL là nơi giữ dữ liệu có tổ chức, còn DBMS là phần mềm quản lý nơi đó. Website chỉ là một ứng dụng sử dụng DBMS; ba thứ này không đồng nghĩa.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Hãy hình dung CSDL là nơi giữ dữ liệu có tổ chức, còn DBMS là phần mềm quản lý nơi đó. Website chỉ là một ứng dụng sử dụng DBMS; ba thứ này không đồng nghĩa.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Nhìn giá trị trong ô để nhận ra dữ liệu; nhìn kết quả tổng hợp để nhận ra thông tin.</li><li>Nhìn kiểu dữ liệu, khóa và ràng buộc để nhận ra siêu dữ liệu (metadata). Metadata giúp hệ thống hiểu và kiểm tra dữ liệu.</li><li>Phân biệt dữ liệu danh mục/chính, như sinh viên và môn học, với dữ liệu phát sinh, như từng lần đăng ký. Cả hai đều có thể được cập nhật.</li><li>DBMS hỗ trợ định nghĩa cấu trúc, truy vấn, thêm/xóa/sửa, kiểm tra quyền và ràng buộc, điều phối truy cập đồng thời, sao lưu và phục hồi.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">Khái niệm</th><th scope=\"col\">Ví dụ bảng điểm</th><th scope=\"col\">Vì sao?</th></tr></thead><tbody><tr><td>Dữ liệu</td><td>SV01, M1, điểm 8</td><td>Các sự kiện được ghi nhận.</td></tr><tr><td>Thông tin</td><td>Điểm trung bình lớp là 7,6</td><td>Kết quả có ý nghĩa sau tổng hợp.</td></tr><tr><td>Metadata</td><td>Diem là số, 0≤Diem≤10</td><td>Mô tả và hạn chế giá trị hợp lệ.</td></tr><tr><td>DBMS</td><td>Phần mềm kiểm tra điểm trước khi lưu</td><td>Điều khiển thao tác lên CSDL.</td></tr></tbody></table></div><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Đặt dữ liệu vào nhiều bảng chưa tự động làm thiết kế tốt. Cần khóa, liên kết và ràng buộc phù hợp với nghiệp vụ.</div>",
+    "selfTest": {
+      "question": "Diem=8 và quy tắc 0≤Diem≤10 thuộc hai loại gì?",
+      "answer": "8 là dữ liệu; quy tắc miền điểm là metadata/ràng buộc mô tả dữ liệu."
+    },
+    "practice": [
+      "c1-01",
+      "c1-04"
+    ]
   },
   {
     "chapter": 1,
     "title": "Kiến trúc, độc lập dữ liệu và vòng đời",
     "formula": "Ngoài ↔ Khái niệm ↔ Trong",
     "explain": "Mức ngoài là các khung nhìn; mức khái niệm mô tả logic toàn CSDL; mức trong mô tả lưu trữ. Độc lập vật lý che thay đổi chỉ mục/lưu trữ; độc lập logic che thay đổi lược đồ qua khung nhìn. Vòng đời: lập kế hoạch → khảo sát → thiết kế khái niệm → logic → vật lý → triển khai → kiểm thử → vận hành. DBA quản trị; người thiết kế mô hình; lập trình viên xây ứng dụng; người dùng khai thác.",
-    "example": "Thêm chỉ mục không cần đổi truy vấn ứng dụng là ví dụ độc lập vật lý. View chỉ cho sinh viên xem điểm cá nhân thể hiện đa khung nhìn."
+    "example": "Thêm chỉ mục không cần đổi truy vấn ứng dụng là ví dụ độc lập vật lý. View chỉ cho sinh viên xem điểm cá nhân thể hiện đa khung nhìn.",
+    "intuition": "Ba mức kiến trúc tách điều người dùng nhìn thấy, cách dữ liệu được mô tả và cách dữ liệu được lưu. Thay đổi ở lớp thấp nên ảnh hưởng ít nhất có thể đến lớp trên.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Ba mức kiến trúc tách điều người dùng nhìn thấy, cách dữ liệu được mô tả và cách dữ liệu được lưu. Thay đổi ở lớp thấp nên ảnh hưởng ít nhất có thể đến lớp trên.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Mức ngoài: mỗi nhóm thấy một khung nhìn phù hợp, như sinh viên xem điểm của mình, giảng viên xem lớp được phân công.</li><li>Mức khái niệm: mô tả toàn bộ các bảng, thuộc tính, khóa, liên kết và ràng buộc nghiệp vụ.</li><li>Mức trong: tổ chức tệp, trang dữ liệu, chỉ mục và cách truy xuất vật lý.</li><li>Thiết kế theo vòng đời: khảo sát yêu cầu → ER → lược đồ quan hệ → kiểu/khóa/ràng buộc → dữ liệu thử → vận hành và sửa theo yêu cầu.</li><li>Phân vai: DBA quản trị và sao lưu; người thiết kế chọn lược đồ; lập trình viên làm ứng dụng; người dùng khai thác theo quyền.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">Thay đổi</th><th scope=\"col\">Loại độc lập dữ liệu</th><th scope=\"col\">Giải thích</th></tr></thead><tbody><tr><td>Thêm chỉ mục trên MaSV</td><td>Vật lý</td><td>Cách tra cứu nhanh hơn nhưng ý nghĩa truy vấn không đổi.</td></tr><tr><td>Tách bảng, giữ view cũ cho ứng dụng</td><td>Logic</td><td>Ứng dụng có thể tiếp tục thấy cấu trúc cũ qua view nếu ánh xạ đáp ứng được.</td></tr></tbody></table></div><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">View không tự bảo vệ mọi dữ liệu nếu quyền truy cập bảng gốc chưa được cấu hình. Độc lập logic là mục tiêu có điều kiện, không có nghĩa mọi thay đổi bảng đều vô hình với ứng dụng.</div>",
+    "selfTest": {
+      "question": "Thêm index mà không đổi màn hình nhập điểm minh họa mức độc lập nào?",
+      "answer": "Độc lập dữ liệu vật lý."
+    },
+    "practice": [
+      "c1-06"
+    ]
   },
   {
     "chapter": 1,
     "title": "Mô hình dữ liệu và chuyển ER sang quan hệ",
     "formula": "1–N: khóa ngoại ở phía N; N–N: tạo bảng liên kết",
     "explain": "Mô hình gồm cấu trúc, phép thao tác và ràng buộc. ER mô tả thực thể, thuộc tính, liên kết và lực lượng. Thực thể mạnh thành bảng; thuộc tính đa trị thành bảng riêng; thực thể yếu có khóa gồm khóa chủ và khóa bộ phận. Liên kết 1–1 thường đặt khóa ngoại UNIQUE ở phía tham gia toàn phần; N–N dùng hai khóa ngoại và thuộc tính liên kết.",
-    "example": "SINHVIEN(MaSV,HoTen,MaLop) tham chiếu LOP(MaLop). DANGKY(MaSV,MaMH,HocKy,Diem) có thể cần khóa (MaSV,MaMH,HocKy) nếu được đăng ký nhiều kỳ."
+    "example": "SINHVIEN(MaSV,HoTen,MaLop) tham chiếu LOP(MaLop). DANGKY(MaSV,MaMH,HocKy,Diem) có thể cần khóa (MaSV,MaMH,HocKy) nếu được đăng ký nhiều kỳ.",
+    "intuition": "ER giúp trả lời “có những đối tượng nào, chúng liên hệ thế nào?”. Lược đồ quan hệ chuyển câu trả lời đó thành bảng và khóa có thể lưu được.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>ER giúp trả lời “có những đối tượng nào, chúng liên hệ thế nào?”. Lược đồ quan hệ chuyển câu trả lời đó thành bảng và khóa có thể lưu được.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Xác định thực thể có định danh riêng; thuộc tính mô tả thực thể; sự kiện/liên kết có thể có thuộc tính riêng.</li><li>Thực thể mạnh thành một bảng. Thuộc tính ghép có thể tách thành các thành phần cần truy vấn; thuộc tính đa trị cần bảng riêng.</li><li>Liên kết 1–N: đưa PK phía 1 sang phía N làm FK. Bắt buộc tham gia thì cân nhắc FK NOT NULL.</li><li>Liên kết N–N: tạo bảng liên kết với hai FK; khóa có thể là cặp FK hoặc thêm yếu tố thời gian/lần phát sinh.</li><li>Liên kết 1–1: thường đặt FK UNIQUE ở phía tham gia toàn phần. Thực thể yếu dùng khóa chủ cộng khóa bộ phận.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">Nghiệp vụ</th><th scope=\"col\">Chuyển thành quan hệ</th></tr></thead><tbody><tr><td>Một lớp có nhiều sinh viên</td><td>LOP(MaLop,...); SINHVIEN(MaSV,...,MaLop). FK nằm ở SINHVIEN.</td></tr><tr><td>Sinh viên học nhiều môn, môn có nhiều sinh viên</td><td>DANGKY(MaSV,MaMH,HocKy,Diem). Nếu học nhiều kỳ thì bộ đôi mã chưa đủ làm khóa.</td></tr><tr><td>Một cuốn sách được mượn nhiều lần</td><td>NgayMuon thuộc lần mượn; không ghi đè trực tiếp lên bản ghi SACH.</td></tr></tbody></table></div><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Bội số và tính bắt buộc khác nhau: 1–N chưa nói phía N bắt buộc phải có ít nhất một bản ghi. Cần nói rõ 0..N hay 1..N.</div>",
+    "selfTest": {
+      "question": "Vì sao Diem thuộc DANGKY thay vì thuộc riêng SINHVIEN?",
+      "answer": "Vì điểm phụ thuộc vào sinh viên và môn/lần học; một người có nhiều điểm khác nhau."
+    },
+    "practice": [
+      "c1-02",
+      "c1-03"
+    ]
   },
   {
     "chapter": 1,
     "title": "Quan hệ, lược đồ, miền, bộ, bậc và lực lượng",
     "formula": "r(R) ⊆ Dom(A₁) × … × Dom(Aₙ); bậc = n; lực lượng = |r|",
     "explain": "Lược đồ R(A₁,…,Aₙ) là cấu trúc; r là trạng thái dữ liệu. Thuộc tính là cột, bộ là một dòng, miền là các giá trị hợp lệ. Quan hệ theo tập hợp không có bộ trùng và không có thứ tự dòng/cột mang ý nghĩa. Giá trị từng ô là nguyên tử trong mô hình quan hệ 1NF.",
-    "example": "SINHVIEN(MaSV,HoTen,MaLop) có bậc 3; nếu có 40 sinh viên thì lực lượng là 40. Không suy ra lực lượng từ bậc."
+    "example": "SINHVIEN(MaSV,HoTen,MaLop) có bậc 3; nếu có 40 sinh viên thì lực lượng là 40. Không suy ra lực lượng từ bậc.",
+    "intuition": "Lược đồ giống mẫu biểu trống; quan hệ là tập dữ liệu đang điền trong mẫu tại một thời điểm. Bậc đếm cột, lực lượng đếm dòng.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Lược đồ giống mẫu biểu trống; quan hệ là tập dữ liệu đang điền trong mẫu tại một thời điểm. Bậc đếm cột, lực lượng đếm dòng.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>R(A₁,...,Aₙ) đặt tên cấu trúc; r là trạng thái dữ liệu cụ thể phù hợp cấu trúc đó.</li><li>Mỗi thuộc tính có miền giá trị hợp lệ, gồm kiểu và các điều kiện nghiệp vụ. Cùng là số không có nghĩa cùng miền nghiệp vụ.</li><li>Một bộ chứa đúng một giá trị cho mỗi thuộc tính. Trong mô hình tập hợp, hai bộ giống hệt nhau không được tính hai lần.</li><li>Không suy diễn ý nghĩa từ vị trí hàng. Cần thuộc tính thứ tự hoặc thời gian nếu thứ tự là thông tin cần lưu.</li><li>NULL biểu thị chưa biết/chưa có/không áp dụng tùy quy ước, không đồng nghĩa 0 hay chuỗi rỗng; các ví dụ đại số cơ bản thường giả sử không NULL.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">MaSV</th><th scope=\"col\">HoTen</th><th scope=\"col\">Diem</th></tr></thead><tbody><tr><td>SV01</td><td>An</td><td>8</td></tr><tr><td>SV02</td><td>Bình</td><td>NULL</td></tr></tbody></table></div><p>Quan hệ có bậc 3, lực lượng 2. Nếu Bình chưa thi, ghi 0 sẽ bị hiểu là đã có điểm 0; NULL giữ được ý nghĩa chưa có điểm.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">SQL có thể cho phép dòng trùng trong kết quả, còn đại số quan hệ cơ bản dùng tập hợp. Khi chuyển π sang SQL, thường cần DISTINCT để khớp việc loại trùng.</div>",
+    "selfTest": {
+      "question": "Thêm một sinh viên vào bảng ba cột thay đổi bậc hay lực lượng?",
+      "answer": "Lực lượng tăng 1; bậc vẫn là 3."
+    },
+    "practice": [
+      "c4-01",
+      "c2-05"
+    ]
   },
   {
     "chapter": 1,
     "title": "Khóa và toàn vẹn",
     "formula": "K là khóa ⇔ K⁺ = U và ∀A∈K: (K−{A})⁺ ≠ U",
     "explain": "Siêu khóa xác định mọi thuộc tính; khóa dự tuyển là siêu khóa tối thiểu theo bao hàm. Khóa chính là một khóa dự tuyển được chọn. Thuộc tính khóa xuất hiện trong ít nhất một khóa dự tuyển. Khóa ngoại tham chiếu khóa được phép tham chiếu của bảng khác. Toàn vẹn thực thể: khóa chính duy nhất, không NULL; toàn vẹn tham chiếu: giá trị khóa ngoại phải có bản ghi đích hoặc NULL khi được phép.",
-    "example": "Khi xóa lớp có sinh viên phải áp dụng chính sách RESTRICT, CASCADE hoặc SET NULL được thiết kế. Dữ liệu mẫu có HoTen duy nhất chưa chứng minh HoTen là khóa theo ngữ nghĩa."
+    "example": "Khi xóa lớp có sinh viên phải áp dụng chính sách RESTRICT, CASCADE hoặc SET NULL được thiết kế. Dữ liệu mẫu có HoTen duy nhất chưa chứng minh HoTen là khóa theo ngữ nghĩa.",
+    "intuition": "Khóa trả lời “biết các giá trị nào thì xác định được đúng một dòng?”. Siêu khóa có thể thừa thuộc tính; khóa dự tuyển là siêu khóa không bỏ được thuộc tính nào nữa.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Khóa trả lời “biết các giá trị nào thì xác định được đúng một dòng?”. Siêu khóa có thể thừa thuộc tính; khóa dự tuyển là siêu khóa không bỏ được thuộc tính nào nữa.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Tìm tất cả khóa dự tuyển trước; chọn một trong số đó làm khóa chính.</li><li>Thuộc tính khóa là thuộc tính nằm trong ít nhất một khóa dự tuyển, không chỉ trong khóa chính đã chọn.</li><li>PK phải duy nhất và không NULL. FK là liên kết đến khóa được tham chiếu; FK không nhất thiết duy nhất ở bảng con.</li><li>Kiểm tra miền: điểm trong [0,10], số lượng dương. Kiểm tra thực thể: PK. Kiểm tra tham chiếu: FK có dòng cha.</li><li>Khi thêm/sửa/xóa, xét cả ràng buộc nghiệp vụ vượt ngoài PK/FK: không mượn một bản sách đồng thời hai lần, ngày trả không trước ngày mượn.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">Nếu MaSV là khóa của SINHVIEN:\n{MaSV,HoTen} là siêu khóa nhưng không là khóa dự tuyển.</div><p>Bỏ HoTen vẫn định danh được sinh viên nên tập hai thuộc tính chưa tối thiểu. Với khóa ghép (MaSV,MaMH), mỗi cột có thể lặp; chỉ cặp giá trị phải duy nhất.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Một bảng mẫu không trùng HoTen chưa chứng minh HoTen là khóa. Phải dựa vào quy tắc nghiệp vụ và kiểm tra khả năng phản ví dụ.</div>",
+    "selfTest": {
+      "question": "FK MaLop có được lặp trên nhiều sinh viên không?",
+      "answer": "Có. Nhiều sinh viên cùng lớp là liên kết N–1; mỗi MaLop đó phải có trong LOP nếu không NULL."
+    },
+    "practice": [
+      "c1-05",
+      "c1-03"
+    ]
   },
   {
     "chapter": 2,
     "title": "Chọn và chiếu",
     "formula": "σ_điều kiện(R); π_danh sách thuộc tính(R)",
     "explain": "Chọn lọc dòng nhưng giữ cột. Chiếu lấy cột và loại bộ trùng theo ngữ nghĩa tập hợp. Thực hiện từ trong ra ngoài; không chiếu mất cột còn dùng để lọc/kết.",
-    "example": "π_{MaSV,HoTen}(σ_{MaLop='L1'}(SINHVIEN)). σ_{Diem≥8}(π_{MaSV}(DANGKY)) sai vì đã mất Diem."
+    "example": "π_{MaSV,HoTen}(σ_{MaLop='L1'}(SINHVIEN)). σ_{Diem≥8}(π_{MaSV}(DANGKY)) sai vì đã mất Diem.",
+    "intuition": "σ giống chọn những hàng đạt điều kiện; π giống chỉ lấy những cột cần nhìn. Hai phép làm hai việc khác nhau.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>σ giống chọn những hàng đạt điều kiện; π giống chỉ lấy những cột cần nhìn. Hai phép làm hai việc khác nhau.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Xác định điều kiện lọc và thuộc tính kết quả.</li><li>Chọn σ giữ nguyên lược đồ, chỉ có thể giảm số bộ.</li><li>Chiếu π giữ một phần thuộc tính và loại các bộ trùng trên phần đó.</li><li>Thực hiện biểu thức từ trong ra ngoài. Chỉ chiếu sớm khi còn đủ cột cho mọi phép chọn/kết/gom nhóm về sau.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">DANGKY ban đầu</th><th scope=\"col\">Sau σ_Diem≥8</th><th scope=\"col\">Sau π_MaSV</th></tr></thead><tbody><tr><td>(S1,M1,8)</td><td>(S1,M1,8)</td><td>S1</td></tr><tr><td>(S1,M2,9)</td><td>(S1,M2,9)</td><td>Không thêm S1 lần nữa</td></tr><tr><td>(S2,M1,7)</td><td>Bị loại</td><td>—</td></tr></tbody></table></div><div class=\"db-equation\">π_{MaSV}(σ_{Diem≥8}(DANGKY))</div><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Không viết σ_Diem≥8(π_MaSV(DANGKY)): sau phép chiếu không còn cột Diem.</div>",
+    "selfTest": {
+      "question": "Chiếu HoTen có thể làm hai sinh viên còn một dòng kết quả không?",
+      "answer": "Có, nếu họ tên giống nhau. Muốn giữ định danh mỗi người, chiếu thêm MaSV."
+    },
+    "practice": [
+      "c2-04",
+      "c2-05"
+    ]
   },
   {
     "chapter": 2,
     "title": "Hợp, giao, hiệu và khả hợp",
     "formula": "R ∪ S; R ∩ S; R − S",
     "explain": "Các toán hạng phải cùng bậc, miền tương ứng tương thích; đổi tên/chiếu về cùng cấu trúc trước. Hợp tương ứng “hoặc”; giao là “cả hai”; hiệu là “có ở trái, không ở phải”. Hiệu không giao hoán.",
-    "example": "Chiếu MaSV của nhóm học M1 và M2 trước khi giao. Chưa học M1 = tất cả sinh viên − người học M1, không phải chọn MaMH≠M1."
+    "example": "Chiếu MaSV của nhóm học M1 và M2 trước khi giao. Chưa học M1 = tất cả sinh viên − người học M1, không phải chọn MaMH≠M1.",
+    "intuition": "Hợp là lấy ai thuộc ít nhất một nhóm; giao là ai thuộc cả hai; hiệu là ai thuộc nhóm bên trái nhưng không thuộc bên phải.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Hợp là lấy ai thuộc ít nhất một nhóm; giao là ai thuộc cả hai; hiệu là ai thuộc nhóm bên trái nhưng không thuộc bên phải.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Chuẩn hóa hai toán hạng về cùng số cột và miền tương ứng; dùng π và ρ nếu cần.</li><li>Nhìn từ khóa: “hoặc” gợi ý ∪, “cả hai” gợi ý ∩, “không/chưa” thường gợi ý −.</li><li>Với truy vấn không tham gia, tập bên trái thường phải lấy từ bảng danh mục để chứa cả người chưa có sự kiện nào.</li><li>Không nhầm điều kiện khác một giá trị trên một dòng với việc đối tượng không hề có dòng chứa giá trị đó.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">S₁ = {S1,S2}; S₂ = {S2,S3}\nS₁ ∪ S₂ = {S1,S2,S3}\nS₁ ∩ S₂ = {S2}\nS₁ − S₂ = {S1}</div><p>Nếu S1 đăng ký M1 và M2, dòng M2 thỏa MaMH≠M1 nhưng S1 không thuộc nhóm “chưa học M1”. Muốn nhóm đó, lấy tất cả mã sinh viên trừ mã đã đăng ký M1.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Hai bảng cùng có ba cột chưa chắc khả hợp; cột tương ứng phải cùng ý nghĩa và miền tương thích. Hiệu không giao hoán.</div>",
+    "selfTest": {
+      "question": "“Học M1 nhưng chưa học M2” dùng S₁−S₂ hay S₂−S₁?",
+      "answer": "S₁−S₂; thứ tự toán hạng quyết định kết quả."
+    },
+    "practice": [
+      "c2-02",
+      "c2-04"
+    ]
   },
   {
     "chapter": 2,
     "title": "Tích Descartes, kết và đổi tên",
     "formula": "R ⋈_θ S = σ_θ(R × S); |R × S| = |R|·|S|",
     "explain": "Tích ghép mọi cặp bộ. Kết theta giữ cặp thỏa điều kiện; kết bằng dùng dấu =. Kết tự nhiên so khớp tất cả cột trùng tên và chỉ giữ một bản của cột kết. ρ đổi tên quan hệ/thuộc tính để tự kết hoặc tránh nhập nhằng.",
-    "example": "Đổi thành SV₁(MaSV1,HoTen1,MaLop1), SV₂(MaSV2,HoTen2,MaLop2), rồi chọn MaLop1=MaLop2 và MaSV1≠MaSV2 trên SV₁×SV₂."
+    "example": "Đổi thành SV₁(MaSV1,HoTen1,MaLop1), SV₂(MaSV2,HoTen2,MaLop2), rồi chọn MaLop1=MaLop2 và MaSV1≠MaSV2 trên SV₁×SV₂.",
+    "intuition": "Tích tạo mọi cặp dòng; kết chỉ giữ cặp liên quan. Đổi tên giúp phân biệt hai vai trò khi dùng cùng một bảng hai lần.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Tích tạo mọi cặp dòng; kết chỉ giữ cặp liên quan. Đổi tên giúp phân biệt hai vai trò khi dùng cùng một bảng hai lần.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Liệt kê cột dùng để nối: thường FK phía con khớp PK phía cha.</li><li>Kết theta dùng điều kiện bất kỳ; kết bằng là trường hợp chỉ dùng dấu bằng.</li><li>Kết tự nhiên so khớp tất cả cột cùng tên. Chỉ dùng khi mọi tên chung đều đúng là điều kiện mong muốn.</li><li>Tự kết: tạo hai bản đổi tên bằng ρ, đổi cả các cột bị trùng hoặc dùng tên quan hệ để định danh rõ.</li><li>Kết ngoài trái giữ mọi dòng phía trái; dòng không khớp có cột phía phải NULL. Đây là đại số mở rộng.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">NV ⋈_{NV.Phong=PB.MaP} PB\n= σ_{NV.Phong=PB.MaP}(NV × PB)</div><p>Nếu có 3 nhân viên và 2 phòng, tích có 6 dòng. Nếu mỗi nhân viên thuộc đúng một phòng hợp lệ, kết trên còn 3 dòng. Muốn trưởng phòng thì phải dùng NV.MaNV=PB.TrPhong, vì đó là vai trò khác.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Không tự kết hai bản SINHVIEN bằng kết tự nhiên: nó sẽ khớp tất cả tên cột, thường chỉ ghép sinh viên với chính mình.</div>",
+    "selfTest": {
+      "question": "Cùng lớp nhưng khác sinh viên cần điều kiện gì?",
+      "answer": "MaLop1=MaLop2 và MaSV1≠MaSV2; dùng < thay ≠ nếu muốn mỗi cặp không thứ tự chỉ một lần."
+    },
+    "practice": [
+      "c2-03",
+      "c2-04"
+    ]
   },
   {
     "chapter": 2,
     "title": "Phép chia và lượng từ tất cả",
     "formula": "R(X,Y) ÷ S(Y) = π_X(R) − π_X((π_X(R) × S) − R)",
     "explain": "Chia tìm các giá trị X ghép được với mọi Y trong S. S chỉ chứa thuộc tính chia, R chứa đúng nhóm X,Y cần xét. Cần định rõ tập ứng viên nếu S rỗng.",
-    "example": "π_{MaSV,MaMH}(DANGKY) ÷ MON_BATBUOC trả mã sinh viên đăng ký đủ môn bắt buộc."
+    "example": "π_{MaSV,MaMH}(DANGKY) ÷ MON_BATBUOC trả mã sinh viên đăng ký đủ môn bắt buộc.",
+    "intuition": "Phép chia kiểm tra một danh sách việc cần đủ. Một ứng viên chỉ được chọn khi không thiếu bất kỳ mục bắt buộc nào.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Phép chia kiểm tra một danh sách việc cần đủ. Một ứng viên chỉ được chọn khi không thiếu bất kỳ mục bắt buộc nào.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Xác định X là đối tượng cần trả về, Y là các mục phải đủ.</li><li>Chuẩn bị R chỉ có cặp X,Y; chuẩn bị S chỉ có Y. Điểm hoặc thời gian thừa trong R sẽ làm đổi ý nghĩa phép chia.</li><li>Đọc kết quả: với mỗi x, kiểm tra mọi y của S xem (x,y) có trong R không.</li><li>Có thể đổi sang hiệu: lấy ứng viên, tạo mọi cặp cần có, trừ cặp đang có để tìm thiếu, rồi loại những ứng viên còn thiếu.</li><li>Nếu S có thể rỗng, công bố ứng viên là π_X(R) hay toàn bộ đối tượng trong bảng danh mục.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">Các cặp trong R</th><th scope=\"col\">S bắt buộc</th><th scope=\"col\">Kết quả</th></tr></thead><tbody><tr><td>(S1,M1),(S1,M2),(S2,M1)</td><td>M1,M2</td><td>S1; S2 thiếu M2.</td></tr></tbody></table></div><div class=\"db-equation\">A = tập ứng viên\nThiếu ← (A × S) − R\nKQ ← A − π_X(Thiếu)</div><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Chia không phải phép đếm. Đếm đủ số lượng có thể sai nếu đếm cả các mục ngoài danh sách bắt buộc.</div>",
+    "selfTest": {
+      "question": "Một sinh viên học M1,M3, danh sách bắt buộc M1,M2. Có đạt “tất cả” không?",
+      "answer": "Không, vẫn thiếu M2 dù số môn đã học bằng số môn bắt buộc."
+    },
+    "practice": [
+      "c2-02",
+      "c2-03"
+    ]
   },
   {
     "chapter": 2,
     "title": "Đại số mở rộng: gom nhóm, tổng hợp, kết ngoài",
     "formula": "γ_{nhóm; COUNT, SUM, AVG, MIN, MAX}(R)",
     "explain": "Gom nhóm chia dữ liệu theo giá trị thuộc tính rồi tổng hợp từng nhóm. Kết ngoài giữ cả các bộ không khớp và bổ sung NULL. Phép gán ← đặt tên quan hệ trung gian. SQL thường có bộ trùng; đại số cơ bản theo tập hợp.",
-    "example": "Đếm sinh viên theo môn: T←π_{MaMH,MaSV}(DANGKY), rồi γ_{MaMH;COUNT(MaSV)→SoSV}(T). AVG(Diem) trên DANGKY là trung bình lượt đăng ký."
+    "example": "Đếm sinh viên theo môn: T←π_{MaMH,MaSV}(DANGKY), rồi γ_{MaMH;COUNT(MaSV)→SoSV}(T). AVG(Diem) trên DANGKY là trung bình lượt đăng ký.",
+    "intuition": "Gom nhóm tạo một hàng thống kê cho mỗi nhóm. Trước khi tính, phải xác định đang đếm người, đếm lượt, hay lấy trung bình loại dữ liệu nào.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Gom nhóm tạo một hàng thống kê cho mỗi nhóm. Trước khi tính, phải xác định đang đếm người, đếm lượt, hay lấy trung bình loại dữ liệu nào.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Chọn thuộc tính nhóm, ví dụ MaMH; chọn phép tổng hợp COUNT,SUM,AVG,MIN,MAX.</li><li>Đặt tên cột kết quả để các phép sau có thể tham chiếu: COUNT(MaSV)→SoSV.</li><li>Muốn đếm người khác nhau thì chiếu cặp mã nhóm–mã người để loại trùng trước; muốn đếm lượt thì giữ mã lượt/học kỳ.</li><li>Nhóm không có dòng dữ liệu thường không xuất hiện. Muốn danh mục đầy đủ gồm nhóm có 0 lượt, dùng kết ngoài và quy ước số đếm 0.</li><li>Theo quy ước SQL thường dùng, AVG bỏ qua NULL. Phải nêu quy ước nếu dữ liệu có điểm chưa biết.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">Đăng ký môn M1</th><th scope=\"col\">Ý nghĩa</th></tr></thead><tbody><tr><td>S1,kỳ1,8; S1,kỳ2,10; S2,kỳ1,6</td><td>Có 3 lượt nhưng chỉ 2 sinh viên.</td></tr><tr><td>COUNT sau π_MaMH,MaSV</td><td>SoSV=2.</td></tr><tr><td>AVG trên ba lượt đã có điểm</td><td>DTB=(8+10+6)/3=8.</td></tr></tbody></table></div><p>Ký hiệu γ ở trang web biểu thị gom nhóm; bài giảng cũng dùng ký hiệu ℑ. Ý nghĩa là nhóm rồi tính các hàm kết tập.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Không chiếu chỉ (MaMH,Diem) trước AVG nếu cần giữ từng lượt: các điểm giống nhau có thể bị gộp và làm sai trung bình.</div>",
+    "selfTest": {
+      "question": "Đếm 3 dòng đăng ký có chắc là 3 sinh viên không?",
+      "answer": "Không. Một sinh viên có thể đăng ký lại nhiều kỳ; cần loại trùng theo MaMH,MaSV nếu đếm người."
+    },
+    "practice": [
+      "c2-05"
+    ]
   },
   {
     "chapter": 2,
     "title": "Biến đổi biểu thức và kiểm tra",
     "formula": "σ_p(σ_q(R)) = σ_{p∧q}(R)",
     "explain": "Đẩy chọn xuống trước phép kết khi điều kiện chỉ dùng cột của một phía. Chiếu sớm được nếu giữ đủ cột kết và cột dùng về sau. Kiểm tra lược đồ đầu ra sau mỗi phép.",
-    "example": "Đặt T₁←σ_{Diem≥8}(DANGKY), T₂←T₁⋈SINHVIEN, T₃←T₂⋈MONHOC rồi chiếu HoTen,TenMH,Diem."
+    "example": "Đặt T₁←σ_{Diem≥8}(DANGKY), T₂←T₁⋈SINHVIEN, T₃←T₂⋈MONHOC rồi chiếu HoTen,TenMH,Diem.",
+    "intuition": "Viết quan hệ trung gian làm lời giải dễ đọc và giúp biết từng cột đến từ đâu. Tối ưu chỉ hợp lệ khi kết quả không đổi.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Viết quan hệ trung gian làm lời giải dễ đọc và giúp biết từng cột đến từ đâu. Tối ưu chỉ hợp lệ khi kết quả không đổi.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Ghi đầu ra mong muốn, bảng chứa từng cột và điều kiện liên kết.</li><li>Viết các bước T₁,T₂,... từ lọc đến kết rồi chiếu; ghi lược đồ của mỗi T.</li><li>Có thể đẩy chọn xuống một phía kết trong nếu điều kiện chỉ dùng thuộc tính phía đó.</li><li>Có thể chiếu sớm nhưng phải giữ cột kết, cột lọc, cột nhóm và cột kết quả; π_A(π_B(R)) chỉ hợp lệ khi A⊆B.</li><li>Kiểm tra bằng dữ liệu có cả dòng khớp, không khớp và giá trị trùng. Khi cập nhật, kiểm tra khóa/miền/FK trước khi chấp nhận thêm, sửa hoặc xóa.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">σ_p(σ_q(R)) = σ_{p∧q}(R)\nR ∩ S = R − (R − S)\nR ⋈_θ S = σ_θ(R × S)</div><p>Tập {σ,π,×,−,∪} đủ biểu diễn các phép đại số quan hệ cơ bản khác. Khi chuyển sang SQL, σ gần với WHERE, π gần với SELECT DISTINCT, kết gần với JOIN ON.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Các quy tắc đẩy điều kiện của kết trong không được áp dụng máy móc cho kết ngoài: có thể làm mất các dòng được giữ nhờ NULL.</div>",
+    "selfTest": {
+      "question": "Khi định chiếu MaSV trước phép kết với MONHOC, cần giữ thêm gì?",
+      "answer": "MaMH để nối môn, cùng các cột lọc/đầu ra còn dùng về sau."
+    },
+    "practice": [
+      "c2-01",
+      "c2-05"
+    ]
   },
   {
     "chapter": 3,
     "title": "Dư thừa và phụ thuộc hàm",
     "formula": "r ⊨ X→Y ⇔ ∀t₁,t₂∈r: t₁[X]=t₂[X] ⇒ t₁[Y]=t₂[Y]",
     "explain": "X xác định duy nhất Y. Chỉ một cặp cùng X khác Y đủ bác bỏ. PTH hiển nhiên khi Y⊆X. Dư thừa gây dị thường thêm, xóa, sửa; phải suy ra PTH từ quy tắc nghiệp vụ.",
-    "example": "MaSV→HoTen không có nghĩa HoTen→MaSV. Với bảng bài 4, C→E sai vì t₁ và t₄ cùng C=1 nhưng khác E."
+    "example": "MaSV→HoTen không có nghĩa HoTen→MaSV. Với bảng bài 4, C→E sai vì t₁ và t₄ cùng C=1 nhưng khác E.",
+    "intuition": "X → Y nghĩa là: hễ hai dòng giống nhau trên X thì buộc giống nhau trên Y. Không có nghĩa hai vế phải có cùng giá trị số, và cũng không có nghĩa chiều ngược lại đúng.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>X → Y nghĩa là: hễ hai dòng giống nhau trên X thì buộc giống nhau trên Y. Không có nghĩa hai vế phải có cùng giá trị số, và cũng không có nghĩa chiều ngược lại đúng.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Xác định quy tắc nghiệp vụ trước; không suy ra ràng buộc tương lai chỉ từ dữ liệu tình cờ.</li><li>Để kiểm tra bảng hiện tại, nhóm dòng theo toàn bộ X; kiểm tra Y trong từng nhóm.</li><li>Nếu sai, ghi rõ hai bộ tᵢ,tⱼ cùng X và khác Y. Một cặp đủ bác bỏ.</li><li>Nếu đúng, giải thích các nhóm trùng X đều nhất quán; nhóm một dòng không tạo mâu thuẫn.</li><li>Phân biệt PTH hiển nhiên Y⊆X với PTH có thông tin mới. Dư thừa thường phát sinh khi lặp nhiều lần giá trị do cùng định thức xác định.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">MaSV</th><th scope=\"col\">HoTen</th></tr></thead><tbody><tr><td>S1</td><td>An</td></tr><tr><td>S2</td><td>An</td></tr></tbody></table></div><p>Bảng này có thể thỏa MaSV→HoTen nhưng bác bỏ HoTen→MaSV. Hai người cùng tên không phải cùng sinh viên. Nếu tên S1 lặp trên nhiều dòng đăng ký, đổi tên phải sửa đồng bộ.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Với PTH AB→C, phải cùng cả A và B mới đem so C. Chỉ cùng A nhưng khác B không phải phản ví dụ.</div>",
+    "selfTest": {
+      "question": "Hai dòng khác X và khác Y có bác bỏ X→Y không?",
+      "answer": "Không. Điều kiện bắt đầu của định nghĩa là hai dòng phải bằng nhau trên X."
+    },
+    "practice": [
+      "c3-01"
+    ]
   },
   {
     "chapter": 3,
     "title": "Armstrong và các hệ quả",
     "formula": "Phản xạ: Y⊆X ⇒ X→Y\nTăng trưởng: X→Y ⇒ XZ→YZ\nBắc cầu: X→Y, Y→Z ⇒ X→Z",
     "explain": "Hợp: X→Y và X→Z suy ra X→YZ. Tách: X→YZ suy ra X→Y và X→Z. Giả bắc cầu: X→Y, YZ→W suy ra XZ→W. Ghi rõ luật sau mỗi bước.",
-    "example": "AB→C, C→DE ⇒ C→E (tách) ⇒ AB→E (bắc cầu)."
+    "example": "AB→C, C→DE ⇒ C→E (tách) ⇒ AB→E (bắc cầu).",
+    "intuition": "Armstrong cho các quy tắc suy luận chắc chắn từ PTH đã cho. Mỗi dòng chứng minh nên ghi điều suy ra và luật đã dùng.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Armstrong cho các quy tắc suy luận chắc chắn từ PTH đã cho. Mỗi dòng chứng minh nên ghi điều suy ra và luật đã dùng.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Phản xạ: biết X thì biết mọi tập con Y⊆X.</li><li>Tăng trưởng: nếu X→Y, thêm cùng Z vào hai phía thì XZ→YZ. XZ là hợp tập thuộc tính, không phải phép nhân.</li><li>Bắc cầu: X→Y và Y→Z thì X→Z.</li><li>Tách, hợp, giả bắc cầu là hệ quả dùng để viết ngắn. Nếu đề yêu cầu chỉ ba tiên đề cơ bản, diễn giải các hệ quả thành các bước cơ bản.</li><li>Tăng trưởng không cho phép tùy ý xóa thuộc tính vế trái. Muốn rút vế trái cần chứng minh bằng bao đóng.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">Bước</th><th scope=\"col\">Suy diễn</th><th scope=\"col\">Luật</th></tr></thead><tbody><tr><td>1</td><td>C→E từ C→DE</td><td>Tách; hoặc DE→E bằng phản xạ rồi bắc cầu.</td></tr><tr><td>2</td><td>AB→E từ AB→C và C→E</td><td>Bắc cầu.</td></tr><tr><td>3</td><td>AB→AE từ AB→E</td><td>Tăng trưởng với A, vì ABA=AB.</td></tr></tbody></table></div><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Không đảo X→Y thành Y→X. Không tách AB→C thành A→C và B→C; luật tách áp dụng cho vế phải.</div>",
+    "selfTest": {
+      "question": "Từ A→BC có suy ra A→B không? Từ AB→C có suy ra A→C không?",
+      "answer": "Vế đầu có bằng luật tách. Vế sau không đủ dữ kiện."
+    },
+    "practice": [
+      "c3-04"
+    ]
   },
   {
     "chapter": 3,
     "title": "Bao đóng và bài toán thành viên",
     "formula": "X⁺_F = {A ∈ U | F ⊨ X→A}; X→Y∈F⁺ ⇔ Y⊆X⁺_F",
     "explain": "Đặt X₀=X. Nếu V→W và V⊆Xᵢ thì thêm W. Lặp toàn bộ tập PTH cho đến khi không đổi; ghi PTH mỗi bước. F⁺ là tập PTH suy diễn được, khác X⁺ là tập thuộc tính.",
-    "example": "Với AB→C,C→DE,D→B,E→G,G→H: (AB)⁺=ABCDEGH; C⁺=BCDEGH; (AE)⁺=AEGH."
+    "example": "Với AB→C,C→DE,D→B,E→G,G→H: (AB)⁺=ABCDEGH; C⁺=BCDEGH; (AE)⁺=AEGH.",
+    "intuition": "Bao đóng X⁺ là toàn bộ những thuộc tính có thể biết khi đã biết X và được dùng các quy tắc trong F.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Bao đóng X⁺ là toàn bộ những thuộc tính có thể biết khi đã biết X và được dùng các quy tắc trong F.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Đặt X₀=X, tuyệt đối không bỏ thuộc tính ban đầu.</li><li>Duyệt PTH V→W: chỉ dùng khi V⊆Xᵢ; thêm W vào tập hiện tại.</li><li>Ghi rõ PTH nào thêm thuộc tính nào. Nếu vế phải đã có hết thì không cần dòng mới.</li><li>Lặp toàn bộ F đến khi không đổi; có thể PTH trước đó chưa dùng được nay đã đủ vế trái.</li><li>Thành viên X→Y thuộc F⁺ khi Y⊆X⁺. Siêu khóa cần điều mạnh hơn: X⁺=U.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">Bước</th><th scope=\"col\">Bao đóng hiện tại</th><th scope=\"col\">Vì sao thêm được?</th></tr></thead><tbody><tr><td>X₀</td><td>A</td><td>Khởi tạo bằng chính tập cần tính bao đóng.</td></tr><tr><td>X1</td><td>AB</td><td>Đã có A, dùng A → B để thêm B.</td></tr><tr><td>X2</td><td>ABC</td><td>Đã có B, dùng B → C để thêm C.</td></tr><tr><td>Dừng</td><td>ABC</td><td>Duyệt lại F: không phụ thuộc hàm nào thêm được thuộc tính mới.</td></tr></tbody></table></div><div class=\"db-conclusion\"><strong>Kết luận</strong><p>(A)⁺ = ABC.</p></div><p>Nếu duyệt B→C trước lúc mới có A, chưa dùng được. Sau A→B phải quay lại B→C; dừng sau một lượt sẽ cho đáp án thiếu C.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">F⁺ là tập các PTH suy diễn, còn X⁺ là tập thuộc tính. “Suy ra một Y” không có nghĩa X xác định toàn bộ U.</div>",
+    "selfTest": {
+      "question": "Nếu U=ABCD và A⁺=ABC, A→C có đúng không? A có là siêu khóa không?",
+      "answer": "A→C đúng vì có C; A không là siêu khóa vì thiếu D."
+    },
+    "practice": [
+      "c3-02-1",
+      "c3-02-2",
+      "c3-02-3",
+      "c3-02-4"
+    ]
   },
   {
     "chapter": 3,
     "title": "Tương đương và phủ tối thiểu",
     "formula": "F ≡ G ⇔ F⁺ = G⁺",
     "explain": "Kiểm tra F suy ra từng PTH của G và ngược lại. Phủ tối thiểu: vế phải đơn thuộc tính, vế trái không dư, không PTH dư. Bước 1 tách RHS; bước 2 thử bỏ thuộc tính a ở LHS bằng kiểm tra Y⊆(X−a)⁺ theo tập hiện tại; bước 3 bỏ X→Y nếu Y⊆X⁺ theo tập hiện tại đã bỏ PTH đó.",
-    "example": "CH→E và H→C làm C dư trong CH→E. Không dùng chính PTH cần kiểm tra khi thử loại PTH dư; cập nhật tập sau mỗi lần bỏ. Phủ tối thiểu có thể không duy nhất."
+    "example": "CH→E và H→C làm C dư trong CH→E. Không dùng chính PTH cần kiểm tra khi thử loại PTH dư; cập nhật tập sau mỗi lần bỏ. Phủ tối thiểu có thể không duy nhất.",
+    "intuition": "Phủ tối thiểu giữ nguyên điều có thể suy ra nhưng bỏ thành phần dư. “Tối thiểu” là không còn yếu tố bỏ được theo ba điều kiện, không nhất thiết là một đáp án duy nhất.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Phủ tối thiểu giữ nguyên điều có thể suy ra nhưng bỏ thành phần dư. “Tối thiểu” là không còn yếu tố bỏ được theo ba điều kiện, không nhất thiết là một đáp án duy nhất.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Tách mọi vế phải thành đơn thuộc tính bằng luật tách; xóa bản sao trùng.</li><li>Với X→A, thử B∈X: tính (X−{B})⁺ theo tập hiện tại. Nếu chứa A thì B dư; cập nhật ngay.</li><li>Với f:X→A, tạm bỏ f rồi tính X⁺ theo G−{f}. Nếu chứa A thì bỏ f thật.</li><li>Không xóa nhiều PTH cùng lúc dựa trên tập cũ: hai PTH có thể hỗ trợ nhau, xóa cả sẽ mất tương đương.</li><li>Kiểm tra lại vế phải đơn, không thừa trái, không thừa PTH; chứng minh F suy ra G và G suy ra F bằng từng bao đóng nếu cần.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">F = {A→B, B→C, A→C}\nBỏ thử A→C: A⁺ theo {A→B,B→C} = ABC.\nVẫn có C ⇒ A→C dư.</div><p>Ngược lại, bỏ thử B→C khỏi {A→B,B→C}: B⁺=B, thiếu C, nên phải giữ. Hai phép thử “dư vế trái” và “dư PTH” dùng tập tính bao đóng khác nhau.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Không dùng chính A→C để chứng minh A→C dư. Không bỏ một thuộc tính chỉ vì nó có ở vế phải của PTH khác.</div>",
+    "selfTest": {
+      "question": "Trong CH→E, H→C, vì sao có thể bỏ C khỏi CH→E?",
+      "answer": "Từ H có C; đủ CH nên suy ra E. H⁺ chứa E, vì vậy CH→E có thể rút thành H→E."
+    },
+    "practice": [
+      "c3-03-1",
+      "c3-03-2",
+      "c3-03-3",
+      "c3-03-4",
+      "c3-04"
+    ]
   },
   {
     "chapter": 3,
     "title": "Một khóa và tất cả khóa",
     "formula": "N = U − RHS(F); M = LHS(F) ∩ RHS(F)",
     "explain": "Mọi khóa chứa N, kể cả thuộc tính không xuất hiện ở vế nào. Nếu N⁺=U thì N là khóa duy nhất. Nếu chưa đủ, xét N∪Mᵢ với mọi Mᵢ⊆M, kiểm tra bao đóng và tối thiểu; loại tập chứa khóa đã biết. Thuộc tính chỉ ở RHS không cần thêm để tạo khóa tối thiểu.",
-    "example": "Bài 5: N=AB, M=CEH; khóa ABE và ABH. Thuộc tính khóa là ABEH, không khóa là CD. Tìm một khóa: bắt đầu U rồi thử bỏ lần lượt từng thuộc tính."
+    "example": "Bài 5: N=AB, M=CEH; khóa ABE và ABH. Thuộc tính khóa là ABEH, không khóa là CD. Tìm một khóa: bắt đầu U rồi thử bỏ lần lượt từng thuộc tính.",
+    "intuition": "Tìm một khóa là tìm một bộ định danh đủ nhỏ. Tìm tất cả khóa cần một quy trình xét hệ thống, vì các bộ định danh có thể thay thế nhau.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Tìm một khóa là tìm một bộ định danh đủ nhỏ. Tìm tất cả khóa cần một quy trình xét hệ thống, vì các bộ định danh có thể thay thế nhau.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Tìm một khóa: bắt đầu U, thử bỏ từng thuộc tính; chỉ bỏ nếu bao đóng phần còn lại vẫn bằng U.</li><li>Lập N=U−RHS(F). Thuộc tính không bao giờ sinh ra ở vế phải bắt buộc phải được đưa sẵn vào khóa.</li><li>Lập M=LHS(F)∩RHS(F). Nếu N⁺≠U, xét N∪Mᵢ với Mᵢ⊆M theo số phần tử tăng dần.</li><li>Bỏ qua ứng viên chứa khóa đã tìm được. Với ứng viên phủ U, kiểm tra tối thiểu rồi nhận là khóa.</li><li>Hợp tất cả khóa để có tập thuộc tính khóa; lấy U trừ hợp đó để có thuộc tính không khóa.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">U=ABCDEH; F={AB→CD, CH→E, E→HD, H→C}\nN=AB; M=CEH\nAB⁺=ABCD, chưa đủ.\n(ABE)⁺=U và (ABH)⁺=U ⇒ hai khóa ABE, ABH.</div><p>ABC chưa đủ E,H; mọi tổ hợp còn lại chứa ABE hoặc ABH thì không tối thiểu. Mọi khóa phải có A,B nên không thể có khóa chỉ E hoặc H.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">“Tối thiểu” theo bao hàm không đồng nghĩa “ít thuộc tính nhất trong mọi khóa”. Một lược đồ có thể có khóa dự tuyển dài ngắn khác nhau.</div>",
+    "selfTest": {
+      "question": "Nếu thuộc tính Z không xuất hiện ở bất kỳ vế nào của F thì Z thuộc N hay bỏ khỏi xét khóa?",
+      "answer": "Z thuộc N; không có PTH nào sinh ra Z nên mọi khóa phải chứa Z."
+    },
+    "practice": [
+      "c3-05-1",
+      "c3-05-2",
+      "c3-05-3",
+      "c3-05-4"
+    ]
   },
   {
     "chapter": 4,
     "title": "1NF và phụ thuộc đầy đủ, riêng phần, bắc cầu",
     "formula": "BCNF ⇒ 3NF ⇒ 2NF ⇒ 1NF",
     "explain": "1NF: giá trị nguyên tử, không nhóm lặp. X→A đầy đủ khi không tập con thực sự nào của X xác định A; riêng phần nếu có. Phụ thuộc bắc cầu thường gặp: khóa→thuộc tính trung gian→thuộc tính không khóa.",
-    "example": "Bảng có cột Mon chứa “CSDL,CTDL” cần tách thành mỗi môn một bộ. AB→C và A→C thể hiện C phụ thuộc riêng phần vào AB."
+    "example": "Bảng có cột Mon chứa “CSDL,CTDL” cần tách thành mỗi môn một bộ. AB→C và A→C thể hiện C phụ thuộc riêng phần vào AB.",
+    "intuition": "Chuẩn hóa tổ chức bảng để tránh lưu lặp nhiều chủ đề và giảm dị thường. Trước khi xét mức cao hơn, dữ liệu phải có từng ô nguyên tử theo bài toán.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Chuẩn hóa tổ chức bảng để tránh lưu lặp nhiều chủ đề và giảm dị thường. Trước khi xét mức cao hơn, dữ liệu phải có từng ô nguyên tử theo bài toán.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>1NF: loại danh sách nhiều giá trị trong một ô và nhóm cột lặp kiểu Mon1,Mon2,Mon3.</li><li>Phụ thuộc đầy đủ X→A: bỏ bất kỳ thành phần cần thiết nào của X cũng không còn suy ra A.</li><li>Phụ thuộc riêng phần: có tập con thực sự Z⊂X vẫn suy ra A. Đây là điểm xét 2NF khi A không khóa và X là khóa.</li><li>Phụ thuộc bắc cầu thường gặp: khóa → thuộc tính trung gian → thuộc tính không khóa. Khi xét 3NF, dùng tiêu chuẩn hình thức siêu khóa/thuộc tính khóa để tránh kết luận quá rộng.</li><li>Chỉ tìm dạng chuẩn theo tập PTH được cho và giả thiết nghiệp vụ; dữ liệu mẫu nguyên tử không chứng minh 2NF/3NF.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">Dạng dữ liệu</th><th scope=\"col\">Xử lý</th></tr></thead><tbody><tr><td>GV01 | CSDL,CTDL</td><td>Hai dòng (GV01,CSDL),(GV01,CTDL); khóa ghép.</td></tr><tr><td>AB→C và A→C</td><td>C không phụ thuộc đầy đủ vào AB, vì chỉ A đã đủ.</td></tr></tbody></table></div><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Chuẩn hóa không có nghĩa chia càng nhiều bảng càng tốt. Phải giữ khả năng kết lại đúng và xét việc bảo toàn ràng buộc.</div>",
+    "selfTest": {
+      "question": "Viết “CSDL,CTDL” trong một chuỗi có tự động đạt 1NF khi cần quản lý từng môn riêng không?",
+      "answer": "Không theo ngữ nghĩa bài tập này: nó đang là danh sách nhiều giá trị môn."
+    },
+    "practice": [
+      "c4-01",
+      "c4-04"
+    ]
   },
   {
     "chapter": 4,
     "title": "2NF",
     "formula": "1NF và không có A không khóa phụ thuộc vào tập con thực sự của bất kỳ khóa nào",
     "explain": "Phải tìm tất cả khóa trước khi xét. Khóa đơn không có tập con thực sự khác rỗng, trong bài tập thông thường không có PTH vế trái rỗng nên không gây phụ thuộc riêng phần.",
-    "example": "Bài 5: AB⊂ABE và AB→C,D, C,D không khóa ⇒ vi phạm 2NF. Bài 6a khóa A duy nhất nên đạt 2NF."
+    "example": "Bài 5: AB⊂ABE và AB→C,D, C,D không khóa ⇒ vi phạm 2NF. Bài 6a khóa A duy nhất nên đạt 2NF.",
+    "intuition": "2NF ngăn việc một thuộc tính không khóa chỉ phụ thuộc vào một phần của khóa ghép. Nếu một hóa đơn có nhiều hàng, ngày hóa đơn không cần cả mã hàng để biết.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>2NF ngăn việc một thuộc tính không khóa chỉ phụ thuộc vào một phần của khóa ghép. Nếu một hóa đơn có nhiều hàng, ngày hóa đơn không cần cả mã hàng để biết.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Xác nhận 1NF; tìm tất cả khóa dự tuyển.</li><li>Tách thuộc tính khóa và không khóa dựa trên hợp của tất cả khóa.</li><li>Với mỗi khóa ghép, xét tập con thực sự có thể suy ra thuộc tính không khóa, kể cả PTH suy diễn.</li><li>Nếu có một vi phạm, cao nhất 1NF. Nếu không có, đạt 2NF và tiếp tục kiểm tra 3NF.</li><li>Tách phần phụ thuộc vào riêng một bộ phận khóa thành bảng riêng; giữ thuộc tính liên kết để kết lại.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">R(SoDH,MaHH,NgayDH,SL)\nKhóa: (SoDH,MaHH)\nSoDH → NgayDH; SoDH MaHH → SL</div><p>NgayDH không khóa nhưng chỉ cần SoDH, là một phần khóa. Tách DON(SoDH,NgayDH) và CHITIET(SoDH,MaHH,SL). SL phụ thuộc cả đơn lẫn hàng nên ở bảng chi tiết.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Khóa đơn giúp đạt 2NF trong các bài không có PTH vế trái rỗng; không bảo đảm 3NF. Nếu tồn tại nhiều khóa, phải xét mọi khóa chứ không chỉ khóa chính.</div>",
+    "selfTest": {
+      "question": "Nếu A là khóa duy nhất và A→B,B→C thì lược đồ chắc đạt 3NF không?",
+      "answer": "Không. Nó đạt 2NF theo giả thiết thông thường nhưng B→C có thể vi phạm 3NF."
+    },
+    "practice": [
+      "c4-02",
+      "c4-03",
+      "c4-07"
+    ]
   },
   {
     "chapter": 4,
     "title": "3NF và BCNF",
     "formula": "3NF: ∀X→A không hiển nhiên, X là siêu khóa hoặc A là thuộc tính khóa\nBCNF: ∀X→Y không hiển nhiên, X là siêu khóa",
     "explain": "3NF cho phép định thức không phải siêu khóa khi thuộc tính vế phải là thuộc tính khóa. BCNF chặt hơn. Tính X⁺ để xét siêu khóa; không nhầm “không phải khóa tối thiểu” với “không là siêu khóa”.",
-    "example": "R(C,S,Z), F={CS→Z,Z→C}: khóa CS,SZ; Z→C thỏa 3NF vì C là thuộc tính khóa, nhưng vi phạm BCNF vì Z⁺=ZC thiếu S."
+    "example": "R(C,S,Z), F={CS→Z,Z→C}: khóa CS,SZ; Z→C thỏa 3NF vì C là thuộc tính khóa, nhưng vi phạm BCNF vì Z⁺=ZC thiếu S.",
+    "intuition": "3NF cho một ngoại lệ: vế phải là thuộc tính khóa. BCNF bỏ ngoại lệ đó, yêu cầu mọi định thức không hiển nhiên đều là siêu khóa.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>3NF cho một ngoại lệ: vế phải là thuộc tính khóa. BCNF bỏ ngoại lệ đó, yêu cầu mọi định thức không hiển nhiên đều là siêu khóa.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Tách vế phải X→YZ thành các PTH X→Y,X→Z để xét 3NF rõ ràng.</li><li>Bỏ qua PTH hiển nhiên có vế phải nằm trong X.</li><li>Tính X⁺. Nếu bằng U, PTH đạt cả tiêu chuẩn 3NF và BCNF.</li><li>Nếu X⁺≠U nhưng A là thuộc tính khóa, X→A vẫn đạt điều kiện 3NF nhưng vi phạm BCNF.</li><li>Nếu X⁺≠U và A không khóa, vi phạm cả 3NF và BCNF. Dạng chuẩn của cả quan hệ phụ thuộc mọi PTH, không phải chỉ một PTH đạt.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" tabindex=\"0\" role=\"region\" aria-label=\"Bảng lời giải, có thể cuộn ngang\"><table><thead><tr><th scope=\"col\">PTH trong R(ABC), F={AB→C,C→B}</th><th scope=\"col\">Giải thích</th></tr></thead><tbody><tr><td>AB→C</td><td>AB là khóa, đạt cả hai.</td></tr><tr><td>C→B</td><td>C⁺=BC thiếu A; B thuộc khóa AB. Đạt điều kiện 3NF, vi phạm BCNF.</td></tr></tbody></table></div><p>Hai khóa AB và AC làm mọi thuộc tính là thuộc tính khóa. Vì vậy R đạt 3NF nhưng chưa BCNF.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Định thức là siêu khóa là đủ; không bắt buộc chính nó phải là khóa tối thiểu. Đồng thời “vế phải là thuộc tính khóa” không đủ để đạt BCNF.</div>",
+    "selfTest": {
+      "question": "Nếu CD là khóa thì CDH→J có vi phạm BCNF vì CDH không tối thiểu không?",
+      "answer": "Không. CDH chứa khóa CD nên vẫn là siêu khóa."
+    },
+    "practice": [
+      "c4-05",
+      "c4-06",
+      "c4-08"
+    ]
   },
   {
     "chapter": 4,
     "title": "Bảo toàn thông tin và phụ thuộc hàm",
     "formula": "R→R₁,R₂ lossless ⇔ (R₁∩R₂)→R₁ hoặc (R₁∩R₂)→R₂ thuộc F⁺",
     "explain": "Bảo toàn thông tin nghĩa là chiếu rồi kết trả đúng quan hệ gốc, không có bộ giả. Với nhiều bảng, chứng minh từng bước nhị phân hoặc dùng chase. Bảo toàn PTH: đặt G=∪π_Rᵢ(F), kiểm tra G suy ra mọi PTH của F. Tập chiếu chứa cả các PTH suy diễn, không chỉ PTH viết sẵn.",
-    "example": "Nếu tách theo X→Y thành XY và U−(Y−X), giao chứa X và X xác định XY nên không mất mát. Hai tính chất bảo toàn thông tin và PTH phải kiểm tra riêng."
+    "example": "Nếu tách theo X→Y thành XY và U−(Y−X), giao chứa X và X xác định XY nên không mất mát. Hai tính chất bảo toàn thông tin và PTH phải kiểm tra riêng.",
+    "intuition": "Bảo toàn thông tin hỏi “ghép lại có đúng dữ liệu cũ không?”. Bảo toàn PTH hỏi “có thể kiểm tra ràng buộc bằng các bảng con không?”. Hai câu hỏi khác nhau.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Bảo toàn thông tin hỏi “ghép lại có đúng dữ liệu cũ không?”. Bảo toàn PTH hỏi “có thể kiểm tra ràng buộc bằng các bảng con không?”. Hai câu hỏi khác nhau.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Với tách hai bảng, tính I=R₁∩R₂ rồi I⁺ theo F. Nếu chứa R₁ hoặc R₂ thì lossless.</li><li>Với nhiều bảng, có thể chứng minh chuỗi tách nhị phân đều lossless hoặc dùng chase. Không chỉ kiểm tra một giao tùy ý.</li><li>Muốn bác bỏ lossless, tạo r thỏa F nhưng các hình chiếu kết ra ít nhất một bộ không có trong r.</li><li>Lấy Fi là các PTH chiếu lên Ri, gồm cả suy diễn; đặt G=∪Fi.</li><li>Với từng X→Y trong F, tính X⁺ theo G. Mọi Y đều nằm trong bao đóng thì bảo toàn PTH.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">R(ABC), F={A→B}\nTách AB và AC: giao A, A⁺ chứa AB ⇒ lossless.</div><p>Ở chiều khác, tách ABC với F={AB→C,C→B} thành BC và AC vẫn lossless vì C→BC, nhưng hợp PTH con chỉ suy ra C→B; không giữ được AB→C.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Hình chiếu rồi kết tự nhiên của quan hệ đầy đủ thuộc tính không làm mất bộ gốc; nguy cơ trong mô hình cơ bản là sinh thêm bộ giả. Lossless không tự bảo đảm bảo toàn PTH.</div>",
+    "selfTest": {
+      "question": "Một PTH không nằm nguyên dạng trong bảng con có chắc bị mất không?",
+      "answer": "Không. Nó có thể suy ra qua nhiều PTH cục bộ; phải tính bao đóng theo hợp PTH chiếu."
+    },
+    "practice": [
+      "c4-09",
+      "c4-10",
+      "c4-12"
+    ]
   },
   {
     "chapter": 4,
     "title": "Tổng hợp 3NF",
     "formula": "Phủ tối thiểu → gom cùng LHS → tạo Rᵢ = X∪Y → thêm bảng chứa khóa nếu thiếu",
     "explain": "Tạo bảng cho mỗi nhóm cùng vế trái. Có thể bỏ bảng nằm trọn trong bảng khác. Nếu không bảng nào chứa khóa của R, thêm một bảng gồm khóa. Thuật toán bảo đảm 3NF, bảo toàn PTH và thông tin.",
-    "example": "Bài 7 từ G={CJ→E,CE→D,CD→J,CD→H}: tạo CJE, CED, CDJH. CDJH chứa khóa CD nên không cần thêm bảng khóa."
+    "example": "Bài 7 từ G={CJ→E,CE→D,CD→J,CD→H}: tạo CJE, CED, CDJH. CDJH chứa khóa CD nên không cần thêm bảng khóa.",
+    "intuition": "Tổng hợp 3NF xây các bảng từ một tập quy tắc đã rút gọn. Mỗi nhóm PTH có nơi kiểm tra, và một bảng chứa khóa nối toàn bộ thiết kế lại.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Tổng hợp 3NF xây các bảng từ một tập quy tắc đã rút gọn. Mỗi nhóm PTH có nơi kiểm tra, và một bảng chứa khóa nối toàn bộ thiết kế lại.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Tìm một phủ tối thiểu G; không bỏ qua bước này nếu F còn dư.</li><li>Gom PTH cùng vế trái X, tạo bảng X∪Y chứa vế trái và toàn bộ vế phải trong nhóm.</li><li>Bỏ bảng nằm trọn trong bảng khác nếu có.</li><li>Nếu chưa có bảng nào chứa một khóa của lược đồ gốc, thêm bảng gồm một khóa.</li><li>Ghi khóa/FK, giải thích bảo toàn PTH nhờ các nhóm nằm trong bảng; giải thích lossless bằng bảo đảm của thuật toán có bảng chứa khóa.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">R(ABC), F={A→B}\nNhóm A→B tạo AB. Khóa của R là AC.\nAB chưa chứa khóa AC ⇒ thêm AC.\nKết quả: AB, AC.</div><p>Nếu chỉ tạo AB thì còn mất thuộc tính C và không biểu diễn được toàn bộ quan hệ. Bảng khóa bổ sung có vai trò thực sự, không phải bước trang trí.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Không áp dụng lý do “có bảng chứa khóa ⇒ lossless” cho mọi phân rã tùy ý. Bảo đảm này gắn với quy trình tổng hợp 3NF và các nhóm PTH của nó.</div>",
+    "selfTest": {
+      "question": "Nếu bảng đã có chứa một khóa của R, có cần thêm một bảng đúng bằng khóa nữa không?",
+      "answer": "Không cần. Điều kiện là chứa khóa, không bắt buộc bảng phải bằng đúng khóa."
+    },
+    "practice": [
+      "c4-12"
+    ]
   },
   {
     "chapter": 4,
     "title": "Phân rã BCNF",
     "formula": "S₁ = X∪Y; S₂ = S − (Y−X)",
     "explain": "Chọn PTH không hiển nhiên X→Y vi phạm BCNF trong S; tách rồi chiếu PTH và kiểm tra tiếp. Dừng khi mọi lược đồ con đạt BCNF. Bảo đảm lossless nhưng có thể mất bảo toàn PTH. Nếu R đã BCNF thì giữ R là kết quả hợp lệ.",
-    "example": "Bài 7: CJ,CE,CD là khóa; CDH là siêu khóa. Mọi định thức trong F là siêu khóa, vì thế R đã BCNF. Không tách theo PTH có định thức là khóa rồi kết luận rằng đó là PTH vi phạm."
+    "example": "Bài 7: CJ,CE,CD là khóa; CDH là siêu khóa. Mọi định thức trong F là siêu khóa, vì thế R đã BCNF. Không tách theo PTH có định thức là khóa rồi kết luận rằng đó là PTH vi phạm.",
+    "intuition": "Phân rã BCNF tìm nguyên nhân vi phạm trong bảng đang xét rồi tách ra. Sau mỗi bước, bài toán thay đổi sang các bảng con và các PTH chiếu của chúng.",
+    "detail": "<h3>Hiểu bằng lời</h3><p>Phân rã BCNF tìm nguyên nhân vi phạm trong bảng đang xét rồi tách ra. Sau mỗi bước, bài toán thay đổi sang các bảng con và các PTH chiếu của chúng.</p><h3>Cách học và áp dụng</h3><ol class=\"db-steps\"><li>Tìm X→Y không hiển nhiên mà X không là siêu khóa của bảng S hiện tại.</li><li>Tạo S₁=X∪Y và S₂=S−(Y−X); không xóa X khỏi S₂ vì cần thuộc tính giao để kết.</li><li>Giao chứa X và X xác định S₁, nên phép tách theo PTH này lossless.</li><li>Chiếu F⁺ lên từng bảng con rồi kiểm tra BCNF tiếp. Có PTH suy diễn phải dùng dù không nằm nguyên dạng trong F gốc.</li><li>Dừng khi mọi bảng đạt BCNF; kiểm tra bảo toàn PTH riêng vì thuật toán này không bảo đảm điều đó.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">R(ABC), F={A→B, B→C}\nB⁺=BC thiếu A ⇒ B→C vi phạm.\nTách BC và AB; giao B xác định BC.\nTrong BC: B là khóa. Trong AB: A là khóa.</div><p>Nếu ngay từ đầu mọi định thức là siêu khóa thì R đã BCNF, có thể giữ nguyên R. Ví dụ đề giữa kỳ bài 7 thuộc trường hợp này.</p><h3>Điểm dễ nhầm</h3><div class=\"focus-block\">Không gọi một PTH có định thức là khóa là “PTH vi phạm”. Có thể tách thêm vì mục tiêu khác, nhưng phải nói rõ đó không phải bước bắt buộc để đạt BCNF.</div>",
+    "selfTest": {
+      "question": "BCNF có luôn bảo toàn phụ thuộc hàm không?",
+      "answer": "Không. Bài 12 chủ đề 4 có phân rã BC,AC làm mất bảo toàn AB→C."
+    },
+    "practice": [
+      "c4-11",
+      "c4-12"
+    ]
   }
 ]

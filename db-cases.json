@@ -1,0 +1,1027 @@
+[
+  {
+    "label": "Bao đóng BT2.1",
+    "U": "ABCDEGH",
+    "F": [
+      [
+        "AB",
+        "EH"
+      ],
+      [
+        "C",
+        "D"
+      ],
+      [
+        "GH",
+        "AC"
+      ],
+      [
+        "E",
+        "BG"
+      ],
+      [
+        "B",
+        "E"
+      ]
+    ],
+    "closures": {
+      "BH": "ABCDEGH",
+      "EC": "BCDEG"
+    }
+  },
+  {
+    "label": "Bao đóng BT2.2",
+    "U": "ABCDE",
+    "F": [
+      [
+        "BC",
+        "D"
+      ],
+      [
+        "D",
+        "B"
+      ],
+      [
+        "E",
+        "A"
+      ],
+      [
+        "A",
+        "C"
+      ]
+    ],
+    "closures": {
+      "AB": "ABCD",
+      "E": "ACE"
+    }
+  },
+  {
+    "label": "Bao đóng BT2.3",
+    "U": "ABCDEG",
+    "F": [
+      [
+        "C",
+        "G"
+      ],
+      [
+        "BG",
+        "CD"
+      ],
+      [
+        "AEG",
+        "BC"
+      ],
+      [
+        "CG",
+        "AE"
+      ],
+      [
+        "B",
+        "CG"
+      ]
+    ],
+    "closures": {
+      "BC": "ABCDEG",
+      "C": "ABCDEG"
+    }
+  },
+  {
+    "label": "Bao đóng BT2.4",
+    "U": "ABCDEG",
+    "F": [
+      [
+        "B",
+        "C"
+      ],
+      [
+        "AC",
+        "D"
+      ],
+      [
+        "D",
+        "G"
+      ],
+      [
+        "AG",
+        "E"
+      ]
+    ],
+    "closures": {
+      "AB": "ABCDEG",
+      "AC": "ACDEG"
+    }
+  },
+  {
+    "label": "Phủ {AB → CD, CE → BH, DGH → AC, G → A, G → B}",
+    "U": "ABCDEGH",
+    "F": [
+      [
+        "AB",
+        "CD"
+      ],
+      [
+        "CE",
+        "BH"
+      ],
+      [
+        "DGH",
+        "AC"
+      ],
+      [
+        "G",
+        "A"
+      ],
+      [
+        "G",
+        "B"
+      ]
+    ],
+    "minimal": [
+      [
+        "AB",
+        "C"
+      ],
+      [
+        "AB",
+        "D"
+      ],
+      [
+        "CE",
+        "B"
+      ],
+      [
+        "CE",
+        "H"
+      ],
+      [
+        "G",
+        "A"
+      ],
+      [
+        "G",
+        "B"
+      ]
+    ]
+  },
+  {
+    "label": "Phủ {AD → CG, BD → GH, CD → A, ACD → BH}",
+    "U": "ABCDEGH",
+    "F": [
+      [
+        "DA",
+        "CG"
+      ],
+      [
+        "BD",
+        "GH"
+      ],
+      [
+        "CD",
+        "A"
+      ],
+      [
+        "DAC",
+        "BH"
+      ]
+    ],
+    "minimal": [
+      [
+        "AD",
+        "C"
+      ],
+      [
+        "BD",
+        "G"
+      ],
+      [
+        "BD",
+        "H"
+      ],
+      [
+        "CD",
+        "A"
+      ],
+      [
+        "CD",
+        "B"
+      ]
+    ]
+  },
+  {
+    "label": "Phủ {GH → AC, AB → D, E → BH, GH → AB}",
+    "U": "ABCDEGHI",
+    "F": [
+      [
+        "GH",
+        "AC"
+      ],
+      [
+        "AB",
+        "D"
+      ],
+      [
+        "E",
+        "BH"
+      ],
+      [
+        "GH",
+        "AB"
+      ]
+    ],
+    "minimal": [
+      [
+        "GH",
+        "A"
+      ],
+      [
+        "GH",
+        "C"
+      ],
+      [
+        "AB",
+        "D"
+      ],
+      [
+        "E",
+        "B"
+      ],
+      [
+        "E",
+        "H"
+      ],
+      [
+        "GH",
+        "B"
+      ]
+    ]
+  },
+  {
+    "label": "Phủ {GI → AB, E → BH, DGI → AC, AI → CD}",
+    "U": "ABCDEGHI",
+    "F": [
+      [
+        "GI",
+        "AB"
+      ],
+      [
+        "E",
+        "BH"
+      ],
+      [
+        "DGI",
+        "AC"
+      ],
+      [
+        "AI",
+        "CD"
+      ]
+    ],
+    "minimal": [
+      [
+        "GI",
+        "A"
+      ],
+      [
+        "GI",
+        "B"
+      ],
+      [
+        "E",
+        "B"
+      ],
+      [
+        "E",
+        "H"
+      ],
+      [
+        "AI",
+        "C"
+      ],
+      [
+        "AI",
+        "D"
+      ]
+    ]
+  },
+  {
+    "label": "Tương đương trang 43",
+    "U": "ABCDE",
+    "F": [
+      [
+        "AB",
+        "DE"
+      ],
+      [
+        "D",
+        "BC"
+      ],
+      [
+        "C",
+        "A"
+      ],
+      [
+        "B",
+        "E"
+      ]
+    ],
+    "equivalent": [
+      [
+        "AB",
+        "D"
+      ],
+      [
+        "AB",
+        "E"
+      ],
+      [
+        "D",
+        "CE"
+      ],
+      [
+        "D",
+        "B"
+      ],
+      [
+        "C",
+        "A"
+      ],
+      [
+        "B",
+        "E"
+      ]
+    ]
+  },
+  {
+    "label": "Khóa trang 44 bài 1",
+    "U": "ABCDEG",
+    "F": [
+      [
+        "AB",
+        "GD"
+      ],
+      [
+        "CE",
+        "D"
+      ],
+      [
+        "C",
+        "A"
+      ],
+      [
+        "DG",
+        "C"
+      ],
+      [
+        "G",
+        "A"
+      ],
+      [
+        "G",
+        "B"
+      ]
+    ],
+    "keys": [
+      "EG",
+      "ABE",
+      "BCE"
+    ]
+  },
+  {
+    "label": "Khóa trang 44 bài 2",
+    "U": "ABCDEF",
+    "F": [
+      [
+        "BC",
+        "A"
+      ],
+      [
+        "C",
+        "DF"
+      ],
+      [
+        "BE",
+        "C"
+      ],
+      [
+        "D",
+        "F"
+      ]
+    ],
+    "keys": [
+      "BE"
+    ]
+  },
+  {
+    "label": "Khóa trang 44 bài 3",
+    "U": "ABCDE",
+    "F": [
+      [
+        "ABD",
+        "E"
+      ],
+      [
+        "D",
+        "C"
+      ],
+      [
+        "C",
+        "D"
+      ],
+      [
+        "CD",
+        "E"
+      ]
+    ],
+    "keys": [
+      "ABC",
+      "ABD"
+    ]
+  },
+  {
+    "label": "Khóa trang 44 bài 4",
+    "U": "ABCDEH",
+    "F": [
+      [
+        "BC",
+        "E"
+      ],
+      [
+        "D",
+        "A"
+      ],
+      [
+        "C",
+        "A"
+      ],
+      [
+        "AE",
+        "D"
+      ],
+      [
+        "BE",
+        "CH"
+      ]
+    ],
+    "keys": [
+      "BC",
+      "BE"
+    ]
+  },
+  {
+    "label": "Dạng chuẩn {AB → C, A → D, BD → C}",
+    "U": "ABCD",
+    "F": [
+      [
+        "AB",
+        "C"
+      ],
+      [
+        "A",
+        "D"
+      ],
+      [
+        "BD",
+        "C"
+      ]
+    ],
+    "normal_form": "1NF",
+    "keys": [
+      "AB"
+    ]
+  },
+  {
+    "label": "Dạng chuẩn {A → BC, C → DE, E → G}",
+    "U": "ABCDEG",
+    "F": [
+      [
+        "A",
+        "BC"
+      ],
+      [
+        "C",
+        "DE"
+      ],
+      [
+        "E",
+        "G"
+      ]
+    ],
+    "normal_form": "2NF",
+    "keys": [
+      "A"
+    ]
+  },
+  {
+    "label": "Dạng chuẩn {C → AB, D → E, B → G}",
+    "U": "ABCDEGH",
+    "F": [
+      [
+        "C",
+        "AB"
+      ],
+      [
+        "D",
+        "E"
+      ],
+      [
+        "B",
+        "G"
+      ]
+    ],
+    "normal_form": "1NF",
+    "keys": [
+      "CDH"
+    ]
+  },
+  {
+    "label": "Dạng chuẩn {AB → C, C → B}",
+    "U": "ABC",
+    "F": [
+      [
+        "AB",
+        "C"
+      ],
+      [
+        "C",
+        "B"
+      ]
+    ],
+    "normal_form": "3NF",
+    "keys": [
+      "AB",
+      "AC"
+    ]
+  },
+  {
+    "label": "Dạng chuẩn {A → C, D → C, BD → A}",
+    "U": "ABCD",
+    "F": [
+      [
+        "A",
+        "C"
+      ],
+      [
+        "D",
+        "C"
+      ],
+      [
+        "BD",
+        "A"
+      ]
+    ],
+    "normal_form": "1NF",
+    "keys": [
+      "BD"
+    ]
+  },
+  {
+    "label": "Phân rã bài 9",
+    "U": "ABCD",
+    "F": [
+      [
+        "A",
+        "C"
+      ],
+      [
+        "D",
+        "C"
+      ],
+      [
+        "BD",
+        "A"
+      ]
+    ],
+    "decomposition": [
+      "AB",
+      "ACD",
+      "BCD"
+    ],
+    "lossless": false,
+    "preserves": false,
+    "witness": [
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  {
+    "label": "Phân rã bài 10",
+    "U": "ABCD",
+    "F": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "B",
+        "C"
+      ],
+      [
+        "A",
+        "D"
+      ],
+      [
+        "D",
+        "C"
+      ]
+    ],
+    "decomposition": [
+      "AB",
+      "AC",
+      "BD"
+    ],
+    "lossless": false,
+    "preserves": false,
+    "witness": [
+      [
+        "a1",
+        "b1",
+        "c1",
+        "d1"
+      ],
+      [
+        "a2",
+        "b1",
+        "c1",
+        "d2"
+      ]
+    ]
+  },
+  {
+    "label": "Phân rã bài 11",
+    "U": "BCDGHIKLM",
+    "F": [
+      [
+        "C",
+        "IDBKH"
+      ],
+      [
+        "D",
+        "B"
+      ],
+      [
+        "K",
+        "H"
+      ]
+    ],
+    "decomposition": [
+      "DB",
+      "KH",
+      "CIDK",
+      "CLMG"
+    ],
+    "lossless": true,
+    "preserves": true,
+    "keys": [
+      "CGLM"
+    ]
+  },
+  {
+    "label": "BCNF mất bảo toàn PTH",
+    "U": "ABC",
+    "F": [
+      [
+        "AB",
+        "C"
+      ],
+      [
+        "C",
+        "B"
+      ]
+    ],
+    "decomposition": [
+      "BC",
+      "AC"
+    ],
+    "lossless": true,
+    "preserves": false
+  },
+  {
+    "label": "Phủ {AB → CD, CH → E, E → DH, H → C}",
+    "U": "ABCDEH",
+    "F": [
+      [
+        "AB",
+        "CD"
+      ],
+      [
+        "CH",
+        "E"
+      ],
+      [
+        "E",
+        "HD"
+      ],
+      [
+        "H",
+        "C"
+      ]
+    ],
+    "minimal": [
+      [
+        "AB",
+        "C"
+      ],
+      [
+        "AB",
+        "D"
+      ],
+      [
+        "H",
+        "E"
+      ],
+      [
+        "E",
+        "D"
+      ],
+      [
+        "E",
+        "H"
+      ],
+      [
+        "H",
+        "C"
+      ]
+    ]
+  },
+  {
+    "label": "Dạng chuẩn {A → BCE, BC → D, D → CE}",
+    "U": "ABCDE",
+    "F": [
+      [
+        "A",
+        "BCE"
+      ],
+      [
+        "CB",
+        "D"
+      ],
+      [
+        "D",
+        "EC"
+      ]
+    ],
+    "normal_form": "2NF",
+    "keys": [
+      "A"
+    ]
+  },
+  {
+    "label": "Dạng chuẩn {AB → C, A → DE, A → D, BD → C}",
+    "U": "ABCDE",
+    "F": [
+      [
+        "AB",
+        "C"
+      ],
+      [
+        "A",
+        "ED"
+      ],
+      [
+        "A",
+        "D"
+      ],
+      [
+        "BD",
+        "C"
+      ]
+    ],
+    "normal_form": "1NF",
+    "keys": [
+      "AB"
+    ]
+  },
+  {
+    "label": "Phủ {CJ → DH, CE → D, CJ → DE, CDH → J, CD → H}",
+    "U": "CDEHJ",
+    "F": [
+      [
+        "CJ",
+        "DH"
+      ],
+      [
+        "CE",
+        "D"
+      ],
+      [
+        "CJ",
+        "ED"
+      ],
+      [
+        "CDH",
+        "J"
+      ],
+      [
+        "CD",
+        "H"
+      ]
+    ],
+    "minimal": [
+      [
+        "CE",
+        "D"
+      ],
+      [
+        "CJ",
+        "E"
+      ],
+      [
+        "CD",
+        "J"
+      ],
+      [
+        "CD",
+        "H"
+      ]
+    ]
+  },
+  {
+    "label": "Giữa kỳ bài 4",
+    "U": "ABCDEGH",
+    "F": [
+      [
+        "AB",
+        "C"
+      ],
+      [
+        "C",
+        "DE"
+      ],
+      [
+        "D",
+        "B"
+      ],
+      [
+        "E",
+        "G"
+      ],
+      [
+        "G",
+        "H"
+      ]
+    ],
+    "closures": {
+      "AB": "ABCDEGH",
+      "C": "BCDEGH",
+      "AE": "AEGH"
+    }
+  },
+  {
+    "label": "Giữa kỳ bài 5",
+    "U": "ABCDEH",
+    "F": [
+      [
+        "AB",
+        "CD"
+      ],
+      [
+        "CH",
+        "E"
+      ],
+      [
+        "E",
+        "HD"
+      ],
+      [
+        "H",
+        "C"
+      ]
+    ],
+    "normal_form": "1NF",
+    "minimal": [
+      [
+        "AB",
+        "C"
+      ],
+      [
+        "AB",
+        "D"
+      ],
+      [
+        "H",
+        "E"
+      ],
+      [
+        "E",
+        "H"
+      ],
+      [
+        "E",
+        "D"
+      ],
+      [
+        "H",
+        "C"
+      ]
+    ],
+    "keys": [
+      "ABE",
+      "ABH"
+    ]
+  },
+  {
+    "label": "Giữa kỳ bài 7",
+    "U": "CDEHJ",
+    "F": [
+      [
+        "CJ",
+        "DH"
+      ],
+      [
+        "CE",
+        "D"
+      ],
+      [
+        "CJ",
+        "ED"
+      ],
+      [
+        "CDH",
+        "J"
+      ],
+      [
+        "CD",
+        "H"
+      ]
+    ],
+    "normal_form": "BCNF",
+    "decomposition": [
+      "CDJH",
+      "CJE",
+      "CED"
+    ],
+    "lossless": true,
+    "preserves": true,
+    "minimal": [
+      [
+        "CJ",
+        "E"
+      ],
+      [
+        "CE",
+        "D"
+      ],
+      [
+        "CD",
+        "J"
+      ],
+      [
+        "CD",
+        "H"
+      ]
+    ],
+    "keys": [
+      "CD",
+      "CE",
+      "CJ"
+    ]
+  },
+  {
+    "label": "Giữa kỳ bài 7 tách thêm",
+    "U": "CDEHJ",
+    "F": [
+      [
+        "CJ",
+        "DH"
+      ],
+      [
+        "CE",
+        "D"
+      ],
+      [
+        "CJ",
+        "ED"
+      ],
+      [
+        "CDH",
+        "J"
+      ],
+      [
+        "CD",
+        "H"
+      ]
+    ],
+    "decomposition": [
+      "CDHJ",
+      "CDEH"
+    ],
+    "lossless": true,
+    "preserves": true
+  }
+]
