@@ -3,8 +3,8 @@ from pathlib import Path
 p=Path(__file__).resolve().parent
 html=(p/'template.html').read_text(encoding='utf-8')
 html=html.replace('/* INLINE_STYLE */',(p/'styles.css').read_text(encoding='utf-8')+'\n'+(p/'theme.css').read_text(encoding='utf-8'))
-db='\n'.join('const '+name+'='+json.dumps(json.loads((p/file).read_text(encoding='utf-8')),ensure_ascii=False).replace('</','<\\/')+';' for name,file in [('DB_PROBLEMS','db-data.json'),('DB_CHAPTERS','db-chapters.json'),('DB_KNOWLEDGE','db-knowledge.json'),('DB_PRACTICE','db-practice.json')])
-html=html.replace('/* INLINE_JS */',db+'\n'+(p/'db.js').read_text(encoding='utf-8')+'\n'+(p/'app.js').read_text(encoding='utf-8'))
+db='\n'.join('const '+name+'='+json.dumps(json.loads((p/file).read_text(encoding='utf-8')),ensure_ascii=False).replace('</','<\\/')+';' for name,file in [('DB_PROBLEMS','db-data.json'),('DB_CHAPTERS','db-chapters.json'),('DB_KNOWLEDGE','db-knowledge.json'),('DB_PRACTICE','db-practice.json'),('OOP_TOPICS','oop-topics.json'),('OOP_KNOWLEDGE','oop-knowledge.json'),('OOP_THEORY','oop-theory.json'),('OOP_LABS','oop-labs.json'),('OOP_SOURCES','oop-sources.json')])
+html=html.replace('/* INLINE_JS */',db+'\n'+(p/'db.js').read_text(encoding='utf-8')+'\n'+(p/'oop.js').read_text(encoding='utf-8')+'\n'+(p/'app.js').read_text(encoding='utf-8'))
 embedded=json.dumps(json.loads((p/'data.json').read_text(encoding='utf-8')),ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
 html=html.replace('/* INLINE_DATA */',embedded)
 (p/'index.html').write_text(html,encoding='utf-8')

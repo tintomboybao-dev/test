@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Tổng quan và các nguyên lý OOP",
+    "description": "Mô hình lập trình,lớp và đối tượng,trừu tượng,đóng gói,kế thừa,đa hình.",
+    "file": "Topic 1 - Aug26.pdf"
+  },
+  {
+    "id": 2,
+    "title": ".NET và nền tảng C#",
+    "description": "Console,kiểu dữ liệu,chuyển kiểu,rẽ nhánh,vòng lặp,hàm,mảng và ngoại lệ.",
+    "file": "Topic 2-Aug26.pdf"
+  },
+  {
+    "id": 3,
+    "title": "Phân tích và thiết kế hướng đối tượng",
+    "description": "Trách nhiệm lớp,UML,quan hệ,bội số và mô hình hóa các bài toán trong bài giảng.",
+    "file": "Topic 3 - Aug26.pdf"
+  },
+  {
+    "id": 4,
+    "title": "Cài đặt lớp và đối tượng trong C#",
+    "description": "Phạm vi truy cập,property,constructor,this,static,quan hệ và nạp chồng toán tử.",
+    "file": "Topic 4-Aug26.pdf"
+  }
+]

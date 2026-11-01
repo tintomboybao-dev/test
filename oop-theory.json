@@ -1,0 +1,946 @@
+[
+  {
+    "id": "t1-01",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170634.png",
+    "title": "Mô hình tổ chức quanh lớp và đối tượng",
+    "kind": "essay",
+    "statement": "Mô hình lập trình nào tổ chức chương trình xoay quanh các đối tượng và lớp?",
+    "code": "",
+    "answer": "Lập trình hướng đối tượng (Object-Oriented Programming, OOP).",
+    "body": "<ol class=\"db-steps\"><li>Lớp mô tả dữ liệu và hành vi chung.</li><li>Đối tượng là thể hiện cụ thể của lớp, giữ trạng thái của mình.</li><li>Các đối tượng phối hợp bằng lời gọi phương thức để giải quyết công việc.</li></ol><pre class=\"oop-code\" tabindex=\"0\"><code>BankAccount a = new BankAccount();\na.Deposit(100);</code></pre><p>a là đối tượng tài khoản; Deposit là thông điệp yêu cầu tài khoản thay đổi số dư.</p>",
+    "correction": "Ảnh chấm sai cụm “Object-Oriented Programming” và đòi “Object-Oriented”. Hai cách viết cùng chỉ OOP; website chấp nhận ý nghĩa, không coi câu trả lời đầy đủ là sai."
+  },
+  {
+    "id": "t1-02",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170637.png",
+    "title": "Nguyên lý kế thừa",
+    "kind": "mc",
+    "statement": "Nguyên lý OOP nào cho phép lớp mới kế thừa thuộc tính và phương thức từ lớp khác?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "Đa hình",
+        "feedback": "Đa hình là nhiều cách đáp ứng cùng một giao diện/thông điệp; không phải cơ chế tạo lớp con."
+      },
+      {
+        "value": "B",
+        "label": "Đóng gói",
+        "feedback": "Đóng gói kết hợp dữ liệu và thao tác, kiểm soát truy cập."
+      },
+      {
+        "value": "C",
+        "label": "Trừu tượng hóa",
+        "feedback": "Trừu tượng hóa chọn đặc điểm cần thiết và che chi tiết không cần thấy."
+      },
+      {
+        "value": "D",
+        "label": "Kế thừa",
+        "feedback": "Kế thừa xây lớp dẫn xuất từ lớp cơ sở; khả năng truy cập thành viên vẫn tuân theo modifier."
+      }
+    ],
+    "answer": "D",
+    "body": "<p>Ví dụ Student : Person thể hiện Student là một loại Person. Thành viên private của Person không được lớp Student truy cập trực tiếp.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-03",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170641.png",
+    "title": "Dữ liệu và phương thức trong cùng đối tượng",
+    "kind": "mc",
+    "statement": "Mô hình nào tổ chức chương trình bằng các đối tượng chứa cả dữ liệu và phương thức?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "Lập trình tuần tự",
+        "feedback": "Tuần tự nhấn mạnh các lệnh thực hiện lần lượt."
+      },
+      {
+        "value": "B",
+        "label": "Lập trình hướng đối tượng",
+        "feedback": "OOP gắn trạng thái và hành vi vào các đối tượng của lớp."
+      },
+      {
+        "value": "C",
+        "label": "Lập trình thủ tục",
+        "feedback": "Thủ tục phân chương trình thành các hàm xử lý; không lấy lớp/đối tượng làm trung tâm mô hình."
+      },
+      {
+        "value": "D",
+        "label": "Lập trình logic",
+        "feedback": "Lập trình logic mô tả sự kiện và luật suy luận."
+      }
+    ],
+    "answer": "B",
+    "body": "<div class=\"db-equation\">Đối tượng = trạng thái + hành vi</div><p>Ví dụ phân số giữ tử/mẫu và có thao tác rút gọn.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-04",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170645.png",
+    "title": "Lớp là gì?",
+    "kind": "mc",
+    "statement": "Trong OOP, mô tả nào đúng nhất về lớp?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "Một hàm thực hiện hành động",
+        "feedback": "Một hàm chỉ biểu diễn một thao tác, không mô tả đầy đủ cấu trúc đối tượng."
+      },
+      {
+        "value": "B",
+        "label": "Một thể hiện dữ liệu riêng lẻ",
+        "feedback": "Một thể hiện cụ thể là đối tượng, không phải lớp."
+      },
+      {
+        "value": "C",
+        "label": "Bản thiết kế để tạo các đối tượng",
+        "feedback": "Lớp quy định thành viên chung; nhiều đối tượng được tạo theo bản thiết kế đó."
+      },
+      {
+        "value": "D",
+        "label": "Tập biến không liên quan",
+        "feedback": "Các thành viên trong lớp cần liên quan đến trách nhiệm của lớp, không phải các biến tùy ý."
+      }
+    ],
+    "answer": "C",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>Circle c1 = new Circle(2);\nCircle c2 = new Circle(5);</code></pre><p>Circle là lớp; c1,c2 là hai biến tham chiếu hai đối tượng có bán kính khác nhau.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-05",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170648.png",
+    "title": "Thông điệp giữa các đối tượng",
+    "kind": "essay",
+    "statement": "Khái niệm nào chỉ việc truyền yêu cầu từ một đối tượng đến đối tượng khác để kích hoạt hành vi?",
+    "code": "",
+    "answer": "Thông điệp (Message).",
+    "body": "<p>Ở mức cài đặt, thông điệp thường là lời gọi phương thức: đối tượng nhận, tên phương thức và các đối số.</p><pre class=\"oop-code\" tabindex=\"0\"><code>taiKhoan.Deposit(200);</code></pre><ol class=\"db-steps\"><li>Đối tượng nhận: taiKhoan.</li><li>Hành vi được yêu cầu: Deposit.</li><li>Dữ liệu đi kèm: số tiền 200.</li></ol>",
+    "correction": ""
+  },
+  {
+    "id": "t1-06",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170652.png",
+    "title": "Ví dụ đa hình qua nạp chồng",
+    "kind": "mc",
+    "statement": "Đâu là ví dụ đa hình theo cách dùng trong bài học?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "Các phương thức cùng tên nhưng khác danh sách tham số",
+        "feedback": "Nạp chồng cho cùng tên phương thức có nhiều chữ ký; bộ biên dịch chọn phiên bản phù hợp đối số."
+      },
+      {
+        "value": "B",
+        "label": "Một biến lưu nhiều kiểu dữ liệu",
+        "feedback": "Khả năng chứa giá trị nhiều kiểu không tự chứng minh có hành vi đa hình."
+      },
+      {
+        "value": "C",
+        "label": "Lớp con kế thừa lớp cha",
+        "feedback": "Kế thừa hỗ trợ xây dựng đa hình nhưng chỉ có quan hệ kế thừa chưa phải ví dụ gọi đa hình."
+      },
+      {
+        "value": "D",
+        "label": "Lớp che giấu thuộc tính",
+        "feedback": "Che dữ liệu thể hiện đóng gói, không phải nạp chồng."
+      }
+    ],
+    "answer": "A",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>int Tong(int a, int b) { return a + b; }\ndouble Tong(double a, double b) { return a + b; }</code></pre><p>Đây là đa hình tĩnh qua nạp chồng. Đa hình động qua override là khái niệm khác; không trộn hai cơ chế.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-07",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170657.png",
+    "title": "Lập trình tuần tự",
+    "kind": "essay",
+    "statement": "Mô hình nào thực hiện một chuỗi bước lần lượt cho đến khi chương trình kết thúc?",
+    "code": "",
+    "answer": "Lập trình tuần tự (Linear Programming theo cách gọi trong slide).",
+    "body": "<p>Ví dụ nhập chiều dài → nhập chiều rộng → tính diện tích → in kết quả. Trọng tâm là luồng lệnh tuần tự; lập trình thủ tục còn nhấn mạnh tách thành hàm. “Linear” ở đây không chỉ bài toán tối ưu quy hoạch tuyến tính.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-08",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170702.png",
+    "title": "Lập trình hàm và trạng thái bất biến",
+    "kind": "essay",
+    "statement": "Mô hình nào coi hàm là giá trị hạng nhất và hạn chế trạng thái có thể thay đổi?",
+    "code": "",
+    "answer": "Lập trình hàm (Functional Programming).",
+    "body": "<ol class=\"db-steps\"><li>Hàm có thể được truyền như một giá trị và dùng để tạo kết quả.</li><li>Ưu tiên hàm thuần: cùng đầu vào cho cùng đầu ra và hạn chế tác dụng phụ.</li><li>Ưu tiên tạo giá trị mới thay vì sửa trạng thái dùng chung.</li></ol><p>Lập trình thủ tục tổ chức theo thủ tục/hàm nhưng không mặc nhiên có các đặc điểm trên.</p>",
+    "correction": "Ảnh ghi đáp án “Procedural”, không phù hợp mô tả first-class functions và tránh mutable state. Đã hiệu chỉnh thành Functional Programming."
+  },
+  {
+    "id": "t1-09",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170705.png",
+    "title": "Thuộc tính mô tả trạng thái",
+    "kind": "essay",
+    "statement": "Tên gọi nào chỉ các trường dữ liệu mô tả trạng thái của đối tượng thuộc một lớp?",
+    "code": "",
+    "answer": "Thuộc tính (Attributes); trong mã C# dữ liệu thường được giữ bằng fields và truy cập qua properties.",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>class Circle\n{\n    private float radius; // trường dữ liệu lưu bán kính\n}</code></pre><p>Trong mô hình OOP, radius là thuộc tính trạng thái. Trong cú pháp C#, field và property là hai loại thành viên khác nhau; không gọi mọi field là property có get/set.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-10",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170709.png",
+    "title": "Đặc trưng kế thừa",
+    "kind": "essay",
+    "statement": "Đặc trưng OOP nào cho phép lớp con nhận và mở rộng thành viên của lớp cha?",
+    "code": "",
+    "answer": "Kế thừa (Inheritance).",
+    "body": "<p>Lớp con dùng lại phần chung của lớp cha và thêm phần riêng. Ví dụ GiangVien là một CanBo; HoTen thuộc phần chung, SoTietGiang thuộc phần riêng. Không dùng kế thừa cho quan hệ “hóa đơn chứa nhiều học phần”: đó là quan hệ có/chứa.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-11",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170713.png",
+    "title": "Ví dụ thông điệp",
+    "kind": "mc",
+    "statement": "Ví dụ nào thể hiện thông điệp trong OOP?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "Định nghĩa một lớp",
+        "feedback": "Định nghĩa lớp tạo bản mô tả kiểu, chưa gửi yêu cầu đến một đối tượng."
+      },
+      {
+        "value": "B",
+        "label": "Khai báo một biến",
+        "feedback": "Khai báo biến tạo tên để lưu giá trị/tham chiếu, chưa gọi hành vi."
+      },
+      {
+        "value": "C",
+        "label": "Lời gọi phương thức từ đối tượng này đến đối tượng khác",
+        "feedback": "Lời gọi xác định đối tượng nhận, hành vi và đối số, đúng ý nghĩa message passing."
+      },
+      {
+        "value": "D",
+        "label": "Chỉ thị sử dụng namespace",
+        "feedback": "using giúp tra cứu tên kiểu, không gửi thông điệp lúc chạy."
+      }
+    ],
+    "answer": "C",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>hoaDon.TinhTongTinChi();</code></pre><p>Đối tượng nhận là hoaDon; yêu cầu là tính tổng tín chỉ.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-12",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170716.png",
+    "title": "Một tên phương thức, nhiều cách đáp ứng",
+    "kind": "essay",
+    "statement": "Đặc trưng OOP nào cho phép cùng tên phương thức có các cách triển khai/đáp ứng khác nhau?",
+    "code": "",
+    "answer": "Đa hình (Polymorphism).",
+    "body": "<p>Nạp chồng: cùng tên, khác tham số, chọn tại thời điểm biên dịch. Ghi đè: lớp con cung cấp cách thực hiện của phương thức virtual/abstract, lựa chọn dựa trên kiểu thực lúc chạy. Cần nêu cơ chế cụ thể thay vì chỉ nói mọi hàm trùng tên đều đa hình động.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-13",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170720.png",
+    "title": "Từ khóa khai báo lớp",
+    "kind": "mc",
+    "statement": "Từ khóa nào của C# dùng để định nghĩa lớp?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "method",
+        "feedback": "method không phải từ khóa dùng để khai báo lớp."
+      },
+      {
+        "value": "B",
+        "label": "class",
+        "feedback": "class mở đầu một định nghĩa lớp, ví dụ class Student { ... }."
+      },
+      {
+        "value": "C",
+        "label": "object",
+        "feedback": "object là tên bí danh của System.Object, không thay thế từ khóa class."
+      },
+      {
+        "value": "D",
+        "label": "namespace",
+        "feedback": "namespace tổ chức các kiểu vào không gian tên."
+      }
+    ],
+    "answer": "B",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>class Student\n{\n    private string name;\n}</code></pre>",
+    "correction": ""
+  },
+  {
+    "id": "t1-14",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170724.png",
+    "title": "Mục tiêu đóng gói",
+    "kind": "mc",
+    "statement": "Đóng gói chủ yếu mang lại điều gì?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "Làm tăng độ phức tạp mã",
+        "feedback": "Độ phức tạp có thể phát sinh do thiết kế, nhưng không phải mục tiêu đóng gói."
+      },
+      {
+        "value": "B",
+        "label": "Che chi tiết bên trong và chỉ công khai thao tác cần thiết",
+        "feedback": "Kiểm soát truy cập giúp bảo vệ trạng thái và cung cấp giao diện sử dụng rõ ràng."
+      },
+      {
+        "value": "C",
+        "label": "Nhân đôi mã nguồn",
+        "feedback": "Sao chép mã làm khó bảo trì; đóng gói không yêu cầu nhân đôi mã."
+      },
+      {
+        "value": "D",
+        "label": "Cho phép đa kế thừa lớp",
+        "feedback": "Đóng gói không quyết định cơ chế kế thừa; C# không cho một lớp kế thừa nhiều lớp cơ sở."
+      }
+    ],
+    "answer": "B",
+    "body": "<p>Ví dụ giữ balance private và cập nhật qua Deposit/Withdraw để không thể tự gán số dư âm từ ngoài lớp.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t1-15",
+    "topic": 1,
+    "source": "Screenshot 2026-11-01 170728.png",
+    "title": "Phân biệt lớp và đối tượng",
+    "kind": "mc",
+    "statement": "Phát biểu nào đúng về quan hệ giữa lớp và đối tượng?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "Lớp và đối tượng hoàn toàn giống nhau",
+        "feedback": "Lớp là kiểu/bản thiết kế; đối tượng là thể hiện cụ thể khi chạy, hai khái niệm khác nhau."
+      },
+      {
+        "value": "B",
+        "label": "Lớp là một thể hiện của đối tượng",
+        "feedback": "Chiều mô tả bị đảo: đối tượng được tạo theo lớp."
+      },
+      {
+        "value": "C",
+        "label": "Đối tượng là bản thiết kế của lớp",
+        "feedback": "Bản thiết kế là lớp; không phải đối tượng."
+      },
+      {
+        "value": "D",
+        "label": "Đối tượng là một thể hiện của lớp",
+        "feedback": "Một đối tượng được tạo theo cấu trúc và hành vi do lớp quy định."
+      }
+    ],
+    "answer": "D",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>Student s = new Student();</code></pre><p>Student là lớp; new Student() tạo đối tượng và s giữ tham chiếu đến đối tượng đó.</p>",
+    "correction": "Ảnh có hai phương án trùng ý “đối tượng là bản thiết kế của lớp” và không có đáp án đúng, nhưng hệ thống vẫn đánh dấu một đáp án. Đã sửa phương án D thành “Đối tượng là một thể hiện của lớp” để có đúng một đáp án hợp lý."
+  },
+  {
+    "id": "t2-p01",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170748.png",
+    "title": "Lập trình kiểm tra năm nhuận",
+    "kind": "essay",
+    "statement": "Nhập một năm dương. Kiểm tra năm đó có phải năm nhuận không.",
+    "code": "",
+    "answer": "Năm nhuận khi chia hết cho 400, hoặc chia hết cho 4 và không chia hết cho 100.",
+    "body": "<ol class=\"db-steps\"><li>Dùng TryParse để nhận đúng một số nguyên dương.</li><li>Kiểm tra phần thế kỷ trước: chia hết cho 400 vẫn là nhuận.</li><li>Các năm chia hết cho 100 nhưng không cho 400 không nhuận.</li><li>Các năm còn lại chia hết cho 4 thì nhuận.</li></ol><div class=\"db-equation\">nhuan = (nam % 400 == 0) || (nam % 4 == 0 &amp;&amp; nam % 100 != 0)</div><pre class=\"oop-code\" tabindex=\"0\"><code>using System;\nclass Program\n{\n    static void Main()\n    {\n        int nam;\n        do { Console.Write(&quot;Nhập năm dương: &quot;); }\n        while (!int.TryParse(Console.ReadLine(), out nam) || nam &lt; 1);\n        bool nhuan = nam % 400 == 0 || (nam % 4 == 0 &amp;&amp; nam % 100 != 0);\n        Console.WriteLine(nhuan ? &quot;Là năm nhuận&quot; : &quot;Không phải năm nhuận&quot;);\n    }\n}</code></pre><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Năm</th><th scope=\"col\">Giải thích</th><th scope=\"col\">Kết quả</th></tr></thead><tbody><tr><td>2000</td><td>Chia hết 400</td><td>Nhuận</td></tr><tr><td>1900</td><td>Chia hết 100, không hết 400</td><td>Không nhuận</td></tr><tr><td>2024</td><td>Hết 4, không hết 100</td><td>Nhuận</td></tr><tr><td>2023</td><td>Không hết 4</td><td>Không nhuận</td></tr></tbody></table></div>",
+    "correction": ""
+  },
+  {
+    "id": "t2-p02",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170753.png",
+    "title": "Lập trình diện tích hình tròn",
+    "kind": "essay",
+    "statement": "Nhập bán kính hình tròn, tính và hiển thị diện tích.",
+    "code": "",
+    "answer": "S = π × r² với r ≥ 0.",
+    "body": "<ol class=\"db-steps\"><li>Nhập số thực r; không chấp nhận NaN,vô cực hoặc bán kính âm.</li><li>Dùng Math.PI thay vì tự lấy π=3,14 nếu đề không yêu cầu xấp xỉ.</li><li>Nhân Math.PI*r*r và in với định dạng phù hợp.</li></ol><pre class=\"oop-code\" tabindex=\"0\"><code>using System;\nclass Program\n{\n    static void Main()\n    {\n        double r;\n        do { Console.Write(&quot;Bán kính: &quot;); }\n        while (!double.TryParse(Console.ReadLine(), out r) || double.IsNaN(r)\n            || double.IsInfinity(r) || r &lt; 0);\n        double s = Math.PI * r * r;\n        Console.WriteLine(&quot;Diện tích = {0:F4}&quot;, s);\n    }\n}</code></pre><p>r=2 cho S≈12,5664. F4 chỉ làm tròn cách hiển thị, không sửa công thức lưu trong s.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t2-01",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170811.png",
+    "title": "Rẽ nhánh điểm số",
+    "kind": "mc",
+    "statement": "Đoạn mã dưới đây in gì?",
+    "code": "int score = 75;\nif (score >= 90)\n    Console.WriteLine(\"A\");\nelse if (score >= 70)\n    Console.WriteLine(\"B\");\nelse\n    Console.WriteLine(\"C\");",
+    "options": [
+      {
+        "value": "A",
+        "label": "C",
+        "feedback": "C chỉ được in khi cả score≥90 và score≥70 đều sai; score=75 không thỏa điều đó."
+      },
+      {
+        "value": "B",
+        "label": "A",
+        "feedback": "A cần score≥90 nhưng 75<90."
+      },
+      {
+        "value": "C",
+        "label": "Lỗi",
+        "feedback": "Các biến và điều kiện hợp lệ; không có lỗi ở đoạn mã này."
+      },
+      {
+        "value": "D",
+        "label": "B",
+        "feedback": "75 không đạt 90 nhưng đạt 70 nên nhánh else if in B."
+      }
+    ],
+    "answer": "D",
+    "body": "<ol class=\"db-steps\"><li>Thử 75≥90: false.</li><li>Thử 75≥70: true.</li><li>In B rồi bỏ qua nhánh else.</li></ol>",
+    "correction": ""
+  },
+  {
+    "id": "t2-02",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170815.png",
+    "title": "Tính điều kiện AND",
+    "kind": "essay",
+    "statement": "Giá trị biểu thức 10 > 5 && 8 < 3 là gì?",
+    "code": "",
+    "answer": "false (sai).",
+    "body": "<ol class=\"db-steps\"><li>10&gt;5 là true.</li><li>8&lt;3 là false.</li><li>&amp;&amp; chỉ true khi cả hai vế true; true&amp;&amp;false cho false.</li></ol><p>Trong mã C#, hằng Boolean viết thường true/false. Việc ảnh chấm “false” sai nhưng đòi “False” là vấn đề khớp chuỗi của hệ thống, không thay đổi giá trị logic.</p>",
+    "correction": "Chấp nhận cách diễn đạt false/sai. C# in Boolean bằng Console.WriteLine sẽ hiện False, còn từ khóa trong mã là false."
+  },
+  {
+    "id": "t2-03",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170821.png",
+    "title": "Chọn vòng lặp",
+    "kind": "essay",
+    "statement": "Vòng lặp nào thường phù hợp nhất khi đã biết trước số lần lặp?",
+    "code": "",
+    "answer": "for.",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>for (int i = 0; i &lt; n; i++)\n{\n    Console.WriteLine(i);\n}</code></pre><p>Khởi tạo, điều kiện và bước cập nhật nằm trên cùng một dòng nên phù hợp duyệt n phần tử. while vẫn làm được nếu viết đúng; for là lựa chọn thường dùng, không phải cơ chế duy nhất.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t2-04",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170826.png",
+    "title": "break dừng vòng lặp",
+    "kind": "mc",
+    "statement": "Đoạn mã dưới in dãy nào?",
+    "code": "for (int i = 1; i <= 5; i++)\n{\n    if (i == 3) break;\n    Console.Write(i + \" \");\n}",
+    "options": [
+      {
+        "value": "A",
+        "label": "3",
+        "feedback": "i=1,2 đã được in trước khi i đạt 3; không chỉ in 3."
+      },
+      {
+        "value": "B",
+        "label": "1 2 3",
+        "feedback": "break nằm trước Write ở i=3 nên 3 chưa được in."
+      },
+      {
+        "value": "C",
+        "label": "1 2",
+        "feedback": "i=1,2 qua điều kiện; đến i=3 thì break kết thúc vòng lặp."
+      },
+      {
+        "value": "D",
+        "label": "1 2 3 4 5",
+        "feedback": "break làm vòng lặp kết thúc trước i=4,5."
+      }
+    ],
+    "answer": "C",
+    "body": "<div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">i</th><th scope=\"col\">i==3?</th><th scope=\"col\">Thao tác</th></tr></thead><tbody><tr><td>1</td><td>Sai</td><td>In 1</td></tr><tr><td>2</td><td>Sai</td><td>In 2</td></tr><tr><td>3</td><td>Đúng</td><td>Thoát, không in 3</td></tr></tbody></table></div>",
+    "correction": ""
+  },
+  {
+    "id": "t2-05",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170832.png",
+    "title": "switch thiếu kết thúc nhánh",
+    "kind": "mc",
+    "statement": "Đoạn mã sau có kết quả nào?",
+    "code": "int month = 4;\nswitch (month)\n{\n    case 1: Console.WriteLine(\"Jan\"); break;\n    case 4: Console.WriteLine(\"Apr\");\n    default: Console.WriteLine(\"Unknown\"); break;\n}",
+    "options": [
+      {
+        "value": "A",
+        "label": "Jan",
+        "feedback": "month=4 không chọn case 1; hơn nữa mã chưa biên dịch thành công."
+      },
+      {
+        "value": "B",
+        "label": "Unknown",
+        "feedback": "C# không cho nhánh case 4 có lệnh chạy rơi xuống default như C/C++."
+      },
+      {
+        "value": "C",
+        "label": "Lỗi biên dịch",
+        "feedback": "case 4 có lệnh WriteLine nhưng không có break/return/goto hợp lệ để kết thúc nhánh, gây lỗi CS0163."
+      },
+      {
+        "value": "D",
+        "label": "Apr",
+        "feedback": "Chỉ sau khi sửa thêm break sau WriteLine(\"Apr\") thì mới in Apr."
+      }
+    ],
+    "answer": "C",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>case 4:\n    Console.WriteLine(&quot;Apr&quot;);\n    break;</code></pre><p>Có thể ghép nhiều nhãn case rỗng vào cùng một phần thân, nhưng không cho một phần thân đang thực thi tự rơi sang nhánh kế tiếp.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t2-06",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170837.png",
+    "title": "Số lần thực hiện while",
+    "kind": "mc",
+    "statement": "Thân vòng lặp dưới thực hiện bao nhiêu lần?",
+    "code": "int i = 1;\nwhile (i <= 5)\n    i++;",
+    "options": [
+      {
+        "value": "A",
+        "label": "Vô hạn",
+        "feedback": "i được tăng mỗi lần nên điều kiện cuối cùng sẽ sai."
+      },
+      {
+        "value": "B",
+        "label": "5",
+        "feedback": "Các lần vào thân có i=1,2,3,4,5; tổng cộng 5 lần."
+      },
+      {
+        "value": "C",
+        "label": "6",
+        "feedback": "Lúc i=6 chỉ kiểm tra điều kiện rồi dừng, không thực hiện thân lần thứ sáu."
+      },
+      {
+        "value": "D",
+        "label": "4",
+        "feedback": "Điều kiện có dấu ≤ nên i=5 vẫn thực hiện một lần."
+      }
+    ],
+    "answer": "B",
+    "body": "<div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">i trước thân</th><th scope=\"col\">i sau i++</th></tr></thead><tbody><tr><td>1</td><td>2</td></tr><tr><td>2</td><td>3</td></tr><tr><td>3</td><td>4</td></tr><tr><td>4</td><td>5</td></tr><tr><td>5</td><td>6</td></tr></tbody></table></div><p>Có 6 lần kiểm tra điều kiện nhưng chỉ 5 lần chạy thân.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t2-07",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170841.png",
+    "title": "Từ khóa thoát vòng lặp",
+    "kind": "essay",
+    "statement": "Từ khóa nào thoát ngay khỏi vòng lặp gần nhất?",
+    "code": "",
+    "answer": "break.",
+    "body": "<p>break kết thúc vòng lặp gần nhất và tiếp tục lệnh sau vòng lặp. continue bỏ phần còn lại của lần lặp hiện tại, sau đó sang lượt tiếp. return kết thúc cả phương thức, nên khác phạm vi tác động.</p><pre class=\"oop-code\" tabindex=\"0\"><code>while (true)\n{\n    if (Console.ReadLine() == &quot;0&quot;) break;\n}\nConsole.WriteLine(&quot;Đã thoát vòng lặp&quot;);</code></pre>",
+    "correction": ""
+  },
+  {
+    "id": "t2-08",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170845.png",
+    "title": "if với x=10",
+    "kind": "mc",
+    "statement": "Đoạn mã sau in gì?",
+    "code": "int x = 10;\nif (x > 5)\n    Console.WriteLine(\"A\");\nelse\n    Console.WriteLine(\"B\");",
+    "options": [
+      {
+        "value": "A",
+        "label": "B",
+        "feedback": "B chỉ được in khi x>5 sai; với x=10 điều kiện đúng."
+      },
+      {
+        "value": "B",
+        "label": "10",
+        "feedback": "Không có lệnh in biến x; mã in chuỗi A hoặc B."
+      },
+      {
+        "value": "C",
+        "label": "A",
+        "feedback": "10>5 đúng nên in A."
+      },
+      {
+        "value": "D",
+        "label": "Lỗi",
+        "feedback": "Cú pháp if/else ở đây hợp lệ."
+      }
+    ],
+    "answer": "C",
+    "body": "<ol class=\"db-steps\"><li>Gán x=10.</li><li>Tính x&gt;5 được true.</li><li>Thực hiện WriteLine(&quot;A&quot;), không vào else.</li></ol>",
+    "correction": "Ảnh chấm B, nhưng đúng theo mã hiển thị là A. Đã sửa khóa đáp án."
+  },
+  {
+    "id": "t2-09",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170851.png",
+    "title": "continue bỏ lượt chẵn",
+    "kind": "mc",
+    "statement": "Đoạn mã sau in dãy nào?",
+    "code": "for (int i = 1; i <= 5; i++)\n{\n    if (i % 2 == 0) continue;\n    Console.Write(i + \" \");\n}",
+    "options": [
+      {
+        "value": "A",
+        "label": "1 2 3 4 5",
+        "feedback": "Các số chẵn gặp continue trước khi đến Write nên không được in."
+      },
+      {
+        "value": "B",
+        "label": "2 4",
+        "feedback": "2,4 chính là các lượt bị bỏ qua."
+      },
+      {
+        "value": "C",
+        "label": "1 3 5",
+        "feedback": "1,3,5 có phần dư khác 0 nên đi đến lệnh in."
+      },
+      {
+        "value": "D",
+        "label": "3 5",
+        "feedback": "i bắt đầu 1 và 1 không bị bỏ qua, nên phải có cả 1."
+      }
+    ],
+    "answer": "C",
+    "body": "<p>continue trong for chuyển sang bước i++ rồi kiểm tra điều kiện lần kế tiếp; nó không thoát hẳn vòng lặp.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t2-10",
+    "topic": 2,
+    "source": "Screenshot 2026-11-01 170856.png",
+    "title": "switch chọn case 2",
+    "kind": "mc",
+    "statement": "Đoạn mã dưới in gì?",
+    "code": "int day = 2;\nswitch (day)\n{\n    case 1: Console.WriteLine(\"Monday\"); break;\n    case 2: Console.WriteLine(\"Tuesday\"); break;\n}",
+    "options": [
+      {
+        "value": "A",
+        "label": "Tuesday",
+        "feedback": "day=2 khớp case 2, in đúng chuỗi Tuesday rồi break."
+      },
+      {
+        "value": "B",
+        "label": "Day 2",
+        "feedback": "Không có chuỗi Day 2 nào trong đoạn mã."
+      },
+      {
+        "value": "C",
+        "label": "Monday",
+        "feedback": "Monday thuộc case 1 nhưng day không bằng 1."
+      },
+      {
+        "value": "D",
+        "label": "Lỗi",
+        "feedback": "Mỗi nhánh đều có break, cú pháp hợp lệ."
+      }
+    ],
+    "answer": "A",
+    "body": "<p>switch so giá trị day với từng nhãn; tên biến day không tự đổi thành tên ngày.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t4-01",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170909.png",
+    "title": "Property công khai đọc và ghi",
+    "kind": "mc",
+    "statement": "Khai báo nào là property công khai cho phép cả đọc và ghi từ bên ngoài lớp?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "private string Name { get; set; }",
+        "feedback": "Đây là property hợp lệ nhưng private nên bên ngoài lớp không truy cập được."
+      },
+      {
+        "value": "B",
+        "label": "string Name { get; }",
+        "feedback": "Đây là property chỉ đọc và mặc định private trong lớp; không đáp ứng đọc/ghi công khai."
+      },
+      {
+        "value": "C",
+        "label": "public string Name;",
+        "feedback": "Đây là field, không phải property có accessor get/set."
+      },
+      {
+        "value": "D",
+        "label": "public string Name { get; set; }",
+        "feedback": "Đây là auto-property public với cả get và set."
+      }
+    ],
+    "answer": "D",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>public string Name { get; set; }</code></pre><p>Muốn kiểm tra dữ liệu trước khi gán, dùng backing field và phần thân set thay cho auto-property.</p>",
+    "correction": "Câu gốc chỉ hỏi “property đúng”, trong khi A,B cũng có thể đúng cú pháp. Đã làm rõ yêu cầu public, đọc và ghi để chỉ D đáp ứng."
+  },
+  {
+    "id": "t4-02",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170913.png",
+    "title": "Biến đếm static",
+    "kind": "essay",
+    "statement": "Chương trình tạo hai đối tượng Counter rồi in Counter.Count. Kết quả là gì?",
+    "code": "class Counter\n{\n    public static int Count = 0;\n    public Counter() { Count++; }\n}\n// Trong Main:\nCounter c1 = new Counter();\nCounter c2 = new Counter();\nConsole.WriteLine(Counter.Count);",
+    "answer": "2.",
+    "body": "<ol class=\"db-steps\"><li>Count là static nên chỉ có một giá trị dùng chung, khởi tạo 0.</li><li>new Counter() lần đầu gọi constructor, Count tăng thành 1.</li><li>Lần thứ hai tăng cùng biến đó lên 2.</li><li>In bằng tên lớp Counter.Count.</li></ol>",
+    "correction": ""
+  },
+  {
+    "id": "t4-03",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170918.png",
+    "title": "Chữ ký operator quyết định toán hạng",
+    "kind": "mc",
+    "statement": "Point có operator +(Point a,Point b). Với p1,p2,p3 là Point, câu lệnh nào hợp lệ?",
+    "code": "class Point\n{\n    public int X, Y;\n    public static Point operator +(Point a, Point b)\n    {\n        return new Point { X = a.X + b.X, Y = a.Y + b.Y };\n    }\n}",
+    "options": [
+      {
+        "value": "A",
+        "label": "p3 = 5 + p1;",
+        "feedback": "Chưa có operator +(int,Point), cũng không có chuyển đổi ngầm từ int sang Point."
+      },
+      {
+        "value": "B",
+        "label": "p3 = p1 + p2;",
+        "feedback": "Cả hai toán hạng là Point, đúng chữ ký đã khai báo."
+      },
+      {
+        "value": "C",
+        "label": "p3 = Point + Point;",
+        "feedback": "Point là tên kiểu, không phải hai đối tượng để cộng."
+      },
+      {
+        "value": "D",
+        "label": "p3 = p1 + 5;",
+        "feedback": "Chưa có operator +(Point,int); overload không tự đảo hay chuyển kiểu cho đối số."
+      }
+    ],
+    "answer": "B",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>public static Point operator +(Point a, Point b)\n{\n    return new Point { X = a.X + b.X, Y = a.Y + b.Y };\n}</code></pre><p>Kết quả là đối tượng mới có tọa độ bằng tổng từng thành phần.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t4-04",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170922.png",
+    "title": "Truy cập private từ lớp khác",
+    "kind": "mc",
+    "statement": "Có thể dùng từ khóa nào trong các lựa chọn để trực tiếp truy cập field private từ một lớp khác, không lồng trong lớp sở hữu?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "internal",
+        "feedback": "internal áp dụng cho thành viên được khai báo internal; không mở khóa một field đang private."
+      },
+      {
+        "value": "B",
+        "label": "protected",
+        "feedback": "protected dành cho thành viên protected và quan hệ kế thừa; không cho truy cập trực tiếp field private của lớp cha."
+      },
+      {
+        "value": "C",
+        "label": "public",
+        "feedback": "public mở quyền cho thành viên được khai báo public, không cho lớp khác bỏ qua private của field đã có."
+      },
+      {
+        "value": "D",
+        "label": "Không có từ khóa nào trong ba lựa chọn cho phép vượt private",
+        "feedback": "Phải dùng hành vi/property được lớp sở hữu công khai; không có từ khóa gọi nào để vượt quyền private."
+      }
+    ],
+    "answer": "D",
+    "body": "<p>Ví dụ balance private thì mã ngoài lớp dùng Deposit,Withdraw hoặc Balance có get hợp lệ. Các đối tượng cùng lớp vẫn có thể truy cập private của nhau; câu hỏi đã nói rõ là lớp khác.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t4-05",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170927.png",
+    "title": "Vì sao để dữ liệu private?",
+    "kind": "essay",
+    "statement": "Mục đích chính của việc khai báo các trường dữ liệu private là gì?",
+    "code": "",
+    "answer": "Đóng gói (Encapsulation).",
+    "body": "<p>Giữ quyền thay đổi trạng thái trong lớp để bảo toàn điều kiện hợp lệ. Bên ngoài vẫn có thể thực hiện công việc qua phương thức/property công khai, nhưng không tự gán dữ liệu bỏ qua kiểm tra.</p><pre class=\"oop-code\" tabindex=\"0\"><code>private double balance;\npublic void Deposit(double amount)\n{\n    if (amount &gt; 0) balance += amount;\n}</code></pre>",
+    "correction": ""
+  },
+  {
+    "id": "t4-06",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170931.png",
+    "title": "Cách gọi phương thức static",
+    "kind": "mc",
+    "statement": "Từ Main của lớp Program khác Car, Car có public static void Method(). Cách gọi nào đúng?",
+    "code": "",
+    "options": [
+      {
+        "value": "A",
+        "label": "Car.Method();",
+        "feedback": "Phương thức static thuộc lớp nên gọi bằng tên lớp."
+      },
+      {
+        "value": "B",
+        "label": "Car myCar = new Car(); myCar.Method();",
+        "feedback": "C# báo CS0176 khi truy cập thành viên static qua biến đối tượng như thế này."
+      },
+      {
+        "value": "C",
+        "label": "Method();",
+        "feedback": "Trong ngữ cảnh Program đã nêu, không có Method của chính Program hay using static để gọi tên ngắn."
+      },
+      {
+        "value": "D",
+        "label": "this.Method();",
+        "feedback": "Main là static nên không có this; hơn nữa Method thuộc Car."
+      }
+    ],
+    "answer": "A",
+    "body": "<p>Static method vẫn có thể thao tác một đối tượng nếu được truyền đối tượng đó làm tham số; điều không được là dùng trực tiếp instance member khi không có instance.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t4-07",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170936.png",
+    "title": "Constructor gán tên sinh viên",
+    "kind": "essay",
+    "statement": "Cho chương trình dưới, kết quả in ra là gì?",
+    "code": "class Student\n{\n    string name;\n    public Student(string n) { name = n; }\n    public void Info() { Console.WriteLine(\"Student: \" + name); }\n}\n// Trong Main:\nStudent s = new Student(\"N.V.An\");\ns.Info();",
+    "answer": "Student: N.V.An",
+    "body": "<ol class=\"db-steps\"><li>new Student(&quot;N.V.An&quot;) gọi constructor có một tham số.</li><li>Trường name nhận giá trị chuỗi N.V.An.</li><li>Info ghép tiền tố &quot;Student: &quot; với trường name.</li></ol>",
+    "correction": ""
+  },
+  {
+    "id": "t4-08",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170941.png",
+    "title": "So sánh học phí hai khóa học",
+    "kind": "essay",
+    "statement": "KhoaHoc có TenKH,NgayDK,HocPhi và phương thức TinhHP() đã được viết đúng để tính tiền phải nộp. Viết toán tử kiểm tra hai khóa học có số tiền phải nộp bằng nhau hay không.",
+    "code": "",
+    "answer": "Nạp chồng cặp == và !=, so kết quả TinhHP(); xử lý null trước khi gọi phương thức.",
+    "body": "<ol class=\"db-steps\"><li>Giữ nguyên công thức TinhHP đã có; không tự so riêng HocPhi nếu tiền phải nộp còn phụ thuộc quy tắc khác.</li><li>Nếu hai tham chiếu cùng trỏ một đối tượng hoặc cùng null thì bằng nhau.</li><li>Nếu chỉ một bên null thì không bằng.</li><li>Hai bên khác null: gọi TinhHP của mỗi bên rồi so.</li><li>!= trả phủ định của ==; bổ sung Equals và GetHashCode thống nhất để tránh cảnh báo và hành vi không nhất quán.</li></ol><pre class=\"oop-code\" tabindex=\"0\"><code>public static bool operator ==(KhoaHoc a, KhoaHoc b)\n{\n    if (object.ReferenceEquals(a, b)) return true;\n    if (object.ReferenceEquals(a, null) || object.ReferenceEquals(b, null))\n        return false;\n    return a.TinhHP() == b.TinhHP();\n}\npublic static bool operator !=(KhoaHoc a, KhoaHoc b)\n{\n    return !(a == b);\n}\npublic override bool Equals(object obj)\n{\n    KhoaHoc other = obj as KhoaHoc;\n    return this == other;\n}\npublic override int GetHashCode()\n{\n    return TinhHP().GetHashCode();\n}</code></pre><p>Đặt các thành viên trên bên trong lớp KhoaHoc. Đề không cho công thức thân TinhHP, vì vậy không bịa quy tắc giảm giá/ngày đăng ký. Với dữ liệu double, đáp án dùng phép bằng đúng như đề; ứng dụng tiền tệ thực tế cần chốt kiểu số và quy tắc làm tròn.</p><div class=\"focus-block\">Không dùng a==null ở đầu operator == để tránh tự gọi lại chính overload gây đệ quy. Dùng ReferenceEquals.</div>",
+    "correction": ""
+  },
+  {
+    "id": "t4-09",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170946.png",
+    "title": "In property Name và sửa lỗi tên biến",
+    "kind": "essay",
+    "statement": "Đã có Student s với public string Name { get; set; }. Viết câu lệnh in giá trị s.Name. Đồng thời nhận xét ảnh có constructor/Info sử dụng name viết thường.",
+    "code": "",
+    "answer": "Console.WriteLine(s.Name);",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>Console.WriteLine(s.Name);\n// Cũng đúng:\nConsole.Write(&quot;{0}&quot;, s.Name);</code></pre><p>Name là property public nên truy cập bằng s.Name. WriteLine thêm xuống dòng, Write không thêm; cả hai in đúng giá trị được hỏi.</p><pre class=\"oop-code\" tabindex=\"0\"><code>public Student(string n) { Name = n; }\npublic void Info() { Console.WriteLine(&quot;Student: &quot; + Name); }</code></pre><p>C# phân biệt hoa/thường. Trong mã của ảnh, name chưa khai báo nên lớp không biên dịch; cần sửa thành Name trước khi chạy.</p>",
+    "correction": "Ảnh chấm sai WriteLine(s.Name) do yêu cầu khớp chuỗi. Đây vẫn là lệnh hợp lệ. Đồng thời đã chỉ rõ lỗi Name/name trong lớp gốc."
+  },
+  {
+    "id": "t4-10",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170950.png",
+    "title": "Từ khóa khai báo thành viên tĩnh",
+    "kind": "essay",
+    "statement": "Từ khóa nào khai báo một property tĩnh trong lớp C#?",
+    "code": "",
+    "answer": "static (viết thường).",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>public static double GiaSan { get; set; }</code></pre><p>Property thuộc lớp, truy cập bằng TenLop.GiaSan. C# phân biệt hoa/thường nên Static không phải từ khóa static.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t4-11",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 170955.png",
+    "title": "Viết Deposit kiểm tra số tiền",
+    "kind": "essay",
+    "statement": "BankAccount có AccNum,Name và double Balance. Viết Deposit: amount≤0 báo không hợp lệ; amount>0 cộng vào Balance và thông báo số dư mới.",
+    "code": "",
+    "answer": "Kiểm tra trước khi cập nhật; số tiền hợp lệ thì Balance += amount.",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>public void Deposit(double amount)\n{\n    if (double.IsNaN(amount) || double.IsInfinity(amount) || amount &lt;= 0)\n    {\n        Console.WriteLine(&quot;Số tiền không hợp lệ.&quot;);\n        return;\n    }\n    Balance += amount;\n    Console.WriteLine(&quot;Số dư được cập nhật là {0}.&quot;, Balance);\n}</code></pre><ol class=\"db-steps\"><li>amount≤0 không được làm thay đổi số dư.</li><li>Nhánh hợp lệ cộng, không gán Balance=amount vì như vậy mất số tiền cũ.</li><li>Thông báo in Balance sau cập nhật.</li></ol><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Balance ban đầu</th><th scope=\"col\">amount</th><th scope=\"col\">Kết quả</th></tr></thead><tbody><tr><td>100</td><td>50</td><td>150</td></tr><tr><td>100</td><td>0</td><td>Không hợp lệ; vẫn 100</td></tr><tr><td>100</td><td>-20</td><td>Không hợp lệ; vẫn 100</td></tr></tbody></table></div>",
+    "correction": "Phần chữ trong ảnh lúc ghi float, phần khai báo/mẫu lại dùng double. Bản này thống nhất double theo property Balance và chữ ký mẫu; nếu giảng viên yêu cầu float thì đổi đồng bộ chữ ký và kiểu dữ liệu."
+  },
+  {
+    "id": "t4-12",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 171002.png",
+    "title": "Gọi phương thức qua tham chiếu null",
+    "kind": "mc",
+    "statement": "Trong chế độ C# không bật nullable reference types, chương trình dưới xảy ra điều gì khi chạy?",
+    "code": "class Student\n{\n    string name;\n    public void Info() { Console.WriteLine(\"Student: \" + name); }\n}\n// Trong Main:\nStudent s = null;\ns.Info();",
+    "options": [
+      {
+        "value": "A",
+        "label": "In \"Student: \"",
+        "feedback": "Info chưa được thực hiện vì s không trỏ đối tượng; không có dòng Student nào được in."
+      },
+      {
+        "value": "B",
+        "label": "Phát sinh lỗi lúc chạy",
+        "feedback": "s.Info() dereference null, gây NullReferenceException tại lúc chạy."
+      },
+      {
+        "value": "C",
+        "label": "Không có hiện tượng nào",
+        "feedback": "Lời gọi không bị bỏ qua tự động; nó phát sinh ngoại lệ."
+      },
+      {
+        "value": "D",
+        "label": "Lỗi biên dịch vì phép gán null",
+        "feedback": "C# kiểu tham chiếu truyền thống cho phép gán null. Nullable hiện đại có thể cảnh báo, không phải lỗi mặc định của đoạn này."
+      }
+    ],
+    "answer": "B",
+    "body": "<p>Cần tạo đối tượng bằng new Student() trước khi gọi hoặc kiểm tra s!=null. null không phải một đối tượng Student có tên rỗng.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t4-13",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 171007.png",
+    "title": "Số dư mặc định của property",
+    "kind": "essay",
+    "statement": "Account có Owner và double Balance là auto-property, Deposit cộng amount. Sau new Account(), gán Owner=\"An\", Deposit(1000), in Balance được gì?",
+    "code": "class Account\n{\n    public string Owner { get; set; }\n    public double Balance { get; set; }\n    public void Deposit(double amount) { Balance += amount; }\n}\n// Trong Main:\nAccount a = new Account();\na.Owner = \"An\";\na.Deposit(1000);\nConsole.WriteLine(a.Balance);",
+    "answer": "1000.",
+    "body": "<ol class=\"db-steps\"><li>Đối tượng mới có backing field double của Balance bằng 0 theo giá trị mặc định.</li><li>Gán Owner chỉ thay tên chủ, không đổi số dư.</li><li>Deposit(1000) thực hiện Balance=0+1000.</li><li>WriteLine in 1000 theo định dạng mặc định.</li></ol>",
+    "correction": ""
+  },
+  {
+    "id": "t4-14",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 171012.png",
+    "title": "Gọi Add không tạo đối tượng",
+    "kind": "essay",
+    "statement": "MathOp có public static int Add(int a,int b) { return a+b; }. Có gọi Add mà không new MathOp không? Vì sao?",
+    "code": "",
+    "answer": "Có. Gọi MathOp.Add(3,4), kết quả 7.",
+    "body": "<pre class=\"oop-code\" tabindex=\"0\"><code>int tong = MathOp.Add(3, 4);\nConsole.WriteLine(tong);</code></pre><p>Add được khai báo static, thuộc lớp MathOp chứ không cần trạng thái của một instance. Hai tham số cung cấp dữ liệu cần tính.</p>",
+    "correction": ""
+  },
+  {
+    "id": "t4-15",
+    "topic": 4,
+    "source": "Screenshot 2026-11-01 171017.png",
+    "title": "Điền lệnh tạo đối tượng Student",
+    "kind": "essay",
+    "statement": "Lớp Student không tự khai báo constructor. Điền một lệnh trong Main để tạo đối tượng Student và lưu tham chiếu.",
+    "code": "",
+    "answer": "Student s = new Student();",
+    "body": "<ol class=\"db-steps\"><li>Student trước tên biến là kiểu tham chiếu.</li><li>s là tên biến, có thể chọn tên hợp lệ khác.</li><li>new Student() tạo đối tượng bằng constructor không tham số do trình biên dịch cung cấp.</li><li>Dấu = gán tham chiếu mới cho s; kết thúc bằng dấu chấm phẩy.</li></ol><pre class=\"oop-code\" tabindex=\"0\"><code>Student s = new Student();\n// Tên biến khác cũng đúng về ngữ nghĩa:\nStudent student = new Student();</code></pre><p>Constructor không tham số tự sinh chỉ có khi lớp chưa khai báo constructor instance nào. Nếu đã viết Student(string n), new Student() sẽ cần một constructor không tham số được định nghĩa thêm.</p>",
+    "correction": "Câu trả lời Student student = new Student() trong ảnh đúng về C# dù hệ thống đòi đúng tên s. Website giải thích cả hai cách thay vì chấm sai vì tên biến."
+  }
+]

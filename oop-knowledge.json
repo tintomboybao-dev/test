@@ -1,0 +1,344 @@
+[
+  {
+    "id": "k01",
+    "topic": 1,
+    "title": "Các mô hình lập trình và cách chọn cách tổ chức",
+    "source": "Topic 1 · Trang 4–15",
+    "formula": "Tuần tự: chuỗi lệnh; thủ tục: các hàm; OOP: các đối tượng phối hợp.",
+    "explain": "Mô hình lập trình là cách tổ chức lời giải. Một chương trình OOP vẫn có câu lệnh tuần tự, rẽ nhánh và các hàm; khác biệt nằm ở cách phân chia trách nhiệm.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Tuần tự: đi qua các bước theo thứ tự; phù hợp ví dụ nhập–tính–xuất nhỏ.</li><li>Thủ tục: tách một nhiệm vụ thành các hàm như NhapMang,SapXep,InMang.</li><li>OOP: đặt dữ liệu và hành vi liên quan vào lớp như PhanSo với TuSo,MauSo và RutGon.</li><li>OOP hỗ trợ mô hình hóa và tái sử dụng, nhưng không mặc nhiên làm mọi thuật toán nhanh hơn; bài rất nhỏ có thể không cần nhiều lớp.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Bài toán</th><th scope=\"col\">Cách tổ chức hợp lý</th></tr></thead><tbody><tr><td>Đổi chỗ hai số</td><td>Một hàm HoanDoi(ref int a,ref int b).</td></tr><tr><td>Hóa đơn chứa nhiều học phần</td><td>HocPhan quản lý từng học phần; HoaDonHocPhi giữ danh sách và tính tổng.</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">“Linear” trong slide là thực hiện tuần tự, không phải tối ưu quy hoạch tuyến tính. Không nhầm lập trình thủ tục với lập trình hàm bất biến.</div><h3>Tự kiểm tra</h3><p>Vì sao Lab 1 chủ yếu dùng các hàm trong Program, còn Lab 2 bắt đầu tách lớp?</p>"
+  },
+  {
+    "id": "k02",
+    "topic": 1,
+    "title": "Lớp và đối tượng",
+    "source": "Topic 1 · Trang 17–25",
+    "formula": "Class là bản thiết kế; object là một thể hiện cụ thể.",
+    "explain": "Lớp định nghĩa những thành viên có thể có. Một lần new tạo đối tượng; biến kiểu class giữ tham chiếu đến đối tượng, không chứa trực tiếp toàn bộ trạng thái của nó.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Xác định loại đối tượng cần mô hình, đặt tên lớp bằng danh từ.</li><li>Chọn trường dữ liệu mô tả trạng thái và phương thức mô tả hành vi.</li><li>Tạo instance bằng new rồi gọi thành viên qua biến tham chiếu.</li><li>Hai instance có trường instance riêng, nhưng static là phần dùng chung.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>Circle a = new Circle(2);\nCircle b = new Circle(5);\nCircle c = a; // c và a cùng tham chiếu một đối tượng</code></pre><p>Đổi radius của đối tượng qua a cũng được quan sát qua c; b là đối tượng khác.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Gán c=a không tạo bản sao mới. Khai báo Circle a; cũng chưa tạo đối tượng.</div><h3>Tự kiểm tra</h3><p>Lệnh nào thực sự tạo một hình tròn mới: b=a hay b=new Circle(a)?</p>"
+  },
+  {
+    "id": "k03",
+    "topic": 1,
+    "title": "Trạng thái, hành vi và thông điệp",
+    "source": "Topic 1 · Trang 19–27",
+    "formula": "Đối tượng = dữ liệu + hành vi; lời gọi = đối tượng nhận + phương thức + đối số.",
+    "explain": "Attribute trong mô hình mô tả trạng thái; method thực hiện hành vi. Message thường được cài bằng lời gọi phương thức trên một đối tượng.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Với tài khoản: accountNum,name,balance là dữ liệu; Deposit,Withdraw là hành vi.</li><li>Không để Program tự thao tác mọi dữ liệu của lớp; giao việc cho đúng đối tượng.</li><li>Xác định rõ đầu vào, kết quả trả về và trạng thái bị thay đổi của từng phương thức.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>taiKhoan.Deposit(500);\nfloat soDu = taiKhoan.GetBalance();</code></pre><p>Deposit thay đổi trạng thái; GetBalance chỉ đọc. 500 là đối số thực tế; amount trong khai báo là tham số.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Tên method không phải kết quả: phải có dấu () và đối số đúng kiểu để gọi.</div><h3>Tự kiểm tra</h3><p>Trong hoaDon.TinhTongTinChi(), đâu là đối tượng nhận và đâu là hành vi?</p>"
+  },
+  {
+    "id": "k04",
+    "topic": 1,
+    "title": "Trừu tượng hóa và đóng gói",
+    "source": "Topic 1 · Trang 30–31",
+    "formula": "Trừu tượng: chọn điều cần biết. Đóng gói: gom dữ liệu/hành vi và kiểm soát truy cập.",
+    "explain": "Trừu tượng hóa giúp chọn mô hình phù hợp bài toán. Đóng gói bảo vệ việc sử dụng mô hình: người dùng lớp thấy thao tác cần thiết, không cần biết chi tiết cài đặt.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Chỉ đưa thông tin phục vụ yêu cầu vào mô hình; quản lý học phí không nhất thiết cần màu tóc sinh viên.</li><li>Giữ các trường private nếu cần bảo vệ điều kiện hợp lệ.</li><li>Dùng property/method công khai để kiểm tra trước khi sửa trường.</li><li>Ghi điều kiện bất biến, ví dụ mẫu số khác 0, bán kính không âm.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>private double radius;\npublic double Radius\n{\n    get { return radius; }\n    set { if (value &gt;= 0) radius = value; }\n}</code></pre><p>Trừu tượng không đồng nghĩa bắt buộc viết abstract class. Ví dụ này là đóng gói qua property.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Có get/set nhưng setter cho phép mọi giá trị sai vẫn chưa bảo vệ được nghiệp vụ.</div><h3>Tự kiểm tra</h3><p>Vì sao nên kiểm tra mẫu số trong constructor thay vì chờ đến lúc xuất phân số?</p>"
+  },
+  {
+    "id": "k05",
+    "topic": 1,
+    "title": "Kế thừa và đa hình",
+    "source": "Topic 1 · Trang 32–34",
+    "formula": "is-a → kế thừa; cùng giao diện, nhiều cách đáp ứng → đa hình.",
+    "explain": "Kế thừa mở rộng lớp cơ sở; đa hình cho phép cùng lời gọi có những cách thực hiện phù hợp. Nạp chồng và ghi đè là hai cơ chế cần phân biệt.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Chỉ dùng kế thừa khi quan hệ “là một” hợp lý.</li><li>Nạp chồng: cùng tên nhưng khác chữ ký tham số; không chỉ khác kiểu trả về.</li><li>Ghi đè: lớp con thay cách thực hiện phương thức virtual/abstract được phép override.</li><li>Quan hệ chứa danh sách là has-a, không nên ép thành kế thừa.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Tình huống</th><th scope=\"col\">Khái niệm</th></tr></thead><tbody><tr><td>Tong(int,int), Tong(double,double)</td><td>Nạp chồng, lựa chọn theo kiểu đối số.</td></tr><tr><td>GiangVien là một CanBo</td><td>Có thể mô hình bằng kế thừa.</td></tr><tr><td>HoaDon có HocPhan[]</td><td>Quan hệ chứa/tham chiếu, không phải HoaDon kế thừa HocPhan.</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Các bài Lab 1–3 không yêu cầu tự thêm một cây kế thừa phức tạp. Lời giải giữ đúng lớp và quan hệ đề cho.</div><h3>Tự kiểm tra</h3><p>Vì sao HoaDonHocPhi không phải một loại HocPhan?</p>"
+  },
+  {
+    "id": "k06",
+    "topic": 1,
+    "title": "Lợi ích, giới hạn và ngôn ngữ OOP",
+    "source": "Topic 1 · Trang 11–13, 35–37",
+    "formula": "Tái sử dụng + mô-đun + giao diện rõ; đánh đổi bằng độ phức tạp thiết kế.",
+    "explain": "C#,Java,C++,Python đều hỗ trợ cách viết hướng đối tượng theo các cơ chế khác nhau. Khả năng dùng OOP không có nghĩa mọi chương trình của ngôn ngữ đó chỉ được viết theo một mô hình.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Tái sử dụng có thể qua lớp, thư viện và tổ hợp đối tượng, không chỉ qua kế thừa.</li><li>Chia lớp theo trách nhiệm giúp kiểm thử và sửa đổi cục bộ.</li><li>Cấu trúc lớp quá nhiều tầng có thể làm bài nhỏ khó hiểu hơn.</li><li>Đánh giá bằng yêu cầu và kiểm thử thay vì mặc định OOP luôn nhanh hoặc luôn an toàn.</li></ol><h3>Ví dụ có giải thích</h3><p>Lớp Adult của Lab 2.6 được dùng lại ở Lab 3.5 mà không phải viết lại công thức BMI. Lớp HoaDonHocPhi dùng nhiều HocPhan để tính tổng.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không sao chép nguyên đoạn mã sang nhiều nơi rồi gọi đó là tái sử dụng tốt; thay đổi công thức sẽ phải sửa nhiều bản.</div><h3>Tự kiểm tra</h3><p>Khi công thức BMI đổi theo yêu cầu bài, vì sao chỉ nên có một nơi cài đặt nó?</p>"
+  },
+  {
+    "id": "k07",
+    "topic": 2,
+    "title": ".NET, CLR và thư viện nền tảng",
+    "source": "Topic 2 · Trang 4–10",
+    "formula": ".NET là nền tảng; C# là ngôn ngữ; CLR là môi trường thực thi.",
+    "explain": "Bài giảng giới thiệu các thế hệ .NET Framework,.NET Core và .NET hợp nhất. Trọng tâm cần nắm là vai trò runtime, thư viện và công cụ, không học thuộc tên phiên bản mới nhất.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Mã C# được biên dịch thành assembly chứa IL và metadata trong mô hình chạy CLR thông thường.</li><li>CLR quản lý thực thi, kiểm tra kiểu, ngoại lệ và bộ nhớ; JIT có thể dịch IL thành mã máy khi chạy.</li><li>BCL cung cấp System.Console,System.String,System.Math,System.DateTime và nhiều kiểu dùng trong Lab.</li><li>Visual Studio là IDE giúp tạo project, sửa, build và debug; không phải chính ngôn ngữ C#.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">Mã C# → biên dịch → assembly/IL → CLR/JIT → thực thi</div><p>Các cơ chế triển khai có thể khác như AOT; sơ đồ trên giải thích đường chạy CLR/JIT cơ bản của bài học.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không đồng nhất .NET với Visual Studio hoặc với C#. Không nói mọi thế hệ .NET đều chỉ chạy Windows.</div><h3>Tự kiểm tra</h3><p>Console và Math được sử dụng từ thư viện hay là từ khóa của ngôn ngữ?</p>"
+  },
+  {
+    "id": "k08",
+    "topic": 2,
+    "title": "Solution, project, namespace và cách đặt tên",
+    "source": "Topic 2 · Trang 12–24, 33",
+    "formula": "Solution chứa project; project chứa các file; namespace tổ chức các kiểu.",
+    "explain": "Website dùng mỗi bài Lab như một project Console riêng để tránh nhiều Main và nhiều lớp trùng tên khi ghép tất cả bài.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Giữ một Program.cs làm điểm vào; đặt mỗi lớp nghiệp vụ trong file cùng tên.</li><li>Dùng namespace như Lab3_Bai03 cho một bài, không ghép Main của các bài khác vào project đó.</li><li>Tên lớp/phương thức/property bắt đầu chữ hoa: HocPhan,TinhHocPhi,Balance.</li><li>Tên biến/tham số/trường bắt đầu chữ thường: soTC,maHP,amount. Các tên đề bắt buộc như Cal_Area được giữ nguyên.</li><li>using System cho phép viết Console thay vì System.Console; khai báo namespace dùng cú pháp namespace Ten { ... }.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>using System;\nnamespace Lab3_Bai03\n{\n    class Program\n    {\n        static void Main(string[] args) { }\n    }\n}</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">using không phải lệnh tạo namespace. Đặt tên biến giống từ khóa hoặc nhầm hoa/thường gây lỗi khác nhau.</div><h3>Tự kiểm tra</h3><p>Vì sao không copy 27 Program.Main vào chung một project Console?</p>"
+  },
+  {
+    "id": "k09",
+    "topic": 2,
+    "title": "Main và nhập/xuất Console",
+    "source": "Topic 2 · Trang 25–27",
+    "formula": "ReadLine → string; Read → int; ReadKey → ConsoleKeyInfo.",
+    "explain": "Main là điểm vào trong cách tổ chức truyền thống của bài. Write không tự xuống dòng; WriteLine có xuống dòng.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Dùng Console.ReadLine để đọc một dòng, sau đó chuyển sang kiểu cần dùng.</li><li>Console.Read trả mã của một ký tự hoặc -1 khi hết đầu vào; không chỉ giới hạn ở ASCII.</li><li>ReadKey nhận thông tin phím, phù hợp chuyển động bằng mũi tên trong Lab 2.3.</li><li>Gán Console.InputEncoding/OutputEncoding bằng Encoding.UTF8 khi cần hiển thị tiếng Việt theo môi trường hỗ trợ.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>string hoTen = Console.ReadLine();\nint tuoi;\nif (int.TryParse(Console.ReadLine(), out tuoi))\n    Console.WriteLine(&quot;{0}, {1}&quot;, hoTen, tuoi);</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không viết int tuoi=Console.ReadLine(); vì không chuyển ngầm string thành int. Khi chuyển hướng đầu vào, các thao tác ReadKey/màu/con trỏ có thể không dùng như cửa sổ Console thật.</div><h3>Tự kiểm tra</h3><p>Đọc chuỗi &quot;5&quot; có tự biến thành số nguyên 5 không?</p>"
+  },
+  {
+    "id": "k10",
+    "topic": 2,
+    "title": "Định dạng, nội suy chuỗi và chú thích",
+    "source": "Topic 2 · Trang 28–30, 35",
+    "formula": "\"{0}\" là vị trí đối số; $\"{a}\" là biểu thức nội suy.",
+    "explain": "Hai kiểu chuỗi có hình thức giống nhưng cách hiểu dấu ngoặc nhọn khác. Các bài dự đoán kết quả cần đọc kỹ dấu $ trước chuỗi.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Composite formatting: Console.Write(&quot;{1}, {0}&quot;,a,b) lấy b trước a.</li><li>Interpolation: Console.Write($&quot;{1}, {0}&quot;,a,b) đã thay các biểu thức hằng 1,0 ngay trong chuỗi; các đối số a,b không được tham chiếu.</li><li>F2 hiển thị hai chữ số thập phân; phép tính bên trong vẫn giữ độ chính xác kiểu số.</li><li>Chuỗi @&quot;C:\\Data&quot; giữ dấu gạch chéo theo dạng verbatim; //,/* */ là chú thích; #region chỉ nhóm mã trong trình soạn thảo.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>int a = 10, b = 15;\nConsole.Write(&quot;{1}, {0}&quot;, a, b);   // 15, 10\nConsole.Write($&quot;{1}, {0}&quot;, a, b);  // 1, 0</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Nội suy có phân biệt biểu thức và tên biến. $&quot;{1}&quot; in số 1, không phải biến ở vị trí 1.</div><h3>Tự kiểm tra</h3><p>Tại sao cùng có {1},{0} nhưng hai câu lệnh có/không dấu $ cho kết quả khác?</p>"
+  },
+  {
+    "id": "k11",
+    "topic": 2,
+    "title": "Kiểu dữ liệu và giá trị mặc định",
+    "source": "Topic 2 · Trang 31–35",
+    "formula": "int: −2³¹…2³¹−1; byte: 0…255; long: số nguyên 64 bit.",
+    "explain": "Chọn kiểu theo miền dữ liệu. Fields và phần tử mảng có giá trị mặc định; biến cục bộ phải được gán trước khi đọc.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Dùng int cho đếm và nhiều phép toán số nguyên; long khi tích/tổng có thể vượt int.</li><li>float là System.Single, hằng thường có hậu tố f; double là System.Double; decimal có hậu tố m.</li><li>bool chỉ true/false, không đổi ngầm từ 0/1; char là một đơn vị mã UTF-16.</li><li>class,string,array,List&lt;T&gt; là kiểu tham chiếu; int,double,DateTime,enum là kiểu giá trị.</li><li>Field int mặc định 0,bool false,tham chiếu null; biến local chưa gán vẫn không được đọc.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Kiểu</th><th scope=\"col\">Ví dụ</th><th scope=\"col\">Điểm nhớ</th></tr></thead><tbody><tr><td>byte</td><td>byte soTC=3;</td><td>0..255; CTS đúng là System.Byte, không phải SByte.</td></tr><tr><td>float</td><td>float r=2.5f;</td><td>Khoảng 6–9 chữ số chính xác.</td></tr><tr><td>double</td><td>double s=Math.PI*r*r;</td><td>Khoảng 15–17 chữ số chính xác.</td></tr><tr><td>decimal</td><td>decimal gia=10.5m;</td><td>Thập phân chính xác hơn cho nhiều phép tính tiền; không đổi kiểu đề bắt buộc.</td></tr><tr><td>string</td><td>string s=null;</td><td>Gọi s.Length khi null gây ngoại lệ.</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Bảng slide có chỗ ghi System.SByte cho byte; kiểu đúng của byte là System.Byte. Không kết luận mọi biến chưa gán đều tự bằng 0.</div><h3>Tự kiểm tra</h3><p>Vì sao bool chk; if(chk)... gây lỗi biên dịch nhưng một field bool có thể đọc thành false?</p>"
+  },
+  {
+    "id": "k12",
+    "topic": 2,
+    "title": "Chuyển kiểu, Parse,TryParse và Convert",
+    "source": "Topic 2 · Trang 37–40",
+    "formula": "Nhập hợp lệ = chuyển được kiểu && nằm trong miền cho phép.",
+    "explain": "Chuyển kiểu tường minh có thể làm mất phần thập phân; Parse có thể ném ngoại lệ; TryParse trả về Boolean để kiểm soát nhập lại.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>int→long thường chuyển ngầm; double→int cần cast và cắt phần thập phân về phía 0 trong trường hợp hợp lệ.</li><li>int.Parse(&quot;12&quot;) cho 12; int.Parse(&quot;12.5&quot;) không hợp lệ.</li><li>Convert.ToInt32(double) có quy tắc làm tròn khác cast; Convert.ToInt32(&quot;50.5&quot;) không phải phép đọc chuỗi số nguyên hợp lệ.</li><li>TryParse phải kiểm tra kết quả và miền: !TryParse(...) || x&lt;min || x&gt;max.</li><li>Với số thực, từ chối NaN/Infinity nếu chúng không có nghĩa trong bài. Dấu chấm/phẩy phụ thuộc culture khi dùng overload mặc định.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>int n;\ndo { Console.Write(&quot;n [3,20]: &quot;); }\nwhile (!int.TryParse(Console.ReadLine(), out n) || n &lt; 3 || n &gt; 20);</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không dùng n&gt;0 || n&lt;=10 để kiểm tra sai miền 1..10: gần như mọi n đều làm biểu thức đúng. Điều kiện sai phải là n&lt;=0 || n&gt;10.</div><h3>Tự kiểm tra</h3><p>TryParse thành công có đảm bảo n=100 hợp lệ trong miền [3,20] không?</p>"
+  },
+  {
+    "id": "k13",
+    "topic": 2,
+    "title": "Toán tử số học, logic và điều kiện",
+    "source": "Topic 2 · Trang 36, 41–42",
+    "formula": "Chia số nguyên: 7/2=3; chia thực: 7.0/2=3.5.",
+    "explain": "Toán tử phụ thuộc kiểu toán hạng. && và || có đánh giá ngắn mạch; phép = gán khác phép == so sánh.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Cộng,trừ,nhân,chia,% dùng đúng miền; kiểm tra mẫu chia bằng 0 trước khi tính.</li><li>Ép một toán hạng sang double trước phép chia nếu cần phần lẻ.</li><li>&amp;&amp; chỉ đúng khi cả hai đúng; || đúng khi ít nhất một đúng; ! phủ định.</li><li>Dùng ngoặc nhóm điều kiện để bám sát yêu cầu, tránh nhầm AND/OR.</li><li>Toán tử ?: chọn một trong hai biểu thức theo điều kiện; không thay thế mọi cấu trúc if phức tạp.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>double thuong = (double)a / b;\nbool nhuan = nam % 400 == 0 || (nam % 4 == 0 &amp;&amp; nam % 100 != 0);</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Ép (double)(a/b) là quá muộn: phần lẻ đã mất trước lúc ép. Số thực chia 0 có thể cho Infinity/NaN thay vì ngoại lệ như số nguyên.</div><h3>Tự kiểm tra</h3><p>(double)(7/2) và (double)7/2 khác nhau ra sao?</p>"
+  },
+  {
+    "id": "k14",
+    "topic": 2,
+    "title": "Rẽ nhánh if và switch",
+    "source": "Topic 2 · Trang 41–42",
+    "formula": "if/else if chọn nhánh đầu tiên đúng; switch chọn nhãn phù hợp.",
+    "explain": "Điều kiện C# phải có kiểu bool. Phần thân nhiều lệnh cần dấu ngoặc nhọn để thể hiện đúng phạm vi.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>if/else if/else phù hợp điều kiện khoảng và kết hợp logic.</li><li>switch phù hợp các giá trị rời rạc như tháng 1..12,phép toán +−*/.</li><li>Một nhánh switch có thực thi phải kết thúc hợp lệ, thường dùng break.</li><li>Có thể dùng nhiều nhãn case rỗng chung một phần thân; không cho phần thân có lệnh tự rơi sang nhánh sau.</li><li>break thoát switch gần nhất, không mặc nhiên thoát cả vòng lặp ngoài.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>switch (c)\n{\n    case &#x27;+&#x27;: Console.WriteLine(a + b); break;\n    case &#x27;/&#x27;:\n        if (b == 0) Console.WriteLine(&quot;Không chia cho 0&quot;);\n        else Console.WriteLine((double)a / b);\n        break;\n    default: Console.WriteLine(&quot;Sai phép toán&quot;); break;\n}</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Thiếu break ở C# không giống cơ chế fall-through trong C/C++. Một số câu ảnh yêu cầu kết luận lỗi biên dịch.</div><h3>Tự kiểm tra</h3><p>Tại sao case 4 có WriteLine rồi sang default không được coi là in hai dòng?</p>"
+  },
+  {
+    "id": "k15",
+    "topic": 2,
+    "title": "Vòng lặp,break,continue và return",
+    "source": "Topic 2 · Trang 42–44",
+    "formula": "for/while: có thể 0 lượt; do...while: ít nhất 1 lượt.",
+    "explain": "Chọn vòng lặp theo điều kiện dừng. Cần cập nhật trạng thái để tránh vòng lặp vô hạn.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>for thích hợp duyệt chỉ số 0..n−1.</li><li>while kiểm tra trước; do...while kiểm tra sau, phù hợp nhập lại.</li><li>foreach duyệt từng phần tử; không dùng biến lặp để gán thay đổi trực tiếp phần tử của mảng.</li><li>break thoát vòng gần nhất; continue bỏ phần còn lại của lượt; return thoát phương thức.</li><li>Phân biệt số lần kiểm tra điều kiện với số lượt thực thi thân.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Mã</th><th scope=\"col\">Diễn tiến</th></tr></thead><tbody><tr><td>i=1; while(i&lt;=5) i++;</td><td>5 lượt thân,6 lần kiểm tra; cuối i=6.</td></tr><tr><td>for i=1..5, chẵn thì continue</td><td>In số lẻ 1,3,5 nếu Write đặt sau continue.</td></tr><tr><td>Sai quá 3 lần</td><td>Điều kiện đề “quá 3” nghĩa lần sai thứ tư mới vượt giới hạn.</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không viết i&lt;=a.Length để duyệt mảng vì chỉ số cuối là Length−1.</div><h3>Tự kiểm tra</h3><p>break trong switch nằm bên trong while thoát cấu trúc nào?</p>"
+  },
+  {
+    "id": "k16",
+    "topic": 2,
+    "title": "Hàm,tham số giá trị,ref và out",
+    "source": "Topic 2 · Trang 45–48",
+    "formula": "Mặc định truyền giá trị; ref sửa biến đã gán; out phải gán kết quả trong hàm.",
+    "explain": "Với class, truyền mặc định sao chép giá trị tham chiếu: có thể sửa đối tượng được trỏ tới nhưng gán lại tham số không gán lại biến của nơi gọi.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Khai báo kiểu trả về, tên và danh sách tham số rõ trách nhiệm.</li><li>Dùng void khi không trả dữ liệu; dùng return đúng kiểu cho hàm có kết quả.</li><li>ref phải ghi ở cả khai báo lẫn chỗ gọi; biến phải được khởi tạo trước.</li><li>out không cần có giá trị đầu vào nhưng phương thức phải gán trước mọi đường return bình thường.</li><li>Dùng ref cho hoán đổi hai biến int trong Lab 1.8, không chỉ đổi bản sao local.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>static void HoanDoi(ref int a, ref int b)\n{ int tam = a; a = b; b = tam; }\n// Gọi:\nint x=3,y=5;\nHoanDoi(ref x, ref y); // x=5,y=3</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Truyền một object bằng giá trị không đồng nghĩa sao chép sâu đối tượng. out và ref có yêu cầu khởi tạo khác nhau.</div><h3>Tự kiểm tra</h3><p>Vì sao HoanDoi(int a,int b) không thay đổi x,y ở Main?</p>"
+  },
+  {
+    "id": "k17",
+    "topic": 2,
+    "title": "Mảng một chiều,hai chiều và danh sách",
+    "source": "Topic 2 · Trang 51–60",
+    "formula": "a.Length: tổng phần tử; a.GetLength(d): độ dài chiều d.",
+    "explain": "Mảng có độ dài cố định sau khi tạo. List<T> có số phần tử thay đổi và được giới thiệu trong bài học, nhưng lời giải Lab dùng mảng khi số lượng đã biết để dễ theo dõi.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Khai báo int[] a=new int[n]; truy cập bằng a[i] với 0≤i&lt;n.</li><li>Mảng class như Circle[] a=new Circle[n] ban đầu có các phần tử null; phải new từng Circle.</li><li>Mảng hai chiều dùng int[,] a=new int[rows,cols], không phải int[] ở vế trái.</li><li>List&lt;T&gt;.Count là số phần tử; Capacity là sức chứa; Add,Insert,Remove,Contains thao tác danh sách.</li><li>Array.Sort(a) sắp tăng dần kiểu cơ bản; bài yêu cầu dùng operator/HoanDoi thì tự viết vòng lặp theo yêu cầu thay vì thay bằng thư viện.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>HocPhan[] ds = new HocPhan[n];\nfor (int i=0; i&lt;n; i++)\n{\n    ds[i] = new HocPhan();\n    ds[i].Nhap();\n}</code></pre><p>object[] có thể giữ tham chiếu đến các kiểu khác nhau, nhưng int[] chỉ chứa giá trị int; không suy rộng mọi mảng là khác kiểu từng phần tử.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Tạo mảng đối tượng chưa tạo n đối tượng. C# List có Sort(), không có phương thức chuẩn tên SortList như một chỗ ghi trong slide.</div><h3>Tự kiểm tra</h3><p>new Circle[3] có gọi Circle() ba lần chưa?</p>"
+  },
+  {
+    "id": "k18",
+    "topic": 2,
+    "title": "enum,nullable và phân biệt lỗi",
+    "source": "Topic 2 · Trang 34, 49–50, 65–69",
+    "formula": "Biên dịch: mã không hợp lệ. Lúc chạy: ngoại lệ. Logic: chạy được nhưng đáp án sai.",
+    "explain": "enum nhóm các hằng số có tên. Nullable giá trị như int? biểu diễn thêm trạng thái null. try/catch xử lý một số lỗi lúc chạy, không sửa lỗi cú pháp.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>enum Days {Sun,Mon,...} mặc định bắt đầu 0 nếu không gán giá trị.</li><li>int? x=null khác int x=0; chỉ dùng .Value khi có giá trị.</li><li>try chứa thao tác có thể ném ngoại lệ; catch phù hợp xử lý tình huống; finally dùng dọn dẹp trên các đường thực thi thông thường.</li><li>throw tạo/báo lại ngoại lệ khi dữ liệu vi phạm điều kiện.</li><li>Ưu tiên TryParse cho đầu vào thường sai định dạng; không bọc mọi dòng bằng catch rồi bỏ qua lỗi.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Ví dụ</th><th scope=\"col\">Loại lỗi</th></tr></thead><tbody><tr><td>int n=Console.ReadLine();</td><td>Biên dịch: string không đổi ngầm thành int.</td></tr><tr><td>Student s=null; s.Info();</td><td>Lúc chạy: NullReferenceException.</td></tr><tr><td>7/2 rồi gán double, mong 3.5</td><td>Logic: kết quả thực tế 3.</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">finally không phải lời hứa thực thi trong mọi sự cố như tiến trình bị cưỡng bức dừng. Không đặt code sai cú pháp vào try rồi mong catch cứu được.</div><h3>Tự kiểm tra</h3><p>Có thể bắt lỗi chưa gán biến local bằng catch không?</p>"
+  },
+  {
+    "id": "k19",
+    "topic": 3,
+    "title": "Quy trình phát triển hướng đối tượng",
+    "source": "Topic 3 · Trang 4–9",
+    "formula": "Yêu cầu → phân tích → thiết kế → UML → cài đặt → kiểm thử → bảo trì.",
+    "explain": "OOAD bắt đầu bằng hiểu bài toán và trách nhiệm đối tượng; chưa vội viết mọi thứ trong Main.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Ghi yêu cầu chức năng và điều kiện miền, ví dụ số học phần 2..9.</li><li>Chọn lớp và dữ liệu cần lưu; viết bất biến của từng lớp.</li><li>Chọn phương thức và quan hệ, biểu diễn bằng UML.</li><li>Chuyển thiết kế thành mã, đối chiếu tên/kiểu/chữ ký với sơ đồ.</li><li>Kiểm thử bình thường,biên và dữ liệu sai; khi đổi yêu cầu phải sửa cả thiết kế lẫn kiểm thử.</li></ol><h3>Ví dụ có giải thích</h3><p>Lab 3.3: HocPhan giữ một học phần và tính học phí; HoaDonHocPhi giữ sinh viên/danh sách,tính tổng và sắp xếp; Program chỉ khởi tạo và gọi.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Đừng chỉ gạch danh từ rồi biến tất cả thành class: “họ tên” thường là thuộc tính, không cần một lớp riêng trong bài nhỏ.</div><h3>Tự kiểm tra</h3><p>Bước nào giúp biết có cần thêm LopHoc ngoài SinhVien hay không?</p>"
+  },
+  {
+    "id": "k20",
+    "topic": 3,
+    "title": "Nhận diện lớp,thuộc tính và trách nhiệm",
+    "source": "Topic 3 · Trang 10–14, 32–40",
+    "formula": "Trách nhiệm → dữ liệu cần giữ + hành vi cần thực hiện.",
+    "explain": "Danh từ gợi ý lớp ứng viên, động từ gợi ý hành vi, nhưng phải tinh chỉnh theo mục tiêu hệ thống.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Phân biệt định danh/thông tin đơn giản với thực thể có vòng đời và hành vi riêng.</li><li>Một lớp cần có mục đích rõ; tránh một Program biết mọi chi tiết của mọi đối tượng.</li><li>Đặt logic gần dữ liệu: HocPhan tự biết học phí của nó; hóa đơn chỉ cộng các học phí.</li><li>Gộp lớp trùng vai trò; tách lớp đang ôm quá nhiều trách nhiệm.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Ứng viên trong bài học</th><th scope=\"col\">Xử lý</th></tr></thead><tbody><tr><td>Sinh viên</td><td>Lớp: thông tin cá nhân và kết quả.</td></tr><tr><td>Mã số,họ tên</td><td>Thuộc tính của sinh viên.</td></tr><tr><td>Học phần</td><td>Lớp: mã,tên,số tín chỉ.</td></tr><tr><td>Kết quả học phần</td><td>Lớp/liên kết gắn sinh viên với môn và điểm.</td></tr><tr><td>Nhà trường</td><td>Có thể chỉ là bối cảnh hệ thống nếu chưa có dữ liệu/hành vi cần quản lý riêng.</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Cùng có tên/địa chỉ không đủ để kết luận hai lớp phải kế thừa nhau.</div><h3>Tự kiểm tra</h3><p>Vì sao điểm của sinh viên ở từng môn cần gắn với cả sinh viên và môn?</p>"
+  },
+  {
+    "id": "k21",
+    "topic": 3,
+    "title": "UML lớp và ký hiệu thành viên",
+    "source": "Topic 3 · Trang 15–18",
+    "formula": "− private; + public; # protected; thành viên static được gạch chân.",
+    "explain": "Sơ đồ lớp có tên lớp,ngăn thuộc tính và ngăn phương thức. Đọc sơ đồ trước khi cài để giữ đúng chữ ký đề.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Thuộc tính viết tên:kiểu, có thể kèm giá trị mặc định.</li><li>Phương thức viết tên(tham_số):kiểu_trả_về.</li><li>Ký hiệu −radius:float yêu cầu trường riêng; +Cal_Area():double yêu cầu phương thức public trả double.</li><li>Toán tử +,quan hệ và bội số không thay thế kiểm tra ràng buộc bên trong phương thức.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">UML</th><th scope=\"col\">C# tương ứng</th></tr></thead><tbody><tr><td>− radius:float</td><td>private float radius;</td></tr><tr><td>+ Circle(r:float)</td><td>public Circle(float r) { ... }</td></tr><tr><td>+ Cal_Area():double</td><td>public double Cal_Area() { ... }</td></tr><tr><td>giaSan:double, gạch chân</td><td>static double giaSan;</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Dấu + trong ngăn UML thường là public, không phải mọi dòng đều là nạp chồng operator+.</div><h3>Tự kiểm tra</h3><p>Từ sơ đồ −balance:float,+GetBalance():float, bạn khai báo hai thành viên thế nào?</p>"
+  },
+  {
+    "id": "k22",
+    "topic": 3,
+    "title": "Liên kết,hướng truy cập và bội số",
+    "source": "Topic 3 · Trang 19–23, 39",
+    "formula": "1: đúng một; 0..*: không hoặc nhiều; 2..9: từ hai đến chín.",
+    "explain": "Association mô tả các đối tượng có liên hệ. Navigability cho biết đối tượng nào giữ/biết tham chiếu đến đối tượng nào.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Liên kết một chiều: chỉ A giữ tham chiếu B; B không cần biết A.</li><li>Hai chiều: cả hai phía có tham chiếu; khi cập nhật phải giữ chúng nhất quán.</li><li>Một–nhiều thường cài bằng field tham chiếu đơn ở phía một liên hệ và mảng/List ở phía chứa nhiều.</li><li>Bội số đọc ở đầu đối diện: một HoaDonHocPhi có 2..9 HocPhan theo đề.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>class HoaDonHocPhi\n{\n    private HocPhan[] ds;\n}</code></pre><p>Mảng biểu diễn khả năng chứa nhiều; constructor/Nhap phải kiểm tra n từ 2 đến 9 vì riêng kiểu mảng không tự cưỡng chế bội số.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không dùng một class kế thừa class còn lại chỉ vì có mũi tên liên kết. Không nhầm một chiều với một–một.</div><h3>Tự kiểm tra</h3><p>Một hóa đơn biết danh sách học phần nhưng HocPhan không biết hóa đơn: đó là liên kết một hay hai chiều?</p>"
+  },
+  {
+    "id": "k23",
+    "topic": 3,
+    "title": "Aggregation,composition và dependency",
+    "source": "Topic 3 · Trang 24–26",
+    "formula": "Aggregation: bộ phận sống độc lập. Composition: sở hữu mạnh theo mô hình. Dependency: dùng tạm thời.",
+    "explain": "Ba quan hệ thể hiện mức gắn kết khác nhau, không chỉ là ba kiểu đặt tên cho cùng một field.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Aggregation: một lớp học tập hợp sinh viên; sinh viên vẫn tồn tại khi nhóm/lớp quản lý thay đổi.</li><li>Composition: một đối tượng chủ tạo/quản lý bộ phận thuộc nó theo yêu cầu vòng đời, ví dụ Car tạo Engine trong constructor.</li><li>Dependency: A chỉ nhận B làm tham số hoặc dùng B cục bộ để làm một việc.</li><li>Trong C#, GC quản lý bộ nhớ; khái niệm sở hữu UML là quy tắc thiết kế, không tự đồng nghĩa hủy đối tượng ngay khi chủ mất.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>class Car\n{\n    private Engine engine;\n    public Car() { engine = new Engine(); }\n}</code></pre><p>Muốn gọi đây là composition còn phải xét quy tắc sở hữu/vòng đời của bài, không chỉ thấy từ khóa new là đủ cho mọi trường hợp.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không kết luận mọi mảng đối tượng đều là composition. Tham chiếu không tự diễn tả quyền sở hữu độc quyền.</div><h3>Tự kiểm tra</h3><p>Học phần danh mục dùng chung nhiều sinh viên nên là bộ phận độc quyền của một sinh viên không?</p>"
+  },
+  {
+    "id": "k24",
+    "topic": 3,
+    "title": "Generalization,realization và sơ đồ đối tượng",
+    "source": "Topic 3 · Trang 27–31",
+    "formula": "Generalization: is-a. Realization: thực hiện hợp đồng interface.",
+    "explain": "Sơ đồ lớp mô tả kiểu và quan hệ chung; sơ đồ đối tượng mô tả các instance và giá trị tại một thời điểm.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Kế thừa dùng tam giác rỗng hướng về lớp cơ sở trong UML.</li><li>Realization thường dùng đường đứt và tam giác rỗng hướng về interface.</li><li>Không đồng nhất specialization với realization: chuyên biệt hóa là quá trình tạo kiểu cụ thể hơn, còn realization thể hiện thực hiện hợp đồng.</li><li>Khi mô phỏng, đặt tên instance như s1:Student và ghi giá trị thực của nó.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Mô tả</th><th scope=\"col\">Sơ đồ phù hợp</th></tr></thead><tbody><tr><td>Student có fullName:string và CalculateGPA()</td><td>Sơ đồ lớp.</td></tr><tr><td>s1 có tên An,đăng ký HP1 với điểm 8</td><td>Sơ đồ đối tượng/trạng thái cụ thể.</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Lời giải Lab hiện tại chủ yếu dùng lớp cụ thể,tham chiếu,mảng và operator theo phạm vi đã học; không tự thêm interface khi đề không cần.</div><h3>Tự kiểm tra</h3><p>Sơ đồ nào giúp theo dõi hai biến cùng tham chiếu một Student?</p>"
+  },
+  {
+    "id": "k25",
+    "topic": 3,
+    "title": "Công thức điểm trung bình và tích lũy",
+    "source": "Topic 3 · Trang 32–42",
+    "formula": "GPA = Σ(điểmᵢ × tín_chỉᵢ) / Σ(tín_chỉᵢ)",
+    "explain": "Điểm trung bình có trọng số tín chỉ, không phải trung bình số học của các môn khi số tín chỉ khác nhau. Bài giảng dùng ngưỡng điểm môn ≥5 để tính tích lũy.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Tính tổng điểm nhân tín chỉ và tổng tín chỉ riêng.</li><li>Chỉ chia khi tổng tín chỉ&gt;0; nếu chưa có kết quả, trả trạng thái “chưa có dữ liệu” theo thiết kế.</li><li>Điểm tích lũy theo quy ước trong slide chỉ lấy các học phần đạt ngưỡng ≥5.</li><li>Tổng số tín chỉ tích lũy ≥ số tín chỉ yêu cầu dùng để xét điều kiện tốt nghiệp trong bài mô hình.</li><li>Không tự thêm quy tắc thi lại,xếp loại hay quy chế trường khi đề không cung cấp.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Học phần</th><th scope=\"col\">Điểm</th><th scope=\"col\">Tín chỉ</th></tr></thead><tbody><tr><td>A</td><td>8</td><td>3</td></tr><tr><td>B</td><td>6</td><td>2</td></tr></tbody></table></div><div class=\"db-equation\">GPA = (8×3 + 6×2)/(3+2) = 7,2</div><p>Trung bình (8+6)/2=7 không đúng cho ví dụ có tín chỉ khác nhau.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không chia cho số môn thay vì tổng tín chỉ. Học phí theo từng tín chỉ là công thức khác, không dùng điểm vào tính học phí.</div><h3>Tự kiểm tra</h3><p>Nếu một môn 4 điểm có 3 tín chỉ, nó có được cộng vào tín chỉ tích lũy theo ngưỡng bài không?</p>"
+  },
+  {
+    "id": "k26",
+    "topic": 3,
+    "title": "Bài thiết kế 1: phương trình bậc nhất",
+    "source": "Topic 3 · Trang 44",
+    "formula": "ax+b=0: a≠0 → x=−b/a; a=0,b=0 → vô số; a=0,b≠0 → vô nghiệm.",
+    "explain": "Đây là ví dụ nhận diện một lớp giữ hệ số và cung cấp hành vi biện luận, thay vì chỉ in một phép chia.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Chọn lớp PhuongTrinhBacNhat có a,b kiểu double.</li><li>Constructor/Nhap nhận hai hệ số.</li><li>Giai kiểm tra a=0 trước phép chia; nêu rõ các trường hợp.</li><li>Với bài cơ bản dùng bằng 0 theo dữ kiện nhập; nếu dùng xấp xỉ số thực thì phải công bố ngưỡng sai số.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">a</th><th scope=\"col\">b</th><th scope=\"col\">Kết quả</th></tr></thead><tbody><tr><td>2</td><td>-4</td><td>x=2</td></tr><tr><td>0</td><td>0</td><td>Vô số nghiệm</td></tr><tr><td>0</td><td>5</td><td>Vô nghiệm</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không tính −b/a ngay khi chưa biết a có bằng 0 không.</div><h3>Tự kiểm tra</h3><p>Lớp nên giữ x như trạng thái bắt buộc hay tính kết quả từ a,b khi cần?</p>"
+  },
+  {
+    "id": "k27",
+    "topic": 3,
+    "title": "Bài thiết kế 2: quản lý sinh viên và điểm thành phần",
+    "source": "Topic 3 · Trang 45",
+    "formula": "Điểm môn = quá_trình×wQT + giữa_kỳ×wGK + cuối_kỳ×(1−wQT−wGK).",
+    "explain": "Phân biệt dữ liệu sinh viên,môn học và kết quả đăng ký. Tỷ lệ có thể nhập dưới dạng [0,1] hoặc phần trăm nhưng phải thống nhất.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>SinhVien giữ mã,tên,ngày sinh,giới tính,lớp.</li><li>MonHoc giữ mã,tên,số tín chỉ.</li><li>KetQua giữ tham chiếu sinh viên/môn,các điểm và tỷ lệ.</li><li>Kiểm tra điểm trong miền được chọn; 0≤wQT,wGK và wQT+wGK≤1.</li><li>Tính điểm môn rồi tổng hợp GPA theo tín chỉ. Các ngưỡng xếp loại chưa có trong đề thì cần cấu hình/nêu giả thiết, không bịa là quy chế trường.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">QT=8,GK=7,CK=9,wQT=0,2,wGK=0,3\nĐiểm môn=8×0,2+7×0,3+9×0,5=8,2</div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Nhập 20 rồi dùng như 0,2 sẽ làm điểm sai gấp nhiều lần. Không đưa cùng một điểm chung vào mọi sinh viên của môn.</div><h3>Tự kiểm tra</h3><p>Vì sao DiemGiuaKy nằm trong KetQua thay vì MonHoc dùng chung?</p>"
+  },
+  {
+    "id": "k28",
+    "topic": 3,
+    "title": "Bài thiết kế 3: cán bộ và bảng lương",
+    "source": "Topic 3 · Trang 46",
+    "formula": "Hành chính: ngày_công×lương_tháng/26; giáo viên: số_tiết×thù_lao_mỗi_tiết.",
+    "explain": "Phần chung gồm mã,họ tên,giới tính; cách tính tiền phụ thuộc loại cán bộ. Đây là bài mô hình phù hợp thảo luận kế thừa/đa hình.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Có thể chọn CanBo làm phần chung,NhanVienHanhChinh và GiaoVien là hai loại cụ thể.</li><li>Tach TinhLuong theo từng loại thay vì dùng một công thức cho cả hai.</li><li>Danh sách n trong [5,30]; mỗi phần tử phải có loại và dữ liệu hợp lệ.</li><li>Dùng chia thực ở công thức /26 để không mất phần lẻ.</li><li>In mã,tên,tiền lương và kiểm tra trường hợp 0 ngày/0 tiết.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Loại</th><th scope=\"col\">Dữ liệu minh họa</th><th scope=\"col\">Tiền</th></tr></thead><tbody><tr><td>Hành chính</td><td>26 ngày,lương tháng 7800</td><td>7800</td></tr><tr><td>Giáo viên</td><td>10 tiết,200/tiết</td><td>2000</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không nhầm quan hệ danh sách cán bộ của trường với kế thừa; từng giáo viên là cán bộ, nhưng danh sách không là một cán bộ.</div><h3>Tự kiểm tra</h3><p>Nếu lương tháng 7800 và 13 ngày công thì tiền là bao nhiêu?</p>"
+  },
+  {
+    "id": "k29",
+    "topic": 4,
+    "title": "Cấu trúc lớp và phạm vi truy cập",
+    "source": "Topic 4 · Trang 4–18",
+    "formula": "private: trong lớp; public: qua giao diện công khai; internal: cùng assembly; protected: lớp và lớp dẫn xuất phù hợp.",
+    "explain": "Fields giữ dữ liệu; methods đọc/thay đổi dữ liệu. Quyền truy cập thực tế còn phụ thuộc quyền của kiểu bao ngoài.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Khai báo class với tên rõ trách nhiệm.</li><li>Dữ liệu không ghi modifier trong class mặc định private.</li><li>Kiểu class cấp namespace không ghi modifier mặc định internal, khác với thành viên.</li><li>Local chỉ có hiệu lực trong phạm vi phương thức/khối; field có vòng đời theo đối tượng hoặc lớp nếu static.</li><li>Private không có nghĩa chỉ đúng một object được dùng: code trong cùng lớp có thể đọc private của một instance khác.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>class Point\n{\n    private double x,y;\n    public double KhoangCach(Point p)\n    {\n        double dx=x-p.x,dy=y-p.y;\n        return Math.Sqrt(dx*dx+dy*dy);\n    }\n}</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không tự sửa mọi field thành public để Main gọi được. Đó là bỏ qua đóng gói thay vì thiết kế phương thức phù hợp.</div><h3>Tự kiểm tra</h3><p>Vì sao Point có thể đọc p.x dù x là private?</p>"
+  },
+  {
+    "id": "k30",
+    "topic": 4,
+    "title": "Property truyền thống và auto-property",
+    "source": "Topic 4 · Trang 19–20",
+    "formula": "get trả giá trị; set nhận qua biến ngầm value.",
+    "explain": "Property là thành viên có accessor, cú pháp dùng như truy cập dữ liệu nhưng có thể chạy kiểm tra bên trong.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Dùng backing field khi cần giữ tên dữ liệu riêng và kiểm tra ở set.</li><li>get-only khi chỉ cho phép đọc; không phải property nào cũng cần cả get và set công khai.</li><li>Auto-property public string Name {get;set;} tạo backing field ẩn.</li><li>Constructor nên đi qua cùng quy tắc hợp lệ để không đưa object vào trạng thái sai.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>private int minute;\npublic int Minute\n{\n    get { return minute; }\n    set\n    {\n        if (value &lt; 0 || value &gt; 59)\n            throw new ArgumentOutOfRangeException(&quot;value&quot;);\n        minute = value;\n    }\n}</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Tên property và field khác hoa/thường: Minute khác minute. value chỉ có ý nghĩa trong setter tương ứng.</div><h3>Tự kiểm tra</h3><p>Lab Time cần Minute,Second là property còn GetHour/SetHour là phương thức; vì sao không gộp sai chữ ký?</p>"
+  },
+  {
+    "id": "k31",
+    "topic": 4,
+    "title": "Constructor và gọi nối constructor",
+    "source": "Topic 4 · Trang 22–28",
+    "formula": "Constructor: cùng tên lớp, không kiểu trả về, chạy khi new.",
+    "explain": "Constructor thiết lập trạng thái ban đầu. Có thể nạp chồng nhiều constructor hoặc dùng tham số mặc định theo yêu cầu bài.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Không tham số đặt giá trị mặc định đúng đề.</li><li>Có tham số nhận dữ liệu rồi kiểm tra miền.</li><li>Constructor sao chép nhận một đối tượng cùng lớp và tạo đối tượng mới.</li><li>Dùng :this(...) để gọi constructor khác nếu giúp tránh lặp logic.</li><li>Nếu đã tự khai báo constructor có tham số, trình biên dịch không tự thêm constructor không tham số.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>public Time() : this(0,0,0) { }\npublic Time(int h,int m,int s)\n{\n    SetHour(h); Minute=m; Second=s;\n}</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">public void Time() là phương thức tên Time, không phải constructor hợp lệ với ý nghĩa khởi tạo. Không gán trực tiếp trường để bỏ qua kiểm tra quan trọng.</div><h3>Tự kiểm tra</h3><p>Sau khi chỉ khai báo Point(double x,double y), new Point() có còn tự hợp lệ không?</p>"
+  },
+  {
+    "id": "k32",
+    "topic": 4,
+    "title": "Sao chép đối tượng: tham chiếu,nông và sâu",
+    "source": "Topic 4 · Trang 26–27",
+    "formula": "b=a: chung đối tượng; b=new A(a): đối tượng mới theo constructor sao chép.",
+    "explain": "Tạo đối tượng mới chưa chắc tạo mới mọi đối tượng được chứa bên trong. Các trường tham chiếu cần chính sách sao chép rõ ràng.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Với lớp chỉ có số và string dùng như giá trị bất biến, sao chép từng trường thường đủ cho bài.</li><li>Nếu chứa mảng/danh sách đối tượng, gán trực tiếp field mảng sẽ làm hai đối tượng dùng chung mảng.</li><li>MemberwiseClone trong slide là sao chép nông.</li><li>Muốn độc lập sâu phải tạo mới bộ phận và sao chép theo yêu cầu; không tự giả định mọi class luôn cần deep copy.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>HinhChuNhat a=new HinhChuNhat(3,4);\nHinhChuNhat b=a;\nHinhChuNhat c=new HinhChuNhat(a);</code></pre><p>b tham chiếu a; c là đối tượng mới với hai số chiều dài/rộng được chép.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không gọi phép gán tham chiếu là constructor sao chép. Không hứa copy sâu nếu constructor chỉ gán một mảng tham chiếu.</div><h3>Tự kiểm tra</h3><p>Sửa chiều dài của a sẽ ảnh hưởng b và c thế nào?</p>"
+  },
+  {
+    "id": "k33",
+    "topic": 4,
+    "title": "Finalizer và quản lý bộ nhớ",
+    "source": "Topic 4 · Trang 29–30",
+    "formula": "~TenLop() { ... } — không modifier, không tham số, thời điểm chạy không xác định.",
+    "explain": "C# dùng GC quản lý bộ nhớ đối tượng. Finalizer không phải thao tác tự gọi để xóa ngay một instance, và không cần cho các lớp Lab chỉ giữ dữ liệu managed đơn giản.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Chỉ nhận biết cú pháp ~ClassName() theo bài học.</li><li>Không đặt public/private trước finalizer.</li><li>Không dựa vào thời điểm finalizer chạy để in đáp án hoặc hoàn tất nghiệp vụ.</li><li>Dọn tài nguyên đúng lúc thường cần cơ chế phù hợp như IDisposable/using; đây là ghi chú đối chiếu,không bắt thêm vào bài Lab hiện tại.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>class Demo\n{\n    ~Demo()\n    {\n        // Không dùng để quyết định thứ tự in của chương trình.\n    }\n}</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Slide có câu “usually public” không đúng cú pháp finalizer C#: không khai báo access modifier. Finalizer không bảo đảm chạy ngay khi biến ra khỏi scope.</div><h3>Tự kiểm tra</h3><p>Vì sao không viết finalizer chỉ để in “đã xóa phân số” trong bài tính toán?</p>"
+  },
+  {
+    "id": "k34",
+    "topic": 4,
+    "title": "this và thành viên static",
+    "source": "Topic 4 · Trang 32–36",
+    "formula": "this: instance hiện tại; static: thành viên thuộc lớp.",
+    "explain": "this phân biệt field với tham số trùng tên và có thể trả chính đối tượng hiện tại. Static dùng chung một giá trị, nên thay đổi ở một nơi ảnh hưởng mọi instance quan sát nó.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>this.radius=radius gán tham số vào field cùng tên.</li><li>return this trả chính object để có thể gọi nối, không tạo object mới.</li><li>Truy cập field/method static bằng tên lớp.</li><li>Static method không có this; có thể dùng instance được truyền vào làm tham số.</li><li>Constructor instance nếu gán field static sẽ đổi giá trị chung mỗi lần tạo đối tượng.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>public static float price=10.5f;\n// Nếu constructor đặt price=9.5f rồi constructor khác đặt 7.5f,\n// cả đối tượng cũ cũng tính theo giá chung 7.5f.</code></pre><p>Đây là điểm then chốt của Lab 3.6 Bill.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Không dùng b.price để truy cập static từ biến b trong C#. Một slide mẫu trả 1/0 từ hàm bool là sai; phải trả true/false.</div><h3>Tự kiểm tra</h3><p>Sau khi b2 đổi Bill.price, b1.Cal_Bill() có dùng giá cũ riêng của b1 không?</p>"
+  },
+  {
+    "id": "k35",
+    "topic": 4,
+    "title": "Cài đặt quan hệ lớp bằng tham chiếu và mảng",
+    "source": "Topic 4 · Trang 38–42",
+    "formula": "Một đối tượng → một field tham chiếu; nhiều đối tượng → mảng/List phù hợp.",
+    "explain": "Chọn quan hệ một chiều nếu chỉ một phía cần điều hướng. Với hai chiều, phải đảm bảo cập nhật nhất quán cả hai.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>HocPhan[] ds trong HoaDonHocPhi biểu diễn hóa đơn biết các học phần.</li><li>Tạo mảng xong phải new từng phần tử nếu chưa có đối tượng.</li><li>Nếu nhận mảng từ ngoài và muốn độc lập, chép mảng/đối tượng theo chính sách đã nêu.</li><li>Không tự gắn reference vòng ở cả hai phía nếu bài không dùng đến.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>private HocPhan[] ds;\npublic HoaDonHocPhi()\n{\n    ds=new HocPhan[0];\n}</code></pre><p>Mảng rỗng giúp object ở trạng thái có thể tính tổng 0 trước khi Nhap kiểm tra 2..9 học phần.</p><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Sơ đồ một chiều trong slide có trường bị gạch bỏ; nếu chỉ đọc trích chữ có thể nhầm hai chiều. Website đã đối chiếu hình.</div><h3>Tự kiểm tra</h3><p>Vì sao không để mọi học phần đều biết ngược về tất cả hóa đơn chứa nó khi bài chỉ cần in một hóa đơn?</p>"
+  },
+  {
+    "id": "k36",
+    "topic": 4,
+    "title": "Nạp chồng toán tử số học và so sánh",
+    "source": "Topic 4 · Trang 44–46",
+    "formula": "public static KieuTraVe operator T(Kieu a,Kieu b) { ... }",
+    "explain": "Toán tử là một phương thức có tên đặc biệt. Kiểu trả về và thứ tự toán hạng phải đúng ý nghĩa đề; không bắt buộc + trả một đối tượng cùng lớp.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Ít nhất một toán hạng trong overload nhị phân phải là kiểu đang định nghĩa theo kiểu khai báo static dùng trong bài.</li><li>operator +(double,Circle) cộng một số với diện tích, trả double; không phải cộng bán kính.</li><li>Phải định nghĩa theo cặp: &lt; với &gt;; &lt;= với &gt;=; == với !=.</li><li>Viết + không tự sinh + với thứ tự toán hạng đảo lại.</li><li>Không thay đổi độ ưu tiên hoặc số toán hạng của ký hiệu; không nạp chồng riêng dấu = theo cách bài này.</li></ol><h3>Ví dụ có giải thích</h3><pre class=\"oop-code\" tabindex=\"0\"><code>public static double operator +(double tong,Circle c)\n{ return tong+c.Cal_Area(); }\npublic static bool operator &lt;(Circle a,Circle b)\n{ return a.Cal_Perimeter()&lt;b.Cal_Perimeter(); }\npublic static bool operator &gt;(Circle a,Circle b)\n{ return a.Cal_Perimeter()&gt;b.Cal_Perimeter(); }</code></pre><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Circle &lt; Circle trả bool, không phải số 0/1. + theo diện tích không có nghĩa tạo Circle mới có bán kính cộng dồn.</div><h3>Tự kiểm tra</h3><p>Vì sao trong Lab 3.2 phải viết thêm &gt; dù đề chỉ liệt kê &lt;?</p>"
+  },
+  {
+    "id": "k37",
+    "topic": 4,
+    "title": "Bằng nhau theo giá trị và xử lý null",
+    "source": "Topic 4 · Trang 44–46, mở rộng cần thiết để code đúng",
+    "formula": "Phân số a/b = c/d ⇔ a×d = c×b, với b,d≠0.",
+    "explain": "Khi định nghĩa == cho class, cần quyết định so tham chiếu hay giá trị. Bài phân số yêu cầu so giá trị toán học, nên 1/2 bằng 2/4.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Kiểm tra ReferenceEquals trước để xử lý cùng đối tượng/cùng null.</li><li>Chỉ một bên null thì không bằng; hai bên có object mới đọc tử/mẫu.</li><li>Dùng tích chéo với kiểu đủ rộng và kiểm tra tràn nếu cần.</li><li>!= là phủ định của ==.</li><li>Giữ Equals và GetHashCode nhất quán; rút gọn và chuẩn hóa dấu giúp cùng giá trị có cùng biểu diễn chuẩn.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-equation\">1×4 = 2×2 ⇒ 1/2 == 2/4\n1×3 ≠ 1×2 ⇒ 1/2 != 1/3</div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Viết a==null bên trong chính operator == có thể tự gọi lại overload. Không dùng tử bằng tử và mẫu bằng mẫu khi các phân số chưa rút gọn.</div><h3>Tự kiểm tra</h3><p>Hai phân số 1/2 và −2/−4 phải được so bằng hay khác?</p>"
+  },
+  {
+    "id": "k38",
+    "topic": 4,
+    "title": "Công thức các bài Lab và điều kiện áp dụng",
+    "source": "Topic 4 · Lab 1–3",
+    "formula": "Hình chữ nhật: P=2(d+r),S=d×r. Hình tròn: P=2πr,S=πr².",
+    "explain": "Công thức cần đi cùng đơn vị và miền dữ liệu. Mỗi phương thức nên thực hiện đúng một ý nghĩa theo đề.",
+    "body": "<h3>Hiểu và áp dụng</h3><ol class=\"db-steps\"><li>Khoảng cách hai điểm: √((x1−x2)²+(y1−y2)²).</li><li>Thời gian cùng ngày: đổi sang giây h×3600+m×60+s rồi lấy hiệu tuyệt đối.</li><li>BMI theo đề: cân nặng(kg)/chiều cao(m)²; dùng đúng biên 18,5 và 25 mà đề cho.</li><li>Học phí: tín chỉ×450 nếu đại cương,×710 nếu chuyên ngành theo đơn vị đề.</li><li>Lưu trú: max(1,(ngày đi−ngày đến).Days), với ngày đi≥ngày đến; loại 1/2/3 có hệ số 1,5/1,3/1.</li></ol><h3>Ví dụ có giải thích</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Bài</th><th scope=\"col\">Ví dụ</th></tr></thead><tbody><tr><td>Point (0,0),(3,4)</td><td>Khoảng cách 5.</td></tr><tr><td>HocPhan 3TC đại cương</td><td>3×450=1350.</td></tr><tr><td>Ở cùng ngày,loại 1,giá sàn 300</td><td>1×1,5×300=450.</td></tr></tbody></table></div><h3>Lỗi dễ nhầm</h3><div class=\"focus-block\">Số liệu học phí/giá sàn/BMI là quy ước của bài tập. Không tự suy diễn đây là bảng giá hay tiêu chí đánh giá thực tế.</div><h3>Tự kiểm tra</h3><p>Biên BMI=25 thuộc nhóm bình thường hay thừa cân theo Lab 2.6?</p><h3>Công thức nền tảng của Lab 1</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Bài</th><th scope=\"col\">Công thức / điều kiện</th></tr></thead><tbody><tr><td>Năm nhuận</td><td>n%400==0 || (n%4==0 &amp;&amp; n%100!=0).</td></tr><tr><td>Armstrong</td><td>n có k chữ số: tổng dᵢ^k bằng n. Không cố định mũ 3.</td></tr><tr><td>Tăng ca</td><td>Nếu t≤8: L=t×g. Nếu t&gt;8: L=8g+(t−8)×1,5g.</td></tr><tr><td>Dân số</td><td>P sau n năm=p×(1+m/100)^n. n=0 cho p.</td></tr><tr><td>Tuổi</td><td>Hiệu hai năm,trừ 1 nếu chưa đến sinh nhật trong năm xét.</td></tr></tbody></table></div><h3>Bốn phép tính phân số</h3><div class=\"db-table\" role=\"region\" tabindex=\"0\" aria-label=\"Bảng hướng dẫn\"><table><thead><tr><th scope=\"col\">Phép</th><th scope=\"col\">Kết quả</th><th scope=\"col\">Điều kiện</th></tr></thead><tbody><tr><td>a/b+c/d</td><td>(ad+bc)/(bd)</td><td>b,d khác 0.</td></tr><tr><td>a/b−c/d</td><td>(ad−bc)/(bd)</td><td>b,d khác 0.</td></tr><tr><td>a/b×c/d</td><td>ac/(bd)</td><td>b,d khác 0.</td></tr><tr><td>(a/b)/(c/d)</td><td>ad/(bc)</td><td>b,d,c khác 0.</td></tr></tbody></table></div><p>Mỗi kết quả chia cả tử và mẫu cho UCLN; chuẩn hóa mẫu dương. 0/k rút thành 0/1.</p>"
+  }
+]

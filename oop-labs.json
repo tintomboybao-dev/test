@@ -1,0 +1,1083 @@
+[
+  {
+    "id": "1.1",
+    "lab": 1,
+    "title": "Nhập và xuất thông tin sinh viên",
+    "source": "Lab 1 · trang 1",
+    "statement": "Nhập họ tên,ngày sinh,giới tính của một sinh viên. In cả ba giá trị trên một dòng.",
+    "design": [
+      [
+        "Program",
+        "Main đọc dữ liệu và xuất; chưa cần lớp nghiệp vụ theo phạm vi Lab 1."
+      ]
+    ],
+    "algorithm": [
+      "Đọc họ tên bằng chuỗi không rỗng.",
+      "Đọc ngày sinh theo dd/MM/yyyy; không chấp nhận ngày tương lai.",
+      "Đọc giới tính như văn bản theo thông tin người nhập.",
+      "Dùng một WriteLine với ba trường để giữ trên một dòng."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai01\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            string hoTen = NhapLieu.Chuoi(\"Họ tên: \");\n            DateTime ngaySinh;\n            do { ngaySinh = NhapLieu.Ngay(\"Ngày sinh\"); }\n            while (ngaySinh > DateTime.Today);\n            string gioiTinh = NhapLieu.Chuoi(\"Giới tính: \");\n            Console.WriteLine(\"{0} | {1:dd/MM/yyyy} | {2}\", hoTen, ngaySinh, gioiTinh);\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai01/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai01\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai01/NhapLieu.cs"
+      }
+    ],
+    "example": "An; 01/02/2006; Nam → An | 01/02/2006 | Nam.",
+    "check": "Thử ngày không tồn tại như 31/02 và ngày tương lai; chương trình phải yêu cầu nhập lại.",
+    "mistake": "Không chỉ dùng string ngày sinh nếu cần xác nhận đó là một ngày thật.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai01/Lab1_Bai01.csproj"
+  },
+  {
+    "id": "1.2",
+    "lab": 1,
+    "title": "Tính tuổi theo ngày sinh",
+    "source": "Lab 1 · trang 1",
+    "statement": "Nhập họ tên và ngày sinh. In họ tên và tuổi trên một dòng.",
+    "design": [
+      [
+        "Program",
+        "Dùng DateTime và một hàm TinhTuoi để giải thích rõ cách tính."
+      ]
+    ],
+    "algorithm": [
+      "Tính chênh lệch năm giữa ngày hiện tại và năm sinh.",
+      "Nếu đến hôm nay vẫn chưa đến sinh nhật năm nay thì trừ 1.",
+      "Từ chối ngày sinh tương lai.",
+      "In họ tên và tuổi; không chỉ lấy năm hiện tại trừ năm sinh."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai02\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            string hoTen = NhapLieu.Chuoi(\"Họ tên: \");\n            DateTime ngaySinh;\n            do { ngaySinh = NhapLieu.Ngay(\"Ngày sinh\"); }\n            while (ngaySinh > DateTime.Today);\n            Console.WriteLine(\"{0} | {1} tuổi\", hoTen, TinhTuoi(ngaySinh, DateTime.Today));\n        }\n        static int TinhTuoi(DateTime ngaySinh, DateTime ngayXet)\n        {\n            int tuoi = ngayXet.Year - ngaySinh.Year;\n            if (ngayXet < ngaySinh.AddYears(tuoi)) tuoi--;\n            return tuoi;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai02/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai02\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai02/NhapLieu.cs"
+      }
+    ],
+    "example": "Nếu ngày xét 01/11/2026: sinh 02/11/2006 → 19 tuổi; sinh 01/11/2006 → 20 tuổi.",
+    "check": "Kiểm tra trước,đúng và sau sinh nhật. Với sinh 29/02,AddYears dùng 28/02 trong năm không nhuận theo quy ước DateTime.",
+    "mistake": "Chênh lệch năm chưa chắc là tuổi đã tròn.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai02/Lab1_Bai02.csproj"
+  },
+  {
+    "id": "1.3",
+    "lab": 1,
+    "title": "Nhận biết ký tự chữ số",
+    "source": "Lab 1 · trang 1",
+    "statement": "Nhập một ký tự,kiểm tra có phải ký tự chữ số không.",
+    "design": [
+      [
+        "Program",
+        "Đọc chuỗi có đúng một ký tự,kiểm tra char.IsDigit."
+      ]
+    ],
+    "algorithm": [
+      "Nhập lại nếu chuỗi không dài đúng 1.",
+      "Lấy ký tự tại chỉ số 0.",
+      "char.IsDigit phân loại ký tự số; không Parse toàn chuỗi thành số nhiều chữ số."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai03\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            string s;\n            do { Console.Write(\"Nhập đúng một ký tự: \"); s = Console.ReadLine(); }\n            while (s == null || s.Length != 1);\n            char c = s[0];\n            Console.WriteLine(char.IsDigit(c) ? \"Là ký tự chữ số\" : \"Không phải ký tự chữ số\");\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai03/Program.cs"
+      }
+    ],
+    "example": "7 → là chữ số; a → không; 12 → phải nhập lại.",
+    "check": "char.IsDigit hỗ trợ các chữ số Unicode. Nếu đề chỉ yêu cầu ASCII thì dùng c>='0' && c<='9'.",
+    "mistake": "Một chuỗi nhiều chữ số không phải một ký tự.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai03/Lab1_Bai03.csproj"
+  },
+  {
+    "id": "1.4",
+    "lab": 1,
+    "title": "Tên tháng bằng switch",
+    "source": "Lab 1 · trang 1",
+    "statement": "Nhập số nguyên 1..12 và hiển thị tên tháng tương ứng bằng tiếng Anh,sử dụng switch/case.",
+    "design": [
+      [
+        "Program",
+        "Main dùng switch như đề yêu cầu."
+      ]
+    ],
+    "algorithm": [
+      "Nhập tháng trong miền 1..12.",
+      "Mỗi case gán tên tiếng Anh và kết thúc bằng break.",
+      "Xuất tên đã chọn."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai04\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int thang = NhapLieu.SoNguyen(\"Tháng [1,12]: \", 1, 12);\n            string tenThang;\n            switch (thang)\n            {\n                case 1: tenThang = \"January\"; break;\n                case 2: tenThang = \"February\"; break;\n                case 3: tenThang = \"March\"; break;\n                case 4: tenThang = \"April\"; break;\n                case 5: tenThang = \"May\"; break;\n                case 6: tenThang = \"June\"; break;\n                case 7: tenThang = \"July\"; break;\n                case 8: tenThang = \"August\"; break;\n                case 9: tenThang = \"September\"; break;\n                case 10: tenThang = \"October\"; break;\n                case 11: tenThang = \"November\"; break;\n                case 12: tenThang = \"December\"; break;\n                default: tenThang = \"Không hợp lệ\"; break;\n            }\n            Console.WriteLine(tenThang);\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai04/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai04\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai04/NhapLieu.cs"
+      }
+    ],
+    "example": "1 → January; 12 → December; 0 hoặc 13 phải nhập lại.",
+    "check": "Kiểm tra đủ 12 tên tháng và từng nhánh có break.",
+    "mistake": "Không thay yêu cầu switch bằng mảng nếu bài đang luyện switch.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai04/Lab1_Bai04.csproj"
+  },
+  {
+    "id": "1.5",
+    "lab": 1,
+    "title": "Máy tính bốn phép toán",
+    "source": "Lab 1 · trang 1",
+    "statement": "Nhập hai số nguyên a,b và một ký tự c thuộc +,-,*,/. Hiển thị biểu thức cùng kết quả.",
+    "design": [
+      [
+        "Program",
+        "switch theo phép toán; dùng double khi chia."
+      ]
+    ],
+    "algorithm": [
+      "Nhập hai số int và chuỗi phép toán đúng một ký tự hợp lệ.",
+      "Kiểm tra b=0 trước phép chia.",
+      "Ép sang double trước phép chia để giữ phần lẻ.",
+      "Các phép cộng/trừ/nhân được tính sau khi chuyển sang double để tránh tràn int thông thường."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai05\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int a = NhapLieu.SoNguyen(\"a: \", int.MinValue, int.MaxValue);\n            int b = NhapLieu.SoNguyen(\"b: \", int.MinValue, int.MaxValue);\n            string s;\n            do { s = NhapLieu.Chuoi(\"Phép toán (+,-,*,/): \"); }\n            while (s.Length != 1 || \"+-*/\".IndexOf(s[0]) < 0);\n            char c = s[0];\n            if (c == '/' && b == 0)\n            {\n                Console.WriteLine(\"Không thể chia cho 0.\");\n                return;\n            }\n            double ketQua = 0;\n            switch (c)\n            {\n                case '+': ketQua = (double)a + b; break;\n                case '-': ketQua = (double)a - b; break;\n                case '*': ketQua = (double)a * b; break;\n                case '/': ketQua = (double)a / b; break;\n            }\n            Console.WriteLine(\"{0} {1} {2} = {3}\", a, c, b, ketQua);\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai05/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai05\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai05/NhapLieu.cs"
+      }
+    ],
+    "example": "a=7,b=9,c=+ → 7 + 9 = 16; a=7,b=2,c=/ → 3,5 theo định dạng hệ thống.",
+    "check": "Thử b=0 ở phép / và phép + để thấy chỉ phép chia cần chặn mẫu 0.",
+    "mistake": "(double)(a/b) làm mất phần lẻ trước khi ép kiểu.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai05/Lab1_Bai05.csproj"
+  },
+  {
+    "id": "1.6",
+    "lab": 1,
+    "title": "Mật khẩu và số lần nhập sai",
+    "source": "Lab 1 · trang 1",
+    "statement": "Mật khẩu hợp lệ là 123. Nhập sai thì báo và cho nhập lại. Kết thúc khi đúng hoặc số lần sai quá 3.",
+    "design": [
+      [
+        "Program",
+        "Vòng while,biến sai ghi số lần đã nhập sai."
+      ]
+    ],
+    "algorithm": [
+      "Khởi tạo sai=0.",
+      "Khi sai<=3 vẫn được nhập: lần sai thứ tư mới làm số sai quá 3.",
+      "Đúng thì thông báo thành công và return ngay.",
+      "Sai thì tăng biến,báo không hợp lệ; thoát khi sai=4."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai06\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int sai = 0;\n            while (sai <= 3)\n            {\n                Console.Write(\"Mật khẩu: \");\n                string matKhau = Console.ReadLine();\n                if (matKhau == \"123\")\n                {\n                    Console.WriteLine(\"Đăng nhập thành công!\");\n                    return;\n                }\n                sai++;\n                Console.WriteLine(\"Mật khẩu không hợp lệ!\");\n            }\n            Console.WriteLine(\"Kết thúc vì số lần sai đã quá 3.\");\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai06/Program.cs"
+      }
+    ],
+    "example": "Sai,sai,sai,123 → thành công ở lần thứ tư. Sai bốn lần → kết thúc.",
+    "check": "Nếu giảng viên quy ước tối đa 3 lần nhập thì dùng sai<3; đó là cách hiểu khác với chữ “quá 3” của PDF.",
+    "mistake": "Không viết sai<3 rồi mô tả là đã cho nhập đến khi sai quá 3.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai06/Lab1_Bai06.csproj"
+  },
+  {
+    "id": "1.7",
+    "lab": 1,
+    "title": "Kiểm tra số Armstrong",
+    "source": "Lab 1 · trang 1",
+    "statement": "Nhập số nguyên dương n. Kiểm tra tổng các chữ số mũ số lượng chữ số có bằng n không.",
+    "design": [
+      [
+        "Program",
+        "Tách DemChuSo,LuyThua,LaArmstrong để dễ theo dõi."
+      ]
+    ],
+    "algorithm": [
+      "Giữ n ban đầu,đếm số chữ số k trên bản sao.",
+      "Tách từng chữ số bằng %10; bỏ chữ số bằng /10.",
+      "Cộng chữ số mũ k vào long để tổng trung gian không tràn int.",
+      "So tổng với n ban đầu."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai07\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int n = NhapLieu.SoNguyen(\"n dương: \", 1, int.MaxValue);\n            Console.WriteLine(LaArmstrong(n) ? \"Là số Armstrong\" : \"Không là số Armstrong\");\n        }\n        static int DemChuSo(int n)\n        {\n            int dem=0;\n            do { dem++; n/=10; } while(n>0);\n            return dem;\n        }\n        static long LuyThua(int a,int k)\n        {\n            long ketQua=1;\n            for(int i=0;i<k;i++) ketQua*=a;\n            return ketQua;\n        }\n        static bool LaArmstrong(int n)\n        {\n            int k=DemChuSo(n),tam=n;\n            long tong=0;\n            do { tong+=LuyThua(tam%10,k); tam/=10; } while(tam>0);\n            return tong==n;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai07/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai07\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai07/NhapLieu.cs"
+      }
+    ],
+    "example": "153: 1³+5³+3³=153 → đúng; 154 → sai; 9474 → đúng.",
+    "check": "Thử số một chữ số,153,370,9474 và số không Armstrong.",
+    "mistake": "Không cộng lập phương cố định vì số có 4 chữ số cần lũy thừa 4.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai07/Lab1_Bai07.csproj"
+  },
+  {
+    "id": "1.8",
+    "lab": 1,
+    "title": "Mảng và hoán đổi bằng ref",
+    "source": "Lab 1 · trang 1",
+    "statement": "Nhập dãy n số nguyên,n∈[3,20]. Viết hàm hoán đổi,sắp tăng dùng hàm hoán đổi,in dãy và gọi từ Main.",
+    "design": [
+      [
+        "Program",
+        "Các hàm NhapMang,HoanDoi,SapXep,InMang; mảng truyền theo giá trị tham chiếu,mỗi int hoán đổi dùng ref."
+      ]
+    ],
+    "algorithm": [
+      "NhapMang đọc n trong [3,20],tạo mảng và nhập từng số.",
+      "Với mỗi vị trí i,so với j>i; nếu a[i]>a[j] thì gọi HoanDoi.",
+      "InMang duyệt toàn bộ mảng; Main chỉ phối hợp các hàm."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai08\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int[] a=NhapMang();\n            SapXep(a);\n            InMang(a);\n        }\n        static int[] NhapMang()\n        {\n            int n=NhapLieu.SoNguyen(\"n [3,20]: \",3,20);\n            int[] a=new int[n];\n            for(int i=0;i<n;i++)\n                a[i]=NhapLieu.SoNguyen(\"a[\"+i+\"]: \",int.MinValue,int.MaxValue);\n            return a;\n        }\n        static void HoanDoi(ref int a,ref int b)\n        {\n            int tam=a;a=b;b=tam;\n        }\n        static void SapXep(int[] a)\n        {\n            for(int i=0;i<a.Length-1;i++)\n                for(int j=i+1;j<a.Length;j++)\n                    if(a[i]>a[j]) HoanDoi(ref a[i],ref a[j]);\n        }\n        static void InMang(int[] a)\n        {\n            foreach(int x in a) Console.Write(\"{0} \",x);\n            Console.WriteLine();\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai08/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai08\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai08/NhapLieu.cs"
+      }
+    ],
+    "example": "5 phần tử: 4,-1,4,0,2 → -1 0 2 4 4.",
+    "check": "Kiểm tra số âm,phần tử trùng,mảng đã tăng và mảng giảm.",
+    "mistake": "HoanDoi(int a,int b) chỉ đổi bản sao,không đổi phần tử của mảng.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai08/Lab1_Bai08.csproj"
+  },
+  {
+    "id": "1.9",
+    "lab": 1,
+    "title": "Tiền lương và giờ tăng ca",
+    "source": "Lab 1 · trang 2",
+    "statement": "Nhập số giờ làm trong ngày và lương giờ tối đa 50. Tính tiền: 8 giờ đầu theo mức thường,giờ vượt 8 nhân 1,5.",
+    "design": [
+      [
+        "Program",
+        "Dữ liệu double để cho phép giờ lẻ; miền giờ trong một ngày 0..24."
+      ]
+    ],
+    "algorithm": [
+      "Kiểm tra giờ từ 0 đến 24,lương giờ từ 0 đến 50.",
+      "Nếu giờ<=8,tiền=giờ×đơn giá.",
+      "Nếu giờ>8,tiền=8×đơn giá+(giờ−8)×1,5×đơn giá."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai09\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            double gio=NhapLieu.SoThuc(\"Số giờ [0,24]: \",0,24);\n            double luongGio=NhapLieu.SoThuc(\"Lương giờ [0,50]: \",0,50);\n            double tien;\n            if(gio<=8) tien=gio*luongGio;\n            else tien=8*luongGio+(gio-8)*1.5*luongGio;\n            Console.WriteLine(\"Tiền lương: {0:F2}\",tien);\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai09/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai09\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai09/NhapLieu.cs"
+      }
+    ],
+    "example": "10 giờ,20/giờ → 8×20+2×1,5×20=220.",
+    "check": "Thử 0,8,8,5 giờ và lương 50.",
+    "mistake": "Không nhân 1,5 cho toàn bộ 10 giờ khi chỉ 2 giờ tăng ca.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai09/Lab1_Bai09.csproj"
+  },
+  {
+    "id": "1.10",
+    "lab": 1,
+    "title": "Kiểm tra năm nhuận",
+    "source": "Lab 1 · trang 2",
+    "statement": "Nhập năm dương,kiểm tra chia hết cho 4 không cho 100 hoặc chia hết cho 400.",
+    "design": [
+      [
+        "Program",
+        "Một biểu thức Boolean và if/ternary."
+      ]
+    ],
+    "algorithm": [
+      "Đọc năm nguyên dương.",
+      "Áp dụng đúng ngoặc cho hai trường hợp nhuận.",
+      "In kết luận."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai10\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int nam=NhapLieu.SoNguyen(\"Năm dương: \",1,int.MaxValue);\n            bool nhuan=nam%400==0 || (nam%4==0 && nam%100!=0);\n            Console.WriteLine(nhuan ? \"Là năm nhuận\" : \"Không phải năm nhuận\");\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai10/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai10\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai10/NhapLieu.cs"
+      }
+    ],
+    "example": "2000 nhuận;1900 không nhuận;2024 nhuận;2023 không.",
+    "check": "Kiểm tra năm cuối thế kỷ để phát hiện điều kiện thiếu.",
+    "mistake": "Chỉ kiểm tra nam%4==0 sẽ sai với 1900.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai10/Lab1_Bai10.csproj"
+  },
+  {
+    "id": "1.11",
+    "lab": 1,
+    "title": "Nguyên âm và phụ âm bằng switch",
+    "source": "Lab 1 · trang 2",
+    "statement": "Nhập một chữ cái,dùng switch/case kiểm tra nguyên âm hay phụ âm.",
+    "design": [
+      [
+        "Program",
+        "Quy ước bảng chữ cái tiếng Anh a..z,không bao gồm các nguyên âm có dấu tiếng Việt."
+      ]
+    ],
+    "algorithm": [
+      "Nhập đúng một chữ cái A..Z hoặc a..z.",
+      "Đưa về chữ thường bằng char.ToLower.",
+      "Các case a,e,i,o,u dùng chung thân; default là phụ âm."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai11\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            string s;\n            do { s=NhapLieu.Chuoi(\"Một chữ cái tiếng Anh: \"); }\n            while(s.Length!=1 || !((s[0]>='a' && s[0]<='z') || (s[0]>='A' && s[0]<='Z')));\n            char c=char.ToLower(s[0]);\n            switch(c)\n            {\n                case 'a': case 'e': case 'i': case 'o': case 'u':\n                    Console.WriteLine(\"Nguyên âm\");break;\n                default: Console.WriteLine(\"Phụ âm\");break;\n            }\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai11/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai11\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai11/NhapLieu.cs"
+      }
+    ],
+    "example": "A → nguyên âm;b → phụ âm;7 → nhập lại.",
+    "check": "Nêu rõ quy ước tiếng Anh; muốn xử lý tiếng Việt phải mở rộng tập ký tự và chuẩn hóa Unicode.",
+    "mistake": "Không đánh mọi ký tự ngoài a,e,i,o,u là phụ âm khi chưa xác nhận nó là chữ cái.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai11/Lab1_Bai11.csproj"
+  },
+  {
+    "id": "1.12",
+    "lab": 1,
+    "title": "Dân số sau n năm",
+    "source": "Lab 1 · trang 2",
+    "statement": "Dân số hiện tại p,tỷ lệ tăng m% mỗi năm,tính dân số sau n năm.",
+    "design": [
+      [
+        "Program",
+        "Hàm TinhDanSo dùng tăng trưởng lũy kế."
+      ]
+    ],
+    "algorithm": [
+      "p là số người không âm;n là số năm không âm;m là tỷ lệ phần trăm không âm theo giả thiết tăng trưởng.",
+      "Tỷ lệ dùng trong công thức là m/100.",
+      "Tính p×(1+m/100)^n;giữ kết quả thực rồi làm tròn khi in.",
+      "Nếu kết quả vượt miền double thì thông báo thay vì in Infinity như dân số hợp lệ."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai12\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int p=NhapLieu.SoNguyen(\"Dân số hiện tại: \",0,int.MaxValue);\n            int n=NhapLieu.SoNguyen(\"Số năm: \",0,int.MaxValue);\n            double m=NhapLieu.SoThuc(\"Tăng mỗi năm (%): \",0,double.MaxValue);\n            double ketQua=TinhDanSo(p,m,n);\n            if(double.IsNaN(ketQua) || double.IsInfinity(ketQua))\n                Console.WriteLine(\"Kết quả vượt miền tính toán.\");\n            else\n                Console.WriteLine(\"Dân số dự kiến (làm tròn để hiển thị): {0:F0}\",ketQua);\n        }\n        static double TinhDanSo(int p,double m,int n)\n        {\n            if(n==0 || p==0) return p;\n            return p*Math.Pow(1+m/100.0,n);\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai12/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab1_Bai12\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai12/NhapLieu.cs"
+      }
+    ],
+    "example": "p=1000,m=10,n=2 → 1000×1,1²=1210; n=0 → p.",
+    "check": "So với việc cộng cố định p×m% mỗi năm để nhận ra tăng trưởng lũy kế.",
+    "mistake": "Không dùng p+n×p×m/100 cho tăng trưởng theo phần trăm trên dân số mỗi năm.",
+    "notes": "",
+    "project": "oop-code/Lab1/Bai12/Lab1_Bai12.csproj"
+  },
+  {
+    "id": "1.13",
+    "lab": 1,
+    "title": "Dự đoán kết quả và lỗi biên dịch",
+    "source": "Lab 1 · trang 2",
+    "statement": "Cho biết kết quả của năm đoạn a–e ở trang 2: định dạng chuỗi,nội suy,đọc int,biến bool chưa gán và switch chung nhãn.",
+    "design": [
+      [
+        "Program",
+        "Bản chạy minh họa a,b,e; hai đoạn lỗi c,d được giải thích và sửa trong ghi chú."
+      ]
+    ],
+    "algorithm": [
+      "a không có $,các chỉ số {1},{0} lấy b,a.",
+      "b có $,các biểu thức hằng {1},{0} trở thành chuỗi 1,0 trước khi gọi Write.",
+      "c không biên dịch vì ReadLine trả string nhưng gán int.",
+      "d không biên dịch vì chk là local chưa được gán.",
+      "e có các nhãn case rỗng cùng dùng một thân,hoàn toàn hợp lệ; a=1 nên in 1."
+    ],
+    "files": [
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab1_Bai13\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int a=10,b=15;\n            Console.Write(\"a) \");Console.Write(\"{1}, {0}\",a,b);Console.WriteLine();\n            Console.Write(\"b) \");Console.Write($\"{1}, {0}\",a,b);Console.WriteLine();\n            Console.WriteLine(\"c) Lỗi biên dịch: không đổi ngầm string thành int.\");\n            Console.WriteLine(\"d) Lỗi biên dịch: biến local chk chưa được gán.\");\n            a=1;\n            Console.Write(\"e) \");\n            switch(a)\n            {\n                case 1:case 2:case 3:Console.Write(\"{0}\",a);break;\n            }\n            Console.WriteLine();\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab1/Bai13/Program.cs"
+      }
+    ],
+    "example": "a) 15, 10; b) 1, 0; c,d: lỗi biên dịch; e) 1.",
+    "check": "Sửa c thành int.TryParse/Parse; sửa d bằng cách gán chk trước khi if. Bỏ dấu ngoặc dư ở cuối ảnh nếu chép đúng nguyên bản gây lệch khối.",
+    "mistake": "Không in một kết quả chạy giả cho đoạn vốn không biên dịch.",
+    "notes": "Mã Program.cs là bản minh họa đã tách hai đoạn lỗi ra thông báo,không tuyên bố c,d nguyên gốc có thể chạy. Ảnh/PDF e còn một dấu } thừa ở cuối phần trích; xét đoạn switch bên trong một Program hợp lệ.",
+    "project": "oop-code/Lab1/Bai13/Lab1_Bai13.csproj"
+  },
+  {
+    "id": "2.1",
+    "lab": 2,
+    "title": "Lớp BankAccount và đóng gói số dư",
+    "source": "Lab 2 · trang 1",
+    "statement": "Định nghĩa BankAccount với accountNum:string,name:string,balance:float. Hai constructor,property Balance,GetBalance(),Deposit(float),Withdraw(float). Tạo hai tài khoản bằng hai constructor;in số dư bằng property/method;nhập số nạp và rút.",
+    "design": [
+      [
+        "BankAccount.cs",
+        "Giữ ba trường private;hành vi cập nhật và kiểm tra nằm trong lớp."
+      ],
+      [
+        "Program.cs",
+        "Tạo đối tượng,nhập số tiền,gọi phương thức."
+      ]
+    ],
+    "algorithm": [
+      "Constructor mặc định dùng đúng số tài khoản 1000010001,tên Nguyen Van An,số dư 0.",
+      "Balance kiểm soát số dư không âm;GetBalance trả field.",
+      "Deposit bỏ qua amount≤0 theo đúng đề,không đổi số dư.",
+      "Withdraw phân biệt không hợp lệ,không đủ tiền và rút thành công.",
+      "Dùng property cho tài khoản 1,GetBalance cho tài khoản 2 đúng yêu cầu."
+    ],
+    "files": [
+      {
+        "name": "BankAccount.cs",
+        "code": "using System;\n\nnamespace Lab2_Bai01\n{\n    public class BankAccount\n    {\n        private string accountNum;\n        private string name;\n        private float balance;\n        public BankAccount() : this(\"1000010001\",\"Nguyen Van An\",0) { }\n        public BankAccount(string a,string n,float b)\n        {\n            accountNum=a;name=n;Balance=b;\n        }\n        public float Balance\n        {\n            get { return balance; }\n            set\n            {\n                if(float.IsNaN(value) || float.IsInfinity(value) || value<0)\n                    throw new ArgumentOutOfRangeException(\"value\");\n                balance=value;\n            }\n        }\n        public float GetBalance() { return balance; }\n        public void Deposit(float amount)\n        {\n            if(float.IsNaN(amount) || float.IsInfinity(amount) || amount<=0) return;\n            if(float.IsInfinity(balance+amount))\n            { Console.WriteLine(\"Số dư vượt miền float.\");return; }\n            balance+=amount;\n        }\n        public void Withdraw(float amount)\n        {\n            if(float.IsNaN(amount) || float.IsInfinity(amount) || amount<=0)\n                Console.WriteLine(\"Số tiền không hợp lệ.\");\n            else if(amount<=balance)\n            {\n                balance-=amount;\n                Console.WriteLine(\"Rút thành công.\");\n            }\n            else Console.WriteLine(\"Rút không được: số dư không đủ.\");\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai01/BankAccount.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab2_Bai01\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            BankAccount a1=new BankAccount();\n            BankAccount a2=new BankAccount(\"2000020002\",\"Tran Thi Binh\",500);\n            Console.WriteLine(\"TK1: {0}; TK2: {1}\",a1.Balance,a2.GetBalance());\n            float nap=(float)NhapLieu.SoThuc(\"Nạp vào TK1: \",-float.MaxValue,float.MaxValue);\n            a1.Deposit(nap);\n            Console.WriteLine(\"Số dư TK1 sau nạp: {0}\",a1.Balance);\n            float rut=(float)NhapLieu.SoThuc(\"Rút từ TK1: \",-float.MaxValue,float.MaxValue);\n            a1.Withdraw(rut);\n            Console.WriteLine(\"Số dư TK1 cuối: {0}\",a1.Balance);\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai01/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab2_Bai01\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai01/NhapLieu.cs"
+      }
+    ],
+    "example": "TK1 ban đầu 0; nạp 200,rút 50 → còn 150; rút 250 thì số dư vẫn 200.",
+    "check": "Thử nạp 0,tiền âm;rút bằng đúng số dư;rút vượt số dư.",
+    "mistake": "Đề yêu cầu float nên giữ float đồng bộ;không dùng b.price/kiểu tiền khác để đổi chữ ký đề.",
+    "notes": "",
+    "project": "oop-code/Lab2/Bai01/Lab2_Bai01.csproj"
+  },
+  {
+    "id": "2.2",
+    "lab": 2,
+    "title": "Hình chữ nhật và ba constructor",
+    "source": "Lab 2 · trang 1–2",
+    "statement": "Lớp hình chữ nhật có chiều dài,rộng;constructor không tham số,có hai tham số,sao chép;nhập,công thức chu vi/diện tích,xuất. Tạo ba đối tượng bằng ba constructor,in thông tin và tổng diện tích.",
+    "design": [
+      [
+        "HinhChuNhat.cs",
+        "Dữ liệu riêng,công thức và ba cách khởi tạo."
+      ],
+      [
+        "Program.cs",
+        "Tạo đủ ba đối tượng và tính tổng."
+      ]
+    ],
+    "algorithm": [
+      "Constructor mặc định cho 0,0 như đề,không ép bắt buộc >0 làm sai mặc định.",
+      "Constructor sao chép chép hai số sang đối tượng mới.",
+      "Chu vi=2×(d+r);diện tích=d×r.",
+      "Main dùng constructor mặc định rồi Nhap;constructor hai tham số;constructor sao chép."
+    ],
+    "files": [
+      {
+        "name": "HinhChuNhat.cs",
+        "code": "using System;\n\nnamespace Lab2_Bai02\n{\n    public class HinhChuNhat\n    {\n        private double chieuDai,chieuRong;\n        public HinhChuNhat() : this(0,0) { }\n        public HinhChuNhat(double d,double r)\n        {\n            if(double.IsNaN(d) || double.IsInfinity(d) || d<0 ||\n                double.IsNaN(r) || double.IsInfinity(r) || r<0)\n                throw new ArgumentOutOfRangeException();\n            chieuDai=d;chieuRong=r;\n        }\n        public HinhChuNhat(HinhChuNhat h)\n        {\n            if(h==null) throw new ArgumentNullException(\"h\");\n            chieuDai=h.chieuDai;chieuRong=h.chieuRong;\n        }\n        public void Nhap()\n        {\n            chieuDai=NhapLieu.SoThuc(\"Chiều dài: \",0,double.MaxValue);\n            chieuRong=NhapLieu.SoThuc(\"Chiều rộng: \",0,double.MaxValue);\n        }\n        public double TinhChuVi() { return 2*(chieuDai+chieuRong); }\n        public double TinhDienTich() { return chieuDai*chieuRong; }\n        public void Xuat()\n        {\n            Console.WriteLine(\"Dài={0};rộng={1};chu vi={2};diện tích={3}\",\n                chieuDai,chieuRong,TinhChuVi(),TinhDienTich());\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai02/HinhChuNhat.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab2_Bai02\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            HinhChuNhat h1=new HinhChuNhat();\n            h1.Nhap();\n            double d=NhapLieu.SoThuc(\"Chiều dài H2: \",0,double.MaxValue);\n            double r=NhapLieu.SoThuc(\"Chiều rộng H2: \",0,double.MaxValue);\n            HinhChuNhat h2=new HinhChuNhat(d,r);\n            HinhChuNhat h3=new HinhChuNhat(h2);\n            h1.Xuat();h2.Xuat();h3.Xuat();\n            Console.WriteLine(\"Tổng diện tích: {0}\",h1.TinhDienTich()+h2.TinhDienTich()+h3.TinhDienTich());\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai02/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab2_Bai02\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai02/NhapLieu.cs"
+      }
+    ],
+    "example": "H1=3×4,H2=2×5,H3 sao chép H2 → tổng 12+10+10=32.",
+    "check": "Phân biệt HinhChuNhat h3=h2 với new HinhChuNhat(h2).",
+    "mistake": "Đừng để constructor sao chép chỉ gán một tham chiếu thay cho đối tượng mới.",
+    "notes": "",
+    "project": "oop-code/Lab2/Bai02/Lab2_Bai02.csproj"
+  },
+  {
+    "id": "2.3",
+    "lab": 2,
+    "title": "Chuỗi chuyển động trong cửa sổ Console",
+    "source": "Lab 2 · trang 2–3",
+    "statement": "Lớp Chuoi giữ s,x,y,màu nền,màu chữ. Constructor mặc định/có tham số;hiển thị xóa màn hình,đặt vị trí,ẩn con trỏ;di chuyển bằng bốn phím mũi tên,Esc dừng.",
+    "design": [
+      [
+        "Chuoi.cs",
+        "Trạng thái vị trí/màu và xử lý phím."
+      ],
+      [
+        "Program.cs",
+        "Tạo một Chuoi và gọi ChuyenDong."
+      ]
+    ],
+    "algorithm": [
+      "HienThi đặt màu,xóa,ẩn con trỏ rồi SetCursorPosition(x,y).",
+      "ReadKey(true) đọc phím không in ký tự ra màn hình.",
+      "Mũi tên trái/phải đổi x;lên/xuống đổi y;Esc thoát vòng while.",
+      "Chặn x,y trong vùng màn hình,để chừa độ dài chuỗi và tránh tràn cột.",
+      "finally khôi phục màu/con trỏ khi kết thúc."
+    ],
+    "files": [
+      {
+        "name": "Chuoi.cs",
+        "code": "using System;\n\nnamespace Lab2_Bai03\n{\n    public class Chuoi\n    {\n        private string s;\n        private int x,y;\n        private ConsoleColor mauNen,mauChu;\n        public Chuoi() : this(\"Sui Study Lab\",0,0,ConsoleColor.DarkBlue,ConsoleColor.White) { }\n        public Chuoi(string s,int x,int y,ConsoleColor nen,ConsoleColor chu)\n        {\n            if(string.IsNullOrEmpty(s) || s.Length>=Console.WindowWidth)\n                throw new ArgumentException(\"Chuỗi phải ngắn hơn chiều rộng cửa sổ.\");\n            this.s=s;this.x=x;this.y=y;mauNen=nen;mauChu=chu;\n            GioiHanViTri();\n        }\n        private void GioiHanViTri()\n        {\n            int maxX=Math.Max(0,Console.WindowWidth-s.Length-1);\n            int maxY=Math.Max(0,Console.WindowHeight-1);\n            x=Math.Max(0,Math.Min(x,maxX));\n            y=Math.Max(0,Math.Min(y,maxY));\n        }\n        public void HienThi()\n        {\n            GioiHanViTri();\n            Console.BackgroundColor=mauNen;Console.ForegroundColor=mauChu;\n            Console.Clear();Console.CursorVisible=false;\n            Console.SetCursorPosition(x,y);Console.Write(s);\n        }\n        public void ChuyenDong()\n        {\n            try\n            {\n                while(true)\n                {\n                    HienThi();\n                    ConsoleKey phim=Console.ReadKey(true).Key;\n                    if(phim==ConsoleKey.Escape) break;\n                    switch(phim)\n                    {\n                        case ConsoleKey.LeftArrow:x--;break;\n                        case ConsoleKey.RightArrow:x++;break;\n                        case ConsoleKey.UpArrow:y--;break;\n                        case ConsoleKey.DownArrow:y++;break;\n                    }\n                    GioiHanViTri();\n                }\n            }\n            finally { Console.ResetColor();Console.CursorVisible=true;Console.Clear(); }\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai03/Chuoi.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab2_Bai03\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            Chuoi c=new Chuoi(\"Sui Study Lab\",2,2,ConsoleColor.DarkBlue,ConsoleColor.White);\n            c.ChuyenDong();\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai03/Program.cs"
+      }
+    ],
+    "example": "Từ (2,2): Right →(3,2);Down →(3,3);Left →(2,3);Esc kết thúc.",
+    "check": "Thử giữ phím trái ở x=0;tọa độ không âm. Chạy trong cửa sổ terminal thật,không dùng output chỉ là văn bản.",
+    "mistake": "Console.CursorVisible ẩn con trỏ nhập,vẫn không phải thao tác ẩn con trỏ chuột của hệ điều hành.",
+    "notes": "Ví dụ dùng chuỗi ASCII để mỗi ký tự chiếm một cột. Ký tự rộng/kết hợp Unicode cần đo độ rộng hiển thị riêng;không thu nhỏ cửa sổ đến hẹp hơn chuỗi trong lúc chạy.",
+    "project": "oop-code/Lab2/Bai03/Lab2_Bai03.csproj"
+  },
+  {
+    "id": "2.4",
+    "lab": 2,
+    "title": "Time và khoảng cách theo giây",
+    "source": "Lab 2 · trang 3",
+    "statement": "Lớp Time có hour,minute,second;hai constructor;property Minute,Second;GetHour/SetHour;Show h:m:s. Tạo hai mốc,sửa hour của đối tượng mặc định,tính khoảng cách giây.",
+    "design": [
+      [
+        "Time.cs",
+        "Giới hạn giờ 0..23,phút/giây 0..59 và đổi giây."
+      ],
+      [
+        "Program.cs",
+        "Tạo hai object,sửa hour và tính |t1−t2|."
+      ]
+    ],
+    "algorithm": [
+      "t1 khởi tạo 00:00:00 bằng constructor mặc định.",
+      "t2 dùng constructor có đủ h,m,s.",
+      "SetHour thay giờ t1 bằng giá trị nhập mới.",
+      "Đổi cả hai sang giây trong cùng ngày rồi lấy Math.Abs."
+    ],
+    "files": [
+      {
+        "name": "Time.cs",
+        "code": "using System;\n\nnamespace Lab2_Bai04\n{\n    public class Time\n    {\n        private int hour,minute,second;\n        public Time() : this(0,0,0) { }\n        public Time(int h,int m,int s) { SetHour(h);Minute=m;Second=s; }\n        public int Minute\n        {\n            get { return minute; }\n            set { if(value<0 || value>59) throw new ArgumentOutOfRangeException();minute=value; }\n        }\n        public int Second\n        {\n            get { return second; }\n            set { if(value<0 || value>59) throw new ArgumentOutOfRangeException();second=value; }\n        }\n        public int GetHour() { return hour; }\n        public void SetHour(int i)\n        { if(i<0 || i>23) throw new ArgumentOutOfRangeException();hour=i; }\n        public int TongGiay() { return hour*3600+minute*60+second; }\n        public void Show() { Console.WriteLine(\"{0:00}:{1:00}:{2:00}\",hour,minute,second); }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai04/Time.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab2_Bai04\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            Time t1=new Time();\n            int h=NhapLieu.SoNguyen(\"Giờ T2 [0,23]: \",0,23);\n            int m=NhapLieu.SoNguyen(\"Phút T2 [0,59]: \",0,59);\n            int s=NhapLieu.SoNguyen(\"Giây T2 [0,59]: \",0,59);\n            Time t2=new Time(h,m,s);\n            t1.SetHour(NhapLieu.SoNguyen(\"Giờ mới T1 [0,23]: \",0,23));\n            t1.Show();t2.Show();\n            Console.WriteLine(\"Khoảng cách: {0} giây\",Math.Abs(t1.TongGiay()-t2.TongGiay()));\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai04/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab2_Bai04\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai04/NhapLieu.cs"
+      }
+    ],
+    "example": "T1 sau sửa 01:00:00,T2=01:01:30 →90 giây.",
+    "check": "23:00:00 với 01:00:00 cùng ngày cho 79200 giây,không tự coi là qua đêm 2 giờ.",
+    "mistake": "Đề không có ngày;không tự thêm quy tắc vòng 24 giờ cho khoảng cách.",
+    "notes": "Khoảng cách hiểu là hiệu tuyệt đối của hai thời điểm trong cùng ngày.",
+    "project": "oop-code/Lab2/Bai04/Lab2_Bai04.csproj"
+  },
+  {
+    "id": "2.5",
+    "lab": 2,
+    "title": "Điểm và khoảng cách Euclid",
+    "source": "Lab 2 · trang 3",
+    "statement": "Lớp Point giữ x,y;constructor mặc định (0,0),có tham số;xuất (x,y),tính khoảng cách hai điểm. Tạo hai điểm bằng hai constructor,xuất và tính khoảng cách.",
+    "design": [
+      [
+        "Point.cs",
+        "Thuộc tính riêng,công thức khoảng cách."
+      ],
+      [
+        "Program.cs",
+        "Một điểm gốc và một điểm nhập."
+      ]
+    ],
+    "algorithm": [
+      "Điểm thứ nhất tạo bằng Point() nên (0,0).",
+      "Điểm thứ hai tạo từ tọa độ người nhập.",
+      "Tính dx,dy,rồi sqrt(dx²+dy²).",
+      "Dữ liệu p.x,p.y private vẫn đọc được trong code của chính lớp Point."
+    ],
+    "files": [
+      {
+        "name": "Point.cs",
+        "code": "using System;\n\nnamespace Lab2_Bai05\n{\n    public class Point\n    {\n        private double x,y;\n        public Point() : this(0,0) { }\n        public Point(double x,double y) { this.x=x;this.y=y; }\n        public void Xuat() { Console.WriteLine(\"({0},{1})\",x,y); }\n        public double KhoangCach(Point p)\n        {\n            if(p==null) throw new ArgumentNullException(\"p\");\n            double dx=x-p.x,dy=y-p.y;\n            return Math.Sqrt(dx*dx+dy*dy);\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai05/Point.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab2_Bai05\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            Point p1=new Point();\n            double x=NhapLieu.SoThuc(\"x điểm 2: \",-double.MaxValue,double.MaxValue);\n            double y=NhapLieu.SoThuc(\"y điểm 2: \",-double.MaxValue,double.MaxValue);\n            Point p2=new Point(x,y);\n            p1.Xuat();p2.Xuat();\n            Console.WriteLine(\"Khoảng cách: {0}\",p1.KhoangCach(p2));\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai05/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab2_Bai05\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai05/NhapLieu.cs"
+      }
+    ],
+    "example": "(0,0),(3,4) →5;hai điểm trùng →0.",
+    "check": "Thử tọa độ âm và hai điểm trùng.",
+    "mistake": "Không dùng ^2 trong C# để bình phương:^ là XOR cho số nguyên. Dùng dx*dx.",
+    "notes": "",
+    "project": "oop-code/Lab2/Bai05/Lab2_Bai05.csproj"
+  },
+  {
+    "id": "2.6",
+    "lab": 2,
+    "title": "Adult,BMI và khối lượng cần điều chỉnh",
+    "source": "Lab 2 · trang 4",
+    "statement": "Adult có họ tên,cân nặng,chiều cao;ba constructor;xuất BMI,tình trạng và số cân cần tăng/giảm khi chiều cao không đổi. Ngưỡng đề: <18,5 thiếu;18,5..25 bình thường;25<BMI<30 thừa;≥30 béo.",
+    "design": [
+      [
+        "Adult.cs",
+        "Công thức và phân loại tập trung để Lab 3.5 dùng lại."
+      ],
+      [
+        "Program.cs",
+        "Nhập,tạo bằng constructor có tham số,xuất kết quả."
+      ]
+    ],
+    "algorithm": [
+      "Chiều cao tính bằng mét,cân nặng kg;BMI=w/h².",
+      "Kiểm tra cân nặng/chiều cao dương trước khi chia.",
+      "Nếu BMI<18,5,target=18,5h²;chênh lệch target−w là số kg tăng.",
+      "Nếu BMI>25,target=25h²;w−target là số kg giảm.",
+      "Nếu đã trong [18,5;25] thì chênh lệch 0."
+    ],
+    "files": [
+      {
+        "name": "Adult.cs",
+        "code": "using System;\n\nnamespace Lab2_Bai06\n{\n    public class Adult\n    {\n        private string hoTen;\n        private double canNang,chieuCao;\n        public Adult() : this(\"Chưa nhập\",50,1.6) { }\n        public Adult(string ten,double nang,double cao)\n        {\n            if(string.IsNullOrWhiteSpace(ten) || double.IsNaN(nang) || double.IsInfinity(nang)\n                || double.IsNaN(cao) || double.IsInfinity(cao) || nang<=0 || cao<=0)\n                throw new ArgumentException(\"Họ tên,khối lượng,chiều cao không hợp lệ.\");\n            hoTen=ten;canNang=nang;chieuCao=cao;\n        }\n        public Adult(Adult a)\n        {\n            if(a==null) throw new ArgumentNullException(\"a\");\n            hoTen=a.hoTen;canNang=a.canNang;chieuCao=a.chieuCao;\n        }\n        public double TinhBMI() { return canNang/(chieuCao*chieuCao); }\n        public bool SucKhoeTot()\n        { return canNang>=18.5*chieuCao*chieuCao && canNang<=25*chieuCao*chieuCao; }\n        public string TinhTrang()\n        {\n            if(canNang<18.5*chieuCao*chieuCao) return \"Thiếu cân\";\n            if(canNang<=25*chieuCao*chieuCao) return \"Bình thường theo đề\";\n            if(canNang<30*chieuCao*chieuCao) return \"Thừa cân\";\n            return \"Béo phì theo ngưỡng đề\";\n        }\n        public double CanDieuChinh()\n        {\n            if(canNang<18.5*chieuCao*chieuCao) return 18.5*chieuCao*chieuCao-canNang;\n            if(canNang>25*chieuCao*chieuCao) return 25*chieuCao*chieuCao-canNang;\n            return 0;\n        }\n        public void Xuat()\n        {\n            Console.ForegroundColor=SucKhoeTot()?ConsoleColor.Green:ConsoleColor.Yellow;\n            Console.WriteLine(\"{0}; {1}kg; {2}m; BMI={3:F2}; {4}\",\n                hoTen,canNang,chieuCao,TinhBMI(),TinhTrang());\n            Console.ResetColor();\n        }\n        public void XuatDieuChinh()\n        {\n            double doi=CanDieuChinh();\n            if(doi>0) Console.WriteLine(\"Theo công thức bài: tăng {0:F2} kg để đạt BMI 18,5.\",doi);\n            else if(doi<0) Console.WriteLine(\"Theo công thức bài: giảm {0:F2} kg để đạt BMI 25.\",-doi);\n            else Console.WriteLine(\"Đã nằm trong khoảng BMI của bài.\");\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai06/Adult.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab2_Bai06\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            string ten=NhapLieu.Chuoi(\"Họ tên: \");\n            double nang=NhapLieu.SoThuc(\"Cân nặng (kg): \",double.Epsilon,double.MaxValue);\n            double cao=NhapLieu.SoThuc(\"Chiều cao (m): \",double.Epsilon,double.MaxValue);\n            Adult a=new Adult(ten,nang,cao);\n            a.Xuat();a.XuatDieuChinh();\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai06/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab2_Bai06\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai06/NhapLieu.cs"
+      }
+    ],
+    "example": "h=2m,w=100kg →BMI=25,bình thường theo đề;w=104kg →BMI=26,cần giảm 4kg để về ngưỡng 25.",
+    "check": "Kiểm tra đúng 18,5;25;30 và chiều cao 0 bị nhập lại.",
+    "mistake": "Không đọc 170 là mét;muốn nhập cm phải chia 100 trước khi tạo Adult.",
+    "notes": "Phân loại và số kg là kết quả bài tính theo ngưỡng PDF,không phải tư vấn sức khỏe thực tế.",
+    "project": "oop-code/Lab2/Bai06/Lab2_Bai06.csproj"
+  },
+  {
+    "id": "2.7",
+    "lab": 2,
+    "title": "PhepToan: tham số mặc định và cập nhật",
+    "source": "Lab 2 · trang 4–5",
+    "statement": "Dựa vào lớp PhepToan trong PDF,cho kết quả a) new mặc định rồi Xuat;b) mặc định,CapNhat nhập7,8,+;c) khai báo pt(3,6,*) nhưng gọi pt1.Xuat;d) pt(3,6,*),CapNhat nhập7,8,+ rồi Xuat.",
+    "design": [
+      [
+        "PhepToan.cs",
+        "Giữ tên Tinhtoan theo mã nguồn đề;constructor có tham số mặc định."
+      ],
+      [
+        "Program.cs",
+        "Chạy bản minh họa sau khi sửa tên biến sai ở câu c."
+      ]
+    ],
+    "algorithm": [
+      "a:constructor không có đối số nhận a=0,b=0,c=+,in 0+0=0.",
+      "b:CapNhat thay dữ liệu thành 7,8,+ nên in7+8=15.",
+      "c nguyên gốc:pt1 không được khai báo nên lỗi biên dịch,không in18.",
+      "Nếu sửa pt1 thành pt thì câu c in3*6=18.",
+      "d:CapNhat ghi đè dữ liệu ban đầu nên kết quả là7+8=15,không18."
+    ],
+    "files": [
+      {
+        "name": "PhepToan.cs",
+        "code": "using System;\n\nnamespace Lab2_Bai07\n{\n    public class PhepToan\n    {\n        private float a,b;\n        private char c;\n        public PhepToan(float a1=0,float b1=0,char c1='+')\n        { a=a1;b=b1;c=c1; }\n        public void CapNhat()\n        {\n            a=(float)NhapLieu.SoThuc(\"a: \",-float.MaxValue,float.MaxValue);\n            b=(float)NhapLieu.SoThuc(\"b: \",-float.MaxValue,float.MaxValue);\n            string s;\n            do { s=NhapLieu.Chuoi(\"Phép toán: \"); }\n            while(s.Length!=1 || \"+-*/\".IndexOf(s[0])<0);\n            c=s[0];\n        }\n        private float Tinhtoan()\n        {\n            switch(c)\n            {\n                case '+':return a+b;\n                case '-':return a-b;\n                case '*':return a*b;\n                case '/':\n                    if(b==0) throw new DivideByZeroException();\n                    return a/b;\n                default:throw new ArgumentException(\"Sai phép toán\");\n            }\n        }\n        public void Xuat() { Console.WriteLine(\"{0}{1}{2}={3}\",a,c,b,Tinhtoan()); }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai07/PhepToan.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab2_Bai07\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            Console.WriteLine(\"a)\");new PhepToan().Xuat();\n            Console.WriteLine(\"b) Nhập 7,8,+ để đối chiếu PDF:\");\n            PhepToan b=new PhepToan();b.CapNhat();b.Xuat();\n            Console.WriteLine(\"c) Nguyên gốc lỗi pt1; bản sửa pt:\");\n            PhepToan pt=new PhepToan(3,6,'*');pt.Xuat();\n            Console.WriteLine(\"d) Nhập 7,8,+ sau khởi tạo:\");\n            PhepToan d=new PhepToan(3,6,'*');d.CapNhat();d.Xuat();\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai07/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab2_Bai07\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai07/NhapLieu.cs"
+      }
+    ],
+    "example": "a:0+0=0;b:7+8=15;c lỗi biên dịch,nếu sửa:3*6=18;d:7+8=15.",
+    "check": "Tự theo dõi a,b,c trước và sau CapNhat;thử chia 0 và bắt lỗi đúng chỗ nếu tự mở rộng chương trình.",
+    "mistake": "Các dấu nháy cong ’*’ trong PDF phải đổi thành dấu nháy mã nguồn chuẩn '*'.",
+    "notes": "Code minh họa đã sửa lỗi pt1 và bổ sung chặn chia 0. Kết luận về câu c nguyên gốc vẫn là lỗi biên dịch.",
+    "project": "oop-code/Lab2/Bai07/Lab2_Bai07.csproj"
+  },
+  {
+    "id": "2.8",
+    "lab": 2,
+    "title": "Điền lệnh in field thông qua property",
+    "source": "Lab 2 · trang 6 (mã trong hình)",
+    "statement": "QuestionA có private int a,b;constructor mặc định a=1,b=2;constructor QuestionA(int x,int y=8);property A,B. Trong QuesA tạo QuestionA a=new QuestionA();điền vào Console.Write($\".....\") để in hai field.",
+    "design": [
+      [
+        "QuestionA.cs",
+        "Giữ field a,b riêng và property A,B."
+      ],
+      [
+        "Program.cs",
+        "Phương thức QuesA dùng đúng tên biến a như ảnh."
+      ]
+    ],
+    "algorithm": [
+      "Field a,b private nên Program không đọc a.a hoặc a.b.",
+      "Dùng a.A và a.B để gọi getter.",
+      "Phần điền trong chuỗi nội suy là {a.A}, {a.B}.",
+      "Đối tượng được tạo bằng constructor mặc định nên giá trị là1,2;giá trị mặc định y=8 chỉ dùng khi gọi constructor có x nhưng bỏ y."
+    ],
+    "files": [
+      {
+        "name": "QuestionA.cs",
+        "code": "using System;\n\nnamespace Lab2_Bai08\n{\n    public class QuestionA\n    {\n        private int a,b;\n        public QuestionA() { a=1;b=2; }\n        public QuestionA(int x,int y=8) { a=x;b=y; }\n        public int B { get { return b; } set { b=value; } }\n        public int A { get { return a; } set { a=value; } }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai08/QuestionA.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab2_Bai08\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            QuesA();\n        }\n        static void QuesA()\n        {\n            QuestionA a=new QuestionA();\n            Console.Write($\"{a.A}, {a.B}\");\n        }\n    }\n}\n",
+        "path": "oop-code/Lab2/Bai08/Program.cs"
+      }
+    ],
+    "example": "Đoạn hoàn chỉnh Console.Write($\"{a.A}, {a.B}\"); in 1, 2.",
+    "check": "new QuestionA(5) cho5,8;new QuestionA() vẫn1,2.",
+    "mistake": "Không nhầm biến a ở Program với field a bên trong QuestionA;khác scope và khác quyền truy cập.",
+    "notes": "Trang 6 là ảnh mã nhúng;đã đọc trực tiếp hình để khôi phục đầy đủ constructor và property.",
+    "project": "oop-code/Lab2/Bai08/Lab2_Bai08.csproj"
+  },
+  {
+    "id": "3.1",
+    "lab": 3,
+    "title": "Phân số: phương thức và nạp chồng toán tử",
+    "source": "Lab 3 · trang 1",
+    "statement": "PhanSo có tử,mẫu;constructor mặc định0/1,có tham số,sao chép;các phương thức cộng,trừ,nhân,chia;rút gọn trả về this;xuất tử/mẫu. Nạp chồng +,-,*,/,==,!=. Tạo hai phân số,tính/xuất các kết quả tối giản và so sánh.",
+    "design": [
+      [
+        "PhanSo.cs",
+        "Duy trì mẫu khác 0,dấu chuẩn và dạng tối giản;phương thức gọi lại operator."
+      ],
+      [
+        "Program.cs",
+        "Nhập hai phân số,tạo object và gọi đủ thao tác."
+      ]
+    ],
+    "algorithm": [
+      "Cộng/trừ: (a/b)±(c/d)=(ad±bc)/(bd). Nhân:ac/bd. Chia:ad/bc khi c≠0.",
+      "UCLN dùng Euclid;rút gọn tử,mẫu và chuyển dấu âm lên tử.",
+      "RutGon sửa đối tượng hiện tại,trả this để gọi nối.",
+      "Constructor/kết quả đều chuẩn hóa nên == có thể so cặp tử,mẫu mà không nhân chéo gây tràn.",
+      "Nạp == kèm !=,Equals,GetHashCode nhất quán. checked phát hiện tràn số nguyên thay vì trả kết quả sai."
+    ],
+    "files": [
+      {
+        "name": "PhanSo.cs",
+        "code": "using System;\n\nnamespace Lab3_Bai01\n{\n    public class PhanSo\n    {\n        private long tuSo,mauSo;\n        public PhanSo() : this(0,1) { }\n        public PhanSo(long tu,long mau)\n        {\n            if(mau==0) throw new ArgumentException(\"Mẫu số phải khác 0.\");\n            if(tu==long.MinValue || mau==long.MinValue)\n                throw new OverflowException(\"Không nhận long.MinValue để chuẩn hóa dấu an toàn.\");\n            tuSo=tu;mauSo=mau;RutGon();\n        }\n        public PhanSo(PhanSo p)\n        {\n            if(object.ReferenceEquals(p,null)) throw new ArgumentNullException(\"p\");\n            tuSo=p.tuSo;mauSo=p.mauSo;\n        }\n        private static long UCLN(long a,long b)\n        {\n            a=Math.Abs(a);b=Math.Abs(b);\n            while(b!=0) { long r=a%b;a=b;b=r; }\n            return a;\n        }\n        public PhanSo RutGon()\n        {\n            if(mauSo<0) { tuSo=-tuSo;mauSo=-mauSo; }\n            long u=UCLN(tuSo,mauSo);\n            tuSo/=u;mauSo/=u;\n            return this;\n        }\n        public bool LaKhong() { return tuSo==0; }\n        public void Xuat() { Console.WriteLine(\"{0}/{1}\",tuSo,mauSo); }\n        public PhanSo Cong(PhanSo p) { return this+p; }\n        public PhanSo Tru(PhanSo p) { return this-p; }\n        public PhanSo Nhan(PhanSo p) { return this*p; }\n        public PhanSo Chia(PhanSo p) { return this/p; }\n        public static PhanSo operator +(PhanSo a,PhanSo b)\n        {\n            checked { return new PhanSo(a.tuSo*b.mauSo+b.tuSo*a.mauSo,a.mauSo*b.mauSo); }\n        }\n        public static PhanSo operator -(PhanSo a,PhanSo b)\n        {\n            checked { return new PhanSo(a.tuSo*b.mauSo-b.tuSo*a.mauSo,a.mauSo*b.mauSo); }\n        }\n        public static PhanSo operator *(PhanSo a,PhanSo b)\n        {\n            checked { return new PhanSo(a.tuSo*b.tuSo,a.mauSo*b.mauSo); }\n        }\n        public static PhanSo operator /(PhanSo a,PhanSo b)\n        {\n            if(b.LaKhong()) throw new DivideByZeroException(\"Không chia cho phân số 0.\");\n            checked { return new PhanSo(a.tuSo*b.mauSo,a.mauSo*b.tuSo); }\n        }\n        public static bool operator ==(PhanSo a,PhanSo b)\n        {\n            if(object.ReferenceEquals(a,b)) return true;\n            if(object.ReferenceEquals(a,null) || object.ReferenceEquals(b,null)) return false;\n            // Mọi constructor/kết quả đã rút gọn và mẫu dương.\n            return a.tuSo==b.tuSo && a.mauSo==b.mauSo;\n        }\n        public static bool operator !=(PhanSo a,PhanSo b) { return !(a==b); }\n        public override bool Equals(object obj) { return this==(obj as PhanSo); }\n        public override int GetHashCode()\n        {\n            unchecked { return tuSo.GetHashCode()*397 ^ mauSo.GetHashCode(); }\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai01/PhanSo.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab3_Bai01\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            PhanSo p1=NhapPhanSo(\"Phân số 1\");\n            PhanSo p2=NhapPhanSo(\"Phân số 2\");\n            Console.Write(\"P1: \");p1.Xuat();Console.Write(\"P2: \");p2.Xuat();\n            try\n            {\n                Console.Write(\"Tổng: \");p1.Cong(p2).RutGon().Xuat();\n                Console.Write(\"Hiệu: \");p1.Tru(p2).RutGon().Xuat();\n                Console.Write(\"Tích: \");p1.Nhan(p2).RutGon().Xuat();\n                if(p2.LaKhong()) Console.WriteLine(\"Không thể chia cho phân số 0.\");\n                else { Console.Write(\"Thương: \");p1.Chia(p2).RutGon().Xuat(); }\n            }\n            catch(OverflowException) { Console.WriteLine(\"Kết quả vượt miền long.\"); }\n            Console.WriteLine(\"P1 == P2: {0}; P1 != P2: {1}\",p1==p2,p1!=p2);\n            PhanSo banSao=new PhanSo(p1);\n            Console.Write(\"Bản sao P1: \");banSao.Xuat();\n        }\n        static PhanSo NhapPhanSo(string ten)\n        {\n            Console.WriteLine(ten);\n            int tu=NhapLieu.SoNguyen(\"Tử: \",int.MinValue,int.MaxValue);\n            int mau;\n            do { mau=NhapLieu.SoNguyen(\"Mẫu khác 0: \",int.MinValue,int.MaxValue); }\n            while(mau==0);\n            return new PhanSo(tu,mau);\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai01/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab3_Bai01\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai01/NhapLieu.cs"
+      }
+    ],
+    "example": "1/2 và1/3 →tổng5/6,hiệu1/6,tích1/6,thương3/2;1/2 và2/4 →==true.",
+    "check": "Thử 0/5,1/−2,−2/−4,mẫu0 và chia cho0/1.",
+    "mistake": "Không so trực tiếp hai cặp tử/mẫu chưa chuẩn hóa;không chia nguyên tử/mẫu để so vì mất độ chính xác.",
+    "notes": "Main nhận tử/mẫu int,nhưng giữ/tính bằng long;checked bảo vệ khi nhân/cộng nhiều kết quả lớn. Các operator số học nhận hai phân số khác null theo điều kiện sử dụng;==/!= có xử lý null.",
+    "project": "oop-code/Lab3/Bai01/Lab3_Bai01.csproj"
+  },
+  {
+    "id": "3.2",
+    "lab": 3,
+    "title": "Circle: tổng diện tích và chu vi lớn nhất",
+    "source": "Lab 3 · trang 1–2",
+    "statement": "Circle có radius:float,mặc định1;constructor có r;Cal_Perimeter,Cal_Area,Info;operator +(double,Circle) cộng diện tích;operator < so chu vi. Nhập n hình với2<n<30,in,tổng diện tích bằng +,tìm chu vi lớn nhất bằng operator.",
+    "design": [
+      [
+        "Circle.cs",
+        "Giữ tên phương thức đúng sơ đồ;thêm > để đáp ứng quy tắc cặp với <."
+      ],
+      [
+        "Program.cs",
+        "Mảng Circle,n từ3 đến29."
+      ]
+    ],
+    "algorithm": [
+      "Tạo mảng rồi new từng Circle từ bán kính nhập.",
+      "Tổng bắt đầu double0;sum=sum+ds[i] gọi operator +(double,Circle).",
+      "Vị trí max bắt đầu0;nếu ds[max]<ds[i] thì cập nhật.",
+      "In hình max bằng Info."
+    ],
+    "files": [
+      {
+        "name": "Circle.cs",
+        "code": "using System;\n\nnamespace Lab3_Bai02\n{\n    public class Circle\n    {\n        private float radius;\n        public Circle() : this(1) { }\n        public Circle(float r)\n        {\n            if(float.IsNaN(r) || float.IsInfinity(r) || r<0)\n                throw new ArgumentOutOfRangeException(\"r\");\n            radius=r;\n        }\n        public double Cal_Perimeter() { return 2*Math.PI*radius; }\n        public double Cal_Area() { return Math.PI*radius*radius; }\n        public void Info()\n        { Console.WriteLine(\"r={0};P={1:F4};S={2:F4}\",radius,Cal_Perimeter(),Cal_Area()); }\n        public static double operator +(double sum,Circle c) { return sum+c.Cal_Area(); }\n        public static bool operator <(Circle a,Circle b) { return a.Cal_Perimeter()<b.Cal_Perimeter(); }\n        public static bool operator >(Circle a,Circle b) { return a.Cal_Perimeter()>b.Cal_Perimeter(); }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai02/Circle.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab3_Bai02\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int n=NhapLieu.SoNguyen(\"n [3,29]: \",3,29);\n            Circle[] ds=new Circle[n];\n            for(int i=0;i<n;i++)\n            {\n                float r=(float)NhapLieu.SoThuc(\"Bán kính hình \"+(i+1)+\": \",0,float.MaxValue);\n                ds[i]=new Circle(r);\n            }\n            double tong=0;int viTriMax=0;\n            for(int i=0;i<n;i++)\n            {\n                ds[i].Info();tong=tong+ds[i];\n                if(ds[viTriMax]<ds[i]) viTriMax=i;\n            }\n            Console.WriteLine(\"Tổng diện tích: {0:F4}\",tong);\n            Console.WriteLine(\"Hình có chu vi lớn nhất:\");ds[viTriMax].Info();\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai02/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab3_Bai02\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai02/NhapLieu.cs"
+      }
+    ],
+    "example": "Bán kính1,2,3 →tổng14π≈43,9823;hình r=3 có chu vi lớn nhất6π.",
+    "check": "Thử nhiều hình cùng chu vi lớn nhất;chương trình giữ hình xuất hiện đầu.",
+    "mistake": "Toán tử + cộng số với diện tích,không cộng bán kính và không trả Circle.",
+    "notes": "Đề chỉ nêu <;C# yêu cầu thêm > cùng chữ ký. Không tự thêm so sánh theo diện tích vì đề hỏi chu vi.",
+    "project": "oop-code/Lab3/Bai02/Lab3_Bai02.csproj"
+  },
+  {
+    "id": "3.3",
+    "lab": 3,
+    "title": "Học phần và hóa đơn học phí",
+    "source": "Lab 3 · trang 2",
+    "statement": "HocPhan: mã,tên,số tín chỉ,đại cương hay chuyên ngành;constructor,Nhập,Tính học phí,Xuất;operator +(int,HocPhan) cộng học phí,< so tín chỉ. HoaDonHocPhi:mssv,họ tên,2..9 học phần;constructor,Nhập,tổng tín chỉ,Xuất danh sách giảm tín chỉ và tổng tiền bằng operator. Main nhập một hóa đơn,in và tổng tín chỉ.",
+    "design": [
+      [
+        "HocPhan.cs",
+        "Tự tính học phí và so sánh số tín chỉ."
+      ],
+      [
+        "HoaDonHocPhi.cs",
+        "Chứa HocPhan[],nhập/sắp xếp/tổng hợp."
+      ],
+      [
+        "Program.cs",
+        "Chỉ tạo hóa đơn,gọi Nhap,Xuat,TinhTongTinChi."
+      ]
+    ],
+    "algorithm": [
+      "HocPhan.TinhHocPhi = soTC×(daiCuong?450:710).",
+      "Nhập n từ2..9;với mỗi phần tử new HocPhan rồi gọi Nhap.",
+      "Sắp giảm: nếu ds[i]<ds[j] thì đổi tham chiếu hai phần tử.",
+      "Tổng học phí dùng tongTien=tongTien+h,tổng tín chỉ dùng getter SoTinChi.",
+      "Xuất danh sách sau sắp xếp,rồi in tổng;Main in tổng tín chỉ."
+    ],
+    "files": [
+      {
+        "name": "HocPhan.cs",
+        "code": "using System;\n\nnamespace Lab3_Bai03\n{\n    public class HocPhan\n    {\n        private string maHP,tenHP;\n        private byte soTC;\n        private bool daiCuong;\n        public HocPhan() : this(\"Chưa nhập\",\"Chưa nhập\",1,true) { }\n        public HocPhan(string ma,string ten,byte tc,bool dc)\n        {\n            if(tc==0) throw new ArgumentOutOfRangeException(\"tc\");\n            maHP=ma;tenHP=ten;soTC=tc;daiCuong=dc;\n        }\n        public HocPhan(HocPhan h)\n        {\n            if(h==null) throw new ArgumentNullException(\"h\");\n            maHP=h.maHP;tenHP=h.tenHP;soTC=h.soTC;daiCuong=h.daiCuong;\n        }\n        public byte SoTinChi { get { return soTC; } }\n        public void Nhap()\n        {\n            maHP=NhapLieu.Chuoi(\"Mã học phần: \");\n            tenHP=NhapLieu.Chuoi(\"Tên học phần: \");\n            soTC=(byte)NhapLieu.SoNguyen(\"Số tín chỉ [1,255]: \",1,byte.MaxValue);\n            daiCuong=NhapLieu.DungSai(\"Đại cương=true,chuyên ngành=false\");\n        }\n        public int TinhHocPhi() { return soTC*(daiCuong?450:710); }\n        public void Xuat()\n        { Console.WriteLine(\"{0};{1};{2} TC;học phí={3}\",maHP,tenHP,soTC,TinhHocPhi()); }\n        public static int operator +(int tong,HocPhan h) { checked { return tong+h.TinhHocPhi(); } }\n        public static bool operator <(HocPhan a,HocPhan b) { return a.soTC<b.soTC; }\n        public static bool operator >(HocPhan a,HocPhan b) { return a.soTC>b.soTC; }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai03/HocPhan.cs"
+      },
+      {
+        "name": "HoaDonHocPhi.cs",
+        "code": "using System;\n\nnamespace Lab3_Bai03\n{\n    public class HoaDonHocPhi\n    {\n        private string mssv,hoTen;\n        private HocPhan[] ds;\n        public HoaDonHocPhi() { mssv=\"\";hoTen=\"\";ds=new HocPhan[0]; }\n        public HoaDonHocPhi(string ma,string ten,HocPhan[] danhSach)\n        {\n            if(danhSach==null || danhSach.Length<2 || danhSach.Length>9)\n                throw new ArgumentException(\"Danh sách phải có 2..9 học phần.\");\n            mssv=ma;hoTen=ten;ds=new HocPhan[danhSach.Length];\n            for(int i=0;i<ds.Length;i++) ds[i]=new HocPhan(danhSach[i]);\n        }\n        public void Nhap()\n        {\n            mssv=NhapLieu.Chuoi(\"Mã số sinh viên: \");\n            hoTen=NhapLieu.Chuoi(\"Họ tên: \");\n            int n=NhapLieu.SoNguyen(\"Số học phần [2,9]: \",2,9);\n            ds=new HocPhan[n];\n            for(int i=0;i<n;i++)\n            { Console.WriteLine(\"Học phần \"+(i+1));ds[i]=new HocPhan();ds[i].Nhap(); }\n        }\n        public int TinhTongTinChi()\n        {\n            int tong=0;\n            foreach(HocPhan h in ds) tong+=h.SoTinChi;\n            return tong;\n        }\n        private void SapXepGiam()\n        {\n            for(int i=0;i<ds.Length-1;i++)\n                for(int j=i+1;j<ds.Length;j++)\n                    if(ds[i]<ds[j])\n                    { HocPhan tam=ds[i];ds[i]=ds[j];ds[j]=tam; }\n        }\n        public void Xuat()\n        {\n            SapXepGiam();\n            Console.WriteLine(\"{0};{1}\",mssv,hoTen);\n            int tongTien=0;\n            foreach(HocPhan h in ds) { h.Xuat();tongTien=tongTien+h; }\n            Console.WriteLine(\"Tổng học phí: {0}\",tongTien);\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai03/HoaDonHocPhi.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab3_Bai03\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            HoaDonHocPhi hoaDon=new HoaDonHocPhi();\n            hoaDon.Nhap();hoaDon.Xuat();\n            Console.WriteLine(\"Tổng số tín chỉ: {0}\",hoaDon.TinhTongTinChi());\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai03/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab3_Bai03\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai03/NhapLieu.cs"
+      }
+    ],
+    "example": "HP1=3TC đại cương →1350;HP2=2TC chuyên ngành →1420. Tổng5TC,2770 đơn vị tiền theo đề;danh sách3TC trước2TC.",
+    "check": "Thử n=1 hoặc10 phải nhập lại;thử hai học phần cùng tín chỉ;đại cương true/chuyên ngành false phải áp dụng đúng giá.",
+    "mistake": "Không nhân450/710 thêm1000 khi đề chưa ghi đơn vị. Không dùng cùng công thức so tiền cho operator< nếu đề yêu cầu so tín chỉ.",
+    "notes": "Đề không cho giới hạn tín chỉ mỗi học phần;code dùng miền byte dương1..255 theo kiểu đã chọn. Có thể đổi miền khi giảng viên cung cấp quy định. Giá là đúng số450/710 của PDF;không diễn giải thành bảng phí hiện hành.",
+    "project": "oop-code/Lab3/Bai03/Lab3_Bai03.csproj"
+  },
+  {
+    "id": "3.4",
+    "lab": 3,
+    "title": "Phiếu lưu trú:static,sắp xếp và quý 4",
+    "source": "Lab 3 · trang 2–3",
+    "statement": "Phiếu có phòng,khách,ngày đến/đi,loại1/2/3 và giá sàn chung300. Tính số ngày(đến=đi tính1),giá theo hệ số1,5/1,3/1;operator< so ngày,+ cộng tiền. Nhập1<n<30 phiếu,in giảm số ngày,đếm quý4/2024,tính tiền phòng trung bình dùng +.",
+    "design": [
+      [
+        "PhieuLuuTru.cs",
+        "giaSan static;ngày,mức giá,tiền và điều kiện quý."
+      ],
+      [
+        "Program.cs",
+        "Mảng,sắp giảm,đếm và lấy tổng/n."
+      ]
+    ],
+    "algorithm": [
+      "Nhận ngày theo dd/MM/yyyy;ngày đi không được trước ngày đến.",
+      "Số ngày=max(1,(ngayDi−ngayDen).Days).",
+      "Hệ số phụ thuộc loại;giaSan chỉ khai báo static một lần,không gán lại trong từng constructor.",
+      "Sắp giảm bằng operator< và đổi hai object.",
+      "Tổng dùng double+PhieuLuuTru;trung bình=tổng/n.",
+      "Đếm theo ngày đến trong[01/10/2024,01/01/2025);in thêm số phiếu có khoảng ở giao quý để minh bạch cách hiểu."
+    ],
+    "files": [
+      {
+        "name": "PhieuLuuTru.cs",
+        "code": "using System;\n\nnamespace Lab3_Bai04\n{\n    public class PhieuLuuTru\n    {\n        private string soPhong,hoTen;\n        private DateTime ngayDen,ngayDi;\n        private int loaiPhong;\n        private static double giaSan=300;\n        public static double GiaSan\n        {\n            get { return giaSan; }\n            set\n            {\n                if(double.IsNaN(value) || double.IsInfinity(value) || value<=0)\n                    throw new ArgumentOutOfRangeException();\n                giaSan=value;\n            }\n        }\n        public PhieuLuuTru() : this(\"Chưa nhập\",\"Chưa nhập\",DateTime.Today,DateTime.Today,3) { }\n        public PhieuLuuTru(string phong,string ten,DateTime den,DateTime di,int loai)\n        {\n            if(di.Date<den.Date || loai<1 || loai>3) throw new ArgumentException();\n            soPhong=phong;hoTen=ten;ngayDen=den.Date;ngayDi=di.Date;loaiPhong=loai;\n        }\n        public void Nhap()\n        {\n            soPhong=NhapLieu.Chuoi(\"Số phòng: \");hoTen=NhapLieu.Chuoi(\"Khách: \");\n            ngayDen=NhapLieu.Ngay(\"Ngày đến\");\n            do { ngayDi=NhapLieu.Ngay(\"Ngày đi không trước ngày đến\"); } while(ngayDi<ngayDen);\n            loaiPhong=NhapLieu.SoNguyen(\"Loại [1,3]: \",1,3);\n        }\n        public int SoNgayO() { return Math.Max(1,(ngayDi-ngayDen).Days); }\n        public double GiaPhong()\n        { return giaSan*(loaiPhong==1?1.5:loaiPhong==2?1.3:1.0); }\n        public double TinhTien() { return SoNgayO()*GiaPhong(); }\n        public bool DenTrongQuy4Nam2024()\n        { return ngayDen>=new DateTime(2024,10,1) && ngayDen<new DateTime(2025,1,1); }\n        public bool CoLuuTruTrongQuy4Nam2024()\n        {\n            // Khác ngày: [ngày đến,ngày đi);cùng ngày được tính có ở ngày đó.\n            DateTime dauQuy=new DateTime(2024,10,1),cuoiQuy=new DateTime(2025,1,1);\n            if(ngayDen>=cuoiQuy) return false;\n            if(ngayDi==ngayDen) return ngayDen>=dauQuy;\n            return ngayDi>dauQuy;\n        }\n        public void Xuat()\n        { Console.WriteLine(\"{0};{1};{2} ngày;giá={3:F2};tiền={4:F2}\",soPhong,hoTen,SoNgayO(),GiaPhong(),TinhTien()); }\n        public static bool operator <(PhieuLuuTru a,PhieuLuuTru b) { return a.SoNgayO()<b.SoNgayO(); }\n        public static bool operator >(PhieuLuuTru a,PhieuLuuTru b) { return a.SoNgayO()>b.SoNgayO(); }\n        public static double operator +(double tong,PhieuLuuTru p) { return tong+p.TinhTien(); }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai04/PhieuLuuTru.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab3_Bai04\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int n=NhapLieu.SoNguyen(\"n [2,29]: \",2,29);\n            PhieuLuuTru[] ds=new PhieuLuuTru[n];\n            for(int i=0;i<n;i++) { ds[i]=new PhieuLuuTru();ds[i].Nhap(); }\n            for(int i=0;i<n-1;i++)\n                for(int j=i+1;j<n;j++)\n                    if(ds[i]<ds[j]) { PhieuLuuTru tam=ds[i];ds[i]=ds[j];ds[j]=tam; }\n            int demDen=0,demGiao=0;double tong=0;\n            foreach(PhieuLuuTru phieu in ds)\n            {\n                phieu.Xuat();tong=tong+phieu;\n                if(phieu.DenTrongQuy4Nam2024()) demDen++;\n                if(phieu.CoLuuTruTrongQuy4Nam2024()) demGiao++;\n            }\n            Console.WriteLine(\"Phiếu có ngày đến trong quý 4/2024: {0}\",demDen);\n            Console.WriteLine(\"Phiếu có khoảng lưu trú giao quý 4/2024: {0}\",demGiao);\n            Console.WriteLine(\"Tiền trung bình: {0:F2}\",tong/n);\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai04/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab3_Bai04\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai04/NhapLieu.cs"
+      }
+    ],
+    "example": "Phiếu A đến01/10/2024,đi03/10/2024,loại1 →2 ngày,giá450,tiền900. B cùng ngày02/11,loại3 →1 ngày,tiền300. Trung bình600,đếm theo ngày đến2.",
+    "check": "Thử 30/09→02/10:không đếm theo ngày đến nhưng có giao quý;31/12→01/01 có ngày đến trong quý;ngày đi trước ngày đến bị chặn.",
+    "mistake": "Không trừ riêng thuộc tính Day vì qua tháng/năm sẽ sai. Không chia tổng bằng phép chia nguyên.",
+    "notes": "PDF chưa nói “trong quý” xét ngày đến hay khoảng lưu trú. Đáp án chính công bố xét ngày đến và bổ sung hàm/kết quả giao khoảng để đối chiếu.",
+    "project": "oop-code/Lab3/Bai04/Lab3_Bai04.csproj"
+  },
+  {
+    "id": "3.5",
+    "lab": 3,
+    "title": "Danh sách Adult theo tiêu chí BMI của đề",
+    "source": "Lab 3 · trang 3",
+    "statement": "Dùng lớp Adult của2.6. Nhập n thanh niên,2<n<100,hiển thị danh sách có “sức khỏe tốt” theo phân loại BMI bài tập.",
+    "design": [
+      [
+        "Adult.cs",
+        "Dùng lại nguyên logic BMI của Lab2.6."
+      ],
+      [
+        "Program.cs",
+        "Nhập3..99 người,lặp lọc predicate SucKhoeTot."
+      ]
+    ],
+    "algorithm": [
+      "Tạo Adult[] với n từ3..99.",
+      "Nhập tên,cân nặng kg,chiều cao mét,constructor kiểm tra dương.",
+      "Duyệt từng object;giữ khi18,5≤BMI≤25 theo đề.",
+      "Nếu không có người nào đạt,thông báo danh sách rỗng."
+    ],
+    "files": [
+      {
+        "name": "Adult.cs",
+        "code": "using System;\n\nnamespace Lab3_Bai05\n{\n    public class Adult\n    {\n        private string hoTen;\n        private double canNang,chieuCao;\n        public Adult() : this(\"Chưa nhập\",50,1.6) { }\n        public Adult(string ten,double nang,double cao)\n        {\n            if(string.IsNullOrWhiteSpace(ten) || double.IsNaN(nang) || double.IsInfinity(nang)\n                || double.IsNaN(cao) || double.IsInfinity(cao) || nang<=0 || cao<=0)\n                throw new ArgumentException(\"Họ tên,khối lượng,chiều cao không hợp lệ.\");\n            hoTen=ten;canNang=nang;chieuCao=cao;\n        }\n        public Adult(Adult a)\n        {\n            if(a==null) throw new ArgumentNullException(\"a\");\n            hoTen=a.hoTen;canNang=a.canNang;chieuCao=a.chieuCao;\n        }\n        public double TinhBMI() { return canNang/(chieuCao*chieuCao); }\n        public bool SucKhoeTot()\n        { return canNang>=18.5*chieuCao*chieuCao && canNang<=25*chieuCao*chieuCao; }\n        public string TinhTrang()\n        {\n            if(canNang<18.5*chieuCao*chieuCao) return \"Thiếu cân\";\n            if(canNang<=25*chieuCao*chieuCao) return \"Bình thường theo đề\";\n            if(canNang<30*chieuCao*chieuCao) return \"Thừa cân\";\n            return \"Béo phì theo ngưỡng đề\";\n        }\n        public double CanDieuChinh()\n        {\n            if(canNang<18.5*chieuCao*chieuCao) return 18.5*chieuCao*chieuCao-canNang;\n            if(canNang>25*chieuCao*chieuCao) return 25*chieuCao*chieuCao-canNang;\n            return 0;\n        }\n        public void Xuat()\n        {\n            Console.ForegroundColor=SucKhoeTot()?ConsoleColor.Green:ConsoleColor.Yellow;\n            Console.WriteLine(\"{0}; {1}kg; {2}m; BMI={3:F2}; {4}\",\n                hoTen,canNang,chieuCao,TinhBMI(),TinhTrang());\n            Console.ResetColor();\n        }\n        public void XuatDieuChinh()\n        {\n            double doi=CanDieuChinh();\n            if(doi>0) Console.WriteLine(\"Theo công thức bài: tăng {0:F2} kg để đạt BMI 18,5.\",doi);\n            else if(doi<0) Console.WriteLine(\"Theo công thức bài: giảm {0:F2} kg để đạt BMI 25.\",-doi);\n            else Console.WriteLine(\"Đã nằm trong khoảng BMI của bài.\");\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai05/Adult.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab3_Bai05\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            int n=NhapLieu.SoNguyen(\"n [3,99]: \",3,99);\n            Adult[] ds=new Adult[n];\n            for(int i=0;i<n;i++)\n            {\n                string ten=NhapLieu.Chuoi(\"Họ tên: \");\n                double nang=NhapLieu.SoThuc(\"Cân nặng kg: \",double.Epsilon,double.MaxValue);\n                double cao=NhapLieu.SoThuc(\"Chiều cao m: \",double.Epsilon,double.MaxValue);\n                ds[i]=new Adult(ten,nang,cao);\n            }\n            int dem=0;\n            Console.WriteLine(\"Danh sách đạt khoảng BMI theo đề bài:\");\n            foreach(Adult a in ds)\n                if(a.SucKhoeTot()) { a.Xuat();dem++; }\n            if(dem==0) Console.WriteLine(\"Không có người đạt khoảng BMI của bài.\");\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai05/Program.cs"
+      },
+      {
+        "name": "NhapLieu.cs",
+        "code": "using System;\nusing System.Globalization;\nnamespace Lab3_Bai05\n{\n    // Lớp hỗ trợ nhập liệu, dùng lại để phần giải thuật dễ đọc.\n    internal static class NhapLieu\n    {\n        public static int SoNguyen(string nhac, int min, int max)\n        {\n            int x;\n            do { Console.Write(nhac); }\n            while (!int.TryParse(Console.ReadLine(), out x) || x < min || x > max);\n            return x;\n        }\n        public static double SoThuc(string nhac, double min, double max)\n        {\n            double x;\n            do { Console.Write(nhac); }\n            while (!double.TryParse(Console.ReadLine(), out x) || double.IsNaN(x)\n                || double.IsInfinity(x) || x < min || x > max);\n            return x;\n        }\n        public static string Chuoi(string nhac)\n        {\n            string s;\n            do { Console.Write(nhac); s = Console.ReadLine(); }\n            while (string.IsNullOrWhiteSpace(s));\n            return s.Trim();\n        }\n        public static DateTime Ngay(string nhac)\n        {\n            DateTime d;\n            do { Console.Write(nhac + \" (dd/MM/yyyy): \"); }\n            while (!DateTime.TryParseExact(Console.ReadLine(), \"dd/MM/yyyy\",\n                CultureInfo.InvariantCulture, DateTimeStyles.None, out d));\n            return d.Date;\n        }\n        public static bool DungSai(string nhac)\n        {\n            bool b;\n            do { Console.Write(nhac + \" (true/false): \"); }\n            while (!bool.TryParse(Console.ReadLine(), out b));\n            return b;\n        }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai05/NhapLieu.cs"
+      }
+    ],
+    "example": "Chiều cao2m:người74kg cóBMI18,5 được giữ;100kg cóBMI25 được giữ;104kg cóBMI26 bị loại.",
+    "check": "Kiểm tra cả hai biên18,5 và25 được nhận;không dùng < ở biên25.",
+    "mistake": "Không thay bằng tiêu chuẩn tuyển quân thực tế;đề này chỉ tái sử dụng predicate BMI đã được quy ước.",
+    "notes": "Tên “đủ điều kiện” trong PDF được hiểu trong phạm vi mô phỏng BMI của bài,không phải kết luận tuyển quân/sức khỏe ngoài đời.",
+    "project": "oop-code/Lab3/Bai05/Lab3_Bai05.csproj"
+  },
+  {
+    "id": "3.6",
+    "lab": 3,
+    "title": "Bill:theo dõi biến price dùng chung",
+    "source": "Lab 3 · trang 3–4",
+    "statement": "Với lớp Bill trong PDF,cho kết quả a)new mặc định,in Cal_Bill;b)new mặc định,in b.price;c)new Bill(\"Acer\",1,7.5f),Print;d)b1 mặc định,b2 Acer1 giá7.5,Print b1.",
+    "design": [
+      [
+        "Bill.cs",
+        "Giữ nguyên quy tắc constructor đổi price static để giải đúng đề."
+      ],
+      [
+        "Program.cs",
+        "Minh họa a,c,d và nêu lỗi biên dịch ở b."
+      ]
+    ],
+    "algorithm": [
+      "price khởi tạo10,5,nhưng constructor mặc định gán lại9,5 trước khi tính.",
+      "a:num=1 nên9,5.",
+      "b:b.price truy cập static qua instance không hợp lệ trong C#;sửa Bill.price sẽ in9,5.",
+      "c:constructor có tham số gán price=7,5,name=Acer,num=1,in Acer<TAB>1<TAB>7.5.",
+      "d:b2 đổi biến price dùng chung sang7,5,nên b1 cũng tính theo7,5 dù tên b1 vẫn Dell Latitude E7440."
+    ],
+    "files": [
+      {
+        "name": "Bill.cs",
+        "code": "using System;\n\nnamespace Lab3_Bai06\n{\n    public class Bill\n    {\n        private string name;\n        private byte num;\n        public static float price=10.5f;\n        public Bill() { name=\"Dell Latitude E7440\";num=1;price=9.5f; }\n        public Bill(string na,byte n,float p) { name=na;num=n;price=p; }\n        public float Cal_Bill() { return num*price; }\n        public void Print() { Console.Write(\"{0}\\t{1}\\t{2}\",name,num,Cal_Bill()); }\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai06/Bill.cs"
+      },
+      {
+        "name": "Program.cs",
+        "code": "using System;\nusing System.Text;\n\nnamespace Lab3_Bai06\n{\n    internal class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.InputEncoding = Encoding.UTF8;\n            Console.OutputEncoding = Encoding.UTF8;\n            Console.Write(\"a) \");Bill b=new Bill();Console.WriteLine(b.Cal_Bill());\n            Console.WriteLine(\"b) Nguyên gốc lỗi biên dịch vì b.price; bản sửa Bill.price: {0}\",Bill.price);\n            Console.Write(\"c) \");Bill c=new Bill(\"Acer\",1,7.5f);c.Print();Console.WriteLine();\n            Bill b1=new Bill();Bill b2=new Bill(\"Acer\",1,7.5f);\n            Console.Write(\"d) \");b1.Print();Console.WriteLine();\n        }\n\n    }\n}\n",
+        "path": "oop-code/Lab3/Bai06/Program.cs"
+      }
+    ],
+    "example": "a9,5;b lỗi CS0176;c Acer\t1\t7,5;d Dell Latitude E7440\t1\t7,5. Dấu thập phân phụ thuộc culture.",
+    "check": "Vẽ bảng thời điểm:new b1→price9,5;new b2→price7,5;in b1→1×7,5.",
+    "mistake": "Không coi price là một bản riêng của từng Bill;chính từ khóa static làm đáp án d khác9,5.",
+    "notes": "Mã chạy minh họa đã thay lỗi b.price bằng thông báo và Bill.price;đoạn b nguyên gốc không có kết quả chạy.",
+    "project": "oop-code/Lab3/Bai06/Lab3_Bai06.csproj"
+  }
+]

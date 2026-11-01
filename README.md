@@ -1,55 +1,67 @@
-# Sủi Study Lab — bản cập nhật v6
+# Sủi Study Lab v7
 
-Website ôn tập hai môn độc lập: Toán rời rạc và Cơ sở dữ liệu. Dùng chung giao diện sáng/tối, cỡ chữ, danh mục và cách hiển thị tiến độ. Hoạt động offline, không cần npm hay dịch vụ bên ngoài.
+Website ôn tập ba môn độc lập: **Toán rời rạc**, **Cơ sở dữ liệu**, **Lập trình hướng đối tượng (OOP/C#)**. Giao diện sáng/tối,cỡ chữ,danh mục và tiến độ thống nhất. Website hoạt động offline,không cần npm hay đăng nhập.
 
 ## Cập nhật GitHub Pages
 
-1. Giải nén bộ mã.
-2. Upload **các file bên trong** vào thư mục gốc repo `test`, ghi đè file cùng tên và thêm các file mới, nhất là `db-practice.json`.
-3. Giữ `index.html` ngay thư mục gốc. Không upload nguyên ZIP thay cho bộ mã.
-4. Commit thay đổi vào nhánh GitHub Pages đang sử dụng; chờ lượt triển khai hoàn tất rồi tải lại trang.
+Giải nén ZIP rồi upload **các file và thư mục bên trong** vào thư mục gốc repository,ghi đè file cùng tên và giữ các file mới. `index.html` nằm ngay thư mục gốc; giữ cả thư mục `oop-code` để nút tải file C# hoạt động. Không upload nguyên ZIP thay cho bộ mã.
 
-`index.html` đã được build sẵn, tự chứa CSS, JavaScript và dữ liệu. Khi cập nhật mã nguồn sau này, chạy lại `python build.py` để đồng bộ nội dung triển khai.
+Commit lên nhánh GitHub Pages đang dùng,chờ triển khai rồi tải lại trang. Tiến độ cũ được giữ khi mở cùng địa chỉ trên cùng trình duyệt và không xóa dữ liệu trang.
 
-## Cơ sở dữ liệu
+## Nội dung OOP
 
-- 4 chủ đề, 22 mục kiến thức được mở rộng: giải thích bằng lời, cách làm, ví dụ, lỗi dễ nhầm, câu tự kiểm tra và liên kết đến bài luyện.
-- 39 bài và bộ bài từ các mục bài tập của 4 tài liệu bài học: 7 thiết kế CSDL/ER, 5 bộ truy vấn đại số quan hệ, 15 bài phụ thuộc hàm/khóa và 12 bài chuẩn hóa/phân rã. Một bộ bài có thể gồm nhiều câu nhỏ.
-- Bài 3–7 của đề ôn tập giữa kỳ: đề đầy đủ, đọc đề, lời giải từng ý, bảng suy diễn/bao đóng/khóa và giải thích từng kết luận.
-- Tìm kiếm không phân biệt dấu; lọc chủ đề và trạng thái đã nắm; gợi ý/lời giải đóng mở; mục lục trong bài dài.
-- Tiến độ gồm 22 kiến thức + 5 bài giữa kỳ + 39 bài ôn tập = 66 nội dung.
+- 38 mục kiến thức/công thức từ đủ 4 chủ đề PDF,ví dụ và lỗi dễ nhầm.
+- 42 câu/bài từ BaiTapOOP:20 trắc nghiệm (mỗi câu4 đáp án,giải thích cả4);22 tự luận/viết mã có đáp án đầy đủ.
+- 27 bài lập trình:Lab1 có13,Lab2 có8,Lab3 có6;kể cả bài dấu*. Mỗi Lab có danh mục riêng,mỗi bài có đề,phân tích lớp,từng filecode,cách làm,ví dụ và tự kiểm tra.
+- 63 file C# trong27 project Console độc lập,có nút sao chép/tải từng file.
+- Tìm kiếm không phân biệt dấu,lọc chủ đề/loại câu,tiến độ OOP riêng gồm107 nội dung.
 
-Lời giải được biên soạn từ các đề trong tài liệu người dùng cung cấp; không gắn nhãn là đáp án chính thức của giảng viên. Bài mở nêu rõ giả thiết và dữ liệu minh họa tự tạo. Xem `CONTENT_SOURCES.md` để đối chiếu.
+Những đáp án sai/mơ hồ trong ảnh có ghi chú hiệu chỉnh rõ. Xem `OOP_CONTENT_SOURCES.md` để đối chiếu đầy đủ. Website hiển thị mã; không chạy C# trong trình duyệt.
 
-## Giữ tiến độ cũ
+## Mở và chạy bài Lab
 
-Tiếp tục dùng khóa lưu `sui-db-progress` và `sui-study-lab-v3-progress`. Danh sách 22 kiến thức và ID bài 3–7 không bị đổi; thêm trường `practice` riêng. Dữ liệu CSDL cũ từ `sui-db-done` cũng được đọc khi chưa có tiến độ mới. Tiến độ Toán rời rạc không đổi.
+Chọn Lab,bài rồi đọc các file. Ví dụ bài3.3 ở `oop-code/Lab3/Bai03/`:
 
-Tiến độ được giữ khi mở cùng địa chỉ website trên cùng trình duyệt, không xóa dữ liệu trang. Tỷ lệ CSDL có thể giảm vì tổng số nội dung tăng từ 27 lên 66; các dấu đã học cũ vẫn còn. Tiến độ không tự đồng bộ giữa thiết bị hoặc tên miền khác nhau.
+1. Mở `Lab3_Bai03.csproj` bằng Visual Studio có SDK .NET8 phù hợp,hoặc mở terminal tại thư mục đó.
+2. Chạy `dotnet run`.
+3. Nhập theo nhắc;đối chiếu ví dụ trên website.
 
-## Cấu trúc mã
+Mỗi bài là project riêng;không dán nhiều Main từ nhiều bài vào cùng project. Project dùng cú pháp truyền thống như bài giảng,không dùng các tính năng ngôn ngữ mới chỉ để rút ngắn code.
 
-- `template.html`, `styles.css`, `theme.css`: khung và giao diện chung.
-- `app.js`, `data.json`: Toán rời rạc.
-- `db.js`: điều hướng, tìm kiếm, bài ôn tập và tiến độ CSDL.
-- `db-knowledge.json`: kiến thức; giữ thứ tự để tương thích tiến độ.
-- `db-data.json`: đề mẫu và lời giải giữa kỳ, ID 3–7.
-- `db-practice.json`: 39 bài/bộ bài, ID ổn định theo chủ đề và số bài.
-- `db-chapters.json`: bản trích chữ tài liệu gốc; giữ số trang/slide.
-- `build.py`: đóng gói các nguồn trên thành `index.html` bằng Python chuẩn.
+`NhapLieu.cs` là lớp hỗ trợ kiểm tra dữ liệu được đưa đầy đủ vào từng bài cần dùng. Các bài giao diện Console như2.3 phải chạy trong terminal có bàn phím/cửa sổ thật;không dùng ô kết quả văn bản tĩnh.
 
-Không sửa riêng `index.html` rồi chạy build, vì bản build sẽ lấy lại từ các file nguồn.
+## Mã nguồn website
 
-## Kiểm tra
+`template.html`,`styles.css`,`theme.css` là giao diện chung;`app.js`,`data.json` cho Toán;`db.js` và nhóm `db-*.json` cho CSDL;`oop.js` và nhóm `oop-*.json` cho OOP. Chạy `python build.py` sau khi sửa các nguồn để tạo lại `index.html`.
+
+`index.html` đã build sẵn,tự chứa CSS/JavaScript/dữ liệu;không tải thư viện ngoài khi học. Các file C# tải bằng đường dẫn tương đối trong `oop-code`.
+
+## Tiến độ
+
+Toán tiếp tục dùng `sui-study-lab-v3-progress`;CSDL dùng `sui-db-progress` và hỗ trợ dữ liệu cũ `sui-db-done`;OOP dùng `sui-oop-progress`. Việc chọn đáp án không tự đánh dấu đã nắm;người học tự đánh dấu khi có thể giải thích. Tiến độ lưu trên trình duyệt,không tự đồng bộ nhiều thiết bị.
+
+## Kiểm tra đã chạy
 
 ```sh
 python build.py
 python tests/verify_database.py
+python tests/verify_oop.py
 node tests/verify_ui.cjs
-node --check db.js
 node --check app.js
+node --check db.js
+node --check oop.js
 ```
 
-Các kiểm tra mới dùng Python/Node chuẩn, không cần cài thư viện. Kiểm tra CSDL dùng định nghĩa bao đóng, liệt kê khóa, tương đương phủ, tập PTH chiếu, chase kiểm tra lossless và dữ liệu phản ví dụ. Kiểm tra UI dùng DOM mô phỏng để kiểm tra tuyến trang, lọc, tiến độ và chuyển môn; không thay thế kiểm tra bố cục trên trình duyệt thật. Hai file kiểm tra Toán rời rạc cũ được giữ nguyên và có thể cần thư viện riêng.
+Các kiểm tra Python/Node trên dùng thư viện chuẩn. Kiểm tra UI dùng DOM mô phỏng:tuyến trang,lựa chọn/chấm/làm lại trắc nghiệm,lọc,tiến độ và chuyển ba môn. Kiểm tra nội dung OOP gồmđộ phủ nguồn,đáp án,đường dẫn và cấu trúc mã;không thay thế trình biên dịch C#.
 
-Bản v6 đã kiểm tra chức năng và tính toán; chưa xác minh trực quan bằng trình duyệt thật trong môi trường biên soạn.
+**Giới hạn xác minh:** môi trường biên soạn không có SDK/trình biên dịch C# và trình duyệt thật. Chưa chạy biên dịch/thực thi27 project,chưa kiểm tra trực quan bố cục bằng trình duyệt.
+
+## Kiểm tra C# trên máy có SDK .NET8
+
+```sh
+dotnet run --project tests/OOPRegression/OOPRegression.csproj
+```
+
+Project này liên kết toàn bộ mã Lab trong đúng namespace của chúng,chọn một Main kiểm tra riêng và kiểm tra tuổi,Armstrong,sắp xếp,tài khoản,hình học,thời gian,BMI,phân số,operator,học phí,lưu trú/static. Nó cũng buộc bộ biên dịch kiểm tra tất cả63 file C#. Mã kiểm tra này đã được chuẩn bị,chưa được chạy tại môi trường biên soạn.
+
+Các kiểm tra Toán rời rạc cũ vẫn có trong thư mục tests và có thể cần thư viện riêng. Nội dung hai môn cũ được giữ tương thích.

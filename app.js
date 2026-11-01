@@ -110,6 +110,7 @@
   }
   function render(restore=false) {
     window.syncCourseShell();
+    if(location.hash.startsWith('#/oop')){window.oopRender();if(!restore)window.scrollTo(0,0);return;}
     if(location.hash.startsWith('#/db')){window.dbRender();if(!restore)window.scrollTo(0,0);return;}
     const r=route(); setNav(r.page);progress();
     if(r.page==='home')viewEl.innerHTML=home();

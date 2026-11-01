@@ -1,0 +1,878 @@
+[
+  {
+    "id": 1,
+    "title": "Tổng quan và các nguyên lý OOP",
+    "file": "Topic 1 - Aug26.pdf",
+    "pages": [
+      {
+        "number": 1,
+        "text": "TOPIC 1\n\n\n  Introduction to Object-\n  Oriented Programming\nKỸ THUẬT LẬP TRÌNH\n                  Lecturer: Ngoan Pham\n             Email: ngoanptk@ntu.edu.vn\n\n\n\n\n                                      1"
+      },
+      {
+        "number": 2,
+        "text": "Content\n\n      Programming Paradigms\n\n          Concepts in OOP\n\n          Principles of OOP\n\n     OOP Languages\n\n\n                              2"
+      },
+      {
+        "number": 3,
+        "text": "Objectives\n➢ Recall the characteristics, advantages, and disadvantages of\n  different programming paradigms.\n➢ Distinguish between classes and objects, attributes and\n  methods.\n➢ Identify the key principles of object-oriented programming\n  (OOP).\n➢ Recognize several OOP languages.\n\n\n\n\n                                                                 3"
+      },
+      {
+        "number": 4,
+        "text": "1. Programming paradigms\n➢ Given a problem, how to:\n   Design an algorithm for solving it\n   Implement this algorithm as a computer program\n\n\n  Needs of programming languages and paradigms\n\n\n\n\n                                                     4"
+      },
+      {
+        "number": 5,
+        "text": "1. Programming paradigms\n➢ A Programming paradigm:\n   a fundamental style or approach to programming\n   defines how developers structure code, manage data,\n     and solve problems.\n➢ Different Programming Paradigms:\n    Linear Programming\n    Structured/Procedural Programming\n    Object Oriented Programming\n    Logical programming\n    …\n\n                                                          5"
+      },
+      {
+        "number": 6,
+        "text": "1. Programming paradigms\n➢ Linear Programming: we can have a sequence of steps\n that can be executed or interpreted one by one until the\n program is finished.\n\n\n\n\n                                                        6"
+      },
+      {
+        "number": 7,
+        "text": "1. Programming paradigms\n➢ Procedural Programming: we divide our instructions\n into smaller blocks of well-defined code. These code blocks\n are known as functions, where each function performs a\n specific task.\n\n\n\n\n                                                               7"
+      },
+      {
+        "number": 8,
+        "text": "1. Programming paradigms\n➢ Procedural Programming\n\n\n\n\n                           8"
+      },
+      {
+        "number": 9,
+        "text": "1. Programming paradigms\n➢ Benefits of Procedural Programming\n • Simplicity – easy to learn and code.\n • Easy testability – straightforward debugging.\n • Good for small projects – suitable for general-purpose\n   tasks.\n • Accessible learning – many resources available.\n • …\n\n\n\n\n                                                        9"
+      },
+      {
+        "number": 10,
+        "text": "1. Programming paradigms\n➢ Limitations of Procedural Programming\n   Weak data security – data is exposed to multiple\n    procedures.\n   Limited portability – code reuse across projects is\n    difficult.\n   Poor real-world modeling – prioritizes procedures over\n    data and objects.\n   …\n\n\n\n\n                                                         10"
+      },
+      {
+        "number": 11,
+        "text": "1. Programming paradigms\n➢ Object Oriented Programming: is Programs are\n  structured around objects that interact to perform tasks.\n       Object = Data + Method\n    OOP emphasizes encapsulation, inheritance, and\n      polymorphism to build reusable, modular, and flexible\n      code.\n\n\n\n\n                                                          11"
+      },
+      {
+        "number": 12,
+        "text": "1. Programming paradigms\n➢ Benefits of OOP include:\n   Reusability – inheritance enables code reuse.\n   Productivity – faster development with libraries and\n    reusable components.\n   Clear Interfaces – encapsulation and message passing\n    simplify system interaction.\n   Flexibility – polymorphism allows adaptable and\n    extensible code.\n  …\n\n\n\n\n                                                       12"
+      },
+      {
+        "number": 13,
+        "text": "1. Programming paradigms\n➢ Limitations of OOP include:\n   Less suited for algorithm-heavy tasks – OOP focuses on\n    modeling data/objects rather than pure computation.\n   More complex code structure – requires classes, objects,\n    and hierarchies, which can be overkill for small projects.\n   Potential overhead – large OOP systems may compile or\n    run slower due to complexity and interdependencies.\n   …\n\n\n\n\n                                                             13"
+      },
+      {
+        "number": 14,
+        "text": "1. Programming paradigms\n➢ POP (Procedural-Oriented Programming) vs OOP (Object-\n Oriented Programming)\n\n\n\n\n                                                          14"
+      },
+      {
+        "number": 15,
+        "text": "1. Programming paradigms\n\n\n\n\n                           15"
+      },
+      {
+        "number": 16,
+        "text": "Content\n\n      Programming Paradigms\n\n          Concepts in OOP\n\n          Principles of OOP\n\n     OOP Languages\n\n\n                              16"
+      },
+      {
+        "number": 17,
+        "text": "2. OOP concepts\n➢ Object-oriented modeling\n   Object in the real world are related to us and each\n    other.\n   They can be modeled as software objects.\n\n\n\n\n                                                          17"
+      },
+      {
+        "number": 18,
+        "text": "2. OOP concepts\n➢ OOP (Object Oriented Programming)\n   A programming approach which uses objects.\n   When a program runs objects are created and work\n    together to perform the program's tasks.\n\n\n\n\n                                                       18"
+      },
+      {
+        "number": 19,
+        "text": "2. OOP concepts\n\n                  Object: An entity, or thing\n                  ➢ Real   world      object    (car,\n                    computer, ..)\n                  ➢ Concept (subject, meeting, ..)\n                  ➢ Process (sorting a stack of\n                    papers or comparing two\n                    computers to measure their\n                    performance)\n\n\n\n\n                                                        19"
+      },
+      {
+        "number": 20,
+        "text": "2. OOP concepts\n➢ Object: Object in the real world is represented by:\n    Attributes: information about theirs states.\n    Methods: their behaviors related to theirs states.\n➢ Example\n\n\n\n\n                                                          20"
+      },
+      {
+        "number": 21,
+        "text": "2. OOP concepts\n➢ Attribute:\n   An attribute of a class is an identified common state of\n    all instances of this class (i.e. set of concrete objects).\n   An attribute specifies all possible values that can be\n    assigned as concrete state of these of objects.\n\n    Each object maintains a private copy of each attribute\n    value.\n\n\n\n\n                                                                  21"
+      },
+      {
+        "number": 22,
+        "text": "2. OOP concepts\n➢ Operation:\n   An operation of a class is\n    an identified common\n    behavior of all instances\n    of this class. The\n    behavior operates on the\n    class attributes and\n    usually    derives      the\n    change of a class’s state.\n\n\n\n\n                                  22"
+      },
+      {
+        "number": 23,
+        "text": "2. OOP concepts\n ➢ Object Class: A class specifies the common attributes\n   and methods of many individual objects all of the same\n   kind.\n ➢ Class is used as the blueprint to create objects.\n\n\n\n\n    Object\n\n\n\n\n                                                        23"
+      },
+      {
+        "number": 24,
+        "text": "2. OOP concepts\n➢ Object vs Class\n\n\n\n\n                    24"
+      },
+      {
+        "number": 25,
+        "text": "2. OOP concepts\n Object vs Class\n\n\n\n\n                   25"
+      },
+      {
+        "number": 26,
+        "text": "2. OOP concepts\n➢ Message passing is the only way to interact with objects\n   Objects communicate by sending messages.\n   Objects respond to a message that is sent to them by\n    performing some action.\n\n\n\n\n                                                             26"
+      },
+      {
+        "number": 27,
+        "text": "2. OOP concepts\n➢ Message Passing: The process by which an object:\n   Sends data to other objects.\n   Asks the other object to invoke the method.\n➢ Method Calling:\n   The object to which the message is addressed.\n   The name of the method to perform.\n   Any parameters needed by the method.\n\n\n\n\n                                                     27"
+      },
+      {
+        "number": 28,
+        "text": "Content\n\n      Programming Paradigms\n\n          Concepts in OOP\n\n          Principles of OOP\n\n     OOP Languages\n\n\n                              28"
+      },
+      {
+        "number": 29,
+        "text": "3. Principles of OOP\n\n\n\n\n                       29"
+      },
+      {
+        "number": 30,
+        "text": "3. Principles of OOP\nAbstraction\n➢ Abstraction hides the detailed information about object.\n➢ Abstraction is a view or representation of an object that\n  includes only the most significant attributes.\n➢ Class represents such an abstraction and is commonly\n  referred to as an abstract data type (ADT).\n                                  Calling,\n                                  SMS,\n                                  Camera\n\n              Calling,                        Phone\n              SMS\n                                 Calling,     Calling,SMS\n                                 SMS,\n                                 Camera,\n                                 Reading\n                                 E-mails                    30"
+      },
+      {
+        "number": 31,
+        "text": "3. Principles of OOP\nEncapsulation:\n➢ Mechanism       by     which    we\n  integrate of data (attributes) and\n  operations (method) into a unit or\n  class.\n➢ It restricts direct access to some\n  of an object's components, which\n  can prevent the accidental\n  modification of data.\n➢ Encapsulation helps to keep the\n  data safe and hide the complexity\n  from the user.\n                                       31"
+      },
+      {
+        "number": 32,
+        "text": "3. Principles of OOP\nInheritance:\n➢ Create new classes (derived\n  classes) from existing classes\n  (base classes)\n➢ The derived class inherits the\n  variables and functions of the\n  base     class   and      adds\n  additional ones.\n➢ Provides the ability to re-use\n  existing code.\n\n\n                                   32"
+      },
+      {
+        "number": 33,
+        "text": "3. Principles of OOP\n➢ Polymorphism:\n   Ability    of a message to be\n    processed in more than one form.\n   It is a feature which same message\n    can be sent to objects of several\n    different classes, and each object\n    can respond in a different way\n    depending in its class.\n   The same method can perform\n    different functions depending on\n    the object that it is acting upon.\n\n                                         33"
+      },
+      {
+        "number": 34,
+        "text": "3. Principles of OOP\n\n\n\n\n                       34"
+      },
+      {
+        "number": 35,
+        "text": "Content\n\n      Programming Paradigms\n\n          Concepts in OOP\n\n          Principles of OOP\n\n     OOP Languages\n\n\n                              35"
+      },
+      {
+        "number": 36,
+        "text": "4. OOP Languages\n\n\n\n\n                   36"
+      },
+      {
+        "number": 37,
+        "text": "4. OOP Languages\n➢ Common programming languages used for OOP\n   Object-oriented language support:\n    ✓ C++\n\n    ✓ Python\n\n    ✓ Object C, Pascal, Delphi, …\n\n   OOP:\n    ✓ C#\n\n    ✓ SmallTalk, JAVA,...\n\n\n\n                                              37"
+      },
+      {
+        "number": 38,
+        "text": "The end of topic 1\nReferences\n➢ Vu Thi Huong Giang, OOP, School of Information and Communication Technology,\n  Hanoi University of Science and Technology.\n➢ Trần Đan Thư, Đinh Bá Tiến, Nguyễn Tấn Trần Minh Khang, Lập trình hướng đối tượng,\n  NXB Khoa học & Kỹ thuật.\n\n\n\n\n                                                                                   38"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": ".NET và nền tảng C#",
+    "file": "Topic 2-Aug26.pdf",
+    "pages": [
+      {
+        "number": 1,
+        "text": "TOPIC 2\n\n\n\n MICROSOFT .NET và C#\nKỸ THUẬT LẬP TRÌNH\n              Lecturer: Pham Thi Kim Ngoan\n                Email: ngoanptk@ntu.edu.vn\n\n\n\n\n                                         1"
+      },
+      {
+        "number": 2,
+        "text": "Learning Outcomes\n➢ Understand the main features of .NET technology and its\n  platforms/applications.\n➢ Use input/output statements in programs.\n➢ Apply basic data types in C#.\n➢ Use C# syntax in console applications.\n➢ Apply exception handling in specific situations.\n\n\n\n\n                                                        2"
+      },
+      {
+        "number": 3,
+        "text": "Content\n\n      Overview of .Net\n\n          Visual Studio\n\n          C# Programming Language\n\n      Exception handling\n\n\n                                    3"
+      },
+      {
+        "number": 4,
+        "text": "1. Overview of .Net\n➢ NET is a cross-platform technology for building various\n applications (web, mobile, desktop, games, IoT, etc.).\n➢ Provides a consistent object-oriented environment for\n different types of applications.\n➢ Supports multiple Microsoft programming languages: C#,\n Visual J#, Visual Basic, etc.\n\n\n\n\n                                                           4"
+      },
+      {
+        "number": 5,
+        "text": "1. Overview of .Net\n➢ .NET Framework → .NET Core → .NET Unified as the\n  three eras.\n    Framework Era (2002–2022): Windows-only, strong\n     desktop/web support.\n    Core Era (2016–2019): Cross-platform pivot, modular\n     runtime, open-source.\n    Modern Unified Era (2020–present): Annual releases,\n     unified product line, alternating LTS (even versions)\n     and STS (odd versions).\n➢ Language Evolution: C# has advanced from version 1.0 to\n  C# 14 in .NET 10.\n\n                                                         5"
+      },
+      {
+        "number": 6,
+        "text": "1. Overview of .Net\n➢ 3 platforms of .Net\n\n\n\n\n                        6"
+      },
+      {
+        "number": 7,
+        "text": "1. Overview of .Net\n➢ 3 platforms of .Net:\n   .NET Framework: for Windows applications (websites,\n     services, desktop apps).\n    NET Core: open-source, cross-platform framework for\n     apps running on Windows, macOS, Linux.\n    Xamarin: for mobile apps on iOS and Android.\n➢ .NET Standard: a common API library shared across .NET\n  implementations.\n\n\n\n\n                                                           7"
+      },
+      {
+        "number": 8,
+        "text": "1. Overview of .Net\n➢ Architecture\n   CLR (Common Language Runtime): executes and\n    manages running applications.\n   Libraries: provide APIs and data types for common\n    functions.\n   BCL (Base Class Libraries): core system-defined classes.\n   Tooling: development tools like Visual Studio, Visual\n    Studio Code, CLI.\n\n\n\n                                                               8"
+      },
+      {
+        "number": 9,
+        "text": "1. Overview of .Net\n➢ .Net 5 – consolidation of platforms: (10/11/2020)\n\n\n\n\n                                                      9\n➢ .NET 10.0 (11/2025)"
+      },
+      {
+        "number": 10,
+        "text": "1. Overview of .Net\n➢ Operating environment\n\n\n\n\n                          10"
+      },
+      {
+        "number": 11,
+        "text": "Content\n\n      Overview of .Net\n\n          Visual Studio\n\n          C# Programming Language\n\n      Exception handling\n\n\n                                    11"
+      },
+      {
+        "number": 12,
+        "text": "2. Visual Studio\n➢ Microsoft Visual Studio (VS) is an IDE that provides:\n   Code editing, building, debugging.\n   Team collaboration via Team Foundation Server.\n   Shortcuts and plugins for faster coding.\n   Project and library management.\n\n\n\n\n                                                          12"
+      },
+      {
+        "number": 13,
+        "text": "2. Visual Studio\n➢ Organization\n   Project-based: uses a .csproj file and can span multiple\n    source files.\n    o A Solution can contain multiple Projects.\n\n    o Projects contain classes organized into namespaces.\n\n    o Class View shows which namespace each class belongs\n      to.\n   File-based apps: Starting with C# 14 and .NET 10, file-\n    based apps let you run a program contained in a\n    single *.cs file without a project file.\n   Developers can create folders to organize classes.\n\n                                                           13"
+      },
+      {
+        "number": 14,
+        "text": "2. Visual Studio\n\n\n\n\n                   14"
+      },
+      {
+        "number": 15,
+        "text": "2. Visual Studio\n➢ Organization: A solution can contain in it many projects.\n  In the Projects there are classes.\n\n\n\n\n                                                          15"
+      },
+      {
+        "number": 16,
+        "text": "2. Visual Studio\n➢ Organization: can create different folders to hold classes.\n\n\n\n\n                                                                16"
+      },
+      {
+        "number": 17,
+        "text": "Online C# Compiler Tools\n➢ https://dotnetfiddle.net/\n\n\n\n\n➢ https://www.onlinegdb.com/online_csharp_compiler\n➢ https://rextester.com/\n                                                     17\n➢…"
+      },
+      {
+        "number": 18,
+        "text": "Content\n\n      Overview of .Net\n\n          Visual Studio\n\n          C# Programming Language\n\n      Exception handling\n\n\n                                    18"
+      },
+      {
+        "number": 19,
+        "text": "3. C# Programming Language\n➢ Developed by Anders Hejlsberg and Scott Wiltamuth.\n➢ Object-oriented language built on concepts from C++ and\n Java.\n➢ Supports full OOP mechanisms and cross-platform\n compilation.\n\n\n\n\n                                                        19"
+      },
+      {
+        "number": 20,
+        "text": "3. C# Programming Language\n➢ C# program structure\n\n\n\n\n                             20"
+      },
+      {
+        "number": 21,
+        "text": "3. C# Programming Language\n➢ HelloWorld program\n\n\n\n\n                             21"
+      },
+      {
+        "number": 22,
+        "text": "3. C# Programming Language\n➢ Namespaces:\n\n\n\n\n                             22"
+      },
+      {
+        "number": 23,
+        "text": "3. C# Programming Language\n➢ Namespaces: a logical container that organizes related\n classes, interfaces, and other types into groups.\n   Namespace declaration\n    o Organizes related types into a logical structure.\n\n    o Prevents naming collisions.\n\n    o Example: using System;\n\n   Using directive\n    o Allows access to types by simple names.\n\n    o Avoids writing full namespace paths.\n\n    o Example: using System.Collections.Generic; use\n      List<T> instead of\n      System.Collections.Generic.List<T>.                 23"
+      },
+      {
+        "number": 24,
+        "text": "3. C# Programming Language\n➢ Basic Namespaces\n\n\n\n\n                             24"
+      },
+      {
+        "number": 25,
+        "text": "3. C# Programming Language\n➢ Main method: is the starting point to run the application,\n  the ways to write:\n   static void Main(string[] args)\n\n   static void Main()\n   static int Main(string[] args)\n\n   static int Main()\n\n\n\n\n                                                           25"
+      },
+      {
+        "number": 26,
+        "text": "3. C# Programming Language\n➢ Console I/O\n   Read characters from the console window:\n\n    o Console.Read(): Reads a character from the keyboard\n     and returns integer type that is ASCII code of that\n     character.\n    o Console.ReadLine():  Read characters from the\n     keyboard until a newline character, return value is\n     always a string.\n    o Console.ReadKey():   Reads a character from the\n     keyboard and returns the ConsoleKeyInfo type.\n\n                                                            26"
+      },
+      {
+        "number": 27,
+        "text": "3. C# Programming Language\n➢ Console I/O\n   Output data to console window:\n    o Console.Write(< values/text >)\n\n  To output values/text to the screen, the cursor is on the\n  same row of output data.\n    o Console.WriteLine(< values/text >)\n\n  To output values/text to the screen, the cursor is on the\n  next row of output data.\n\n\n\n                                                          27"
+      },
+      {
+        "number": 28,
+        "text": "3. C# Programming Language\n➢ Output Format\n   To output variable values in order: {i}, i is ordinal number of\n   the variable.\n      int a=5; b=10;\n      Console.WriteLine(“a={0}, b={1}”, a, b);\n   Use {} and $\n    Console.Write($\"{Math.Max(3, 4)}\");\n   Use String.Format\n      float a = 3.12345F;\n      String.Format (\"{0:0.0}\",a); //String.Format (\"{0:0.#}\",a);\n                                                               28"
+      },
+      {
+        "number": 29,
+        "text": "3. C# Programming Language\n➢ Comments:\n   Single-line Comments: //This is a comment\n   Multi-line Comments:\n\n     /*This is\n     a comment*/\n   Comments for methods: ///\n     ///<sumary>\n     /// sum of 2 numbers a and b\n     ///</sumary>\n     public int Tong( int a, int b) {…}         29"
+      },
+      {
+        "number": 30,
+        "text": "3. C# Programming Language\n➢ Region:\n   Group a block of code into a group\n\n      #region Group_name\n      …\n      #endregion\n  E.g:\n  #region arithmetic_operations\n  …\n  #endregion\n                                         30"
+      },
+      {
+        "number": 31,
+        "text": "3. C# Programming Language\n➢ Datatypes:\n   Definition method: build-in and user-defined.\n\n   Storage method: value, reference and pointer.\n\n➢ Reference\n   User-defined: class,…\n\n   EX: class Student\n   Object, String, dynamic, …\n\n➢ Pointer: same as in C/C++\n\n\n                                                    31"
+      },
+      {
+        "number": 32,
+        "text": "3. C# Programming Language\n➢ Value data type - Build-in\n\n\n\n\n                               32"
+      },
+      {
+        "number": 33,
+        "text": "3. C# Programming Language\n➢ Variables:\n   A memory area of type\n\n   Values can be assigned and changed\n\n   Variables must be initialized before use, otherwise the\n    compiler will give an error\n   Recommended naming variables, methods, classes:\n   Variable name: start with a lowercase letter( someName)\n\n   Method names and other elements: start with a\n    uppercase letter (SomeOtherMethod)\n\n                                                          33"
+      },
+      {
+        "number": 34,
+        "text": "3. C# Programming Language\n➢ Variables:\n   Declaring (Creating) Variables\n\n     <Access Modifiers> <data type>[?] <name_variable> [=value];\n\n   E.g:\n      int i;\n      float x = 0;\n      int? j = null;\n\n\n\n                                                                   34"
+      },
+      {
+        "number": 35,
+        "text": "3. C# Programming Language\n➢ Constants:\n   Is a variable but cannot be changed after initialization.\n      E.g: const int myConst = 32;\n   Special character @ in string value\n\n      E.g:\n      string spath;\n      spath= “C:\\\\Program Files\\\\Projects”;\n      string spath;\n      spath= @“C:\\Program Files\\Projects”;\n\n                                                            35"
+      },
+      {
+        "number": 36,
+        "text": "3. C# Programming Language\n➢ Operators:\n   Assignment operators: =, -=, +=, /=, *=, &=, |=, <<=, …\n   Arithmetic operators: +, -, *, /, %\n\n   Increment/decrement operators: ++, --\n\n   Comparison operators: ==, !=, <, >, <=, >=\n\n   Logical operators: !, &&, || …\n   Ternary operator\n\n      conditional-expression ? expression1 : expression2\n   Some other math: as, is, sizeof, typeof.\n                                                              36"
+      },
+      {
+        "number": 37,
+        "text": "3. C# Programming Language\n➢ Data type Casting:\n   Implicit Casting:\n\n  char -> int -> long -> float -> double\n  E.g: short x = 5; int y = x;\n   Explicit Casting: using cast operator\n\n   double -> float -> long -> int -> char\n   E.g: double a = 34.5; int b = (int) a;\n\n\n\n\n                                            37"
+      },
+      {
+        "number": 38,
+        "text": "3. C# Programming Language\n➢ Type Conversion Methods:\n   Class Convert: Convert.ToDataType(Sourcevalue)\n  E.g:\n     string s1 = “50.5”;\n     double x = Convert.ToDouble(s1);\n     int y = Convert.ToInt32(s1);\n   ToString() method\n  E.g:\n     Console.WriteLine(“x+y=“+Convert.ToString(x+y));\n     Console.WriteLine(“x+y=“+ (x+y).ToString());       38"
+      },
+      {
+        "number": 39,
+        "text": "3. C# Programming Language\n➢ Type Conversion Methods:\n   Parse() method\n     <DataType>.Parse(<Sourcevalue>);\n  E.g:\n     string s1 = “50.5”;\n     double x = double.Parse(s1);\n\n\n\n\n                                        39"
+      },
+      {
+        "number": 40,
+        "text": "3. C# Programming Language\n➢ Type Conversion Methods:\n   TryParse() method\n  <DataType>.TryParse(<Sourcevalue>, out <var_rs>);\n  E.g:\n     string s1 = “5.75”;\n     double num;\n     bool result = double.TryParse(s1, out num);\n     if (result)\n             …\n\n                                                      40"
+      },
+      {
+        "number": 41,
+        "text": "3. C# Programming Language\n➢ Conditions and If Statements:\n   if Statement\n       if(condition)\n            statement(s); //condition = true\n       [else statement(s); //condition = false ]\n\n   switch Statement\n      switch (expr) {\n        case expr1: //statement(s);// expr == expr1\n                          break/continue;\n        case expr2: //statement(s);// expr == expr2\n                          break/continue;\n        [ ... default: ..\n                          [break/continue;] ]\n                                                      41\n      }"
+      },
+      {
+        "number": 42,
+        "text": "3. C# Programming Language\n➢ Unconditional jump Statements:\n   break: breaks out of the switch block. It was used to\n    \"jump out\" of a switch/loop statement.\n   continue: breaks one iteration (in the loop), if a specified\n    condition occurs, and continues with the next iteration\n    in the loop.\n   goto: jumps directly to the label.\n\n   return: the end of the method returns control to where\n    the method was called.\n\n\n                                                               42"
+      },
+      {
+        "number": 43,
+        "text": "3. C# Programming Language\n➢ Loop Statements:\n   for statement\n\n     for (init; condition; increment )\n     { statement(s); }\n   while statement\n     while (condition)\n     { statement(s); }\n   do…while statement\n     do\n     { statement(s); }\n     while (condition);\n                                         43"
+      },
+      {
+        "number": 44,
+        "text": "3. C# Programming Language\n➢ Loop Statements:\n   foreach ..in statement\n\n    foreach (data_type var in list/array)\n    { statement(s); }\n\n    o The for-each statement loops through code for each\n     item in a collection.\n    o A collection is a group of ordered items;\n\n\n\n\n                                                       44"
+      },
+      {
+        "number": 45,
+        "text": "3. C# Programming Language\n➢ Methods:\n   Syntax\n  <Access Modifiers> <return type> <method name>(<parameters>)\n  { statement(s); }\n\n   Passing parameters: Default is value type\n    o A copy of that parameter is made\n\n    o That copy will be deleted at the end of the method\n\n    o The value of the passed parameter does not change\n      after the end of the method\n  E.g: public int AddValue(int value1, int value2)\n          { return value1+value2; }                              45"
+      },
+      {
+        "number": 46,
+        "text": "3. C# Programming Language\n➢ Methods:\n   Passing references:\n\n    o ref: Referenced variable must be initialized before\n      passing.\n    o out: Referenced variables do not need to be initialized\n      before passing.\n\n\n\n\n                                                            46"
+      },
+      {
+        "number": 47,
+        "text": "3. C# Programming Language\n➢ Passing ref:\n  class Program\n  {\n        public static void Add(ref int a, ref int b)\n        {\n              a = a + 5;\n              b = b + 10;\n        }\n\n       static void Main(string[] args)\n       {\n             int x = 3, y = 5;\n             Console.WriteLine(\"Tham chieu ref:\");\n             Add(ref x, ref y);\n             Console.WriteLine(\"{0}, {1}\", x, y);\n             Console.ReadLine();\n       }\n                                                       47\n  }"
+      },
+      {
+        "number": 48,
+        "text": "3. C# Programming Language\n➢ Passing out:\n class Program\n {\n       public static void Add(out int a, out int b)\n       {\n             a = 0; b = 0;\n             a = a + 5;\n             b = b + 10;\n       }\n       static void Main(string[] args)\n       {\n             int x = 3, y = 5;\n             Console.WriteLine(\"Tham chieu out:\");\n             Add(out x, out y);\n             Console.WriteLine(\"{0}, {1}\", x, y);\n             Console.ReadLine();\n       }\n                                                      48\n }"
+      },
+      {
+        "number": 49,
+        "text": "3. C# Programming Language\n➢ Enumeration:\n   To assign the value of a variable to one of several related\n   predefined constants. In these instances, you can create\n   an enumeration type to group the values.\n   Enumerations associate a set of integer constants to\n   names that can be used in code.\n   Syntax:\n    enum <enum_name> { enumeration list };\n\n  E.g:\n  enum Days { Sun, Mon, tue, Wed, thu, Fri, Sat };\n                                                              49"
+      },
+      {
+        "number": 50,
+        "text": "3. C# Programming Language\n➢ Enumeration:\n class Program\n {\n       enum Days { Sun, Mon, Tue, Wed, Thu, Fri, Sat };\n\n       static void Main(string[] args)\n       {                                            Monday: 1 Friday: 5\n             int WeekdayStart = (int)Days.Mon;\n             int WeekdayEnd = (int)Days.Fri;\n             Console.WriteLine(\"Monday: {0}\", WeekdayStart);\n Console.WriteLine(\"Friday: {0}\", WeekdayEnd); Console.ReadKey();\n       }\n }\n\n\n\n                                                                   50"
+      },
+      {
+        "number": 51,
+        "text": "3. C# Programming Language\n➢ Arrays:\n   Declaration\n\n      data_type[] array_name;\n   Initialization\n      array_name = new data_type[number];\n\n   Declaration initialization combination\n\n      data_type[] array_name = new data_type[number];\n\n\n\n\n                                                        51"
+      },
+      {
+        "number": 52,
+        "text": "3. C# Programming Language\n➢ Array:\n   Declaration and assignment default values\n\n      data_type[] array_name = {value1, v2, v3,..};\n   Access element\n\n      array_name[index]\n   Getting array length\n\n      array_name.Length\n\n      array_name.GetLength(0)\n\n\n                                                      52"
+      },
+      {
+        "number": 53,
+        "text": "3. C# Programming Language\n➢ 1 dimensional arrays:\n\n\n\n\n                             53"
+      },
+      {
+        "number": 54,
+        "text": "3. C# Programming Language\n➢ 2-dimensional arrays :\n   Declare:\n     data_type[ , ] array_name;\n   Initialization\n    array_name = new data_type[number1, number2];\n\n   Declare initialization combination\n\n     data_type[] array_name = new data_type[number1, number2];\n\n\n\n\n                                                                 54"
+      },
+      {
+        "number": 55,
+        "text": "3. C# Programming Language\n➢ 2-dimensional arrays:\n\n\n\n\n                             55"
+      },
+      {
+        "number": 56,
+        "text": "3. C# Programming Language\n➢ Arrays:\n   Each element of the array can have a different data type.\n\n     object[ ] array_name = new object[number1];\n   Provide methods for creating, manipulating, searching,\n    and sorting arrays for array types : Array, ArrayList,\n    List,…\n\n\n\n\n                                                                56"
+      },
+      {
+        "number": 57,
+        "text": "3. C# Programming Language\n➢ Elements of the array are objects:\n  class Program\n  {\n        static void Main(string[] args)\n        {\n              object[] A = new object[3];\n              //gán các phần tử mảng\n              A[0] = “62131234”;\n              A[1] = “Nguyen Van Nam”;\n              A[2] = 2002;\n              //in mảng\n              for (int i = 0; I < A.GetLength(0); i++)\n                  Console.WriteLine(\"{0} \", A[i]);\n              Console.ReadLine();\n        }\n  }\n                                                         57"
+      },
+      {
+        "number": 58,
+        "text": "3. C# Programming Language\n➢ Arrays: Provides methods for creating, manipulating,\n searching, and sorting arrays for array types.\n\n\n\n\n                                                     58"
+      },
+      {
+        "number": 59,
+        "text": "3. C# Programming Language\n➢ Class List:\n   List of object\n\n   Attributes: Capacity, Count, …\n\n   Methods:      Add,   Clear,   Insert,   Remove,   Contains,\n    SortList, …\n\n\n\n\n                                                              59"
+      },
+      {
+        "number": 60,
+        "text": "3. C# Programming Language\n➢ Lists:\n static void Main(string[] args)\n {    List<int> ls = new List<int>();\n      int x; int i = 0;\n      do{\n          i++; Console.WriteLine(\"nhap gia trịthu {0}:\", i);\n          x = Convert.ToInt16(Console.ReadLine());\n          ls.Add(x);\n      } while (x != 0);\n      foreach (int a in ls) //in danh sách\n      { Console.Write(\"{0}    \", a);   }\n      Console.WriteLine(\"nhap gia trị cần xóa:\");\n      x = Convert.ToInt16(Console.ReadLine());\n      if (ls.Contains(x)){\n          ls.Remove(x);\n          foreach (int a in ls) { Console.Write(\"{0}   \", a); }\n      }else\n          Console.WriteLine(\"không có phần tử trong danh sách\");\n }                                                                 60"
+      },
+      {
+        "number": 61,
+        "text": "Content\n\n      Overview of .Net\n\n          Visual Studio\n\n          C# Programming Language\n\n      Exception handling\n\n\n                                    61"
+      },
+      {
+        "number": 62,
+        "text": "4. Exception handling\n➢ Exceptional Situations:\n\n\n\n\n                            62"
+      },
+      {
+        "number": 63,
+        "text": "4. Xử lý ngoại lệ\n➢ Exceptional Situations:\n\n\n\n\n                            63"
+      },
+      {
+        "number": 64,
+        "text": "4. Xử lý ngoại lệ\n➢ Exceptional Situations:\n\n\n\n\n                            64"
+      },
+      {
+        "number": 65,
+        "text": "4. Exception handling\n➢ Exceptions are generated when the implicit assumptions\n  made by your programming logic are violated.\n➢ You should incorporate a systematic exception handling\n  process in your methods.\n➢ To facilitate this process, the .NET Framework makes use of\n  structured exception handling through the try, catch, and\n  finally code blocks.\n\n\n\n\n                                                                65"
+      },
+      {
+        "number": 66,
+        "text": "4. Exception handling\n➢ Errors:\n   Syntax Error\n   Runtime Error => Exception\n\n   Logical Error\n➢ C# uses exception catching technique to catch and handle\n errors that arise during program execution.\n➢ When an exception occurs, the program will immediately\n stop and the CLR will find and check the program to catch\n the exception, if not found it will terminate the program.\n\n\n                                                          66"
+      },
+      {
+        "number": 67,
+        "text": "4. Exception handling\n➢ Two exception handling mechanisms:\n   Try and catch: try…catch…finally\n\n    o The try statement allows you to define a block of code\n     to be tested for errors while it is being executed.\n    o The catch statement allows you to define a block of\n     code to be executed, if an error occurs in the try block.\n    o The   finally statement lets you execute             code,\n     after try...catch, regardless of the result:\n   throw…\n\n\n                                                                 67"
+      },
+      {
+        "number": 68,
+        "text": "4. Exception handling\n➢ try ... catch … finally blocks\n\n    try {\n        // statements causing exception\n    } catch (ExceptionName e1) {\n        // error handling code\n    } catch (ExceptionName e2) {\n        // error handling code\n    } catch (ExceptionName eN) {\n        // error handling code\n    } finally {\n        // statements to be executed\n    }                                     68"
+      },
+      {
+        "number": 69,
+        "text": "4. Exception handling\n➢ try ... catch … finally blocks\n    Code that is wanted to monitor to catch exceptions - put\n    it in the try block.\n    If an exception occurs in that block, the program will\n    not end but immediately jump to the catch block.\n    The statement in the finally block is executed whether\n    an exception occurs or not.\n\n\n\n\n                                                                69"
+      },
+      {
+        "number": 70,
+        "text": "4. Exception handling\n➢ Some properties of the exception objects:\n   Message: string containing the error message content.\n\n   StackTrace: string containing the program execution\n    steps until an error occurs\n   Source: contains the name of the failed application or\n    object.\n\n\n\n\n                                                             70"
+      },
+      {
+        "number": 71,
+        "text": "4. Exception handling\n➢ E.g:\n\n\n\n\n                        71"
+      },
+      {
+        "number": 72,
+        "text": "4. Exception handling\n➢ E.g:\n     static void Main(string[] args)\n     {\n          try\n          {\n               int x = 10;\n               int y = 0;\n               int z = x / y;\n          }\n          catch (DivideByZeroException e1)\n          {\n               Console.WriteLine(e1.Message);\n          }\n          Console.ReadLine();\n     }\n\n                                                72"
+      },
+      {
+        "number": 73,
+        "text": "4. Exception handling\n➢ throw …   catch (Exception e) {\n               ...\n               throw e;\n            }\n\n\n\n\n                                    73"
+      },
+      {
+        "number": 74,
+        "text": "4. Exception handling\n➢ throw …\npublic static double Divide(double x, double y)\n{\n    if (y == 0){\n      // Khởi tạo ngoại lệ, tham số là thông báo lỗi\n      Exception e = new Exception(\"Số chia không được bằng 0\");\n     // phát sinh ngoại lệ, code phía sau throw được thực thi\n      throw e;\n    }\n    return x / y;\n}\nstatic void Main(string[] args)\n{\n    try{\n         double z = Divide(100, 0);\n    }catch (Exception e){\n        Console.WriteLine(e.Message);\n    }\n                                                                  74\n}"
+      },
+      {
+        "number": 75,
+        "text": "4. Exception handling\n➢ Catch multiple exceptions:\n static void Add()\n {\n       int a, b = 0;\n       Console.WriteLine(\"nhap a,b:\");\n       try\n       {\n             a = int.Parse(Console.ReadLine());\n             b = int.Parse(Console.ReadLine());\n             double kq = a / b;\n       }\n       catch (DivideByZeroException)\n       { Console.WriteLine(\"loi chia 0!\"); }\n       catch (FormatException)\n       { Console.WriteLine(\"gia tri nhap kg hop le!\"); }\n       catch (Exception ex)\n       { Console.WriteLine(ex.Message); }\n }                                                         75"
+      },
+      {
+        "number": 76,
+        "text": "4. Exception handling\n➢ .Net exception classes\n  Sr.No.                              Exception Class & Description\n\n  1        System.IO.IOException\n           Handles I/O errors.\n\n  2        System.IndexOutOfRangeException\n           Handles errors generated when a method refers to an array index out of range.\n\n  3        System.ArrayTypeMismatchException\n           Handles errors generated when type is mismatched with the array type.\n\n  4        System.NullReferenceException\n           Handles errors generated from referencing a null object.\n\n  5        System.DivideByZeroException\n           Handles errors generated from dividing a dividend with zero.\n\n  6        System.InvalidCastException\n           Handles errors generated during typecasting.\n\n  7        System.OutOfMemoryException\n           Handles errors generated from insufficient free memory.\n\n  8        System.StackOverflowException\n           Handles errors generated from stack overflow.                                   76"
+      },
+      {
+        "number": 77,
+        "text": "4. Exception handling\n➢ User created exception:\nEx:\n public class DataTooLongExeption : Exception\n {\n       const string erroMessage = \"Dữ liệu quá dài\";\n       public DataTooLongExeption() : base(erroMessage)\n       { }\n }\n\n\n\n\n                                                          77"
+      },
+      {
+        "number": 78,
+        "text": "4. Exception handling\n➢ User created exception:\n class Program\n {\n       public static void Input()\n       {\n             Console.Write(\"nhap mssv:\");\n             string id = Console.ReadLine();\n             if (id.Length > 8)\n             {\n                 Exception e = new DataTooLongExeption();\n                 throw e;    // ném ngoại lệ ra\n             }\n             //Other code - no exeption\n       }\n       static void Main(string[] args)\n       {       …   }\n }                                                          78"
+      },
+      {
+        "number": 79,
+        "text": "4. Exception handling\n➢ User created exception:\n  class Program\n  {\n        public static void Input()\n        { ...      }\n        static void Main(string[] args)\n        {\n              try{\n                  Input();\n              }\n              catch (DataTooLongExeption e)\n              {\n                  Console.WriteLine(e.Message);\n              }\n              Console.ReadKey();\n        }\n  }                                               79"
+      },
+      {
+        "number": 80,
+        "text": "The end of topic 2\n\n\n\n\n                     80"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Phân tích và thiết kế hướng đối tượng",
+    "file": "Topic 3 - Aug26.pdf",
+    "pages": [
+      {
+        "number": 1,
+        "text": "TOPIC 3\n\n\n\nObject Oriented Analysis\n  and Design (OOAD)\nKỸ THUẬT LẬP TRÌNH\n              Lecturer: Pham Thi Kim Ngoan\n                Email: ngoanptk@ntu.edu.vn\n\n\n\n\n                                        1"
+      },
+      {
+        "number": 2,
+        "text": "Learning Objectives\nBy the end of this topic, students will be able to:\n➢ Analyze a problem from an object-oriented perspective.\n➢ Identify candidate classes, attributes and methods.\n➢ Identify relationships between classes.\n➢ Represent the design using UML Class Diagrams.\n\n\n\n\n                                                           2"
+      },
+      {
+        "number": 3,
+        "text": "Content\n\n\n          Application development phases\n\n\n            Object-Oriented Development Process\n\n\n          Exercises\n\n\n                                                  3"
+      },
+      {
+        "number": 4,
+        "text": "1. Application development phases\n               Requirements\n                 Analysis\n\n              Object oriented\n                  Design\n\n              Object oriented\n              Implementation\n\n\n                  Testing\n\n\n\n               Maintenance\n\n\n                                    4"
+      },
+      {
+        "number": 5,
+        "text": "1. Application development phases\n➢ Requirements Analysis\n   Identify and gather requirements from stakeholders.\n   Define the system's functionality and constraints.\n➢ System Design\n   Establish the architecture of the system.\n   Determine how the system will be structured and\n    organized.\n➢ Object Design\n   Identify the objects and classes needed in the system.\n   Define their attributes, methods, and relationships\n    (such as inheritance and associations).\n                                                          5"
+      },
+      {
+        "number": 6,
+        "text": "1. Application development phases\n➢ Modeling\n   Use UML diagrams (e.g., class diagrams, sequence\n     diagrams) to visualize the design.\n    Ensure all interactions and data flows are clearly\n     mapped out.\n➢ Implementation\n    Translate the design into code using an object-oriented\n     programming language.\n    Ensure that the code adheres to the design\n     specifications.\n\n\n                                                           6"
+      },
+      {
+        "number": 7,
+        "text": "1. Application development phases\n➢ Testing\n   Validate the system against requirements.\n   Test individual components (unit testing) and the\n    system as a whole (integration testing).\n➢ Maintenance\n   Update and refine the system as needed.\n   Fix any defects and adapt to any new requirements.\n\n\n\n\n                                                         7"
+      },
+      {
+        "number": 8,
+        "text": "Content\n\n\n          Application development phases\n\n\n            Object-Oriented Development Process\n\n\n          Exercises\n\n\n                                                  8"
+      },
+      {
+        "number": 9,
+        "text": "2. Object-Oriented Development Process\n➢ Problem → Object Classes → Design → UML → Code\n\n\n\n\n                                                   9"
+      },
+      {
+        "number": 10,
+        "text": "2. Object-Oriented Development Process\n➢ Elements of Object-Oriented System:\n   Objects: An object is something that is exists within\n    problem domain and can be identified by data (attribute)\n    or behavior.\n   Class: A class encapsulates the data and its behavior.\n    Objects with similar meaning and purpose grouped\n    together as class.\n   Methods: Methods determine the behavior of a class. They\n    are nothing more than an action that an object can\n    perform.\n   Message: A message is a function or procedure call from\n    one object to another. They are information sent to objects\n    to trigger methods. Essentially, a message is a function 10or"
+      },
+      {
+        "number": 11,
+        "text": "2. Object-Oriented Development Process\n➢ Identify the objects and classes needed in the system.\n    Analyzing     the system's requirements (requirement\n     documents, user stories, ..)\n    Identify Nouns: look for nouns in the description of the\n     problem or system. Nouns often represent potential\n     objects or classes.\n    Determine Real-World Entities: Identify entities that the\n     system will model, such as “Student“, “Subject“, …\n    Define Responsibilities: For each potential class, define its\n     responsibilities and purpose.\n    Group Nouns into Classes and Objects.\n\n                                                               11"
+      },
+      {
+        "number": 12,
+        "text": "2. Object-Oriented Development Process\n➢ Define their attributes, methods, and relationships.\n    Attributes represent the characteristics of a class.\n    Methods define the actions the class can perform.\n    Identify Relationships between Classes.\n➢ Refine and Review: review design to ensure it aligns with the\n  system’s requirements. Refining may involve merging or\n  splitting classes, adding new methods, or adjusting\n  relationships as needed.\n➢ Apply Object-Oriented Principles.\n\n\n\n                                                            12"
+      },
+      {
+        "number": 13,
+        "text": "2. Object-Oriented Development Process\n➢ Relationships:\n   Association:   Classes are related to each other. Ex.\n    \"Teacher\" - \"Course\".\n   Aggregation/Composition: Classes are composed of or\n    aggregate other classes. Ex. \"Classroom\" - \"Student\".\n   Dependency: a class depends on another class.\n   Generalization/Inheritance.\n   Specialization/Realization: a class implement a interface.\n\n\n\n\n                                                           13"
+      },
+      {
+        "number": 14,
+        "text": "2. Object-Oriented Development Process\n➢ Features of Object-Oriented System:\n   Encapsulation\n   Abstraction\n   Inheritance\n   Polymorphism\n\n\n\n\n                                        14"
+      },
+      {
+        "number": 15,
+        "text": "2. Object-Oriented Development Process\n➢ UML - Unified Modeling Language\n   is a unified modeling language used to represent systems.\n    It is used to create drawings to describe the system design.\n➢ Object Oriented Analysis and Design (OOAD) using UML\n includes the following components:\n   View\n   Diagram\n   Notations\n   Mechanisms\n\n\n\n                                                              15"
+      },
+      {
+        "number": 16,
+        "text": "2. Object-Oriented Development Process\n➢ UML Notation for class\n\n\n         Class name\n                           Attributes, Methods should\n                           be shown as visible name.\n     - Attribute 1         - private access\n     - Attribute 2\n     - …                   # protected access\n\n     + Method 1()          + public access\n     + Method 2()\n     +…\n\n\n\n                                                        16"
+      },
+      {
+        "number": 17,
+        "text": "Notations in UML\n➢ Attribute representation\n − attributeName : Type [= Default]\n   attributeName follows the naming conventions of the\n    installation language of the application.\n   Type should be the basic data type in the implementation\n    language.\n➢ Method representation\n   + perationName(parameters): returnType\n   parameter: in|out|inout parameterName:Type[= Default]\n➢ Static members: Underline the name of static members.\n                                                           17"
+      },
+      {
+        "number": 18,
+        "text": "Notations in UML\n➢ Example\n\n        Class name\n\n    - Attribute 1\n    - Attribute 2\n    - …\n\n    + Method 1()\n    + Method 2()\n    +…\n\n\n\n                     18"
+      },
+      {
+        "number": 19,
+        "text": "Notations in UML\n➢ Denoting relationships\n\n\n\n\n                           19"
+      },
+      {
+        "number": 20,
+        "text": "Notations in UML\n➢ Type multiplicity:\n   n: exactly n\n   0..* or *: zero or more\n   m..n: between m and n\n   Default value is 1\n\n\n\n\n                              20"
+      },
+      {
+        "number": 21,
+        "text": "Notations in UML\n➢ Association\n\n\n\n\n   Class A ‘uses’ objects of Class B and reverse.\n   Typically Class A has attributes of Class B and reverse.\n\n   Navigability is from A to B and B to A: A Class A object can\n    access the Class B object(s) and reverse.\n                                                               21"
+      },
+      {
+        "number": 22,
+        "text": "Notations in UML\n➢ Association\n\n\n\n\n                   22"
+      },
+      {
+        "number": 23,
+        "text": "Notations in UML\n➢ Association:\n\n\n\n   Class A ‘uses’ objects of Class B.\n\n   Typically Class A has attributes of Class B.\n   Navigability is from A to B: A Class A object can access the\n    Class B object(s) but the reverse is not true – the Class B\n    object doesn’t know about the Class A object.\n\n\n\n                                                             23"
+      },
+      {
+        "number": 24,
+        "text": "Notations in UML\n➢ Aggregation: Aggregation represents a weaker whole-part\n relationship.\n\n\n\n\n   Object(s) of Class B 'belong to' Class A\n\n   Implies reference from A to B\n   Object of Class B retain an existence independent of\n    Class A.\n➢ Example\n\n                                                       24"
+      },
+      {
+        "number": 25,
+        "text": "Notations in UML\n➢ Composition: Composition represents a strong whole-part\n  relationship.\n\n\n\n\n➢ Composition is similar to aggregation but implies a much\n  stronger belonging relationship i.e. Object(s) of Class B are\n  'part of’ a Class A object.\n➢ Much 'stronger' than aggregation in this case Class B objects\n  are an integral part of Class A and in general objects of Class\n  B never exist other than as part of Class A.\n\n                                                              25"
+      },
+      {
+        "number": 26,
+        "text": "Notations in UML\n➢ Dependency: Dependency means that one class temporarily\n depends on another.\n   One-way relationship: a class depends on another class.\n\n\n\n\n                                                              26"
+      },
+      {
+        "number": 27,
+        "text": "Notations in UML\n➢ Generalization: Inheritance should represent a genuine is-a\n relationship.\n\n\n\n\n   Aside from associations,    the other main modelling\n    relationship is inheritance.\n   Class A 'inherits' both the interface and implementation of\n    Class B, though it may override implementation details\n    and supplement both.\n\n\n                                                            27"
+      },
+      {
+        "number": 28,
+        "text": "Notations in UML\n➢ Realization: Realization is commonly used when a class\n implements an interface.\n   Semantic relationship between interface and class to\n    implement the implementation of services declared in\n    interfaces.\n   Interfaces are similar to inheritance however with\n    interfaces only the interface is inherited. The methods\n    defined by the interface must be implemented in every\n    class that implements the interface. Interfaces can be\n    represented using the <<interface>> keyword\n\n\n                                                        28"
+      },
+      {
+        "number": 29,
+        "text": "Notations in UML\n➢ Realization:\n\n\n\n\n                   29"
+      },
+      {
+        "number": 30,
+        "text": "Diagram\n➢ Class Diagram:\n\n\n\n\n                   30"
+      },
+      {
+        "number": 31,
+        "text": "Diagram\n➢ Object Diagram:\n\n\n\n\n                    31"
+      },
+      {
+        "number": 32,
+        "text": "2. Object-Oriented Development Process\nProblem:\nXây dựng chương trình quản lý sinh viên đơn giản của một trường\nđại học:\n    Sinh viên có các thông tin: mã số, họ tên, giới tính, tổng số tín\n     chỉ của khóa học (sum) dùng chung cho tất cả SV. Biết 1 SV học\n     nhiều học phần (HP) và mỗi HP có một kết quả HP.\n    Kết quả học phần có các thông tin: mã HP, tên HP, điểm trung\n     bình, số tín chỉ.\n➢ Chương trình thực hiện các chức năng sau:\n    Thêm/xóa/sửa thông tin sinh viên và kết quả các học phần của\n     SV.\n    Tính điểm trung bình chung, trung bình tích lũy (≥ 5) của SV.\n    Cho biết SV đủ điều kiện tốt nghiệp hay chưa? Điều kiện tốt\n                                                                     32\n     nghiệp là tổng số tín chỉ tích lũy ≥ tổng số tín chỉ của khóa học."
+      },
+      {
+        "number": 33,
+        "text": "2. Object-Oriented Development Process\nStep 1: Understand the Requirements\n➢ What does the system manage?\n        Sinh viên, Học phần, Điểm.\n➢ Who is involved?\n       Sinh viên, giảng viên (nhập điểm), admin.\n➢ What are the key actions?\n       Thêm/xóa/sửa, đăng ký môn, nhập điểm, tính điểm\ntrung bình chung, TB tích lũy.\n➢ What data needs to be stored?\n       MSSV, họ tên, giới tính, tổng số tín chỉ của khóa học, mã\nHP, tên HP, điểm trung bình HP, số tín chỉ.\n                                                             33"
+      },
+      {
+        "number": 34,
+        "text": "2. Object-Oriented Development Process\n➢ Step 2: Identify Candidate Classes\n   Look for important entities in the problem domain, not\n        every noun should become a class => need to refine the\n        candidates.\nE.g\n      Danh từ            Là lớp đối tượng?   Lý do\n      Sinh viên          Có                  Có dữ liệu + hành vi riêng\n      Học phần           Có                  Có dữ liệu + hành vi riêng\n                                             Gắn kết SV      Học phần, có\n      Điểm học phần      Có\n                                             logic tính toán\n      Lop                Có thể              Nếu cần quản lý theo lớp\n      mã số, họ tên,..   Không               Là thuộc tính của SinhVien\n                                                                            34\n      trường đại học     Không               Là hệ thống bao trùm"
+      },
+      {
+        "number": 35,
+        "text": "2. Object-Oriented Development Process\n➢ Step 3: Design\n    A class should have clear responsibilities.\n\n    What should this object be responsible for?\nE.g.\n➢ Một Sinh viên nên:\n   • quản lý thông tin sinh viên;\n   • tính điểm trung bình (calculateAvg()), TB tích lũy;\n   • kiểm tra điều kiện tốt nghiệp (isEligibleForGraduation()).\n\n\n\n\n                                                             35"
+      },
+      {
+        "number": 36,
+        "text": "2. Object-Oriented Development Process\n➢ Step 3: Design\n    Responsibility → Data + Behavior\nE.g.\n➢ Student:\n   • Data:\n     - studentId\n     - fullName\n     - gender\n      - sum_crredits\n   • Behavior:\n     + calculateGPA()\n                                        36\n     + isEligibleForGraduation()"
+      },
+      {
+        "number": 37,
+        "text": "2. Object-Oriented Development Process\n➢ Step 3: Design\n   Identify Attributes: Attributes represent the state or\n    characteristics of an object.\nE.g.\n➢ Student:\n   - studentId: string\n   - fullName: string\n   - gender: bool\n   - sum_credits: short\n\n\n\n                                                       37"
+      },
+      {
+        "number": 38,
+        "text": "2. Object-Oriented Development Process\n➢ Step 3: Design\n    Identify Methods: Methods represent behavior.\nE.g.\n➢ Student:\n   + float calculateGPA():\n              σ𝑛\n               𝑖=1(𝐺𝑃𝐴_𝑆𝑖 ∗𝐶𝑟𝑒𝑑𝑖𝑡𝑆 𝑖 )\n      𝐺𝑃𝐴 =        σ𝑛\n                    𝑖=1 𝐶𝑟𝑒𝑑𝑖𝑡_𝑆𝑖\n\n\n\n\n                                                     38"
+      },
+      {
+        "number": 39,
+        "text": "2. Object-Oriented Development Process\n➢ Step 3: Design\n    Identify Relationships: How are the classes related?\n➢ Relationships:\n    Association means that two classes are related.\n    Multiplicity: How many objects can participate in a\n       relationship?\nE.g.\n    Student 1 ───── 0..* CourseResult\n    Course 1 ───── * CourseResult\n\n\n\n                                                            39"
+      },
+      {
+        "number": 40,
+        "text": "2. Object-Oriented Development Process\n➢ Step 3: Design\n   Identify Relationships: Apply Encapsulation - Keep data\n    private and expose controlled behavior.\nE.g.\n➢ Student:\n   - studentId\n   - fullName\n   - gender\n\n\n\n\n                                                        40"
+      },
+      {
+        "number": 41,
+        "text": "2. Object-Oriented Development Process\n➢ Step 4: Build the UML Class Diagram\n    The    UML Class Diagram becomes a blueprint for\n       implementation.\nE.g.\n\n\n\n\n                                                  41"
+      },
+      {
+        "number": 42,
+        "text": "2. Object-Oriented Development Process\n➢ Step 5: From UML to C#\n    The    UML Class Diagram becomes a blueprint for\n       implementation.\nE.g.\n                        public class Student {\n                            private string studentId;\n                            private string fullName;\n                               ...\n                            public double CalculateGPA() {\n                               // ...\n                            }\n                        }\n\n\n\n                                                             42"
+      },
+      {
+        "number": 43,
+        "text": "Content\n\n\n          Application development phases\n\n\n            Object-Oriented Development Process\n\n\n          Exercises\n\n\n                                                  43"
+      },
+      {
+        "number": 44,
+        "text": "Exercise 1\n➢ Viết chương trình giải và biện luận phương trình bậc nhất\n ax + b = 0.\n\n\n\n\n                                                          44"
+      },
+      {
+        "number": 45,
+        "text": "Exercise 2\n➢ Thiết kế bài toán sau theo hướng đối tượng:\nXây dựng chương trình quản lý sinh viên đơn giản. Mỗi sinh viên\ncó mã số, họ tên, ngày sinh, giới tính, lớp. Sinh viên có thể đăng\nký nhiều môn học, mỗi môn có mã môn học, tên môn học, số tín\nchỉ. Cuối kỳ, giảng viên nhập điểm cho từng sinh viên ở từng\nmôn, điểm mỗi môn gồm các thành phần: điểm quá trình, điểm\ngiữa kỳ, điểm cuối kỳ, tỷ lệ điểm quá trình, tỷ lệ điểm giữa kỳ.\nChương trình thực hiện các chức năng:\n✓ Thêm/xóa/sửa thông tin sinh viên;\n✓ Nhập điểm, tính điểm trung bình từng môn;\n✓ Tính điểm trung bình tất cả các môn, xếp loại học lực.\n\n                                                                 45"
+      },
+      {
+        "number": 46,
+        "text": "Exercise 3\nThiết kế bài toán sau theo hướng đối tượng:\nXây dựng chương trình quản lý cán bộ nhân viên đơn giản như sau:\nTrường học có 2 loại cán bộ:\n    Nhân viên hành chính có các thông tin: mã số, họ tên, giới tính,\n     số ngày công, lương tháng; tiền lương được tính: số ngày công\n     * lương tháng/26\n    Giáo viên có các thông tin: mã số, họ tên, giới tính, số tiết giảng,\n     thù lao 1 tiết giảng, tiền lương được tính: số tiết * tiền thù lao 1\n     tiết.\n➢ Chương trình thực hiện các chức năng sau:\n    Nhập vào thông tin n cán bộ nhân viên cho một trường học\n     (5<=n<=30)\n    In bảng lương cán bộ nhân viên (mã số, họ tên, tiền lương)\n                                                                     46"
+      },
+      {
+        "number": 47,
+        "text": "The end of topic 3\n\n\n\n\n                     47"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Cài đặt lớp và đối tượng trong C#",
+    "file": "Topic 4-Aug26.pdf",
+    "pages": [
+      {
+        "number": 1,
+        "text": "TOPIC 4\n\n\n\n  Classes and Objects\nKỸ THUẬT LẬP TRÌNH\n         Lecturer: Pham Thi Kim Ngoan\n             Email: ngoanptk@ntu.edu.vn\n\n\n\n\n                                      1"
+      },
+      {
+        "number": 2,
+        "text": "Learning Objectives\nAfter this topic, students will be able to:\n➢ Defining Classes and Objects\n➢ Constructors and Destructors\n➢ The this Keyword and Static Members\n➢ Implementing Relationships\n➢ Operator Overloading\n\n\n\n\n                                              2"
+      },
+      {
+        "number": 3,
+        "text": "Content\n\n     Defining Classes, Objects\n\n          Constructors and Destructors\n\n          This Keyword and Static Members\n\n          Implementing Relationships\n\n     Operator Overloading\n\n                                            3"
+      },
+      {
+        "number": 4,
+        "text": "1. Defining classes, objects\n➢ Abstract data type = data type + operation performed on\n this type\n   Every operation related to a data structure is grouped\n    together.\n   Only possible operation are provided in the type's\n    definition.\n\n\n\n\n                                                         4"
+      },
+      {
+        "number": 5,
+        "text": "1. Defining classes, objects\n➢ A class is the blueprint from which individual objects are\n  created.\n➢ A class specifies the common attributes and operations of\n  many individual objects all of the same kind.\n➢ A class defines a new data type, whose values are objects:\n    A class is a template for objects; it abstracts a set of\n     objects.\n    An object is an instance of a class; it concretes a class\n\n\n\n\n                                                                 5"
+      },
+      {
+        "number": 6,
+        "text": "1. Defining classes, objects\n➢ Encapsulation: Prevents the code and data being randomly\n accessed by other code defined outside the class.\n   Group data and operations performed on these data\n    together in a class\n   Hide details about the class implementation from the\n    user.\n\n\n\n\n                                                         6"
+      },
+      {
+        "number": 7,
+        "text": "1. Defining classes, objects\n➢ Visibility scope\n    Scope determines the visibility of program elements\n     with respect to other program elements.\n    Given a class:\n     o A private attribute or operation of an object is\n       accessible by all others objects of the same class\n     o A public attribute or operation of an object is\n       accessible by all others objects.\n\n\n\n\n                                                            7"
+      },
+      {
+        "number": 8,
+        "text": "1. Defining classes, objects\n➢ Class declaration: using the keyword class followed by the\n  name of the class.\n➢ A class encapsulates following members:\n    Name\n    Variables: declare the attributes of a class\n    Methods: declare the operations of class\n➢ The visibility scope of a class can be explicitly set by\n  declaring an access modifier.\n\n\n\n\n                                                           8"
+      },
+      {
+        "number": 9,
+        "text": "1. Defining classes, objects\n➢ Four visibility scopes are identified in term of access\n modifiers to limit the access to the attribute and the\n operation:\n   public: Everywhere (free access)\n   private: Inside class only (class access)\n   protected: Class and derived classes (only with an\n    inheritance relationship)\n   internal: Same assembly (assembly access)\n\n\n\n\n                                                        9"
+      },
+      {
+        "number": 10,
+        "text": "1. Defining classes, objects\n➢ Variable declaration: Variables in C# can be declared at the\n  class level or inside methods.\n    Instance variables (member variables): declared within a\n     class + outside any method. Each object has its own\n     copy.\n    Class variables: declared within a class, outside any\n     method, with the static keyword\n    Local variables: declared inside methods, constructors\n     or statement blocks. They are accessible only within the\n     block where they are declared)\n\n\n                                                             10"
+      },
+      {
+        "number": 11,
+        "text": "1. Defining classes, objects\n➢ Method declaration:\n   Declaration: Specifies the name of the method, its\n    return type and its formal parameters (if any)\n   Implementation:\n    o Specifies a collection of statements that are grouped\n      together to perform an operation.\n    o These statements are executed when a method is\n      called.\n    o It is through the implementation of the method that\n      the state of an object is changed or accessed.\n\n\n                                                          11"
+      },
+      {
+        "number": 12,
+        "text": "1. Defining classes, objects\n➢ Class declaration: using the keyword class followed by the\n  name of the class.\n➢ Creating class Properties:\n    Variables hold the data that an instance of your class will\n     manipulate.\n    The private keyword ensures that these instance\n     variables can be manipulated only by the code inside the\n     class.\n➢ Creating class Methods: methods define the behaviors of\n  the class.\n\n\n                                                               12"
+      },
+      {
+        "number": 13,
+        "text": "1. Defining classes, objects\n➢ Syntax\n  <access keyword> class class_name\n  { // member data ~ variables\n       <access keyword> <data type> variable1;\n       ...\n       <access keyword> <data type> variableN;\n\n      // member methods\n         <access keyword> <return type> method1(parameter_list)\n         { // method body }\n         ...\n         <access keyword> <return type> methodN(parameter_list)\n         { // method body }\n  }\n                                                                  13"
+      },
+      {
+        "number": 14,
+        "text": "1. Defining classes, objects\n➢ <access keyword>/<access modifier>: affect the scope of\n the code.\n   private: it is only accessible from code within the same\n    class.\n   protected: it is accessed from code within the same\n    class, and it’s derived classes.\n   public: it is accessed by code in other classes.\n   internal: it is accessed by code in classes within the\n    same assembly.\n\n\n\n                                                           14"
+      },
+      {
+        "number": 15,
+        "text": "1. Defining classes, objects\n ➢ Example of class definition SinhVien\n\n                                    public class Student{\n            Student\n                                        string _id, _name;\n                                        public float _gpa;\n- id: string\n- name: string\n+ gpa: float                            public void Set(string, string, float)\n                                        { ...}\n+ void Set(string, string, float)       public void Info(){ ...}\n+ void Info()                           public bool Scholarship(float f){ ...}\n+ bool Scholarship(float)\n                                    }\n\n\n\n\n                                                                           15"
+      },
+      {
+        "number": 16,
+        "text": "1. Defining classes, objects\n➢ Example of class definition SinhVien\npublic class Student{\n    string _id, _name;\n    public float _gpa;\n\n\n    public void Set(string i, string n, float m)\n    {   _id = i;   _name = n; _mark = m;   }\n    public void Info()\n    {   Console.Write($“_id}\\t{_name}\\t{_mark}”);   }\n    public bool Scholarship(float f)\n    {   if(_gpa >= f) return true;\n        else return false;\n    }\n}                                                       16"
+      },
+      {
+        "number": 17,
+        "text": "1. Defining classes, objects\n➢ Declaring and Using Objects: An object is an instance of a\n class\n   <class_name> <object_name> = new <class_name> ([values])\n\n\n   An object variable is a reference type, not a value type:\n    o The variable does not contain the object's data directly.\n\n    o It contains the memory address of the object created on\n      the Heap.\n   Ex.\n      Student s = new Student();\n\n                                                                  17"
+      },
+      {
+        "number": 18,
+        "text": "1. Defining classes, objects\n➢ Accessing Members\n   Data:\n\n      <object_name>.<variable>\n\n   Methods:\n\n     < object_name >.<method>([parameter_list])\n\n   Ex.\n      Student s = new Student();\n      s.Set(i, n, m);\n      Console.WriteLine(“diem cua sinh vien: {0}”, s._gpa);\n                                                              18"
+      },
+      {
+        "number": 19,
+        "text": "1. Defining classes, objects\n➢ Encapsulation:\n   Direct access to data may create invalid values.\n     s.GPA = -5;\n\n   Solution: Encapsulate data using properties.\n\n     class Student\n     {   private float gpa;\n         public double GPA\n         {\n            get { return gpa; }\n            set {\n                    if(value >= 0 && value <= 4)\n                    gpa = value;\n            }\n         }\n     }                                                 19"
+      },
+      {
+        "number": 20,
+        "text": "1. Defining classes, objects\n➢ Auto Properties\n\n   public class Student\n   {       private string _id;\n       // Traditional Property\n       public string Id\n       {     get { return _id; }\n              set { _id = value; }\n       }\n       // Auto-implemented Property (Modern C#)\n       public string Name { get; set; }\n   }\n\n\n                                                  20"
+      },
+      {
+        "number": 21,
+        "text": "Content\n\n     Defining Classes, Objects\n\n          Constructors and Destructors\n\n          This Keyword and Static Members\n\n          Implementing Relationships\n\n     Operator Overloading\n\n                                            21"
+      },
+      {
+        "number": 22,
+        "text": "2. Constructors and Destructors\n➢ What is a Constructor?\n       A special method used to initialize objects.\n➢ Characteristics\n    Same name as class\n    No return type (not even void).\n    Usually public.\n    Can be overloaded (multiple constructors).\n    Automatically executed when the object is created.\n\n\n\n\n                                                          22"
+      },
+      {
+        "number": 23,
+        "text": "2. Constructors and Destructors\n➢ Types of Constructors\n   Default Constructor (No parameters)\n   Parameterized Constructor\n   Copy Constructors\n➢ Default Constructor: Provided by the compiler if no\n  constructor is defined.\n\n\n\n\n                                                    23"
+      },
+      {
+        "number": 24,
+        "text": "2. Constructors and Destructors\n➢ Default Constructor\n   class Student\n   {\n       public string Name;\n\n       public Student()\n       {\n          Name = \"Unknown\";\n       }\n   }\n\n\n➢ Usage\n\n   Student s = new Student();\n\n                                  24"
+      },
+      {
+        "number": 25,
+        "text": "2. Constructors and Destructors\n➢ Parameterized Constructor\n   class Student\n   {    public string Name;\n        public float GPA;\n        public Student(string name, float gpa)\n        {\n          Name = name;\n          GPA = gpa;\n        }\n   }\n\n\n➢ Usage\n\n   Student s = new Student(“N.V.A”, 7.5f);\n\n                                                 25"
+      },
+      {
+        "number": 26,
+        "text": "2. Constructors and Destructors\n➢ Copy Constructor\n   class Student\n   {\n        public string Name { get; set; }\n        public Student(Student other)\n        {\n          Name = other.Name;\n        }\n   }\n\n\n➢ Usage\n   Student s = new Student();\n   Student s1 = new Student(s);\n\n\n                                           26"
+      },
+      {
+        "number": 27,
+        "text": "2. Constructors and Destructors\n➢ Using ICloneable Interface\n   class Student: ICloneable\n   {\n       public object Clone()\n       {\n          return this.MemberwiseClone(); // Shallow copy\n       }\n   }\n\n\n➢ Usage\n   Student s = new Student();\n   Student s1 = (Student)s.Clone();\n\n\n                                                           27"
+      },
+      {
+        "number": 28,
+        "text": "2. Constructors and Destructors\n➢ Constructor Chaining\n   class Student\n   {   public string Name;\n       public double GPA;\n       public Student(): this(\"Unknown\", 0)\n       {    }\n       public Student(string name,double gpa)\n       { Name = name;\n          GPA = gpa;\n       }\n   }\n\n➢ Usage\n   Student s = new Student();\n   Student s1 = new Student(“N.V.A”,7.8f);\n                                                28"
+      },
+      {
+        "number": 29,
+        "text": "2. Constructors and Destructors\n➢ Destructor\n   Used to release memory when an object is no longer\n     needed.\n➢ Characteristics\n    Same name as class\n    Preceded by a tilde ~.\n    No return type, no parameters.\n    Usually public.\n    Called automatically by the Garbage Collector (GC).\n➢ In modern C#, destructors are rarely used.\n\n                                                           29"
+      },
+      {
+        "number": 30,
+        "text": "2. Constructors and Destructors\n➢ Ex. Destructor\n\n  class Student\n  {\n       ~Student()\n       {\n          Console.WriteLine(\"Object destroyed\");\n       }\n  }\n\n\n\n\n                                                   30"
+      },
+      {
+        "number": 31,
+        "text": "Content\n\n     Defining Classes, Objects\n\n          Constructors and Destructors\n\n          This Keyword and Static Members\n\n          Implementing Relationships\n\n     Operator Overloading\n\n                                            31"
+      },
+      {
+        "number": 32,
+        "text": "3. This Keyword and Static Members\n➢ this Keyword\n   Refers to the current instance of the object.\n   Useful in scenarios:\n    o Disambiguation:   Distinguishing between instance\n      variables and parameters with the same name.\n    o Method Chaining: Returning the current object.\n\n\n\n\n                                                      32"
+      },
+      {
+        "number": 33,
+        "text": "3. This Keyword and Static Members\n➢ Ex.   Distinguishing between instance variables and\n  parameters with the same name.\n  this.gpa refers to the field, gpa refers to the parameter.\n\n        public class Student\n        {\n            float gpa;\n            public void SetMark(float gpa)\n            {\n                this.gpa = gpa;\n            }\n        }\n\n\n                                                           33"
+      },
+      {
+        "number": 34,
+        "text": "3. This Keyword and Static Members\n➢ Ex. Returning the current object\n\n    public class Time\n    {   int h, m, s;\n\n\n        public Time Increase(int i){\n            s = s + i;\n            ...\n            return this;\n        }\n    }\n\n\n\n\n                                       34"
+      },
+      {
+        "number": 35,
+        "text": "3. This Keyword and Static Members\n➢ Static Members\n    Belong to the class itself, not to any specific object.\n    Declared using the static keyword.\n    Accessed via the class name: ClassName.StaticMember.\n\n   public class Student\n   {\n       public static float gpa_S = 8;\n   }\n   class Program\n   {\n       Student s = new Student();\n       Console.Write(Student.gpa_S);\n   }                                                           35"
+      },
+      {
+        "number": 36,
+        "text": "3. This Keyword and Static Members\n➢ Static Methods\n    Static methods can only access static members. They\n     cannot directly access non-static instance members.\n\n     public class Student\n     {   string _id, _name; float _gpa;\n         static float gpa_S = 8;\n         public static bool Scholarship()\n         {\n             if (_gpa >= gpa_S)\n                return 1;\n             else\n                return 0;\n     }                                                     36"
+      },
+      {
+        "number": 37,
+        "text": "Content\n\n     Defining Classes, Objects\n\n          Constructors and Destructors\n\n          This Keyword and Static Members\n\n          Implementing Relationships\n\n     Operator Overloading\n\n                                            37"
+      },
+      {
+        "number": 38,
+        "text": "n\n\n\n\n\n    4. Implementing Relationships\n    ➢ Association: 1-to-1 Relationship\n        Bidirectional: Each class holds a reference to the other.\n\n                                             class      HOSOLYLICH\n         SINH VIÊN           HỒ SƠ LÝ LỊCH\n                     1   1                   {     SinhVien        sv;\n                                                  ...\n                                             };\n                                             class      SinhVien\n                                             {    HOSOLYLICH         hoso;\n                                                        …\n                                             };\n\n\n\n                                                                             38"
+      },
+      {
+        "number": 39,
+        "text": "4. Implementing Relationships\n➢ Association: 1-to-1 Relationship\n    Unidirectional: Only one class holds a reference to the\n    other.\n\n                                         class      HOSOLYLICH\n                                         {     SinhVien        sv;\n     SINH VIÊN           HỒ SƠ LÝ LỊCH\n                 1   1                        ...\n                                         };\n                                         class      SinhVien\n                                         {    HOSOLYLICH         hoso;\n                                                    …\n                                         };\n\n                                                                         39"
+      },
+      {
+        "number": 40,
+        "text": "4. Implementing Relationships\n➢ Association: 1-to-n Relationship\n    Bidirectional: A Student belongs to one Class; a Class\n    has many Students.\n\n                SINH VIÊN               LỚP HỌC\n                            1..n   1\n\n\n\n\n    class SinhVien                     class LopHoc\n    {   LopHoc lop;                    { SinhVien[]   ds;\n         ...                               ...\n    };                                 };\n\n                                                            40"
+      },
+      {
+        "number": 41,
+        "text": "4. Implementing Relationships\n➢ Association: 1-to-n Relationship\n    Unidirectional: A Class has many Students.\n                SINH VIÊN               LỚP HỌC\n                            1..n   1\n\n\n\n\n      class SinhVien                   class LOPHOC\n      {                                { SinhVien[] ds;\n           ...                             ...\n      };                               };\n\n\n\n\n                                                          41"
+      },
+      {
+        "number": 42,
+        "text": "4. Implementing Relationships\n➢ Composition Example\n   Meaning: A Car owns an Engine.\n\n    class Engine\n    {\n    }\n    class Car\n    {   private Engine engine;\n        public Car()\n        {\n           engine = new Engine();\n        }\n    }\n\n\n                                     42"
+      },
+      {
+        "number": 43,
+        "text": "Content\n\n     Defining Classes, Objects\n\n          Constructors and Destructors\n\n          This Keyword and Static Members\n\n          Implementing Relationships\n\n     Operator Overloading\n\n                                            43"
+      },
+      {
+        "number": 44,
+        "text": "5. Operator Overloading\n➢ Purpose\n    Allows user-defined classes to behave like built-in types.\n    Makes code cleaner and more intuitive (e.g., s1 + s2\n    instead of s1.Add(s2)).\n➢ Syntax:\n   public static <data-type> operator T (<data-type> operand1 [,..])\n   { … }\n\n\n    T: operator\n\n\n\n                                                                       44"
+      },
+      {
+        "number": 45,
+        "text": "5. Operator Overloading\n➢ Overloadable Operators\n      No.                           Operator\n       1    Unary: !, ~, ++, --\n       2    Binary: +, -, *, /, %\n       3    Comparison: ==, !=, <, >, <=, >=\n\n\n\n\n                                               45"
+      },
+      {
+        "number": 46,
+        "text": "5. Operator Overloading\n➢ Ex.\n\n public class Student\n {      string _id, _name; float _gpa;\n      public static float operator +(Student s1, Student s2)\n     {\n         return s1._gpa + s2._gpa;\n     }\n }\n class Program\n {   Student s1 = new Student();\n     Student s2 = new Student(s1);\n     Console.Write(“{0}”,s1 + s2);\n }\n\n                                                               46"
+      },
+      {
+        "number": 47,
+        "text": "The end of Topic 4\n\n\n\n\n                     47"
+      }
+    ]
+  }
+]
