@@ -1,37 +1,21 @@
-# Sủi Study Lab — Design System
+# Sủi Study Lab design system
 
-## Mục tiêu
+Reference: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
 
-- Hỗ trợ học thuật chứ không phải landing page bán hàng. Tập trung nội dung, dễ đọc trong nhiều phút.
-- **Một vấn đề / một màn hình** khi xem chi tiết bài, với lộ trình logic: đề bài → nhận dạng → ý tưởng → vì sao đúng → các bước → kết quả → kiểm tra → ghi chú.
-- Bố cục mobile-first, panel chỉ để bổ sung kiến thức; trên điện thoại nội dung bài giải luôn đi trước panel phụ.
+The first education search matched a children-oriented visual style. A narrower verified style search selected Minimalism & Swiss Style, appropriate for university study and documentation. No child-oriented fonts or decorative imagery are used.
 
-## Visual language
+## Direction
 
-- Phong cách **minimal academic workspace**: nền off-white, card trắng, đường viền mảnh, tương phản rõ, cobalt làm màu hành động, xanh ngọc cho tiến độ/đáp án, hổ phách cho lỗi thường gặp.
-- Font hệ thống ưu tiên hiển thị tiếng Việt ổn định và offline.
-- Icon stroke SVG thống nhất, không dùng emoji làm icon điều hướng.
-- Các biến `--bg`, `--surface`, `--ink`, `--muted`, `--accent`, `--teal`, `--amber`, `--border` là semantic tokens, cung cấp cả light và dark.
+Clear reading hierarchy, quiet indigo accent, neutral surfaces, consistent grid. Both subjects share the same components and layout. System sans-serif fonts support Vietnamese offline; serif is reserved for mathematical expressions.
 
-## Giao diện & tương tác
+## Tokens and components
 
-- Bàn phím: focus hiển thị; nút HTML thật; liên kết bỏ qua menu; dialog native đóng bằng Escape.
-- Điện thoại: menu trượt có lớp phủ và nút đóng; điều hướng 4 mục; vùng bấm mục tiêu ≥44px ở nút quan trọng.
-- Không khóa zoom; công thức có `overflow-wrap:anywhere` tránh tràn ngang.
-- Chuyển động ngắn, hỗ trợ `prefers-reduced-motion`.
-- Tìm kiếm giữ focus khi lọc; bộ lọc chip có `aria-pressed`, trạng thái chọn không chỉ thể hiện bằng màu.
-- Giao diện học sử dụng `<button>`/`<nav>`/`<main>`/`<article>`/`<section>` có ý nghĩa; thông báo có `role=status`.
-- Dữ liệu nhập được HTML-escape, không render HTML tùy ý từ ghi chú/tệp JSON.
+Theme tokens and overrides live in theme.css. Light and dark themes define foreground, muted text, surfaces, borders, accent and status colors. Cards use 16px corners, 24px padding and 16px grid gaps. Native progress elements expose numeric values alongside visible counts; all controls retain visible keyboard focus. Main controls target at least 44px height. Motion honors prefers-reduced-motion.
 
-## Breakpoints đã kiểm thử
+## Content and navigation
 
-- 320px, 375px (điện thoại), 768px (tablet), 1024px (laptop), 1440px (desktop).
-- Chế độ sáng/tối, mở bài chi tiết, tìm kiếm, trắc nghiệm, hoàn thành bài, ghi chú.
+Two subject options, one selected at a time. Four contextual navigation items. Topic cards have a clear title, description and next action. Study progress has a separate section with total percentage and two labelled meters. Existing learning data and browser progress keys are retained.
 
-## Tài liệu gợi ý
+## Build
 
-- https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
-- `.claude/skills/ui-ux-pro-max/SKILL.md`
-- `.claude/skills/ui-ux-pro-max/references/quick-reference.md`
-
-Chỉ áp dụng các nguyên tắc liên quan đến website học tập; không coi toàn bộ hướng dẫn thiết kế native app là yêu cầu bắt buộc cho website.
+Run python build.py after editing template.html, styles.css, theme.css, app.js, db.js or JSON content. index.html is the generated GitHub Pages entry point.

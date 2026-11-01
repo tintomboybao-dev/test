@@ -1,19 +1,19 @@
-# Sủi Study Lab v4
+# Sủi Study Lab v5
 
-Mở index.html trong Chrome, Edge hoặc Firefox. Không cần mạng.
+Website ôn tập Toán rời rạc và Cơ sở dữ liệu. Giao diện thống nhất cho hai môn, có chế độ sáng/tối, tìm kiếm, lọc chủ đề và lưu tiến độ trên trình duyệt.
 
-Chọn Cơ sở dữ liệu ở thanh chuyển môn. Có 23 mục kiến thức tổng hợp 4 chủ đề, đề Word bài 3–7 với lời giải từng ý, và bản trích chữ toàn bộ 4 tài liệu bài giảng. Toán rời rạc gồm 20 công thức, 19 đề mẫu, 50 bài vận dụng.
+## Upload GitHub Pages
 
-## GitHub Pages
+Giải nén file ZIP. Tải các file bên trong lên thư mục gốc của repository test, ghi đè file cùng tên. Không tải nguyên file ZIP lên repo. index.html phải nằm ngay thư mục gốc. GitHub Pages đang dùng nhánh main sẽ triển khai từ bản cập nhật đó.
 
-Giải nén và tải các file trong thư mục này lên repository. index.html cần nằm ngay thư mục gốc của trang. Trong Settings → Pages chọn nhánh và thư mục chứa index.html.
+## Chỉnh sửa và xây dựng
 
-## Chỉnh sửa
+Chạy python build.py để tạo lại index.html. styles.css là cấu trúc giao diện, theme.css chứa hệ màu và các thành phần v5. app.js điều khiển Toán rời rạc; db.js điều khiển Cơ sở dữ liệu. Dữ liệu nằm trong các file JSON. Không cần npm hay máy chủ để dùng trang web.
 
-app.js và styles.css là giao diện gốc. db.js là giao diện CSDL; db-data.json chứa đề và lời giải; db-knowledge.json chứa kiến thức tổng hợp; db-chapters.json chứa chữ trích từ bài giảng. Chạy python build.py sau khi chỉnh sửa. index.html đóng gói tất cả dữ liệu và mã nên có thể dùng riêng một file.
+## Nội dung
 
-## Đối chiếu
+Toán rời rạc: 20 công thức, 19 đề mẫu, 50 bài ôn tập. CSDL: 4 chủ đề, 22 mục kiến thức, lời giải bài 3–7. Mọi tiến độ được lưu riêng theo môn trên trình duyệt. Tiến độ của các phiên bản trước được giữ khi dùng cùng địa chỉ website.
 
-Đã đọc 12 ảnh và giữ cách trình bày bao đóng X₀, X₁…, phủ tối thiểu 3 bước, thuật toán tìm một khóa và bảng N, M, Mᵢ. Sửa lỗi kết luận B→C và C→E ở bài 4; đếm sinh viên phân biệt ở bài 3f; giải thích bài 7 đã đạt BCNF. Bài 6 giả sử dữ liệu nguyên tử để xác định dạng chuẩn cao nhất.
+## Thiết kế
 
-Các bản trích chữ dùng để tra cứu, không tái tạo bố cục/hình minh họa của slide gốc.
+Tham khảo UI/UX Pro Max và xem DESIGN_SYSTEM.md. Hai môn dùng chung phân cấp chữ, bố cục, thẻ chủ đề, nút và bảng tiến độ. Không tải font hoặc thư viện ngoài khi mở trang.
