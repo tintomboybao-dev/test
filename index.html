@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f6f7fa">
-<meta name="description" content="Sủi Study Lab — sổ tay công thức Toán rời rạc, 19 đề mẫu giải chi tiết và 50 bài ôn tập có gợi ý.">
+<meta name="description" content="Sủi Study Lab — kiến thức, công thức, đề mẫu và tiến độ riêng cho Toán rời rạc và Cơ sở dữ liệu.">
 <title>Sủi Study Lab | Toán rời rạc</title>
 <style>:root{color-scheme:light;--bg:#f6f7fa;--surface:#ffffff;--surface-alt:#f1f4f8;--ink:#1c2939;--muted:#606f83;--line:#dee4eb;--line-strong:#cad3de;--accent:#305db5;--accent-hover:#244b99;--accent-soft:#eaf0fc;--green:#147658;--green-soft:#e8f6ef;--amber:#8c5d18;--amber-soft:#fff6e6;--shadow:0 8px 28px rgba(24,43,75,.035);--scale:1}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#101827;--surface:#1a2637;--surface-alt:#223248;--ink:#eef2f8;--muted:#b4c2d5;--line:#354459;--line-strong:#4b5e75;--accent:#93b4fc;--accent-hover:#b4caff;--accent-soft:#263f63;--green:#92e1be;--green-soft:#21473a;--amber:#f3c477;--amber-soft:#413322;--shadow:none}
@@ -18,7 +18,10 @@
 @media(max-width:760px){.hint-zone .heading-row{flex-direction:column;align-items:stretch}.hint-zone .heading-row .btn{width:100%;white-space:normal}.topic-mini-grid{grid-template-columns:1fr}.section-head{align-items:start}.section-head p{text-align:right;max-width:48%}}
 .db-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}.db-tabs a{padding:10px 14px;border:1px solid var(--line);border-radius:9px;text-decoration:none;color:var(--ink);font-weight:650;background:var(--surface)}.db-reading{margin-top:24px}.db-text,.db-equation{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.85}.db-equation{font-family:Cambria,'Times New Roman',serif;font-size:1.15rem;padding:18px;background:var(--bg);border-left:3px solid #5778c6;margin:16px 0}.db-table{overflow-x:auto;margin:18px 0}.db-table table{width:100%;border-collapse:collapse;font-size:.95rem}.db-table th,.db-table td{padding:12px;text-align:left;border:1px solid #a0a8b64d;min-width:95px;vertical-align:top}.db-table th{background:#5672b31a}.db-source{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.8}.db-knowledge{margin-top:20px}.db-knowledge[hidden]{display:none}details summary{cursor:pointer;font-size:1.2rem;font-weight:750}.course-switch{display:block;padding:12px;margin-top:8px;border:1px solid var(--line);border-radius:10px;text-decoration:none;font-weight:700}.reading-card{margin-bottom:18px}#db-done-label{margin-left:14px}@media(max-width:700px){.db-tabs{gap:6px}.db-tabs a{font-size:.8rem;padding:8px}.db-equation{font-size:1rem;padding:12px}.db-table th,.db-table td{padding:8px}.db-reading .reading-card{padding:18px}}
 
-body.db-mode #sidebar-nav,body.db-mode .side-progress,body.db-mode .mobile-nav,body.db-mode .top-context{display:none}body.db-mode .active-course strong{font-size:0}body.db-mode .active-course strong:after{content:"Cơ sở dữ liệu";font-size:1rem}body.db-mode .active-course span{font-size:0}body.db-mode .active-course span:after{content:"Học phần 02";font-size:.8rem}.db-table{max-width:100%}.db-reading{min-width:0}
+
+
+.course-options{display:grid;gap:8px}.course-options a{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--muted);background:var(--surface);transition:background .15s,border-color .15s}.course-options strong,.course-options small{display:block}.course-options small{font-size:.76rem}.course-options a.selected{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);box-shadow:inset 3px 0 var(--accent)}.course-options a.selected strong{font-weight:800}.mobile-courses{display:none}.db-reading{min-width:0}.db-table{max-width:100%}.db-knowledge .detail-actions{margin-top:18px}.db-progress-summary{margin-bottom:24px}.db-topic-filter{margin:20px 0}.db-empty{padding:24px}.topic-mini.selected{border-color:var(--accent)}
+@media(max-width:900px){.mobile-courses{display:grid;grid-template-columns:1fr 1fr;padding:12px 20px}.mobile-courses a{text-align:center;font-size:.9rem}.mobile-nav{overflow-x:auto}.mobile-nav a{white-space:nowrap}}
 </style>
 </head>
 <body>
@@ -27,8 +30,7 @@ body.db-mode #sidebar-nav,body.db-mode .side-progress,body.db-mode .mobile-nav,b
 <aside class="sidebar" id="sidebar">
   <div class="brand"><span class="brand-figure">S</span><span><strong>Sủi Study Lab</strong><small>Không gian học tập</small></span></div>
   <div class="side-label">MÔN HỌC</div>
-  <div class="active-course"><strong>Toán rời rạc</strong><span>Học phần 01 · Đang học</span></div>
-  <a class="course-switch" href="#/db/home">Cơ sở dữ liệu →</a><a class="course-switch" href="#/home">Toán rời rạc →</a><div class="side-label side-label-nav">DANH MỤC</div>
+  <div class="course-options" aria-label="Chọn môn học"><a data-course="math" href="#/home"><strong>Toán rời rạc</strong><small>Môn học 01</small></a><a data-course="db" href="#/db/home"><strong>Cơ sở dữ liệu</strong><small>Môn học 02</small></a></div><div class="side-label side-label-nav">DANH MỤC</div>
   <nav id="sidebar-nav" class="side-nav" aria-label="Điều hướng chính">
     <a data-route="home" href="#/home"><span>01</span> Tổng quan</a>
     <a data-route="formulas" href="#/formulas"><span>02</span> Tổng hợp công thức <em>20</em></a>
@@ -37,12 +39,12 @@ body.db-mode #sidebar-nav,body.db-mode .side-progress,body.db-mode .mobile-nav,b
   </nav>
   <div class="sidebar-bottom">
    <div class="side-progress"><div class="progress-title">Tiến độ học</div><div class="progress-number" id="side-progress-label">0 / 69 bài</div><div class="progress-track"><div id="side-progress-bar"></div></div><p>Tiến độ được lưu trên trình duyệt này.</p></div>
-   <div class="side-support">Nền tảng đã sẵn sàng để bổ sung các môn học khác trong những phiên bản tiếp theo.</div>
+   <div class="side-support">Chọn môn học, đọc kiến thức và tự giải lại bài mẫu để theo dõi tiến độ.</div>
   </div>
 </aside>
 <div class="right-panel">
-<header class="topbar"><div class="topbar-left"><span class="mobile-logo">Sủi Study Lab</span><span class="top-context">TOÁN RỜI RẠC / <span id="top-section">TỔNG QUAN</span></span></div><div class="topbar-controls"><button id="font-down" class="tiny-button" type="button" aria-label="Giảm cỡ chữ">A−</button><button id="font-up" class="tiny-button" type="button" aria-label="Tăng cỡ chữ">A+</button><button id="theme-toggle" class="tiny-button theme-button" type="button" aria-label="Đổi giao diện sáng tối">Chế độ tối</button></div></header>
-<div class="db-tabs" style="padding:12px 20px;margin:0"><a href="#/home">Toán rời rạc</a><a href="#/db/home">Cơ sở dữ liệu</a></div><nav class="mobile-nav" aria-label="Danh mục trên điện thoại"><a href="#/home" data-route="home">Tổng quan</a><a href="#/formulas" data-route="formulas">Công thức</a><a href="#/samples" data-route="samples">Đề mẫu</a><a href="#/practice" data-route="practice">Ôn tập 50</a></nav>
+<header class="topbar"><div class="topbar-left"><span class="mobile-logo">Sủi Study Lab</span><span class="top-context"><span id="top-course">TOÁN RỜI RẠC</span> / <span id="top-section">TỔNG QUAN</span></span></div><div class="topbar-controls"><button id="font-down" class="tiny-button" type="button" aria-label="Giảm cỡ chữ">A−</button><button id="font-up" class="tiny-button" type="button" aria-label="Tăng cỡ chữ">A+</button><button id="theme-toggle" class="tiny-button theme-button" type="button" aria-label="Đổi giao diện sáng tối">Chế độ tối</button></div></header>
+<div class="course-options mobile-courses" aria-label="Chọn môn học"><a data-course="math" href="#/home">Toán rời rạc</a><a data-course="db" href="#/db/home">Cơ sở dữ liệu</a></div><nav class="mobile-nav" aria-label="Danh mục trên điện thoại"><a href="#/home" data-route="home">Tổng quan</a><a href="#/formulas" data-route="formulas">Công thức</a><a href="#/samples" data-route="samples">Đề mẫu</a><a href="#/practice" data-route="practice">Ôn tập 50</a></nav>
 <main id="main-content" tabindex="-1"><div class="container" id="view"></div></main>
 <footer class="site-footer"><span>Sủi Study Lab · Toán rời rạc và Cơ sở dữ liệu</span><span>Nội dung học tập · Hoạt động offline · Không cần đăng nhập</span></footer>
 </div></div>
@@ -54,22 +56,53 @@ const DB_KNOWLEDGE=[{"chapter": 1, "title": "Dữ liệu, thông tin, siêu dữ
 window.dbRender = function(){
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const path=location.hash.split('/'),page=path[2]||'home',id=Number(path[3]);
- const nav='<div class="db-tabs"><a href="#/home">Toán rời rạc</a><a href="#/db/home">Cơ sở dữ liệu</a><a href="#/db/knowledge">Kiến thức và công thức</a><a href="#/db/samples">Đề mẫu bài 3–7</a><a href="#/db/sources">4 chương bài giảng</a></div>';
- const title=(t,d)=>`<div class="page-intro"><div class="eyebrow">HỌC PHẦN 02 / CƠ SỞ DỮ LIỆU</div><h1 class="page-title">${t}</h1><p class="page-description">${d}</p></div>`;
+ const nav='';
+ const title=(t,d)=>`<div class="page-intro"><div class="eyebrow">MÔN HỌC 02 / CƠ SỞ DỮ LIỆU</div><h1 class="page-title">${t}</h1><p class="page-description">${d}</p></div>`;
  let body='';
- if(page==='samples'&&id){const p=DB_PROBLEMS.find(p=>p.id===id);if(!p)return dbRenderFallback();body=title('Bài '+id+'. '+p.title,'Đề ôn tập giữa kỳ · Chủ đề 1–4')+'<a class="btn" href="#/db/samples">← Danh sách đề mẫu</a><div class="db-reading">'+`<section class="reading-card"><h2>Đề bài</h2><p class="db-text">${esc(p.statement)}</p></section>`+(p.note?`<div class="warning"><strong>Đối chiếu ảnh lời giải</strong>${esc(p.note)}</div>`:'')+p.body+`<section class="reading-card"><h2>Tự kiểm tra</h2><p>Tự trình bày lại trước khi đánh dấu đã nắm.</p><button class="btn primary" data-db-done="${id}">Đánh dấu / bỏ đánh dấu đã nắm</button><span id="db-done-label"></span></section></div>`;
+ if(page==='samples'&&id){const p=DB_PROBLEMS.find(p=>p.id===id);if(!p){location.hash='#/db/samples';return;}body=title('Bài '+id+'. '+p.title,'Đề ôn tập giữa kỳ · Chủ đề 1–4')+'<a class="btn" href="#/db/samples">← Danh sách đề mẫu</a><div class="db-reading">'+`<section class="reading-card"><h2>Đề bài</h2><p class="db-text">${esc(p.statement)}</p></section>`+(p.note?`<div class="warning"><strong>Đối chiếu ảnh lời giải</strong>${esc(p.note)}</div>`:'')+p.body+`<section class="reading-card"><h2>Tự kiểm tra</h2><p>Tự trình bày lại trước khi đánh dấu đã nắm.</p><button class="btn primary" data-db-done="${id}">Đánh dấu / bỏ đánh dấu đã nắm</button><span id="db-done-label"></span></section></div>`;
  }else if(page==='samples'){body=title('Đề mẫu và lời giải bài 3–7','Đủ các ý trong đề Word. Trình bày bao đóng, phủ tối thiểu và bảng khóa theo 12 ảnh lời giải.')+DB_PROBLEMS.map(p=>`<section class="reading-card"><h2>Bài ${p.id}. ${p.title}</h2><p>${esc(p.statement.slice(0,180))}…</p><a class="btn primary" href="#/db/samples/${p.id}">Đề bài và lời giải →</a></section>`).join('');
  }else if(page==='sources'){body=title('Bài giảng theo 4 chủ đề','Bản trích chữ từ toàn bộ tài liệu PDF và PowerPoint. Dùng mục kiến thức để học phần tổng hợp, mở bản trích để đối chiếu chi tiết.')+DB_CHAPTERS.map(c=>`<details class="reading-card"><summary>Chủ đề ${c.id}. ${esc(c.title)}</summary><pre class="db-source">${esc(c.text)}</pre></details>`).join('');
  }else if(page==='knowledge'){body=title('Kiến thức và tổng hợp công thức','Chọn từng chủ đề. Mỗi mục có định nghĩa, cách dùng và ví dụ; các ký hiệu hoạt động offline.')+'<input class="search" id="db-search" type="search" placeholder="Tìm kiến thức, công thức…" aria-label="Tìm kiến thức">'+DB_KNOWLEDGE.map((c,i)=>`<section class="reading-card db-knowledge"><div class="eyebrow">CHỦ ĐỀ ${c.chapter}</div><h2>${esc(c.title)}</h2><div class="db-equation">${esc(c.formula)}</div><p class="db-text">${esc(c.explain)}</p><div class="focus-block"><strong>Ví dụ / cách dùng:</strong> ${esc(c.example)}</div></section>`).join('');
  }else{body=title('Cơ sở dữ liệu','Học kiến thức → xem cách trình bày → tự giải lại đề giữa kỳ.')+'<div class="path-grid">'+[['knowledge','Kiến thức và công thức','4 chủ đề: nền tảng, đại số quan hệ, phụ thuộc hàm và chuẩn hóa.'],['samples','5 bài tổng hợp đã giải','Bài 3–7 của đề Word, đầy đủ từng ý và bảng tính bao đóng, khóa.'],['sources','Đối chiếu bài giảng','Nội dung của toàn bộ 4 tài liệu, giữ số trang và slide.']].map(([r,t,d])=>`<a class="path-card" href="#/db/${r}"><h2>${t}</h2><p>${d}</p><span class="link-text">Mở nội dung →</span></a>`).join('')+'</div><section class="reading-card"><h2>Cách sử dụng</h2><p>Chọn “Kiến thức và công thức” để ôn các định nghĩa. Trong “Đề mẫu”, mỗi bài có đề đầy đủ rồi lời giải theo từng ý. Bảng N, M giúp tìm đủ khóa; các bảng X₀, X₁… ghi rõ phụ thuộc hàm được dùng.</p><p>Điểm cần chú ý khi đối chiếu ảnh: bài 4 có B → C đúng và C → E sai; bài 3 đếm số sinh viên cần loại trùng theo môn và mã sinh viên; bài 7 vốn đã đạt BCNF.</p></section>';
  }
+
+ const progress=dbProgress();
+ const completed=progress.samples.length+progress.knowledge.length,total=DB_KNOWLEDGE.length+DB_PROBLEMS.length;
+ if(page==='home'){
+ body=`<div class="intro-card"><div><div class="eyebrow">SỔ TAY HỌC TẬP / MÔN HỌC 02</div><h1>Hiểu dữ liệu.<br><span class="highlight">Vững cách giải.</span></h1><p>Ôn bốn chủ đề Cơ sở dữ liệu, đọc các công thức và đối chiếu cách trình bày từng ý của bài 3–7 trong đề giữa kỳ.</p><div class="actions"><a class="btn primary" href="#/db/knowledge">Bắt đầu từ kiến thức</a><a class="btn" href="#/db/samples">Xem đề mẫu</a></div></div><div class="intro-aside"><div><div class="big-number">4</div><div class="stat-label">chủ đề kiến thức</div></div><div><div class="big-number">${DB_KNOWLEDGE.length}</div><div class="stat-label">mục kiến thức và công thức</div></div><div><div class="big-number">5</div><div class="stat-label">bài tổng hợp đã giải</div></div></div></div>
+ <div class="section-head"><h2>Lộ trình học đề xuất</h2><p>Ba bước từ hiểu đến vận dụng</p></div><div class="path-grid">${[['knowledge','01 / NẮM VỮNG','Kiến thức và công thức','Định nghĩa, điều kiện áp dụng, cách làm và ví dụ của cả 4 chủ đề.'],['samples','02 / HIỂU PHƯƠNG PHÁP','Đề mẫu và lời giải','Bài 3–7 có bảng bao đóng, phủ tối thiểu, khóa và phân rã.'],['sources','03 / ĐỐI CHIẾU','Bài giảng theo chủ đề','Tra cứu toàn bộ chữ trích từ 4 tài liệu bài học.']].map(([r,k,t,e])=>`<a class="path-card" href="#/db/${r}"><div class="path-index">BƯỚC ${k}</div><h3>${t}</h3><p>${e}</p><span class="link-text">Mở nội dung →</span></a>`).join('')}</div>
+ <div class="section-head"><h2>Tổng quan 4 chủ đề</h2><p>${completed} / ${total} mục đã hoàn thành</p></div><div class="topic-mini-grid">${DB_CHAPTERS.map((c,i)=>`<a class="topic-mini" href="#/db/knowledge/${c.id}"><div class="eyebrow">CHỦ ĐỀ ${c.id}</div><h3>${esc(c.title)}</h3><p>${esc(DB_DESCRIPTIONS[i])}</p><span class="link-text">${DB_KNOWLEDGE.filter(k=>k.chapter===c.id).length} mục kiến thức →</span></a>`).join('')}</div>
+ <section class="reading-card db-progress-summary"><h2>Tiến độ Cơ sở dữ liệu</h2><p>${progress.knowledge.length} / ${DB_KNOWLEDGE.length} mục kiến thức · ${progress.samples.length} / 5 bài mẫu.</p><p>Đánh dấu đã nắm sau khi tự giải thích được công thức hoặc tự trình bày lại bài. Tiến độ được lưu riêng cho từng môn trên trình duyệt này.</p></section>`;
+ }
+ if(page==='knowledge'){
+ const topic=id>=1&&id<=4?id:0;
+ body=title('Kiến thức và tổng hợp công thức','Bốn chủ đề với định nghĩa, điều kiện áp dụng và ví dụ. Đánh dấu từng mục sau khi đã hiểu.')+`<div class="toolbar"><input class="search" id="db-search" type="search" placeholder="Tìm kiến thức, công thức…" aria-label="Tìm kiến thức"><select class="select" id="db-topic-filter" aria-label="Lọc chủ đề"><option value="0">Tất cả 4 chủ đề</option>${DB_CHAPTERS.map(c=>`<option value="${c.id}" ${topic===c.id?'selected':''}>${c.id}. ${esc(c.title)}</option>`).join('')}</select></div><p class="toolbar-meta" id="db-filter-count"></p>`+DB_KNOWLEDGE.map((c,i)=>`<article class="formula-item db-knowledge" data-chapter="${c.chapter}" id="db-knowledge-${i}"><div class="formula-top"><h3>${esc(c.title)}</h3><span class="formula-num">CHỦ ĐỀ ${c.chapter}</span></div><div class="db-equation">${esc(c.formula)}</div><div class="facts"><div class="fact"><strong>Kiến thức và cách áp dụng</strong><p class="db-text">${esc(c.explain)}</p></div></div><div class="formula-example"><strong>VÍ DỤ / CÁCH DÙNG</strong>${esc(c.example)}</div><div class="detail-actions"><button type="button" class="btn small ${progress.knowledge.includes(i)?'success':'soft'}" data-db-knowledge="${i}" aria-pressed="${progress.knowledge.includes(i)}">${progress.knowledge.includes(i)?'Đã nắm — bỏ đánh dấu':'Đánh dấu đã nắm'}</button></div></article>`).join('')+'<p class="empty" id="db-empty" hidden>Không tìm thấy nội dung phù hợp.</p>';
+ }
+ if(page==='samples'&&!id){body=title('5 đề mẫu và lời giải','Bài 3–7 của đề ôn tập giữa kỳ. Mở từng bài để xem đề đầy đủ và lời giải theo từng ý.')+`<p class="toolbar-meta">${progress.samples.length} / 5 bài đã hoàn thành</p><div class="list-stack">`+DB_PROBLEMS.map(p=>`<article class="problem-row"><div class="row-no">${p.id}</div><div class="row-content"><h3>${esc(p.title)}</h3><p>${esc(p.statement.slice(0,170))}…</p><div class="row-meta"><span class="tag">Đề giữa kỳ</span>${progress.samples.includes(p.id)?'<span class="tag done">Đã hoàn thành</span>':''}</div></div><div class="row-action"><a class="btn small" href="#/db/samples/${p.id}">Xem lời giải →</a></div></article>`).join('')+'</div>';}
  document.getElementById('view').innerHTML=nav+body;
  document.title='Cơ sở dữ liệu | Sủi Study Lab';
- document.getElementById('top-section').textContent='CƠ SỞ DỮ LIỆU';
- const input=document.getElementById('db-search');if(input)input.oninput=()=>{const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/đ/g,'d');document.querySelectorAll('.db-knowledge').forEach(e=>e.hidden=!norm(e.textContent).includes(norm(input.value)));};
- const read=()=>{try{return JSON.parse(localStorage.getItem('sui-db-done')||'[]')}catch{return []}};
- const label=document.getElementById('db-done-label');const update=()=>{if(label)label.textContent=read().includes(id)?' Đã nắm':' Chưa đánh dấu'};update();
- const button=document.querySelector('[data-db-done]');if(button)button.onclick=()=>{let done=read();done=done.includes(id)?done.filter(n=>n!==id):done.concat(id);try{localStorage.setItem('sui-db-done',JSON.stringify(done))}catch{}update()};
+ document.getElementById('top-section').textContent=({home:'TỔNG QUAN',knowledge:'KIẾN THỨC VÀ CÔNG THỨC',samples:'ĐỀ MẪU',sources:'BÀI GIẢNG'})[page]||'TỔNG QUAN';
+
+ const input=document.getElementById('db-search'),filter=document.getElementById('db-topic-filter');
+ const applyFilter=()=>{const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/đ/g,'d');let count=0;document.querySelectorAll('.db-knowledge').forEach(e=>{e.hidden=!(filter.value==='0'||e.dataset.chapter===filter.value)||!norm(e.textContent).includes(norm(input.value));if(!e.hidden)count++});document.getElementById('db-filter-count').textContent=`Đang hiển thị ${count} / ${DB_KNOWLEDGE.length} mục kiến thức`;document.getElementById('db-empty').hidden=count>0;};
+ if(input){input.oninput=applyFilter;filter.onchange=applyFilter;applyFilter();}
+ const button=document.querySelector('[data-db-done]');if(button){const done=progress.samples.includes(id);button.textContent=done?'Đã nắm — bỏ đánh dấu':'Đánh dấu đã nắm';button.classList.toggle('success',done);button.setAttribute('aria-pressed',String(done));button.onclick=()=>{dbToggle('samples',id);window.dbRender()};}
+ document.querySelectorAll('[data-db-knowledge]').forEach(button=>{button.onclick=()=>{const i=Number(button.dataset.dbKnowledge);dbToggle('knowledge',i);const done=dbProgress().knowledge.includes(i);button.textContent=done?'Đã nắm — bỏ đánh dấu':'Đánh dấu đã nắm';button.classList.toggle('success',done);button.setAttribute('aria-pressed',String(done));syncCourseShell()};});
+ syncCourseShell();
+};
+const DB_DESCRIPTIONS=['Dữ liệu, DBMS, kiến trúc, mô hình ER, quan hệ, khóa và ràng buộc toàn vẹn.','Chọn, chiếu, tập hợp, kết, đổi tên, chia và gom nhóm.','Armstrong, bao đóng, thành viên, phủ tối thiểu và tìm tất cả khóa.','1NF, 2NF, 3NF, BCNF, phân rã và các điều kiện bảo toàn.'];
+function dbProgress(){let data={};try{data=JSON.parse(localStorage.getItem('sui-db-progress')||'null')||{samples:JSON.parse(localStorage.getItem('sui-db-done')||'[]')}}catch{}return {samples:[...new Set(Array.isArray(data.samples)?data.samples.filter(n=>DB_PROBLEMS.some(p=>p.id===n)):[])],knowledge:[...new Set(Array.isArray(data.knowledge)?data.knowledge.filter(n=>Number.isInteger(n)&&n>=0&&n<DB_KNOWLEDGE.length):[])]};}
+function dbToggle(kind,id){const p=dbProgress();p[kind]=p[kind].includes(id)?p[kind].filter(n=>n!==id):p[kind].concat(id);try{localStorage.setItem('sui-db-progress',JSON.stringify(p))}catch{}}
+window.syncCourseShell=function(){
+ const db=location.hash.startsWith('#/db'),page=(db?location.hash.split('/')[2]:location.hash.replace(/^#\/?/,'').split('/')[0])||'home';
+ document.querySelectorAll('[data-course]').forEach(a=>{const active=a.dataset.course===(db?'db':'math');a.classList.toggle('selected',active);if(active)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});
+ const items=db?[['home','Tổng quan',''],['knowledge','Kiến thức và công thức',DB_KNOWLEDGE.length],['samples','Đề mẫu và lời giải',5],['sources','Bài giảng theo chủ đề',4]]:[['home','Tổng quan',''],['formulas','Tổng hợp công thức',20],['samples','Đề mẫu và lời giải',19],['practice','Ôn tập vận dụng',50]];
+ const href=r=>db?'#/db/'+r:'#/'+r;
+ document.getElementById('sidebar-nav').innerHTML=items.map(([r,t,n],i)=>`<a data-route="${r}" href="${href(r)}" class="${r===page?'active':''}" ${r===page?'aria-current="page"':''}><span>0${i+1}</span> ${t} ${n?`<em>${n}</em>`:''}</a>`).join('');
+ document.querySelector('.mobile-nav').innerHTML=items.map(([r,t])=>`<a data-route="${r}" href="${href(r)}" class="${r===page?'active':''}" ${r===page?'aria-current="page"':''}>${t}</a>`).join('');
+ document.getElementById('top-course').textContent=db?'CƠ SỞ DỮ LIỆU':'TOÁN RỜI RẠC';
+ if(db){const p=dbProgress(),done=p.samples.length+p.knowledge.length,total=DB_PROBLEMS.length+DB_KNOWLEDGE.length;document.getElementById('side-progress-label').textContent=`${done} / ${total} mục · ${Math.round(done*100/total)}%`;document.getElementById('side-progress-bar').style.width=(done*100/total)+'%';}
+ document.querySelector('.progress-title').textContent='Tiến độ '+(db?'Cơ sở dữ liệu':'Toán rời rạc');
 };
 
 (() => {
@@ -183,7 +216,7 @@ window.dbRender = function(){
     return html;
   }
   function render(restore=false) {
-    document.body.classList.toggle('db-mode',location.hash.startsWith('#/db'));
+    window.syncCourseShell();
     if(location.hash.startsWith('#/db')){window.dbRender();if(!restore)window.scrollTo(0,0);return;}
     const r=route(); setNav(r.page);progress();
     if(r.page==='home')viewEl.innerHTML=home();

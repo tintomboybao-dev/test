@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f6f7fa">
-<meta name="description" content="Sủi Study Lab — sổ tay công thức Toán rời rạc, 19 đề mẫu giải chi tiết và 50 bài ôn tập có gợi ý.">
+<meta name="description" content="Sủi Study Lab — kiến thức, công thức, đề mẫu và tiến độ riêng cho Toán rời rạc và Cơ sở dữ liệu.">
 <title>Sủi Study Lab | Toán rời rạc</title>
 <style>/* INLINE_STYLE */</style>
 </head>
@@ -14,8 +14,7 @@
 <aside class="sidebar" id="sidebar">
   <div class="brand"><span class="brand-figure">S</span><span><strong>Sủi Study Lab</strong><small>Không gian học tập</small></span></div>
   <div class="side-label">MÔN HỌC</div>
-  <div class="active-course"><strong>Toán rời rạc</strong><span>Học phần 01 · Đang học</span></div>
-  <div class="side-label side-label-nav">DANH MỤC</div>
+  <div class="course-options" aria-label="Chọn môn học"><a data-course="math" href="#/home"><strong>Toán rời rạc</strong><small>Môn học 01</small></a><a data-course="db" href="#/db/home"><strong>Cơ sở dữ liệu</strong><small>Môn học 02</small></a></div><div class="side-label side-label-nav">DANH MỤC</div>
   <nav id="sidebar-nav" class="side-nav" aria-label="Điều hướng chính">
     <a data-route="home" href="#/home"><span>01</span> Tổng quan</a>
     <a data-route="formulas" href="#/formulas"><span>02</span> Tổng hợp công thức <em>20</em></a>
@@ -24,14 +23,14 @@
   </nav>
   <div class="sidebar-bottom">
    <div class="side-progress"><div class="progress-title">Tiến độ học</div><div class="progress-number" id="side-progress-label">0 / 69 bài</div><div class="progress-track"><div id="side-progress-bar"></div></div><p>Tiến độ được lưu trên trình duyệt này.</p></div>
-   <div class="side-support">Nền tảng đã sẵn sàng để bổ sung các môn học khác trong những phiên bản tiếp theo.</div>
+   <div class="side-support">Chọn môn học, đọc kiến thức và tự giải lại bài mẫu để theo dõi tiến độ.</div>
   </div>
 </aside>
 <div class="right-panel">
-<header class="topbar"><div class="topbar-left"><span class="mobile-logo">Sủi Study Lab</span><span class="top-context">TOÁN RỜI RẠC / <span id="top-section">TỔNG QUAN</span></span></div><div class="topbar-controls"><button id="font-down" class="tiny-button" type="button" aria-label="Giảm cỡ chữ">A−</button><button id="font-up" class="tiny-button" type="button" aria-label="Tăng cỡ chữ">A+</button><button id="theme-toggle" class="tiny-button theme-button" type="button" aria-label="Đổi giao diện sáng tối">Chế độ tối</button></div></header>
-<nav class="mobile-nav" aria-label="Danh mục trên điện thoại"><a href="#/home" data-route="home">Tổng quan</a><a href="#/formulas" data-route="formulas">Công thức</a><a href="#/samples" data-route="samples">Đề mẫu</a><a href="#/practice" data-route="practice">Ôn tập 50</a></nav>
+<header class="topbar"><div class="topbar-left"><span class="mobile-logo">Sủi Study Lab</span><span class="top-context"><span id="top-course">TOÁN RỜI RẠC</span> / <span id="top-section">TỔNG QUAN</span></span></div><div class="topbar-controls"><button id="font-down" class="tiny-button" type="button" aria-label="Giảm cỡ chữ">A−</button><button id="font-up" class="tiny-button" type="button" aria-label="Tăng cỡ chữ">A+</button><button id="theme-toggle" class="tiny-button theme-button" type="button" aria-label="Đổi giao diện sáng tối">Chế độ tối</button></div></header>
+<div class="course-options mobile-courses" aria-label="Chọn môn học"><a data-course="math" href="#/home">Toán rời rạc</a><a data-course="db" href="#/db/home">Cơ sở dữ liệu</a></div><nav class="mobile-nav" aria-label="Danh mục trên điện thoại"><a href="#/home" data-route="home">Tổng quan</a><a href="#/formulas" data-route="formulas">Công thức</a><a href="#/samples" data-route="samples">Đề mẫu</a><a href="#/practice" data-route="practice">Ôn tập 50</a></nav>
 <main id="main-content" tabindex="-1"><div class="container" id="view"></div></main>
-<footer class="site-footer"><span>Sủi Study Lab · Toán rời rạc</span><span>Nội dung học tập · Hoạt động offline · Không cần đăng nhập</span></footer>
+<footer class="site-footer"><span>Sủi Study Lab · Toán rời rạc và Cơ sở dữ liệu</span><span>Nội dung học tập · Hoạt động offline · Không cần đăng nhập</span></footer>
 </div></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script id="study-data" type="application/json">/* INLINE_DATA */</script>

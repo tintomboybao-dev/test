@@ -109,6 +109,8 @@
     return html;
   }
   function render(restore=false) {
+    window.syncCourseShell();
+    if(location.hash.startsWith('#/db')){window.dbRender();if(!restore)window.scrollTo(0,0);return;}
     const r=route(); setNav(r.page);progress();
     if(r.page==='home')viewEl.innerHTML=home();
     else if(r.page==='formulas')viewEl.innerHTML=formulas();

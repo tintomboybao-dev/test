@@ -1,0 +1,156 @@
+[
+  {
+    "chapter": 1,
+    "title": "Dữ liệu, thông tin, siêu dữ liệu và DBMS",
+    "formula": "Hệ CSDL = CSDL + DBMS + ứng dụng + người dùng + quy tắc",
+    "explain": "Dữ liệu là sự kiện được ghi nhận; thông tin là dữ liệu đã xử lý có ý nghĩa. Metadata mô tả cấu trúc, kiểu và ràng buộc. CSDL là tập dữ liệu có liên quan; DBMS quản lý định nghĩa, lưu trữ, truy vấn, cập nhật, phân quyền, sao lưu và đồng thời.",
+    "example": "Điểm từng lượt thi là dữ liệu; điểm trung bình lớp là thông tin; kiểu DECIMAL và CHECK 0≤Diem≤10 là metadata."
+  },
+  {
+    "chapter": 1,
+    "title": "Kiến trúc, độc lập dữ liệu và vòng đời",
+    "formula": "Ngoài ↔ Khái niệm ↔ Trong",
+    "explain": "Mức ngoài là các khung nhìn; mức khái niệm mô tả logic toàn CSDL; mức trong mô tả lưu trữ. Độc lập vật lý che thay đổi chỉ mục/lưu trữ; độc lập logic che thay đổi lược đồ qua khung nhìn. Vòng đời: lập kế hoạch → khảo sát → thiết kế khái niệm → logic → vật lý → triển khai → kiểm thử → vận hành. DBA quản trị; người thiết kế mô hình; lập trình viên xây ứng dụng; người dùng khai thác.",
+    "example": "Thêm chỉ mục không cần đổi truy vấn ứng dụng là ví dụ độc lập vật lý. View chỉ cho sinh viên xem điểm cá nhân thể hiện đa khung nhìn."
+  },
+  {
+    "chapter": 1,
+    "title": "Mô hình dữ liệu và chuyển ER sang quan hệ",
+    "formula": "1–N: khóa ngoại ở phía N; N–N: tạo bảng liên kết",
+    "explain": "Mô hình gồm cấu trúc, phép thao tác và ràng buộc. ER mô tả thực thể, thuộc tính, liên kết và lực lượng. Thực thể mạnh thành bảng; thuộc tính đa trị thành bảng riêng; thực thể yếu có khóa gồm khóa chủ và khóa bộ phận. Liên kết 1–1 thường đặt khóa ngoại UNIQUE ở phía tham gia toàn phần; N–N dùng hai khóa ngoại và thuộc tính liên kết.",
+    "example": "SINHVIEN(MaSV,HoTen,MaLop) tham chiếu LOP(MaLop). DANGKY(MaSV,MaMH,HocKy,Diem) có thể cần khóa (MaSV,MaMH,HocKy) nếu được đăng ký nhiều kỳ."
+  },
+  {
+    "chapter": 1,
+    "title": "Quan hệ, lược đồ, miền, bộ, bậc và lực lượng",
+    "formula": "r(R) ⊆ Dom(A₁) × … × Dom(Aₙ); bậc = n; lực lượng = |r|",
+    "explain": "Lược đồ R(A₁,…,Aₙ) là cấu trúc; r là trạng thái dữ liệu. Thuộc tính là cột, bộ là một dòng, miền là các giá trị hợp lệ. Quan hệ theo tập hợp không có bộ trùng và không có thứ tự dòng/cột mang ý nghĩa. Giá trị từng ô là nguyên tử trong mô hình quan hệ 1NF.",
+    "example": "SINHVIEN(MaSV,HoTen,MaLop) có bậc 3; nếu có 40 sinh viên thì lực lượng là 40. Không suy ra lực lượng từ bậc."
+  },
+  {
+    "chapter": 1,
+    "title": "Khóa và toàn vẹn",
+    "formula": "K là khóa ⇔ K⁺ = U và ∀A∈K: (K−{A})⁺ ≠ U",
+    "explain": "Siêu khóa xác định mọi thuộc tính; khóa dự tuyển là siêu khóa tối thiểu theo bao hàm. Khóa chính là một khóa dự tuyển được chọn. Thuộc tính khóa xuất hiện trong ít nhất một khóa dự tuyển. Khóa ngoại tham chiếu khóa được phép tham chiếu của bảng khác. Toàn vẹn thực thể: khóa chính duy nhất, không NULL; toàn vẹn tham chiếu: giá trị khóa ngoại phải có bản ghi đích hoặc NULL khi được phép.",
+    "example": "Khi xóa lớp có sinh viên phải áp dụng chính sách RESTRICT, CASCADE hoặc SET NULL được thiết kế. Dữ liệu mẫu có HoTen duy nhất chưa chứng minh HoTen là khóa theo ngữ nghĩa."
+  },
+  {
+    "chapter": 2,
+    "title": "Chọn và chiếu",
+    "formula": "σ_điều kiện(R); π_danh sách thuộc tính(R)",
+    "explain": "Chọn lọc dòng nhưng giữ cột. Chiếu lấy cột và loại bộ trùng theo ngữ nghĩa tập hợp. Thực hiện từ trong ra ngoài; không chiếu mất cột còn dùng để lọc/kết.",
+    "example": "π_{MaSV,HoTen}(σ_{MaLop='L1'}(SINHVIEN)). σ_{Diem≥8}(π_{MaSV}(DANGKY)) sai vì đã mất Diem."
+  },
+  {
+    "chapter": 2,
+    "title": "Hợp, giao, hiệu và khả hợp",
+    "formula": "R ∪ S; R ∩ S; R − S",
+    "explain": "Các toán hạng phải cùng bậc, miền tương ứng tương thích; đổi tên/chiếu về cùng cấu trúc trước. Hợp tương ứng “hoặc”; giao là “cả hai”; hiệu là “có ở trái, không ở phải”. Hiệu không giao hoán.",
+    "example": "Chiếu MaSV của nhóm học M1 và M2 trước khi giao. Chưa học M1 = tất cả sinh viên − người học M1, không phải chọn MaMH≠M1."
+  },
+  {
+    "chapter": 2,
+    "title": "Tích Descartes, kết và đổi tên",
+    "formula": "R ⋈_θ S = σ_θ(R × S); |R × S| = |R|·|S|",
+    "explain": "Tích ghép mọi cặp bộ. Kết theta giữ cặp thỏa điều kiện; kết bằng dùng dấu =. Kết tự nhiên so khớp tất cả cột trùng tên và chỉ giữ một bản của cột kết. ρ đổi tên quan hệ/thuộc tính để tự kết hoặc tránh nhập nhằng.",
+    "example": "Đổi thành SV₁(MaSV1,HoTen1,MaLop1), SV₂(MaSV2,HoTen2,MaLop2), rồi chọn MaLop1=MaLop2 và MaSV1≠MaSV2 trên SV₁×SV₂."
+  },
+  {
+    "chapter": 2,
+    "title": "Phép chia và lượng từ tất cả",
+    "formula": "R(X,Y) ÷ S(Y) = π_X(R) − π_X((π_X(R) × S) − R)",
+    "explain": "Chia tìm các giá trị X ghép được với mọi Y trong S. S chỉ chứa thuộc tính chia, R chứa đúng nhóm X,Y cần xét. Cần định rõ tập ứng viên nếu S rỗng.",
+    "example": "π_{MaSV,MaMH}(DANGKY) ÷ MON_BATBUOC trả mã sinh viên đăng ký đủ môn bắt buộc."
+  },
+  {
+    "chapter": 2,
+    "title": "Đại số mở rộng: gom nhóm, tổng hợp, kết ngoài",
+    "formula": "γ_{nhóm; COUNT, SUM, AVG, MIN, MAX}(R)",
+    "explain": "Gom nhóm chia dữ liệu theo giá trị thuộc tính rồi tổng hợp từng nhóm. Kết ngoài giữ cả các bộ không khớp và bổ sung NULL. Phép gán ← đặt tên quan hệ trung gian. SQL thường có bộ trùng; đại số cơ bản theo tập hợp.",
+    "example": "Đếm sinh viên theo môn: T←π_{MaMH,MaSV}(DANGKY), rồi γ_{MaMH;COUNT(MaSV)→SoSV}(T). AVG(Diem) trên DANGKY là trung bình lượt đăng ký."
+  },
+  {
+    "chapter": 2,
+    "title": "Biến đổi biểu thức và kiểm tra",
+    "formula": "σ_p(σ_q(R)) = σ_{p∧q}(R)",
+    "explain": "Đẩy chọn xuống trước phép kết khi điều kiện chỉ dùng cột của một phía. Chiếu sớm được nếu giữ đủ cột kết và cột dùng về sau. Kiểm tra lược đồ đầu ra sau mỗi phép.",
+    "example": "Đặt T₁←σ_{Diem≥8}(DANGKY), T₂←T₁⋈SINHVIEN, T₃←T₂⋈MONHOC rồi chiếu HoTen,TenMH,Diem."
+  },
+  {
+    "chapter": 3,
+    "title": "Dư thừa và phụ thuộc hàm",
+    "formula": "r ⊨ X→Y ⇔ ∀t₁,t₂∈r: t₁[X]=t₂[X] ⇒ t₁[Y]=t₂[Y]",
+    "explain": "X xác định duy nhất Y. Chỉ một cặp cùng X khác Y đủ bác bỏ. PTH hiển nhiên khi Y⊆X. Dư thừa gây dị thường thêm, xóa, sửa; phải suy ra PTH từ quy tắc nghiệp vụ.",
+    "example": "MaSV→HoTen không có nghĩa HoTen→MaSV. Với bảng bài 4, C→E sai vì t₁ và t₄ cùng C=1 nhưng khác E."
+  },
+  {
+    "chapter": 3,
+    "title": "Armstrong và các hệ quả",
+    "formula": "Phản xạ: Y⊆X ⇒ X→Y\nTăng trưởng: X→Y ⇒ XZ→YZ\nBắc cầu: X→Y, Y→Z ⇒ X→Z",
+    "explain": "Hợp: X→Y và X→Z suy ra X→YZ. Tách: X→YZ suy ra X→Y và X→Z. Giả bắc cầu: X→Y, YZ→W suy ra XZ→W. Ghi rõ luật sau mỗi bước.",
+    "example": "AB→C, C→DE ⇒ C→E (tách) ⇒ AB→E (bắc cầu)."
+  },
+  {
+    "chapter": 3,
+    "title": "Bao đóng và bài toán thành viên",
+    "formula": "X⁺_F = {A ∈ U | F ⊨ X→A}; X→Y∈F⁺ ⇔ Y⊆X⁺_F",
+    "explain": "Đặt X₀=X. Nếu V→W và V⊆Xᵢ thì thêm W. Lặp toàn bộ tập PTH cho đến khi không đổi; ghi PTH mỗi bước. F⁺ là tập PTH suy diễn được, khác X⁺ là tập thuộc tính.",
+    "example": "Với AB→C,C→DE,D→B,E→G,G→H: (AB)⁺=ABCDEGH; C⁺=BCDEGH; (AE)⁺=AEGH."
+  },
+  {
+    "chapter": 3,
+    "title": "Tương đương và phủ tối thiểu",
+    "formula": "F ≡ G ⇔ F⁺ = G⁺",
+    "explain": "Kiểm tra F suy ra từng PTH của G và ngược lại. Phủ tối thiểu: vế phải đơn thuộc tính, vế trái không dư, không PTH dư. Bước 1 tách RHS; bước 2 thử bỏ thuộc tính a ở LHS bằng kiểm tra Y⊆(X−a)⁺ theo tập hiện tại; bước 3 bỏ X→Y nếu Y⊆X⁺ theo tập hiện tại đã bỏ PTH đó.",
+    "example": "CH→E và H→C làm C dư trong CH→E. Không dùng chính PTH cần kiểm tra khi thử loại PTH dư; cập nhật tập sau mỗi lần bỏ. Phủ tối thiểu có thể không duy nhất."
+  },
+  {
+    "chapter": 3,
+    "title": "Một khóa và tất cả khóa",
+    "formula": "N = U − RHS(F); M = LHS(F) ∩ RHS(F)",
+    "explain": "Mọi khóa chứa N, kể cả thuộc tính không xuất hiện ở vế nào. Nếu N⁺=U thì N là khóa duy nhất. Nếu chưa đủ, xét N∪Mᵢ với mọi Mᵢ⊆M, kiểm tra bao đóng và tối thiểu; loại tập chứa khóa đã biết. Thuộc tính chỉ ở RHS không cần thêm để tạo khóa tối thiểu.",
+    "example": "Bài 5: N=AB, M=CEH; khóa ABE và ABH. Thuộc tính khóa là ABEH, không khóa là CD. Tìm một khóa: bắt đầu U rồi thử bỏ lần lượt từng thuộc tính."
+  },
+  {
+    "chapter": 4,
+    "title": "1NF và phụ thuộc đầy đủ, riêng phần, bắc cầu",
+    "formula": "BCNF ⇒ 3NF ⇒ 2NF ⇒ 1NF",
+    "explain": "1NF: giá trị nguyên tử, không nhóm lặp. X→A đầy đủ khi không tập con thực sự nào của X xác định A; riêng phần nếu có. Phụ thuộc bắc cầu thường gặp: khóa→thuộc tính trung gian→thuộc tính không khóa.",
+    "example": "Bảng có cột Mon chứa “CSDL,CTDL” cần tách thành mỗi môn một bộ. AB→C và A→C thể hiện C phụ thuộc riêng phần vào AB."
+  },
+  {
+    "chapter": 4,
+    "title": "2NF",
+    "formula": "1NF và không có A không khóa phụ thuộc vào tập con thực sự của bất kỳ khóa nào",
+    "explain": "Phải tìm tất cả khóa trước khi xét. Khóa đơn không có tập con thực sự khác rỗng, trong bài tập thông thường không có PTH vế trái rỗng nên không gây phụ thuộc riêng phần.",
+    "example": "Bài 5: AB⊂ABE và AB→C,D, C,D không khóa ⇒ vi phạm 2NF. Bài 6a khóa A duy nhất nên đạt 2NF."
+  },
+  {
+    "chapter": 4,
+    "title": "3NF và BCNF",
+    "formula": "3NF: ∀X→A không hiển nhiên, X là siêu khóa hoặc A là thuộc tính khóa\nBCNF: ∀X→Y không hiển nhiên, X là siêu khóa",
+    "explain": "3NF cho phép định thức không phải siêu khóa khi thuộc tính vế phải là thuộc tính khóa. BCNF chặt hơn. Tính X⁺ để xét siêu khóa; không nhầm “không phải khóa tối thiểu” với “không là siêu khóa”.",
+    "example": "R(C,S,Z), F={CS→Z,Z→C}: khóa CS,SZ; Z→C thỏa 3NF vì C là thuộc tính khóa, nhưng vi phạm BCNF vì Z⁺=ZC thiếu S."
+  },
+  {
+    "chapter": 4,
+    "title": "Bảo toàn thông tin và phụ thuộc hàm",
+    "formula": "R→R₁,R₂ lossless ⇔ (R₁∩R₂)→R₁ hoặc (R₁∩R₂)→R₂ thuộc F⁺",
+    "explain": "Bảo toàn thông tin nghĩa là chiếu rồi kết trả đúng quan hệ gốc, không có bộ giả. Với nhiều bảng, chứng minh từng bước nhị phân hoặc dùng chase. Bảo toàn PTH: đặt G=∪π_Rᵢ(F), kiểm tra G suy ra mọi PTH của F. Tập chiếu chứa cả các PTH suy diễn, không chỉ PTH viết sẵn.",
+    "example": "Nếu tách theo X→Y thành XY và U−(Y−X), giao chứa X và X xác định XY nên không mất mát. Hai tính chất bảo toàn thông tin và PTH phải kiểm tra riêng."
+  },
+  {
+    "chapter": 4,
+    "title": "Tổng hợp 3NF",
+    "formula": "Phủ tối thiểu → gom cùng LHS → tạo Rᵢ = X∪Y → thêm bảng chứa khóa nếu thiếu",
+    "explain": "Tạo bảng cho mỗi nhóm cùng vế trái. Có thể bỏ bảng nằm trọn trong bảng khác. Nếu không bảng nào chứa khóa của R, thêm một bảng gồm khóa. Thuật toán bảo đảm 3NF, bảo toàn PTH và thông tin.",
+    "example": "Bài 7 từ G={CJ→E,CE→D,CD→J,CD→H}: tạo CJE, CED, CDJH. CDJH chứa khóa CD nên không cần thêm bảng khóa."
+  },
+  {
+    "chapter": 4,
+    "title": "Phân rã BCNF",
+    "formula": "S₁ = X∪Y; S₂ = S − (Y−X)",
+    "explain": "Chọn PTH không hiển nhiên X→Y vi phạm BCNF trong S; tách rồi chiếu PTH và kiểm tra tiếp. Dừng khi mọi lược đồ con đạt BCNF. Bảo đảm lossless nhưng có thể mất bảo toàn PTH. Nếu R đã BCNF thì giữ R là kết quả hợp lệ.",
+    "example": "Bài 7: CJ,CE,CD là khóa; CDH là siêu khóa. Mọi định thức trong F là siêu khóa, vì thế R đã BCNF. Không tách theo PTH có định thức là khóa rồi kết luận rằng đó là PTH vi phạm."
+  }
+]
